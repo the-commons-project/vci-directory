@@ -1,4 +1,3 @@
-# CommonTrust Network
+# VCI Directory
 
-This repository holds data assets showing membership within the CommonTrust
-Network.
+This repository holds data assets showing membership within the [VCI](https://vci.org/) Directory.
