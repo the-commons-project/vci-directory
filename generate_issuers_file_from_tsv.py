@@ -1,11 +1,6 @@
 import argparse
 import common
 
-name_index = 0
-name_header = 'name'
-iss_index = 1
-iss_header = 'iss'
-
 def main():
 
     parser = argparse.ArgumentParser(description='Converts a tab delimited file into a compatible JSON file')
