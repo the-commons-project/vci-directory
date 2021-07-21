@@ -106,7 +106,7 @@ def write_issuer_entries_to_json_file(
         PARTICIPATING_ISSUERS_KEY: entry_dicts
     }
     with open(output_file, 'w') as json_file:
-        json.dump(output_dict, json_file, indent=4)
+        json.dump(output_dict, json_file, indent=2)
 
 def validate_key(jwk_dict) -> Tuple[bool, list[Issue]]:
     '''
@@ -226,6 +226,7 @@ def validate_entries(
 
 def analyze_results(
     validation_results: list[ValidationResult],
+    show_errors_and_warnings: bool,
     show_warnings: bool
 ) -> bool:
 
@@ -236,11 +237,12 @@ def analyze_results(
         assert(result.is_valid == (len(errors) == 0))
         if not result.is_valid:
             is_valid = False
-            print(f'{result.issuer_entry.iss} is INVALID')
-            for error in errors:
-                print(f'{result.issuer_entry.iss}: {error.description}')
+            if show_errors_and_warnings:
+                print(f'{result.issuer_entry.iss} is INVALID')
+                for error in errors:
+                    print(f'{result.issuer_entry.iss}: {error.description}')
         
-        if show_warnings:
+        if show_errors_and_warnings and show_warnings:
             warnings = [issue for issue in result.issues if issue.type.level == IssueLevel.WARNING]
             for warning in warnings:
                 print(f'{result.issuer_entry.iss} warning: {warning}') 

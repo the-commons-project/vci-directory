@@ -12,7 +12,7 @@ def main():
     entries_from_json = common.read_issuer_entries_from_json_file(args.input_file)
 
     validation_results = common.validate_entries(entries_from_json)
-    valid = common.analyze_results(validation_results, args.show_warnings)
+    valid = common.analyze_results(validation_results, True, args.show_warnings)
 
     if valid:
         print('All entries are valid')
