@@ -1,0 +1,22 @@
+name: "Test Scripts"
+
+on:
+  pull_request_target:
+    types: [opened, synchronize]
+
+jobs:
+  runTests:
+    name: "Test Scripts"
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: "actions/checkout@v2"
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: "Run tests"
+        run: |
+          cd scripts
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
+          python -m unittest test.common_test
