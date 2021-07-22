@@ -1,6 +1,6 @@
 # VCI Directory
 
-This repository provides a public directory of institutions issuing COVID-19 Vaccination SMART Health Cards. The directory is a simple listing of issuer name and issuer ISS that can be used for purposes of verification and display. 
+This repository provides a public directory of institutions issuing COVID-19 Vaccination SMART Health Cards. The directory, represented in the vci-issuers.json file, is a simple listing of issuer name and issuer ISS that can be used for purposes of verification and display.
 
 ## Requirements for issuers
 At this time, entries in the directory are authorized administrators of the vaccine and holders of immunization records, including:
