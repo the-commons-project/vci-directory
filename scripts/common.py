@@ -2,7 +2,7 @@ from asyncio.locks import BoundedSemaphore
 import csv
 import json
 from collections import namedtuple
-from typing import List, Tuple
+from typing import Any, List, Tuple
 import asyncio
 import httpx
 from enum import Enum, auto
@@ -64,6 +64,9 @@ PARTICIPATING_ISSUERS_KEY = 'participating_issuers'
 EXPECTED_KEY_USE = 'sig'
 EXPECTED_KEY_ALG = 'ES256'
 EXPECTED_KEY_CRV = 'P-256'
+
+MAX_FETCH_RETRY_COUNT=3
+FETCH_RETRY_COUNT_DELAY=2
 
 def read_issuer_entries_from_tsv_file(
     input_file: str,
@@ -189,6 +192,28 @@ def validate_keyset(jwks_dict) -> Tuple[bool, List[Issue]]:
 
     return [keyset_is_valid, keyset_issues]
 
+async def fetch_jwks(
+    jwks_url: str,
+    retry_count: int = 0
+) -> Any:
+
+    try:
+        async with httpx.AsyncClient() as client:
+            res = await client.get(jwks_url)
+            res.raise_for_status()
+            return res.json()
+    except BaseException as ex:
+        if retry_count < MAX_FETCH_RETRY_COUNT:
+            ## Add exponential backoff, starting with 1s
+            delay_seconds = pow(FETCH_RETRY_COUNT_DELAY, retry_count)
+            await asyncio.sleep(delay_seconds)
+            return await fetch_jwks(
+                jwks_url,
+                retry_count = retry_count + 1
+            )
+        else:
+            raise ex
+
 async def validate_issuer(
     issuer_entry: IssuerEntry,
     semaphore: BoundedSemaphore
@@ -205,12 +230,9 @@ async def validate_issuer(
             jwks_url = f'{iss}/.well-known/jwks.json'
         
         try:
-            async with httpx.AsyncClient() as client:
-                res = await client.get(jwks_url)
-                res.raise_for_status()
-                jwks = res.json()
-                (is_valid, issues) = validate_keyset(jwks)
-                return ValidationResult(issuer_entry, is_valid, issues)
+            jwks = await fetch_jwks(jwks_url)
+            (is_valid, issues) = validate_keyset(jwks)
+            return ValidationResult(issuer_entry, is_valid, issues)
         except BaseException as ex:
             issues = [
                 Issue(f'An exception occurred when fetching {jwks_url}: {ex}', IssueType.FETCH_EXCEPTION)
