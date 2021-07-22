@@ -77,8 +77,8 @@ def read_issuer_entries_from_tsv_file(
         reader = csv.reader(tsvfile, delimiter='\t')
         entries = {}
         for row in reader:
-            name = row[name_index]
-            iss = row[iss_index]
+            name = row[name_index].strip()
+            iss = row[iss_index].strip()
             if name != name_header and iss != iss_header:
                 entry = IssuerEntry(name, iss)
                 entries[iss] = entry
@@ -91,8 +91,8 @@ def read_issuer_entries_from_json_file(
         input_dict = json.load(json_file)
         entries = {}
         for entry_dict in input_dict[PARTICIPATING_ISSUERS_KEY]:
-            name = entry_dict[NAME_KEY]
-            iss = entry_dict[ISS_KEY]
+            name = entry_dict[NAME_KEY].strip()
+            iss = entry_dict[ISS_KEY].strip()
             entry = IssuerEntry(name, iss)
             entries[iss] = entry
 
