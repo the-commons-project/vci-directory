@@ -13,12 +13,10 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
-      - name: "Setup environment"
+      - name: "Validate Issuers File"
         run: |
           cd scripts
           python -m venv venv
           source venv/bin/activate
           pip install -r requirements.txt
-
-      - name: "Validate Issuers File"
-        run: python validate_entries.py ../vci-issuers.json
+          python validate_entries.py ../vci-issuers.json
