@@ -1,8 +1,8 @@
-name: "Validate Issuers File"
+name: "Validate Issuers File Periodically"
 
 on:
-  pull_request_target:
-    types: [opened, synchronize]
+  schedule:
+    - cron:  '*/60 */4 * * *'
 
 jobs:
   runTests:

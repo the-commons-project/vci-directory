@@ -1,0 +1,22 @@
+name: "Validate Issuers File On Push"
+
+on:
+  pull_request_target:
+    types: [opened, synchronize]
+
+jobs:
+  runTests:
+    name: "Validate Issuers File"
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: "actions/checkout@v2"
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: "Validate Issuers File"
+        run: |
+          cd scripts
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
+          python validate_entries.py ../vci-issuers.json
