@@ -72,7 +72,7 @@ def read_issuer_entries_from_tsv_file(
     iss_index: int = DEFAULT_ISS_INDEX,
     iss_header: str = DEFAULT_ISS_HEADER,
     encoding: str = DEFAULT_ENCODING
-) -> list[IssuerEntry]:
+) -> List[IssuerEntry]:
     with open(input_file, 'r', newline='', encoding=encoding) as tsvfile:
         reader = csv.reader(tsvfile, delimiter='\t')
         entries = {}
@@ -86,7 +86,7 @@ def read_issuer_entries_from_tsv_file(
 
 def read_issuer_entries_from_json_file(
     input_file: str
-) -> list[IssuerEntry]:
+) -> List[IssuerEntry]:
     with open(input_file, 'r') as json_file:
         input_dict = json.load(json_file)
         entries = {}
@@ -100,7 +100,7 @@ def read_issuer_entries_from_json_file(
 
 def write_issuer_entries_to_json_file(
     output_file: str,
-    entries: list[IssuerEntry]
+    entries: List[IssuerEntry]
 ):
     entry_dicts = [{ISS_KEY: entry.iss, NAME_KEY: entry.name} for entry in entries]
     output_dict = {
@@ -109,7 +109,7 @@ def write_issuer_entries_to_json_file(
     with open(output_file, 'w') as json_file:
         json.dump(output_dict, json_file, indent=2)
 
-def validate_key(jwk_dict) -> Tuple[bool, list[Issue]]:
+def validate_key(jwk_dict) -> Tuple[bool, List[Issue]]:
     '''
     Validates a JWK represented by jwk_dict
     '''
@@ -158,7 +158,7 @@ def validate_key(jwk_dict) -> Tuple[bool, list[Issue]]:
     return [is_valid, issues]
 
 
-def validate_keyset(jwks_dict) -> Tuple[bool, list[Issue]]:
+def validate_keyset(jwks_dict) -> Tuple[bool, List[Issue]]:
     '''
     Validates a JWKS represented by jwks_dict
         Ensures that at least one key is fully valid for signing and that NO keys contains errors (warnings are ok)
@@ -218,8 +218,8 @@ async def validate_issuer(
             return ValidationResult(issuer_entry, False, issues) 
 
 async def validate_all_entries(
-    entries: list[IssuerEntry]
-) -> list[ValidationResult]:
+    entries: List[IssuerEntry]
+) -> List[ValidationResult]:
     asyncio_semaphore = asyncio.BoundedSemaphore(50)
     aws = [validate_issuer(issuer_entry, asyncio_semaphore) for issuer_entry in entries]
     return await asyncio.gather(
@@ -227,14 +227,14 @@ async def validate_all_entries(
     )
 
 def validate_entries(
-    entries: list[IssuerEntry]
-) -> list[ValidationResult]:
+    entries: List[IssuerEntry]
+) -> List[ValidationResult]:
     results = asyncio.run(validate_all_entries(entries))
     print('')
     return results
 
 def analyze_results(
-    validation_results: list[ValidationResult],
+    validation_results: List[ValidationResult],
     show_errors_and_warnings: bool,
     show_warnings: bool
 ) -> bool:
