@@ -9,6 +9,10 @@ from enum import Enum, auto
 from jwcrypto import jwk as _jwk
 IssuerEntry = namedtuple('IssuerEntry', 'name iss')
 
+## Reduce SSL context security level due to SSL / TLS error with some domains
+## https://www.openssl.org/docs/manmaster/man3/SSL_CTX_set_security_level.html
+httpx._config.DEFAULT_CIPHERS = httpx._config.DEFAULT_CIPHERS + ':@SECLEVEL=1'
+
 class IssException(BaseException):
     pass
 
