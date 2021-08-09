@@ -37,5 +37,3 @@ The VCI Directory is not meant to be a substitute for a robust trust framework:
 
 The list of issuers may not be comprehensive
 Holder and verifier applications are not bound to terms related to data use and best practices
-
-
