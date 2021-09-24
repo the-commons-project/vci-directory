@@ -455,6 +455,8 @@ class ValidateKeysetTestCase(unittest.TestCase):
 
 class ValidateEntriesTestCase(unittest.TestCase):
 
+    maxDiff = None
+
     def test_validate_entries1(self):
         entries = [
             IssuerEntry('SHC Example Issuer 1', 'https://spec.smarthealth.cards/examples/issuer', 'https://smarthealth.cards/', None),
@@ -504,6 +506,79 @@ class ValidateEntriesTestCase(unittest.TestCase):
         self.assertEqual(actual[0].issuer_entry, entries[0])
         self.assertEqual(actual[0].is_valid, False)
         self.assertEqual(actual[0].issues[0].type, IssueType.WEBSITE_DOES_NOT_RESOLVE)
+
+    def test_valid_canonical_iss(self):
+        entries = [
+            IssuerEntry('State of California', 'https://myvaccinerecord.cdph.ca.gov/creds', None, None),
+            IssuerEntry('State of Louisiana', 'https://healthcardcert.lawallet.com', None, None),
+            IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://myvaccinerecord.cdph.ca.gov/creds'),
+        ]
+
+        actual = validate_entries(entries)
+
+        expected = [ValidationResult(entry, True, []) for entry in entries]
+
+        self.assertEqual(actual, expected)
+
+    def test_invalid_canonical_iss_self_reference(self):
+        entries = [
+            IssuerEntry('State of California', 'https://myvaccinerecord.cdph.ca.gov/creds', None, None),
+            IssuerEntry('State of Louisiana', 'https://healthcardcert.lawallet.com', None, None),
+            IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://spec.smarthealth.cards/examples/issuer'),
+        ]
+
+        actual = validate_entries(entries)
+        self.assertEqual(actual[0].issuer_entry, entries[0])
+        self.assertEqual(actual[0].is_valid, True)
+        self.assertEqual(actual[0].issues, [])
+
+        self.assertEqual(actual[1].issuer_entry, entries[1])
+        self.assertEqual(actual[1].is_valid, True)
+        self.assertEqual(actual[1].issues, [])
+
+        self.assertEqual(actual[2].issuer_entry, entries[2])
+        self.assertEqual(actual[2].is_valid, False)
+        self.assertEqual(actual[2].issues[0].type, IssueType.CANONICAL_ISS_SELF_REFERENCE)
+
+    def test_invalid_canonical_iss_reference_invalid(self):
+        entries = [
+            IssuerEntry('State of California', 'https://myvaccinerecord.cdph.ca.gov/creds', None, None),
+            IssuerEntry('State of Louisiana', 'https://healthcardcert.lawallet.com', None, None),
+            IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://spec.smarthealth.cards/examples/issuer1'),
+        ]
+
+        actual = validate_entries(entries)
+        self.assertEqual(actual[0].issuer_entry, entries[0])
+        self.assertEqual(actual[0].is_valid, True)
+        self.assertEqual(actual[0].issues, [])
+
+        self.assertEqual(actual[1].issuer_entry, entries[1])
+        self.assertEqual(actual[1].is_valid, True)
+        self.assertEqual(actual[1].issues, [])
+
+        self.assertEqual(actual[2].issuer_entry, entries[2])
+        self.assertEqual(actual[2].is_valid, False)
+        self.assertEqual(actual[2].issues[0].type, IssueType.CANONICAL_ISS_REFERENCE_INVALID)
+
+    def test_invalid_canonical_iss_multihop_reference(self):
+        entries = [
+            IssuerEntry('State of California', 'https://myvaccinerecord.cdph.ca.gov/creds', None, None),
+            IssuerEntry('State of Louisiana', 'https://healthcardcert.lawallet.com', None, 'https://myvaccinerecord.cdph.ca.gov/creds'),
+            IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://healthcardcert.lawallet.com'),
+        ]
+
+        actual = validate_entries(entries)
+        self.assertEqual(actual[0].issuer_entry, entries[0])
+        self.assertEqual(actual[0].is_valid, True)
+        self.assertEqual(actual[0].issues, [])
+
+        self.assertEqual(actual[1].issuer_entry, entries[1])
+        self.assertEqual(actual[1].is_valid, True)
+        self.assertEqual(actual[1].issues, [])
+
+        self.assertEqual(actual[2].issuer_entry, entries[2])
+        self.assertEqual(actual[2].is_valid, False)
+        self.assertEqual(actual[2].issues[0].type, IssueType.CANONICAL_ISS_MULTIHOP_REFERENCE)
 
 class DuplicateEntriesTestCase(unittest.TestCase):
 

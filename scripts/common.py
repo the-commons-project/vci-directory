@@ -2,7 +2,7 @@ from asyncio.locks import BoundedSemaphore
 import csv
 import json
 from collections import namedtuple
-from typing import Any, List, Tuple
+from typing import Any, List, Tuple, Set, Dict
 import asyncio
 import httpx
 from enum import Enum, auto
@@ -41,6 +41,9 @@ class IssueType(Enum):
     KEY_USE_IS_INCORRECT = (auto(), IssueLevel.WARNING)
     KEY_ALG_IS_INCORRECT = (auto(), IssueLevel.WARNING)
     WEBSITE_DOES_NOT_RESOLVE = (auto(), IssueLevel.ERROR)
+    CANONICAL_ISS_SELF_REFERENCE = (auto(), IssueLevel.ERROR)
+    CANONICAL_ISS_REFERENCE_INVALID = (auto(), IssueLevel.ERROR)
+    CANONICAL_ISS_MULTIHOP_REFERENCE = (auto(), IssueLevel.ERROR)
 
     def __init__(self, id, level):
         self.id = id
@@ -280,28 +283,52 @@ async def validate_issuer(
 
 async def validate_entry(
     issuer_entry: IssuerEntry,
+    entry_map: Dict[str, IssuerEntry],
     semaphore: BoundedSemaphore
 ) -> ValidationResult:
     async with semaphore:
         print('.', end='', flush=True)
         (iss_is_valid, iss_issues) = await validate_issuer(issuer_entry)
 
+        website_is_valid = True
+        website_issues = []
         if issuer_entry.website:
             try:
                 await validate_website(issuer_entry.website)
-                website_is_valid = True
-                website_issues = []
             except BaseException as e:
                 website_is_valid = False
-                website_issues = [
+                website_issues.append(
                     Issue(f'An exception occurred when fetching {issuer_entry.website}', IssueType.WEBSITE_DOES_NOT_RESOLVE)
-                ]
-        else:
-            website_is_valid = True
-            website_issues = []
+                )
 
-        is_valid = iss_is_valid and website_is_valid
-        issues = iss_issues + website_issues
+        canonical_iss_is_valid = True
+        canonical_iss_issues = []
+        if issuer_entry.canonical_iss:
+
+            ## check that canonical_iss does not reference itself
+            if issuer_entry.iss == issuer_entry.canonical_iss:
+                canonical_iss_is_valid = False
+                canonical_iss_issues.append(
+                    Issue('canonical_iss references iss in this entry', IssueType.CANONICAL_ISS_SELF_REFERENCE)
+                )
+
+            ## check that canonical_iss is included in the list
+            elif issuer_entry.canonical_iss not in entry_map:
+                canonical_iss_is_valid = False
+                canonical_iss_issues.append(
+                    Issue(f'canonical_iss {issuer_entry.canonical_iss} not found in the directory', IssueType.CANONICAL_ISS_REFERENCE_INVALID)
+                )
+            else:
+                ## check that canonical_iss does not refer to another entry that has canonical_iss defined
+                canonical_entry = entry_map[issuer_entry.canonical_iss]
+                if canonical_entry.canonical_iss:
+                    canonical_iss_is_valid = False
+                    canonical_iss_issues.append(
+                        Issue(f'canonical_iss {issuer_entry.canonical_iss} refers to an entry with a canonical_iss value', IssueType.CANONICAL_ISS_MULTIHOP_REFERENCE)
+                    )
+
+        is_valid = iss_is_valid and website_is_valid and canonical_iss_is_valid
+        issues = iss_issues + website_issues + canonical_iss_issues
         return ValidationResult(
             issuer_entry,
             is_valid,
@@ -311,8 +338,9 @@ async def validate_entry(
 async def validate_all_entries(
     entries: List[IssuerEntry]
 ) -> List[ValidationResult]:
+    entry_map = {entry.iss: entry for entry in entries}
     asyncio_semaphore = asyncio.BoundedSemaphore(50)
-    aws = [validate_entry(issuer_entry, asyncio_semaphore) for issuer_entry in entries]
+    aws = [validate_entry(issuer_entry, entry_map, asyncio_semaphore) for issuer_entry in entries]
     return await asyncio.gather(
         *aws
     )
