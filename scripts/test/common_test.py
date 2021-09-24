@@ -3,7 +3,8 @@ import unittest
 import json
 from common import (
     read_issuer_entries_from_tsv_file, IssuerEntry, validate_entries, ValidationResult,
-    validate_key, IssueType, validate_keyset, Issue, duplicate_entries
+    validate_key, IssueType, validate_keyset, Issue, duplicate_entries, read_issuer_entries_from_json_file,
+    analyze_results
 )
 
 FIXTURE_DIRECTORY = f'{os.path.dirname(__file__)}/fixtures'
@@ -618,5 +619,12 @@ class DuplicateEntriesTestCase(unittest.TestCase):
         expected = []
         self.assertEqual(actual, expected)
 
+class ValidateEntriesTest(unittest.TestCase):
+    
+    def validate_entries_test(self):
+        entries_from_json = read_issuer_entries_from_json_file(f'{FIXTURE_DIRECTORY}/sample_directory.json')
+        validation_results = validate_entries(entries_from_json)
+        valid = analyze_results(validation_results, False, False)
+        self.assertTrue(valid)
 
 
