@@ -623,6 +623,15 @@ class ValidateEntriesTest(unittest.TestCase):
     
     def validate_entries_test(self):
         entries_from_json = read_issuer_entries_from_json_file(f'{FIXTURE_DIRECTORY}/sample_directory.json')
+
+        expected = [
+            IssuerEntry('State of California', 'https://myvaccinerecord.cdph.ca.gov/creds', 'https://myvaccinerecord.cdph.ca.gov/', None),
+            IssuerEntry('State of Louisiana', 'https://healthcardcert.lawallet.com', None, None),
+            IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://healthcardcert.lawallet.com')
+        ]
+
+        self.assertEqual(entries_from_json, expected)
+
         validation_results = validate_entries(entries_from_json)
         valid = analyze_results(validation_results, False, False)
         self.assertTrue(valid)
