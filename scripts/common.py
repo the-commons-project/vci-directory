@@ -7,7 +7,7 @@ import asyncio
 import httpx
 from enum import Enum, auto
 from jwcrypto import jwk as _jwk
-IssuerEntry = namedtuple('IssuerEntry', 'name iss')
+IssuerEntry = namedtuple('IssuerEntry', 'name iss website canonical_iss')
 
 ## Reduce SSL context security level due to SSL / TLS error with some domains
 ## https://www.openssl.org/docs/manmaster/man3/SSL_CTX_set_security_level.html
@@ -63,6 +63,8 @@ DEFAULT_ENCODING = 'utf-8'
 
 NAME_KEY = 'name'
 ISS_KEY = 'iss'
+WEBSITE_KEY = 'website'
+CANONICAL_ISS_KEY = 'canonicalIss'
 PARTICIPATING_ISSUERS_KEY = 'participating_issuers'
 
 EXPECTED_KEY_USE = 'sig'
@@ -87,7 +89,7 @@ def read_issuer_entries_from_tsv_file(
             name = row[name_index].strip()
             iss = row[iss_index].strip()
             if name != name_header and iss != iss_header:
-                entry = IssuerEntry(name, iss)
+                entry = IssuerEntry(name, iss, None, None)
                 entries[iss] = entry
         return list(entries.values())
 
@@ -100,16 +102,32 @@ def read_issuer_entries_from_json_file(
         for entry_dict in input_dict[PARTICIPATING_ISSUERS_KEY]:
             name = entry_dict[NAME_KEY].strip()
             iss = entry_dict[ISS_KEY].strip()
-            entry = IssuerEntry(name, iss)
+            website = entry_dict[WEBSITE_KEY].strip() if WEBSITE_KEY in entry_dict else None
+            canonical_iss = entry_dict[CANONICAL_ISS_KEY].strip() if CANONICAL_ISS_KEY in entry_dict else None
+            entry = IssuerEntry(
+                name=name,
+                iss=iss,
+                website=website,
+                canonical_iss=canonical_iss
+            )
             entries[iss] = entry
 
         return list(entries.values())
+
+def issuer_entry_to_dict(issuer_entry: IssuerEntry) -> dict:
+    d = {ISS_KEY: issuer_entry.iss, NAME_KEY: issuer_entry.name} 
+    if issuer_entry.website:
+        d[WEBSITE_KEY] = issuer_entry.website
+    if issuer_entry.canonical_iss:
+        d[CANONICAL_ISS_KEY] = issuer_entry.canonical_iss
+
+    return d
 
 def write_issuer_entries_to_json_file(
     output_file: str,
     entries: List[IssuerEntry]
 ):
-    entry_dicts = [{ISS_KEY: entry.iss, NAME_KEY: entry.name} for entry in entries]
+    entry_dicts = [issuer_entry_to_dict(entry) for entry in entries]
     output_dict = {
         PARTICIPATING_ISSUERS_KEY: entry_dicts
     }
@@ -258,6 +276,21 @@ def validate_entries(
     results = asyncio.run(validate_all_entries(entries))
     print('')
     return results
+
+def duplicate_entries(
+    entries: List[IssuerEntry]
+) -> List[IssuerEntry]:
+    seen_set = set()
+    duplicate_set = set()
+    for entry in entries:
+        if entry.iss in seen_set:
+            duplicate_set.add(entry.iss)
+        else:
+            seen_set.add(entry.iss)
+
+    duplicate_list = [entry for entry in entries if entry.iss in duplicate_set]
+    duplicate_list.sort(key=lambda x: x.iss)
+    return duplicate_list
 
 def analyze_results(
     validation_results: List[ValidationResult],

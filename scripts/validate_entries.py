@@ -15,6 +15,13 @@ def main():
     valid = common.analyze_results(validation_results, True, args.show_warnings)
 
     if valid:
+        ## ensure no duplicate iss values
+        duplicate_entries = common.duplicate_entries(entries_from_json)
+        if len(duplicate_entries) > 1:
+            print('Found duplicate entries')
+            for entry in duplicate_entries:
+                print(entry)
+            exit(1)
         print('All entries are valid')
         exit(0)
     else:
