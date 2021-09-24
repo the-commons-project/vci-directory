@@ -68,8 +68,10 @@ DEFAULT_ENCODING = 'utf-8'
 NAME_KEY = 'name'
 ISS_KEY = 'iss'
 WEBSITE_KEY = 'website'
-CANONICAL_ISS_KEY = 'canonicalIss'
+CANONICAL_ISS_KEY = 'canonical_iss'
 PARTICIPATING_ISSUERS_KEY = 'participating_issuers'
+
+USER_AGENT = "VCIDirectoryValidator/1.0.0"
 
 EXPECTED_KEY_USE = 'sig'
 EXPECTED_KEY_ALG = 'ES256'
@@ -106,8 +108,8 @@ def read_issuer_entries_from_json_file(
         for entry_dict in input_dict[PARTICIPATING_ISSUERS_KEY]:
             name = entry_dict[NAME_KEY].strip()
             iss = entry_dict[ISS_KEY].strip()
-            website = entry_dict[WEBSITE_KEY].strip() if WEBSITE_KEY in entry_dict else None
-            canonical_iss = entry_dict[CANONICAL_ISS_KEY].strip() if CANONICAL_ISS_KEY in entry_dict else None
+            website = entry_dict[WEBSITE_KEY].strip() if entry_dict.get(WEBSITE_KEY) else None
+            canonical_iss = entry_dict[CANONICAL_ISS_KEY].strip() if entry_dict.get(CANONICAL_ISS_KEY) else None
             entry = IssuerEntry(
                 name=name,
                 iss=iss,
@@ -225,7 +227,8 @@ async def fetch_jwks(
 
     try:
         async with httpx.AsyncClient() as client:
-            res = await client.get(jwks_url)
+            headers = {'User-Agent': USER_AGENT}
+            res = await client.get(jwks_url, headers=headers)
             res.raise_for_status()
             return res.json()
     except BaseException as ex:
@@ -246,7 +249,8 @@ async def validate_website(
 ) -> Tuple[bool, List[Issue]]:
     try:
         async with httpx.AsyncClient() as client:
-            res = await client.get(website_url)
+            headers = {'User-Agent': USER_AGENT}
+            res = await client.get(website_url, headers=headers)
             res.raise_for_status()
     except BaseException as ex:
         if retry_count < MAX_FETCH_RETRY_COUNT:

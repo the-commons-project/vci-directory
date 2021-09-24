@@ -619,13 +619,13 @@ class DuplicateEntriesTestCase(unittest.TestCase):
         expected = []
         self.assertEqual(actual, expected)
 
-class ValidateEntriesTest(unittest.TestCase):
+class ValidateEntriesIntegrationTestCase(unittest.TestCase):
     
-    def validate_entries_test(self):
+    def test_validate_entries_integration(self):
         entries_from_json = read_issuer_entries_from_json_file(f'{FIXTURE_DIRECTORY}/sample_directory.json')
 
         expected = [
-            IssuerEntry('State of California', 'https://myvaccinerecord.cdph.ca.gov/creds', 'https://myvaccinerecord.cdph.ca.gov/', None),
+            IssuerEntry('State of California', 'https://myvaccinerecord.cdph.ca.gov/creds', 'https://myvaccinerecord.cdph.ca.gov', None),
             IssuerEntry('State of Louisiana', 'https://healthcardcert.lawallet.com', None, None),
             IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://healthcardcert.lawallet.com')
         ]
@@ -633,7 +633,7 @@ class ValidateEntriesTest(unittest.TestCase):
         self.assertEqual(entries_from_json, expected)
 
         validation_results = validate_entries(entries_from_json)
-        valid = analyze_results(validation_results, False, False)
+        valid = analyze_results(validation_results, True, True)
         self.assertTrue(valid)
 
 
