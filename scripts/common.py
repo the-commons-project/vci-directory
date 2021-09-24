@@ -40,6 +40,7 @@ class IssueType(Enum):
     KID_IS_INCORRECT = (auto(), IssueLevel.WARNING)
     KEY_USE_IS_INCORRECT = (auto(), IssueLevel.WARNING)
     KEY_ALG_IS_INCORRECT = (auto(), IssueLevel.WARNING)
+    WEBSITE_DOES_NOT_RESOLVE = (auto(), IssueLevel.ERROR)
 
     def __init__(self, id, level):
         self.id = id
@@ -236,36 +237,82 @@ async def fetch_jwks(
         else:
             raise ex
 
+async def validate_website(
+    website_url: str,
+    retry_count: int = 0
+) -> Tuple[bool, List[Issue]]:
+    try:
+        async with httpx.AsyncClient() as client:
+            res = await client.get(website_url)
+            res.raise_for_status()
+    except BaseException as ex:
+        if retry_count < MAX_FETCH_RETRY_COUNT:
+            ## Add exponential backoff, starting with 1s
+            delay_seconds = pow(FETCH_RETRY_COUNT_DELAY, retry_count)
+            await asyncio.sleep(delay_seconds)
+            return await validate_website(
+                website_url,
+                retry_count = retry_count + 1
+            )
+        else:
+            raise ex
+
 async def validate_issuer(
+    issuer_entry: IssuerEntry
+) -> Tuple[bool, List[Issue]]:
+    iss = issuer_entry.iss
+    if iss.endswith('/'):
+        issues = [
+            Issue(f'{iss} ends with a trailing slash', IssueType.ISS_ENDS_WITH_TRAILING_SLASH)
+        ]
+        return (False, issues)
+    else:
+        jwks_url = f'{iss}/.well-known/jwks.json'
+    
+    try:
+        jwks = await fetch_jwks(jwks_url)
+        return validate_keyset(jwks)
+    except BaseException as ex:
+        issues = [
+            Issue(f'An exception occurred when fetching {jwks_url}: {ex}', IssueType.FETCH_EXCEPTION)
+        ]
+        return (False, issues) 
+
+async def validate_entry(
     issuer_entry: IssuerEntry,
     semaphore: BoundedSemaphore
 ) -> ValidationResult:
     async with semaphore:
         print('.', end='', flush=True)
-        iss = issuer_entry.iss
-        if iss.endswith('/'):
-            issues = [
-                Issue(f'{iss} ends with a trailing slash', IssueType.ISS_ENDS_WITH_TRAILING_SLASH)
-            ]
-            return ValidationResult(issuer_entry, False, issues) 
+        (iss_is_valid, iss_issues) = await validate_issuer(issuer_entry)
+
+        if issuer_entry.website:
+            try:
+                await validate_website(issuer_entry.website)
+                website_is_valid = True
+                website_issues = []
+            except BaseException as e:
+                website_is_valid = False
+                website_issues = [
+                    Issue(f'An exception occurred when fetching {issuer_entry.website}', IssueType.WEBSITE_DOES_NOT_RESOLVE)
+                ]
         else:
-            jwks_url = f'{iss}/.well-known/jwks.json'
-        
-        try:
-            jwks = await fetch_jwks(jwks_url)
-            (is_valid, issues) = validate_keyset(jwks)
-            return ValidationResult(issuer_entry, is_valid, issues)
-        except BaseException as ex:
-            issues = [
-                Issue(f'An exception occurred when fetching {jwks_url}: {ex}', IssueType.FETCH_EXCEPTION)
-            ]
-            return ValidationResult(issuer_entry, False, issues) 
+            website_is_valid = True
+            website_issues = []
+
+        is_valid = iss_is_valid and website_is_valid
+        issues = iss_issues + website_issues
+        return ValidationResult(
+            issuer_entry,
+            is_valid,
+            issues
+        )
 
 async def validate_all_entries(
     entries: List[IssuerEntry]
 ) -> List[ValidationResult]:
     asyncio_semaphore = asyncio.BoundedSemaphore(50)
-    aws = [validate_issuer(issuer_entry, asyncio_semaphore) for issuer_entry in entries]
+    aws = [validate_entry(issuer_entry, asyncio_semaphore) for issuer_entry in entries]
     return await asyncio.gather(
         *aws
     )

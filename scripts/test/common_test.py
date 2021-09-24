@@ -457,8 +457,8 @@ class ValidateEntriesTestCase(unittest.TestCase):
 
     def test_validate_entries1(self):
         entries = [
-            IssuerEntry('SHC Example Issuer 1', 'https://spec.smarthealth.cards/examples/issuer', None, None),
-            IssuerEntry('SHC Example Issuer 2', 'https://spec.smarthealth.cards/examples/issuer', None, None),
+            IssuerEntry('SHC Example Issuer 1', 'https://spec.smarthealth.cards/examples/issuer', 'https://smarthealth.cards/', None),
+            IssuerEntry('SHC Example Issuer 2', 'https://spec.smarthealth.cards/examples/issuer', 'https://spec.smarthealth.cards/', None),
             IssuerEntry('SHC Example Issuer 3', 'https://spec.smarthealth.cards/examples/issuer', None, None),
             IssuerEntry('SHC Example Issuer 4', 'https://spec.smarthealth.cards/examples/issuer', None, None),
             IssuerEntry('SHC Example Issuer 5', 'https://spec.smarthealth.cards/examples/issuer', None, None),
@@ -495,6 +495,15 @@ class ValidateEntriesTestCase(unittest.TestCase):
         self.assertEqual(actual[2].is_valid, False)
         self.assertEqual(actual[2].issues[0].type, IssueType.ISS_ENDS_WITH_TRAILING_SLASH)
 
+    def test_invalid_website_entry(self):
+        entries = [
+            IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', 'https://spec.smarthealth.cards/unknown', None),
+        ]
+
+        actual = validate_entries(entries)
+        self.assertEqual(actual[0].issuer_entry, entries[0])
+        self.assertEqual(actual[0].is_valid, False)
+        self.assertEqual(actual[0].issues[0].type, IssueType.WEBSITE_DOES_NOT_RESOLVE)
 
 class DuplicateEntriesTestCase(unittest.TestCase):
 
