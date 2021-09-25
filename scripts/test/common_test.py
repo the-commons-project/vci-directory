@@ -583,6 +583,12 @@ class ValidateEntriesTestCase(unittest.TestCase):
 
 class DuplicateEntriesTestCase(unittest.TestCase):
 
+    '''
+    This is testing the validate_entries function, which is a wrapper that concurrently performs validation on each item in the list. 
+    It currently returns List[ValidationResult] (one for each input entry) and is not checking for duplicates 
+    (this happens before we call validate_entries in validate_entries.py).
+    '''
+
     def test_duplicate_entries1(self):
         entries = [
             IssuerEntry('SHC Example Issuer 1', 'https://spec.smarthealth.cards/examples/issuer1', None, None),
