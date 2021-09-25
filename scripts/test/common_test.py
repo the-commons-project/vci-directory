@@ -3,7 +3,8 @@ import unittest
 import json
 from common import (
     read_issuer_entries_from_tsv_file, IssuerEntry, validate_entries, ValidationResult,
-    validate_key, IssueType, validate_keyset, Issue
+    validate_key, IssueType, validate_keyset, Issue, duplicate_entries, read_issuer_entries_from_json_file,
+    analyze_results
 )
 
 FIXTURE_DIRECTORY = f'{os.path.dirname(__file__)}/fixtures'
@@ -17,8 +18,8 @@ class ReadIssuerEntriesFromTSVFileTestCase(unittest.TestCase):
         )
 
         expected = [
-            IssuerEntry('State of California', 'https://myvaccinerecord.cdph.ca.gov/creds'),
-            IssuerEntry('State of Louisiana', 'https://healthcardcert.lawallet.com'),
+            IssuerEntry('State of California', 'https://myvaccinerecord.cdph.ca.gov/creds', None, None),
+            IssuerEntry('State of Louisiana', 'https://healthcardcert.lawallet.com', None, None),
         ]
 
         self.assertEqual(actual, expected)
@@ -30,7 +31,7 @@ class ReadIssuerEntriesFromTSVFileTestCase(unittest.TestCase):
         )
 
         expected = [
-            IssuerEntry('Example Issuer', 'https://example.com/issuer'),
+            IssuerEntry('Example Issuer', 'https://example.com/issuer', None, None),
         ]
 
         self.assertEqual(actual, expected)
@@ -42,8 +43,8 @@ class ReadIssuerEntriesFromTSVFileTestCase(unittest.TestCase):
         )
 
         expected = [
-            IssuerEntry('Example Issuer', 'https://example.com/issuer'),
-            IssuerEntry('Example Issuer', 'https://example.com/issuer2'),
+            IssuerEntry('Example Issuer', 'https://example.com/issuer', None, None),
+            IssuerEntry('Example Issuer', 'https://example.com/issuer2', None, None),
         ]
 
         self.assertEqual(actual, expected)
@@ -56,7 +57,7 @@ class ReadIssuerEntriesFromTSVFileTestCase(unittest.TestCase):
 
         ## ensure that last value seen in file is preserved
         expected = [
-            IssuerEntry('Example Issuer 2', 'https://example.com/issuer'),
+            IssuerEntry('Example Issuer 2', 'https://example.com/issuer', None, None),
         ]
 
         self.assertEqual(actual, expected)
@@ -455,18 +456,20 @@ class ValidateKeysetTestCase(unittest.TestCase):
 
 class ValidateEntriesTestCase(unittest.TestCase):
 
+    maxDiff = None
+
     def test_validate_entries1(self):
         entries = [
-            IssuerEntry('SHC Example Issuer 1', 'https://spec.smarthealth.cards/examples/issuer'),
-            IssuerEntry('SHC Example Issuer 2', 'https://spec.smarthealth.cards/examples/issuer'),
-            IssuerEntry('SHC Example Issuer 3', 'https://spec.smarthealth.cards/examples/issuer'),
-            IssuerEntry('SHC Example Issuer 4', 'https://spec.smarthealth.cards/examples/issuer'),
-            IssuerEntry('SHC Example Issuer 5', 'https://spec.smarthealth.cards/examples/issuer'),
-            IssuerEntry('SHC Example Issuer 6', 'https://spec.smarthealth.cards/examples/issuer'),
-            IssuerEntry('SHC Example Issuer 7', 'https://spec.smarthealth.cards/examples/issuer'),
-            IssuerEntry('SHC Example Issuer 8', 'https://spec.smarthealth.cards/examples/issuer'),
-            IssuerEntry('SHC Example Issuer 9', 'https://spec.smarthealth.cards/examples/issuer'),
-            IssuerEntry('SHC Example Issuer 10', 'https://spec.smarthealth.cards/examples/issuer')
+            IssuerEntry('SHC Example Issuer 1', 'https://spec.smarthealth.cards/examples/issuer', 'https://smarthealth.cards/', None),
+            IssuerEntry('SHC Example Issuer 2', 'https://spec.smarthealth.cards/examples/issuer', 'https://spec.smarthealth.cards/', None),
+            IssuerEntry('SHC Example Issuer 3', 'https://spec.smarthealth.cards/examples/issuer', None, None),
+            IssuerEntry('SHC Example Issuer 4', 'https://spec.smarthealth.cards/examples/issuer', None, None),
+            IssuerEntry('SHC Example Issuer 5', 'https://spec.smarthealth.cards/examples/issuer', None, None),
+            IssuerEntry('SHC Example Issuer 6', 'https://spec.smarthealth.cards/examples/issuer', None, None),
+            IssuerEntry('SHC Example Issuer 7', 'https://spec.smarthealth.cards/examples/issuer', None, None),
+            IssuerEntry('SHC Example Issuer 8', 'https://spec.smarthealth.cards/examples/issuer', None, None),
+            IssuerEntry('SHC Example Issuer 9', 'https://spec.smarthealth.cards/examples/issuer', None, None),
+            IssuerEntry('SHC Example Issuer 10', 'https://spec.smarthealth.cards/examples/issuer', None, None)
         ]
 
         actual = validate_entries(entries)
@@ -477,9 +480,9 @@ class ValidateEntriesTestCase(unittest.TestCase):
 
     def test_valid_and_invalid_entry(self):
         entries = [
-            IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer'),
-            IssuerEntry('Invalid issuer 1', 'https://spec.smarthealth.cards/examples/iss'),
-            IssuerEntry('Invalid issuer 2', 'https://spec.smarthealth.cards/examples/issuer/'),
+            IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, None),
+            IssuerEntry('Invalid issuer 1', 'https://spec.smarthealth.cards/examples/iss', None, None),
+            IssuerEntry('Invalid issuer 2', 'https://spec.smarthealth.cards/examples/issuer/', None, None),
         ]
 
         actual = validate_entries(entries)
@@ -495,5 +498,148 @@ class ValidateEntriesTestCase(unittest.TestCase):
         self.assertEqual(actual[2].is_valid, False)
         self.assertEqual(actual[2].issues[0].type, IssueType.ISS_ENDS_WITH_TRAILING_SLASH)
 
+    def test_invalid_website_entry(self):
+        entries = [
+            IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', 'https://spec.smarthealth.cards/unknown', None),
+        ]
+
+        actual = validate_entries(entries)
+        self.assertEqual(actual[0].issuer_entry, entries[0])
+        self.assertEqual(actual[0].is_valid, False)
+        self.assertEqual(actual[0].issues[0].type, IssueType.WEBSITE_DOES_NOT_RESOLVE)
+
+    def test_valid_canonical_iss(self):
+        entries = [
+            IssuerEntry('State of California', 'https://myvaccinerecord.cdph.ca.gov/creds', None, None),
+            IssuerEntry('State of Louisiana', 'https://healthcardcert.lawallet.com', None, None),
+            IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://myvaccinerecord.cdph.ca.gov/creds'),
+        ]
+
+        actual = validate_entries(entries)
+
+        expected = [ValidationResult(entry, True, []) for entry in entries]
+
+        self.assertEqual(actual, expected)
+
+    def test_invalid_canonical_iss_self_reference(self):
+        entries = [
+            IssuerEntry('State of California', 'https://myvaccinerecord.cdph.ca.gov/creds', None, None),
+            IssuerEntry('State of Louisiana', 'https://healthcardcert.lawallet.com', None, None),
+            IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://spec.smarthealth.cards/examples/issuer'),
+        ]
+
+        actual = validate_entries(entries)
+        self.assertEqual(actual[0].issuer_entry, entries[0])
+        self.assertEqual(actual[0].is_valid, True)
+        self.assertEqual(actual[0].issues, [])
+
+        self.assertEqual(actual[1].issuer_entry, entries[1])
+        self.assertEqual(actual[1].is_valid, True)
+        self.assertEqual(actual[1].issues, [])
+
+        self.assertEqual(actual[2].issuer_entry, entries[2])
+        self.assertEqual(actual[2].is_valid, False)
+        self.assertEqual(actual[2].issues[0].type, IssueType.CANONICAL_ISS_SELF_REFERENCE)
+
+    def test_invalid_canonical_iss_reference_invalid(self):
+        entries = [
+            IssuerEntry('State of California', 'https://myvaccinerecord.cdph.ca.gov/creds', None, None),
+            IssuerEntry('State of Louisiana', 'https://healthcardcert.lawallet.com', None, None),
+            IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://spec.smarthealth.cards/examples/issuer1'),
+        ]
+
+        actual = validate_entries(entries)
+        self.assertEqual(actual[0].issuer_entry, entries[0])
+        self.assertEqual(actual[0].is_valid, True)
+        self.assertEqual(actual[0].issues, [])
+
+        self.assertEqual(actual[1].issuer_entry, entries[1])
+        self.assertEqual(actual[1].is_valid, True)
+        self.assertEqual(actual[1].issues, [])
+
+        self.assertEqual(actual[2].issuer_entry, entries[2])
+        self.assertEqual(actual[2].is_valid, False)
+        self.assertEqual(actual[2].issues[0].type, IssueType.CANONICAL_ISS_REFERENCE_INVALID)
+
+    def test_invalid_canonical_iss_multihop_reference(self):
+        entries = [
+            IssuerEntry('State of California', 'https://myvaccinerecord.cdph.ca.gov/creds', None, None),
+            IssuerEntry('State of Louisiana', 'https://healthcardcert.lawallet.com', None, 'https://myvaccinerecord.cdph.ca.gov/creds'),
+            IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://healthcardcert.lawallet.com'),
+        ]
+
+        actual = validate_entries(entries)
+        self.assertEqual(actual[0].issuer_entry, entries[0])
+        self.assertEqual(actual[0].is_valid, True)
+        self.assertEqual(actual[0].issues, [])
+
+        self.assertEqual(actual[1].issuer_entry, entries[1])
+        self.assertEqual(actual[1].is_valid, True)
+        self.assertEqual(actual[1].issues, [])
+
+        self.assertEqual(actual[2].issuer_entry, entries[2])
+        self.assertEqual(actual[2].is_valid, False)
+        self.assertEqual(actual[2].issues[0].type, IssueType.CANONICAL_ISS_MULTIHOP_REFERENCE)
+
+class DuplicateEntriesTestCase(unittest.TestCase):
+
+    '''
+    This is testing the validate_entries function, which is a wrapper that concurrently performs validation on each item in the list. 
+    It currently returns List[ValidationResult] (one for each input entry) and is not checking for duplicates 
+    (this happens before we call validate_entries in validate_entries.py).
+    '''
+
+    def test_duplicate_entries1(self):
+        entries = [
+            IssuerEntry('SHC Example Issuer 1', 'https://spec.smarthealth.cards/examples/issuer1', None, None),
+            IssuerEntry('SHC Example Issuer 2', 'https://spec.smarthealth.cards/examples/issuer2', None, None),
+            IssuerEntry('SHC Example Issuer 3', 'https://spec.smarthealth.cards/examples/issuer3', None, None),
+            IssuerEntry('SHC Example Issuer 4', 'https://spec.smarthealth.cards/examples/issuer4', None, None),
+            IssuerEntry('SHC Example Issuer 5', 'https://spec.smarthealth.cards/examples/issuer4', None, None),
+            IssuerEntry('SHC Example Issuer 6', 'https://spec.smarthealth.cards/examples/issuer6', None, None),
+            IssuerEntry('SHC Example Issuer 7', 'https://spec.smarthealth.cards/examples/issuer7', None, None),
+            IssuerEntry('SHC Example Issuer 8', 'https://spec.smarthealth.cards/examples/issuer2', None, None),
+            IssuerEntry('SHC Example Issuer 9', 'https://spec.smarthealth.cards/examples/issuer9', None, None),
+            IssuerEntry('SHC Example Issuer 10', 'https://spec.smarthealth.cards/examples/issuer10', None, None)
+        ]
+
+        actual = duplicate_entries(entries)
+        expected = [
+            IssuerEntry('SHC Example Issuer 2', 'https://spec.smarthealth.cards/examples/issuer2', None, None),
+            IssuerEntry('SHC Example Issuer 8', 'https://spec.smarthealth.cards/examples/issuer2', None, None),
+            IssuerEntry('SHC Example Issuer 4', 'https://spec.smarthealth.cards/examples/issuer4', None, None),
+            IssuerEntry('SHC Example Issuer 5', 'https://spec.smarthealth.cards/examples/issuer4', None, None)
+        ]
+
+        self.assertEqual(actual, expected)
+
+    def test_no_duplicates(self):
+        entries = [
+            IssuerEntry('SHC Example Issuer 1', 'https://spec.smarthealth.cards/examples/issuer1', None, None),
+            IssuerEntry('SHC Example Issuer 2', 'https://spec.smarthealth.cards/examples/issuer2', None, None),
+            IssuerEntry('SHC Example Issuer 3', 'https://spec.smarthealth.cards/examples/issuer3', None, None),
+            IssuerEntry('SHC Example Issuer 4', 'https://spec.smarthealth.cards/examples/issuer4', None, None),
+        ]
+
+        actual = duplicate_entries(entries)
+        expected = []
+        self.assertEqual(actual, expected)
+
+class ValidateEntriesIntegrationTestCase(unittest.TestCase):
+    
+    def test_validate_entries_integration(self):
+        entries_from_json = read_issuer_entries_from_json_file(f'{FIXTURE_DIRECTORY}/sample_directory.json')
+
+        expected = [
+            IssuerEntry('State of California', 'https://myvaccinerecord.cdph.ca.gov/creds', 'https://myvaccinerecord.cdph.ca.gov', None),
+            IssuerEntry('State of Louisiana', 'https://healthcardcert.lawallet.com', None, None),
+            IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://healthcardcert.lawallet.com')
+        ]
+
+        self.assertEqual(entries_from_json, expected)
+
+        validation_results = validate_entries(entries_from_json)
+        valid = analyze_results(validation_results, True, True)
+        self.assertTrue(valid)
 
 

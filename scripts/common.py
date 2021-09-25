@@ -2,12 +2,12 @@ from asyncio.locks import BoundedSemaphore
 import csv
 import json
 from collections import namedtuple
-from typing import Any, List, Tuple
+from typing import Any, List, Tuple, Set, Dict
 import asyncio
 import httpx
 from enum import Enum, auto
 from jwcrypto import jwk as _jwk
-IssuerEntry = namedtuple('IssuerEntry', 'name iss')
+IssuerEntry = namedtuple('IssuerEntry', 'name iss website canonical_iss')
 
 ## Reduce SSL context security level due to SSL / TLS error with some domains
 ## https://www.openssl.org/docs/manmaster/man3/SSL_CTX_set_security_level.html
@@ -40,6 +40,10 @@ class IssueType(Enum):
     KID_IS_INCORRECT = (auto(), IssueLevel.WARNING)
     KEY_USE_IS_INCORRECT = (auto(), IssueLevel.WARNING)
     KEY_ALG_IS_INCORRECT = (auto(), IssueLevel.WARNING)
+    WEBSITE_DOES_NOT_RESOLVE = (auto(), IssueLevel.ERROR)
+    CANONICAL_ISS_SELF_REFERENCE = (auto(), IssueLevel.ERROR)
+    CANONICAL_ISS_REFERENCE_INVALID = (auto(), IssueLevel.ERROR)
+    CANONICAL_ISS_MULTIHOP_REFERENCE = (auto(), IssueLevel.ERROR)
 
     def __init__(self, id, level):
         self.id = id
@@ -63,7 +67,11 @@ DEFAULT_ENCODING = 'utf-8'
 
 NAME_KEY = 'name'
 ISS_KEY = 'iss'
+WEBSITE_KEY = 'website'
+CANONICAL_ISS_KEY = 'canonical_iss'
 PARTICIPATING_ISSUERS_KEY = 'participating_issuers'
+
+USER_AGENT = "VCIDirectoryValidator/1.0.0"
 
 EXPECTED_KEY_USE = 'sig'
 EXPECTED_KEY_ALG = 'ES256'
@@ -87,7 +95,7 @@ def read_issuer_entries_from_tsv_file(
             name = row[name_index].strip()
             iss = row[iss_index].strip()
             if name != name_header and iss != iss_header:
-                entry = IssuerEntry(name, iss)
+                entry = IssuerEntry(name, iss, None, None)
                 entries[iss] = entry
         return list(entries.values())
 
@@ -100,16 +108,32 @@ def read_issuer_entries_from_json_file(
         for entry_dict in input_dict[PARTICIPATING_ISSUERS_KEY]:
             name = entry_dict[NAME_KEY].strip()
             iss = entry_dict[ISS_KEY].strip()
-            entry = IssuerEntry(name, iss)
+            website = entry_dict[WEBSITE_KEY].strip() if entry_dict.get(WEBSITE_KEY) else None
+            canonical_iss = entry_dict[CANONICAL_ISS_KEY].strip() if entry_dict.get(CANONICAL_ISS_KEY) else None
+            entry = IssuerEntry(
+                name=name,
+                iss=iss,
+                website=website,
+                canonical_iss=canonical_iss
+            )
             entries[iss] = entry
 
         return list(entries.values())
+
+def issuer_entry_to_dict(issuer_entry: IssuerEntry) -> dict:
+    d = {ISS_KEY: issuer_entry.iss, NAME_KEY: issuer_entry.name} 
+    if issuer_entry.website:
+        d[WEBSITE_KEY] = issuer_entry.website
+    if issuer_entry.canonical_iss:
+        d[CANONICAL_ISS_KEY] = issuer_entry.canonical_iss
+
+    return d
 
 def write_issuer_entries_to_json_file(
     output_file: str,
     entries: List[IssuerEntry]
 ):
-    entry_dicts = [{ISS_KEY: entry.iss, NAME_KEY: entry.name} for entry in entries]
+    entry_dicts = [issuer_entry_to_dict(entry) for entry in entries]
     output_dict = {
         PARTICIPATING_ISSUERS_KEY: entry_dicts
     }
@@ -203,7 +227,8 @@ async def fetch_jwks(
 
     try:
         async with httpx.AsyncClient() as client:
-            res = await client.get(jwks_url)
+            headers = {'User-Agent': USER_AGENT}
+            res = await client.get(jwks_url, headers=headers)
             res.raise_for_status()
             return res.json()
     except BaseException as ex:
@@ -218,36 +243,108 @@ async def fetch_jwks(
         else:
             raise ex
 
+async def validate_website(
+    website_url: str,
+    retry_count: int = 0
+) -> Tuple[bool, List[Issue]]:
+    try:
+        async with httpx.AsyncClient() as client:
+            headers = {'User-Agent': USER_AGENT}
+            res = await client.get(website_url, headers=headers)
+            res.raise_for_status()
+    except BaseException as ex:
+        if retry_count < MAX_FETCH_RETRY_COUNT:
+            ## Add exponential backoff, starting with 1s
+            delay_seconds = pow(FETCH_RETRY_COUNT_DELAY, retry_count)
+            await asyncio.sleep(delay_seconds)
+            return await validate_website(
+                website_url,
+                retry_count = retry_count + 1
+            )
+        else:
+            raise ex
+
 async def validate_issuer(
+    issuer_entry: IssuerEntry
+) -> Tuple[bool, List[Issue]]:
+    iss = issuer_entry.iss
+    if iss.endswith('/'):
+        issues = [
+            Issue(f'{iss} ends with a trailing slash', IssueType.ISS_ENDS_WITH_TRAILING_SLASH)
+        ]
+        return (False, issues)
+    else:
+        jwks_url = f'{iss}/.well-known/jwks.json'
+    
+    try:
+        jwks = await fetch_jwks(jwks_url)
+        return validate_keyset(jwks)
+    except BaseException as ex:
+        issues = [
+            Issue(f'An exception occurred when fetching {jwks_url}: {ex}', IssueType.FETCH_EXCEPTION)
+        ]
+        return (False, issues) 
+
+async def validate_entry(
     issuer_entry: IssuerEntry,
+    entry_map: Dict[str, IssuerEntry],
     semaphore: BoundedSemaphore
 ) -> ValidationResult:
     async with semaphore:
         print('.', end='', flush=True)
-        iss = issuer_entry.iss
-        if iss.endswith('/'):
-            issues = [
-                Issue(f'{iss} ends with a trailing slash', IssueType.ISS_ENDS_WITH_TRAILING_SLASH)
-            ]
-            return ValidationResult(issuer_entry, False, issues) 
-        else:
-            jwks_url = f'{iss}/.well-known/jwks.json'
-        
-        try:
-            jwks = await fetch_jwks(jwks_url)
-            (is_valid, issues) = validate_keyset(jwks)
-            return ValidationResult(issuer_entry, is_valid, issues)
-        except BaseException as ex:
-            issues = [
-                Issue(f'An exception occurred when fetching {jwks_url}: {ex}', IssueType.FETCH_EXCEPTION)
-            ]
-            return ValidationResult(issuer_entry, False, issues) 
+        (iss_is_valid, iss_issues) = await validate_issuer(issuer_entry)
+
+        website_is_valid = True
+        website_issues = []
+        if issuer_entry.website:
+            try:
+                await validate_website(issuer_entry.website)
+            except BaseException as e:
+                website_is_valid = False
+                website_issues.append(
+                    Issue(f'An exception occurred when fetching {issuer_entry.website}', IssueType.WEBSITE_DOES_NOT_RESOLVE)
+                )
+
+        canonical_iss_is_valid = True
+        canonical_iss_issues = []
+        if issuer_entry.canonical_iss:
+
+            ## check that canonical_iss does not reference itself
+            if issuer_entry.iss == issuer_entry.canonical_iss:
+                canonical_iss_is_valid = False
+                canonical_iss_issues.append(
+                    Issue('canonical_iss references iss in this entry', IssueType.CANONICAL_ISS_SELF_REFERENCE)
+                )
+
+            ## check that canonical_iss is included in the list
+            elif issuer_entry.canonical_iss not in entry_map:
+                canonical_iss_is_valid = False
+                canonical_iss_issues.append(
+                    Issue(f'canonical_iss {issuer_entry.canonical_iss} not found in the directory', IssueType.CANONICAL_ISS_REFERENCE_INVALID)
+                )
+            else:
+                ## check that canonical_iss does not refer to another entry that has canonical_iss defined
+                canonical_entry = entry_map[issuer_entry.canonical_iss]
+                if canonical_entry.canonical_iss:
+                    canonical_iss_is_valid = False
+                    canonical_iss_issues.append(
+                        Issue(f'canonical_iss {issuer_entry.canonical_iss} refers to an entry with a canonical_iss value', IssueType.CANONICAL_ISS_MULTIHOP_REFERENCE)
+                    )
+
+        is_valid = iss_is_valid and website_is_valid and canonical_iss_is_valid
+        issues = iss_issues + website_issues + canonical_iss_issues
+        return ValidationResult(
+            issuer_entry,
+            is_valid,
+            issues
+        )
 
 async def validate_all_entries(
     entries: List[IssuerEntry]
 ) -> List[ValidationResult]:
+    entry_map = {entry.iss: entry for entry in entries}
     asyncio_semaphore = asyncio.BoundedSemaphore(50)
-    aws = [validate_issuer(issuer_entry, asyncio_semaphore) for issuer_entry in entries]
+    aws = [validate_entry(issuer_entry, entry_map, asyncio_semaphore) for issuer_entry in entries]
     return await asyncio.gather(
         *aws
     )
@@ -258,6 +355,21 @@ def validate_entries(
     results = asyncio.run(validate_all_entries(entries))
     print('')
     return results
+
+def duplicate_entries(
+    entries: List[IssuerEntry]
+) -> List[IssuerEntry]:
+    seen_set = set()
+    duplicate_set = set()
+    for entry in entries:
+        if entry.iss in seen_set:
+            duplicate_set.add(entry.iss)
+        else:
+            seen_set.add(entry.iss)
+
+    duplicate_list = [entry for entry in entries if entry.iss in duplicate_set]
+    duplicate_list.sort(key=lambda x: x.iss)
+    return duplicate_list
 
 def analyze_results(
     validation_results: List[ValidationResult],
