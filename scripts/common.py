@@ -37,7 +37,7 @@ class IssueType(Enum):
     KEY_IS_INVALID = (auto(), IssueLevel.ERROR)
     KID_IS_MISSING = (auto(), IssueLevel.ERROR)
     KEY_CONTAINS_PRIVATE_MATERIAL = (auto(), IssueLevel.ERROR)
-    KID_IS_INCORRECT = (auto(), IssueLevel.WARNING)
+    KID_IS_INCORRECT = (auto(), IssueLevel.ERROR)
     KEY_USE_IS_INCORRECT = (auto(), IssueLevel.WARNING)
     KEY_ALG_IS_INCORRECT = (auto(), IssueLevel.WARNING)
     WEBSITE_DOES_NOT_RESOLVE = (auto(), IssueLevel.ERROR)
@@ -170,17 +170,18 @@ def validate_key(jwk_dict) -> Tuple[bool, List[Issue]]:
     ## check that use matches expected use
     if kid != jwk.thumbprint():
         is_valid = False
-        issues.append(
+        issues = [
             Issue(f'Key with kid={kid} has an incorrect kid value. It should be {jwk.thumbprint()}', IssueType.KID_IS_INCORRECT)
-        )
+        ]
+        return [False, issues]
 
-    if jwk.use != EXPECTED_KEY_USE:
+    if jwk_dict.get('use') != EXPECTED_KEY_USE:
         is_valid = False
         issues.append(
             Issue(f'Key with kid={kid} has an incorrect key use. It should be \"{EXPECTED_KEY_USE}\"', IssueType.KEY_USE_IS_INCORRECT)
         )
 
-    if jwk.alg != EXPECTED_KEY_ALG:
+    if jwk_dict.get('alg') != EXPECTED_KEY_ALG:
         is_valid = False
         issues.append(
             Issue(f'Key with kid={kid} has an incorrect key alg. It should be \"{EXPECTED_KEY_ALG}\"', IssueType.KEY_ALG_IS_INCORRECT)
