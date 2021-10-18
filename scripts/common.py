@@ -175,13 +175,13 @@ def validate_key(jwk_dict) -> Tuple[bool, List[Issue]]:
         ]
         return [False, issues]
 
-    if jwk.use != EXPECTED_KEY_USE:
+    if jwk_dict.get('use') != EXPECTED_KEY_USE:
         is_valid = False
         issues.append(
             Issue(f'Key with kid={kid} has an incorrect key use. It should be \"{EXPECTED_KEY_USE}\"', IssueType.KEY_USE_IS_INCORRECT)
         )
 
-    if jwk.alg != EXPECTED_KEY_ALG:
+    if jwk_dict.get('alg') != EXPECTED_KEY_ALG:
         is_valid = False
         issues.append(
             Issue(f'Key with kid={kid} has an incorrect key alg. It should be \"{EXPECTED_KEY_ALG}\"', IssueType.KEY_ALG_IS_INCORRECT)
