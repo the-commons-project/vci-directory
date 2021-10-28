@@ -8,7 +8,6 @@ import httpx
 from enum import Enum, auto
 from jwcrypto import jwk as _jwk
 IssuerEntry = namedtuple('IssuerEntry', 'name iss website canonical_iss')
-import sys
 
 ## Reduce SSL context security level due to SSL / TLS error with some domains
 ## https://www.openssl.org/docs/manmaster/man3/SSL_CTX_set_security_level.html
@@ -45,8 +44,9 @@ class IssueType(Enum):
     CANONICAL_ISS_SELF_REFERENCE = (auto(), IssueLevel.ERROR)
     CANONICAL_ISS_REFERENCE_INVALID = (auto(), IssueLevel.ERROR)
     CANONICAL_ISS_MULTIHOP_REFERENCE = (auto(), IssueLevel.ERROR)
-    CORS_HEADER_MISSING = (auto(), IssueLevel.ERROR)
-    CORS_HEADER_INCORRECT = (auto(), IssueLevel.ERROR)
+    ## TODO - convert CORS issues to ERROR in the future 
+    CORS_HEADER_MISSING = (auto(), IssueLevel.WARNING)
+    CORS_HEADER_INCORRECT = (auto(), IssueLevel.WARNING)
 
     def __init__(self, id, level):
         self.id = id
@@ -229,8 +229,7 @@ def validate_keyset(jwks_dict) -> Tuple[bool, List[Issue]]:
 
 def validate_response_headers(
     response_headers: any,
-    issuer_entry: IssuerEntry,
-) -> Tuple[bool, List[Issue]]:
+) -> List[Issue]:
     '''
     Validates response headers from the jwks.json fetch
         Ensures that CORS headers are configured properly
@@ -240,14 +239,14 @@ def validate_response_headers(
         issues = [
             Issue(f'{CORS_ACAO_HEADER} header is missing', IssueType.CORS_HEADER_MISSING)
         ]
-        return [False, issues]
+        return issues
     elif acao_header == CORS_ACAO_HEADER_ALL or acao_header == FETCH_REQUEST_ORIGIN:
-        return [True, []]
+        return []
     else:
         issues = [
             Issue(f'{CORS_ACAO_HEADER} header is incorrect. Expected {CORS_ACAO_HEADER_ALL} or {FETCH_REQUEST_ORIGIN}, but got {acao_header}', IssueType.CORS_HEADER_MISSING)
         ]
-        return [False, issues]    
+        return issues
 
 async def fetch_jwks(
     jwks_url: str,
@@ -310,7 +309,9 @@ async def validate_issuer(
     
     try:
         (jwks, response_headers) = await fetch_jwks(jwks_url)
-        (headers_are_valid, headers_issues) = validate_response_headers(response_headers, issuer_entry)
+        headers_issues = validate_response_headers(response_headers)
+        header_errors = [issue for issue in headers_issues if issue.type.level == IssueLevel.ERROR]
+        headers_are_valid = len(header_errors) == 0
         (keyset_is_valid, keyset_issues) = validate_keyset(jwks)
         is_valid = headers_are_valid and keyset_is_valid
         issues = headers_issues + keyset_issues
