@@ -15,9 +15,9 @@ NYS Excelsior Pass Scanner | yes (read only)        | no?  | no | yes| yes? | ~~
 CommonPass                 | yes (read and produce) | yes  | yes? | yes | no? | periodic/manual | no (wallet) | [iOS](https://apps.apple.com/us/app/commonpass/id1548682047), android?, [developer](https://commonpass.org/)
 New MITRE verifier web app | ?                      | ?    |?|?|?|? | yes?
 
-##Wallet or other holder apps
+## Wallet or other holder apps
 || QR code support | .smart-health-card support | API support | reads vaccinations | reads labs | time-delay to sync VCI issuer directory | links
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- | --- | --- | 
 CommonPass                 | yes (read and produce) | yes  | yes? | yes | no? | periodic/manual | [iOS](https://apps.apple.com/us/app/commonpass/id1548682047), android?, [developer](https://commonpass.org/)
 CommonHealth               | (yes, read and produce)|      ||||| [android](https://play.google.com/store/apps/details?id=org.thecommonsproject.android.phr), [developer](https://www.commonhealth.org/)
 CLEAR Health Pass          | yes (read only)        | ?    | ? | yes | yes | ? |  [iOS](https://apps.apple.com/us/app/clear-fast-touchless-access/id1436333504), [android](https://play.google.com/store/apps/details?id=com.clearme.clearapp), [developer](https://www.clearme.com/healthpass)
