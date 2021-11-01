@@ -21,4 +21,4 @@ New MITRE verifier web app | ?                      | ?    |?|?|?|? | yes?
 CommonPass                 | yes (read and produce) | yes  | yes? | yes | no? | periodic/manual | [iOS](https://apps.apple.com/us/app/commonpass/id1548682047), android?, [developer](https://commonpass.org/)
 CommonHealth               | (yes, read and produce)|      ||||| [android](https://play.google.com/store/apps/details?id=org.thecommonsproject.android.phr), [developer](https://www.commonhealth.org/)
 CLEAR Health Pass          | yes (read only)        | ?    | ? | yes | yes | ? |  [iOS](https://apps.apple.com/us/app/clear-fast-touchless-access/id1436333504), [android](https://play.google.com/store/apps/details?id=com.clearme.clearapp), [developer](https://www.clearme.com/healthpass)
-Apple Health               | yes (read and produce) | yes  | yes | yes | yes | not at all (wallet) |  [developer](https://support.apple.com/en-us/HT212752)
+Apple Health               | yes (read and produce) | yes  | yes | yes | yes | periodic |  [developer](https://support.apple.com/en-us/HT212752)
