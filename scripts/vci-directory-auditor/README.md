@@ -21,12 +21,17 @@ npm run build
 ## Usage
 
 ```
-npm run audit <options>
+npm run audit -- <options>
 ```
 where `<options>` are:
 - `-d, --dirpath <dirpath>`: path of the directory to audit
 - `-o, --outpath <outpath>`: output path for the directory with keys
 - `-l, --outlogpath <outlogpath>`: 'output path for the directory log
+
+For example, to audit the VCI directory stored in this repository, run:
+```
+npm run audit -- -d ../../vci-issuers.json
+```
 
 ## Checks
 

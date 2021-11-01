@@ -6,7 +6,6 @@ import got from 'got';
 import fs from 'fs';
 import path from 'path';
 import date from 'date-and-time';
-import Url from 'url-parse';
 
 const VCI_ISSUERS_DIR_URL = "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json";
 const DEFAULT_LOG_LOCATION = "logs"
@@ -157,10 +156,12 @@ void (async () => {
     try {
         const directory = JSON.parse(fs.readFileSync(options.dirpath).toString('utf-8')) as TrustedIssuers;
         const directoryLog = await fetchDirectoryKeys(directory);
-        fs.writeFileSync(options.outpath, JSON.stringify(directoryLog, null, 4));
+        fs.writeFileSync(options.outlogpath, JSON.stringify(directoryLog, null, 4));
+        console.log(`Directory log written to ${options.outlogpath}`);
         // convert to snapshot
         const directorySnapshot = directoryLogToSnapshot(directoryLog);
         fs.writeFileSync(options.outpath, JSON.stringify(directorySnapshot, null, 4));
+        console.log(`Directory snapshot written to ${options.outpath}`);
     } catch (e) {
         console.log((e as Error).message);
         return;
