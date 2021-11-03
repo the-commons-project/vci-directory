@@ -17,7 +17,9 @@ const DEFAULT_LOG_LOCATION = "logs"
 // issuer info in the directory
 interface TrustedIssuer {
     iss: string,
-    name: string
+    name: string,
+    canonical_iss?: string,
+    website?: string
 }
 
 // directory structure
