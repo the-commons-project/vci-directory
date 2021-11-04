@@ -17,11 +17,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: scripts/venv
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+          key: ${{ runner.os }}-build-${{ hashFiles('**/requirements.txt') }}
 
       - name: "Run tests"
         run: |
