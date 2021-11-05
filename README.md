@@ -1,6 +1,6 @@
 # VCI Directory
 
-This repository provides a public directory of institutions issuing [SMART Health Cards](https://smarthealth.cards) for COVID-19 vaccination and laboratory diagnostic testing records. The directory, represented in the [vci-issuers.json file](https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json), is a simple listing of issuer name, issuer URL (`iss`), and issuer website that can be used for purposes of verification and display.
+This repository provides a public directory of institutions issuing [SMART Health Cards](https://smarthealth.cards) for COVID-19 vaccination and laboratory diagnostic testing records. The directory, represented in the [vci-issuers.json file](https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json), is a simple listing of issuer name, issuer URL (`iss`), and issuer website that can be used for purposes of verification and display. Additional metadata about issuers is listed in [vci-issuers-metadata.json][vci-issuers-metadata.json]. An overview of the issuer metadata listed is described in [METADATA.md](METADATA.md).
 
 [VCI™](https://vci.org) is a voluntary coalition of public and private organizations committed to empowering individuals access to a trustworthy and verifiable copy of their vaccination records in digital or paper form using open, interoperable standards. 
 
@@ -66,4 +66,4 @@ The VCI Directory is licensed via [CC BY 4.0](https://creativecommons.org/licens
 ## Technical Features
 The VCI creates a daily snapshot of the directory, listing the issuers along with the keys retrieved from their listed `iss` endpoint. This can be used by Verifiers as an alternative mechanism to validate SMART Health Cards, without needing to connect to the directory and Issuer endpoints in real-time.
 
-The VCI runs frequent auditing scripts on the directory, to ensure ongoing availability and security compliance of the Issuer endpoints: audit validates proper endpoint TLS configuration, JWK set correctness, and detects name and key identifier collisions
+The VCI runs frequent auditing scripts on the directory, to ensure ongoing availability and security compliance of the Issuer endpoints: audit validates proper endpoint TLS configuration, JWK set correctness, and detects name and key identifier collisions.
