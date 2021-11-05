@@ -1,6 +1,6 @@
 # VCI Directory
 
-This repository provides a public directory of institutions issuing [SMART Health Cards](https://smarthealth.cards) for COVID-19 vaccination and laboratory diagnostic testing records. The directory, represented in the [vci-issuers.json file](https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json), is a simple listing of issuer name, issuer URL (`iss`), and issuer website that can be used for purposes of verification and display. Additional metadata about issuers is listed in [vci-issuers-metadata.json][vci-issuers-metadata.json]. An overview of the issuer metadata listed is described in [METADATA.md](METADATA.md).
+This repository provides a public directory of institutions issuing [SMART Health Cards](https://smarthealth.cards) for COVID-19 vaccination and laboratory diagnostic testing records. The directory, represented in the [vci-issuers.json file](vci-issuers.json), is a simple listing of issuer name, issuer URL (`iss`), and issuer website that can be used for purposes of verification and display. Additional metadata about issuers is listed in [vci-issuers-metadata.json][vci-issuers-metadata.json]. An overview of the issuer metadata listed is described in [METADATA.md](METADATA.md).
 
 [VCI™](https://vci.org) is a voluntary coalition of public and private organizations committed to empowering individuals access to a trustworthy and verifiable copy of their vaccination records in digital or paper form using open, interoperable standards. 
 
