@@ -13,6 +13,12 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
+      - name: Cache Python venv
+        uses: actions/cache@v2
+        with:
+          path: scripts/venv
+          key: ${{ runner.os }}-build-${{ hashFiles('**/requirements.txt') }}
+
       - name: "Validate Issuers File"
         run: |
           cd scripts
