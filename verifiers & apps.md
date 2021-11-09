@@ -4,7 +4,7 @@ Both the [VCI Directory](https://github.com/the-commons-project/vci-directory/)
 and [SMART Health Cards specification](https://spec.smarthealth.cards/) are licensed under the [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). 
 This means that virtually anyone can create an application that consumes, creates and verifies SMART Health Cards. 
 
-The following table is not authoritative, but attempts to document the capabilities of commonly available apps capable of producing, consuming or verifying SMART Health Cards. 
+The following tables are **not authoritative**, but are a community-sourced attempt to document the capabilities of commonly available apps capable of producing, consuming or verifying SMART Health Cards. [Pull requests](https://github.com/the-commons-project/vci-directory/edit/main/verifiers%20%26%20apps.md) or [issues](https://github.com/the-commons-project/vci-directory/issues/new) containing corrections, additions and feedback very welcome!
 
 
 ## Verifier apps
