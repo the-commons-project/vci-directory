@@ -22,7 +22,7 @@ Participation is currently limited to these issuers because it’s easier for ve
 SMART Health Cards issuers must follow the [SMART Health Cards Framework Specification](https://spec.smarthealth.cards). Each production implementation must fully comply with the open standards and specifications noted therein, including:
 
 - SMART Health Cards must pass the FHIR Validator and conform with the [VCI SMART Health Cards FHIR Implementation Guide](https://build.fhir.org/ig/dvci/vaccine-credential-ig/branches/main/conformance.html#validation).
-- SMART Health Cards must pass the [developer validator tools](https://github.com/smart-on-fhir/health-cards-dev-tools) or [validator portal](https://demo-portals.smarthealth.cards/VerifierPortal.html) without errors for all targeted representations (QR, SMART on FHIR API, and file).
+- SMART Health Cards must pass the [developer validator tools](https://github.com/smart-on-fhir/health-cards-dev-tools) without errors for all targeted representations (QR, SMART on FHIR API, and file).
 
 Issuers must provide SHCs using their own unique Issuer URL (`iss`). Issuers who use a technology platform that is shared with, or common to, other issuers, will maintain their own unique ISS separate and apart from any other issuer's `iss`. Issuers will not permit other parties to issue SHCs using their `iss` without Issuer’s authorization.
 
