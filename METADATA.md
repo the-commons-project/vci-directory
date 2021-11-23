@@ -1,6 +1,6 @@
 # Issuer Metadata
 
-[vci-issuer-metadata.json](example-metadata.json) represents metadata about an Issuer that may be useful to applications and websites.
+[vci-issuer-metadata.json](vci-issuers-metadata.json) represents metadata about an Issuer that may be useful to applications and websites.
 
 | Attribute | Meaning |
 |-----------|---------|
