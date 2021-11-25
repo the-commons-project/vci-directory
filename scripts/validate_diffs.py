@@ -10,19 +10,31 @@ def main():
     parser.add_argument('--show-warnings', action='store_true', help='print warnings to the console')
 
     args = parser.parse_args()
-    entries_from_json = common.read_issuer_entries_from_json_file(args.head_input_file)
+    head_entries_from_json = common.read_issuer_entries_from_json_file(args.head_input_file)
+    base_entries_from_json = common.read_issuer_entries_from_json_file(args.base_input_file)
 
     ## ensure no duplicate iss values
-    duplicate_entries = common.duplicate_entries(entries_from_json)
+    duplicate_entries = common.duplicate_entries(head_entries_from_json)
     if len(duplicate_entries) > 1:
         print('Found duplicate entries')
         for entry in duplicate_entries:
             print(entry)
         exit(1)
 
-    ## TODO - only validate new entries
+    ## only validate new entries
+    
+    diffs = common.compute_diffs(base_entries_from_json, head_entries_from_json)
+    additions = diffs.additions
 
-    validation_results = common.validate_entries(entries_from_json)
+    if len(additions) == 0:
+        print('No new entries have been added')
+        exit(0)
+
+    print(f'Validating {len(additions)} new entries')
+    for addition in additions:
+        print(addition)
+
+    validation_results = common.validate_entries(additions)
     valid = common.analyze_results(validation_results, True, args.show_warnings)
 
     if valid:
