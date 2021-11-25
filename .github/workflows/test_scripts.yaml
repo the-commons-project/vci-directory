@@ -25,11 +25,6 @@ jobs:
           path: venv
           key: ${{ runner.os }}-build-${{ hashFiles('head/scripts/requirements.txt') }}
 
-      - name: "Print hashes"
-        run: |
-          echo "${{ hashFiles('head/scripts') }}"
-          echo "${{ hashFiles('base/scripts') }}"
-
       - name: "Run tests"
         if: ${{ hashFiles('head/scripts') != hashFiles('base/scripts') }}
         run: |
