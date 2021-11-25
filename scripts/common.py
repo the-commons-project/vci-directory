@@ -8,6 +8,7 @@ import httpx
 from enum import Enum, auto
 from jwcrypto import jwk as _jwk
 IssuerEntry = namedtuple('IssuerEntry', 'name iss website canonical_iss')
+IssuerEntryChange = namedtuple('IssuerEntryChange', 'old new')
 
 ## Reduce SSL context security level due to SSL / TLS error with some domains
 ## https://www.openssl.org/docs/manmaster/man3/SSL_CTX_set_security_level.html
@@ -15,7 +16,6 @@ httpx._config.DEFAULT_CIPHERS = httpx._config.DEFAULT_CIPHERS + ':@SECLEVEL=1'
 
 class IssException(BaseException):
     pass
-
 
 class IssueLevel(Enum):
     WARNING = auto()
@@ -57,6 +57,16 @@ class IssueType(Enum):
 
     def __repr__(self):
         return f'{self.name}: {self.level}'
+
+class VCIDirectoryDiffs():
+
+    def __init__(self, additions: List[IssuerEntry], deletions: List[IssuerEntry], changes: List[IssuerEntryChange]):
+        self.additions = additions
+        self.deletions = deletions
+        self.changes = changes
+
+    def __repr__(self):
+        return f'additons={self.additions}\ndeletions={self.deletions}\nchanges={self.changes}'
 
 
 Issue = namedtuple('Issue', 'description type')
@@ -432,3 +442,39 @@ def analyze_results(
                 print(f'{result.issuer_entry.iss} warning: {warning}') 
 
     return is_valid
+
+def is_different(entry1: IssuerEntry, entry2: IssuerEntry) -> bool:
+    return entry1.name != entry2.name or entry1.website != entry2.website or entry1.canonical_iss != entry2.canonical_iss
+
+def compute_diffs(curent_entries: List[IssuerEntry], new_entries: List[IssuerEntry]) -> VCIDirectoryDiffs:
+    current_entry_map = { entry.iss:entry for entry in curent_entries }
+    new_entry_map = { entry.iss:entry for entry in new_entries }
+
+    ## for all, the primary key is the iss values
+    ## additions are items with keys that are contained in new_entries but not curent_entries
+    ## deletions are items with keys that are contained in curent_entries but not new_entries
+    ## changes are items with keys in both, but they are not the same
+    additions = []
+    for entry in new_entries:
+        if entry.iss not in current_entry_map:
+            additions.append(entry)
+
+    deletions = []
+    for entry in curent_entries:
+        if entry.iss not in new_entry_map:
+            deletions.append(entry)
+
+    changes = []
+    for entry in new_entries:
+        if entry.iss in current_entry_map and is_different(entry, current_entry_map[entry.iss]):
+            change = IssuerEntryChange(
+                old=current_entry_map[entry.iss],
+                new=entry
+            )
+            changes.append(change)
+
+    return VCIDirectoryDiffs(
+        additions,
+        deletions,
+        changes
+    )
