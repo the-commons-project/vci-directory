@@ -22,6 +22,7 @@ def main():
         exit(1)
 
     ## only validate new entries
+    
     diffs = common.compute_diffs(base_entries_from_json, head_entries_from_json)
     additions = diffs.additions
 
