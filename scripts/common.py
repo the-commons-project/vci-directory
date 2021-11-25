@@ -44,6 +44,9 @@ class IssueType(Enum):
     CANONICAL_ISS_SELF_REFERENCE = (auto(), IssueLevel.ERROR)
     CANONICAL_ISS_REFERENCE_INVALID = (auto(), IssueLevel.ERROR)
     CANONICAL_ISS_MULTIHOP_REFERENCE = (auto(), IssueLevel.ERROR)
+    ## TODO - convert CORS issues to ERROR in the future 
+    CORS_HEADER_MISSING = (auto(), IssueLevel.WARNING)
+    CORS_HEADER_INCORRECT = (auto(), IssueLevel.WARNING)
 
     def __init__(self, id, level):
         self.id = id
@@ -79,6 +82,9 @@ EXPECTED_KEY_CRV = 'P-256'
 
 MAX_FETCH_RETRY_COUNT=5
 FETCH_RETRY_COUNT_DELAY=2
+FETCH_REQUEST_ORIGIN = 'https://example.org'
+CORS_ACAO_HEADER = 'access-control-allow-origin'
+CORS_ACAO_HEADER_ALL = '*'
 
 def read_issuer_entries_from_tsv_file(
     input_file: str,
@@ -221,6 +227,27 @@ def validate_keyset(jwks_dict) -> Tuple[bool, List[Issue]]:
 
     return [keyset_is_valid, keyset_issues]
 
+def validate_response_headers(
+    response_headers: any,
+) -> List[Issue]:
+    '''
+    Validates response headers from the jwks.json fetch
+        Ensures that CORS headers are configured properly
+    '''
+    acao_header = response_headers.get(CORS_ACAO_HEADER)
+    if acao_header == None or len(acao_header) == 0:
+        issues = [
+            Issue(f'{CORS_ACAO_HEADER} header is missing', IssueType.CORS_HEADER_MISSING)
+        ]
+        return issues
+    elif acao_header == CORS_ACAO_HEADER_ALL or acao_header == FETCH_REQUEST_ORIGIN:
+        return []
+    else:
+        issues = [
+            Issue(f'{CORS_ACAO_HEADER} header is incorrect. Expected {CORS_ACAO_HEADER_ALL} or {FETCH_REQUEST_ORIGIN}, but got {acao_header}', IssueType.CORS_HEADER_MISSING)
+        ]
+        return issues
+
 async def fetch_jwks(
     jwks_url: str,
     retry_count: int = 0
@@ -228,10 +255,13 @@ async def fetch_jwks(
 
     try:
         async with httpx.AsyncClient() as client:
-            headers = {'User-Agent': USER_AGENT}
+            headers = {
+                'User-Agent': USER_AGENT,
+                'Origin': FETCH_REQUEST_ORIGIN
+            }
             res = await client.get(jwks_url, headers=headers)
             res.raise_for_status()
-            return res.json()
+            return (res.json(), res.headers)
     except BaseException as ex:
         if retry_count < MAX_FETCH_RETRY_COUNT:
             ## Add exponential backoff, starting with 1s
@@ -278,8 +308,14 @@ async def validate_issuer(
         jwks_url = f'{iss}/.well-known/jwks.json'
     
     try:
-        jwks = await fetch_jwks(jwks_url)
-        return validate_keyset(jwks)
+        (jwks, response_headers) = await fetch_jwks(jwks_url)
+        headers_issues = validate_response_headers(response_headers)
+        header_errors = [issue for issue in headers_issues if issue.type.level == IssueLevel.ERROR]
+        headers_are_valid = len(header_errors) == 0
+        (keyset_is_valid, keyset_issues) = validate_keyset(jwks)
+        is_valid = headers_are_valid and keyset_is_valid
+        issues = headers_issues + keyset_issues
+        return (is_valid, issues)
     except BaseException as ex:
         issues = [
             Issue(f'An exception occurred when fetching {jwks_url}: {ex}', IssueType.FETCH_EXCEPTION)
