@@ -20,7 +20,7 @@ def main():
             print(entry)
         exit(1)
 
-    ## TODO - only validate new entries
+    ## TODO - only validate new entries --
 
     validation_results = common.validate_entries(entries_from_json)
     valid = common.analyze_results(validation_results, True, args.show_warnings)
