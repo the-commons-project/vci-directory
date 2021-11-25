@@ -45,3 +45,6 @@ python merge_issuers_files.py ../vci-issuers.json examples/example.json ../vci-i
 ## Submit a pull request
 
 Once the `vci-issuers.json` file has been updated, submit a pull request with the changes.
+
+
+test
