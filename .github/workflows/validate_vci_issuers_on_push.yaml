@@ -22,13 +22,13 @@ jobs:
       - name: Cache Python venv
         uses: actions/cache@v2
         with:
-          path: head/scripts/venv
+          path: venv
           key: ${{ runner.os }}-build-${{ hashFiles('head/scripts/requirements.txt') }}
 
       - name: "Validate Issuers File"
         run: |
-          cd head/scripts
           python -m venv venv
           source venv/bin/activate
-          pip install -r requirements.txt
+          pip install -r head/scripts/requirements.txt
+          cd head/scripts
           python validate_diffs.py ../vci-issuers.json ../../base/vci-issuers.json
