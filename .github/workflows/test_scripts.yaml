@@ -26,7 +26,7 @@ jobs:
           key: ${{ runner.os }}-build-${{ hashFiles('head/scripts/requirements.txt') }}
 
       - name: "Run tests"
-        if: ${{ hashFiles(head/scripts) != hashFiles(base/scripts) }}
+        if: ${{ hashFiles('head/scripts') != hashFiles('base/scripts') }}
         run: |
           cd head/scripts
           python -m venv venv
