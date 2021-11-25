@@ -22,14 +22,19 @@ jobs:
       - name: Cache Python venv
         uses: actions/cache@v2
         with:
-          path: head/scripts/venv
+          path: venv
           key: ${{ runner.os }}-build-${{ hashFiles('head/scripts/requirements.txt') }}
+
+      - name: "Print hashes"
+        run: |
+          echo "${{ hashFiles('head/scripts') }}"
+          echo "${{ hashFiles('base/scripts') }}"
 
       - name: "Run tests"
         if: ${{ hashFiles('head/scripts') != hashFiles('base/scripts') }}
         run: |
-          cd head/scripts
           python -m venv venv
           source venv/bin/activate
-          pip install -r requirements.txt
+          pip install -r head/scripts/requirements.txt
+          cd head/scripts
           python -m unittest test.common_test
