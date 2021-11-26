@@ -254,7 +254,7 @@ def validate_response_headers(
         return []
     else:
         issues = [
-            Issue(f'{CORS_ACAO_HEADER} header is incorrect. Expected {CORS_ACAO_HEADER_ALL} or {FETCH_REQUEST_ORIGIN}, but got {acao_header}', IssueType.CORS_HEADER_MISSING)
+            Issue(f'{CORS_ACAO_HEADER} header is incorrect. Expected {CORS_ACAO_HEADER_ALL} or {FETCH_REQUEST_ORIGIN}, but got {acao_header}', IssueType.CORS_HEADER_INCORRECT)
         ]
         return issues
 
@@ -421,11 +421,18 @@ def duplicate_entries(
 def analyze_results(
     validation_results: List[ValidationResult],
     show_errors_and_warnings: bool,
-    show_warnings: bool
+    show_warnings: bool,
+    cors_issue_is_error: bool = False
 ) -> bool:
 
     is_valid = True
     for result in validation_results:
+
+        if cors_issue_is_error:
+            for issue in result.issues:
+                if issue.type == IssueType.CORS_HEADER_MISSING or issue.type == IssueType.CORS_HEADER_INCORRECT:
+                    is_valid = False
+                    print(f'{result.issuer_entry.iss}: {issue.description}')
 
         errors = [issue for issue in result.issues if issue.type.level == IssueLevel.ERROR]
         assert(result.is_valid == (len(errors) == 0))
