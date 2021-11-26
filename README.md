@@ -1,6 +1,6 @@
 # VCI Directory
 
-This repository provides a public directory of institutions issuing [SMART Health Cards](https://smarthealth.cards) for COVID-19 vaccination and laboratory diagnostic testing records. The directory, represented in the [vci-issuers.json file](https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json), is a simple listing of issuer name, issuer URL (`iss`), and issuer website that can be used for purposes of verification and display.
+This repository provides a public directory of institutions issuing [SMART Health Cards](https://smarthealth.cards) for COVID-19 vaccination and laboratory diagnostic testing records. The directory, represented in the [vci-issuers.json file](vci-issuers.json), is a simple listing of issuer name, issuer URL (`iss`), and issuer website that can be used for purposes of verification and display. Additional metadata about issuers is listed in [vci-issuers-metadata.json][vci-issuers-metadata.json]. An overview of the issuer metadata listed is described in [METADATA.md](METADATA.md).
 
 [VCI™](https://vci.org) is a voluntary coalition of public and private organizations committed to empowering individuals access to a trustworthy and verifiable copy of their vaccination records in digital or paper form using open, interoperable standards. 
 
@@ -22,7 +22,7 @@ Participation is currently limited to these issuers because it’s easier for ve
 SMART Health Cards issuers must follow the [SMART Health Cards Framework Specification](https://spec.smarthealth.cards). Each production implementation must fully comply with the open standards and specifications noted therein, including:
 
 - SMART Health Cards must pass the FHIR Validator and conform with the [VCI SMART Health Cards FHIR Implementation Guide](https://build.fhir.org/ig/dvci/vaccine-credential-ig/branches/main/conformance.html#validation).
-- SMART Health Cards must pass the [developer validator tools](https://github.com/smart-on-fhir/health-cards-dev-tools) or [validator portal](https://demo-portals.smarthealth.cards/VerifierPortal.html) without errors for all targeted representations (QR, SMART on FHIR API, and file).
+- SMART Health Cards must pass the [developer validator tools](https://github.com/smart-on-fhir/health-cards-dev-tools) without errors for all targeted representations (QR, SMART on FHIR API, and file).
 
 Issuers must provide SHCs using their own unique Issuer URL (`iss`). Issuers who use a technology platform that is shared with, or common to, other issuers, will maintain their own unique ISS separate and apart from any other issuer's `iss`. Issuers will not permit other parties to issue SHCs using their `iss` without Issuer’s authorization.
 
@@ -66,4 +66,4 @@ The VCI Directory is licensed via [CC BY 4.0](https://creativecommons.org/licens
 ## Technical Features
 The VCI creates a daily snapshot of the directory, listing the issuers along with the keys retrieved from their listed `iss` endpoint. This can be used by Verifiers as an alternative mechanism to validate SMART Health Cards, without needing to connect to the directory and Issuer endpoints in real-time.
 
-The VCI runs frequent auditing scripts on the directory, to ensure ongoing availability and security compliance of the Issuer endpoints: audit validates proper endpoint TLS configuration, JWK set correctness, and detects name and key identifier collisions
+The VCI runs frequent auditing scripts on the directory, to ensure ongoing availability and security compliance of the Issuer endpoints: audit validates proper endpoint TLS configuration, JWK set correctness, and detects name and key identifier collisions.

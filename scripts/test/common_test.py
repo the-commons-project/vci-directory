@@ -4,7 +4,7 @@ import json
 from common import (
     read_issuer_entries_from_tsv_file, IssuerEntry, validate_entries, ValidationResult,
     validate_key, IssueType, validate_keyset, Issue, duplicate_entries, read_issuer_entries_from_json_file,
-    analyze_results
+    analyze_results, compute_diffs, IssuerEntryChange
 )
 
 FIXTURE_DIRECTORY = f'{os.path.dirname(__file__)}/fixtures'
@@ -642,4 +642,113 @@ class ValidateEntriesIntegrationTestCase(unittest.TestCase):
         valid = analyze_results(validation_results, True, True)
         self.assertTrue(valid)
 
+class ComputeDiffsTestCase(unittest.TestCase):
+
+    def test_diffs_empty(self):
+        curent_entries = []
+        new_entries = []
+
+        diffs = compute_diffs(curent_entries, new_entries)
+
+        self.assertEqual(diffs.additions, [])
+        self.assertEqual(diffs.deletions, [])
+        self.assertEqual(diffs.changes, [])
+
+    def test_diffs_same(self):
+        curent_entries = [
+            IssuerEntry('SHC Example Issuer 1', 'https://spec.smarthealth.cards/examples/issuer1', None, None),
+            IssuerEntry('SHC Example Issuer 2', 'https://spec.smarthealth.cards/examples/issuer2', None, None),
+            IssuerEntry('SHC Example Issuer 3', 'https://spec.smarthealth.cards/examples/issuer3', None, None),
+        ]
+        new_entries = [
+            IssuerEntry('SHC Example Issuer 1', 'https://spec.smarthealth.cards/examples/issuer1', None, None),
+            IssuerEntry('SHC Example Issuer 2', 'https://spec.smarthealth.cards/examples/issuer2', None, None),
+            IssuerEntry('SHC Example Issuer 3', 'https://spec.smarthealth.cards/examples/issuer3', None, None),
+        ]
+
+        diffs = compute_diffs(curent_entries, new_entries)
+
+        self.assertEqual(diffs.additions, [])
+        self.assertEqual(diffs.deletions, [])
+        self.assertEqual(diffs.changes, [])
+
+    def test_diffs_additions(self):
+        curent_entries = [
+            IssuerEntry('SHC Example Issuer 1', 'https://spec.smarthealth.cards/examples/issuer1', None, None),
+            IssuerEntry('SHC Example Issuer 2', 'https://spec.smarthealth.cards/examples/issuer2', None, None),
+            IssuerEntry('SHC Example Issuer 3', 'https://spec.smarthealth.cards/examples/issuer3', None, None),
+        ]
+        new_entries = [
+            IssuerEntry('SHC Example Issuer 1', 'https://spec.smarthealth.cards/examples/issuer1', None, None),
+            IssuerEntry('SHC Example Issuer 2', 'https://spec.smarthealth.cards/examples/issuer2', None, None),
+            IssuerEntry('SHC Example Issuer 3', 'https://spec.smarthealth.cards/examples/issuer3', None, None),
+            IssuerEntry('SHC Example Issuer 4', 'https://spec.smarthealth.cards/examples/issuer4', None, None),
+            IssuerEntry('SHC Example Issuer 5', 'https://spec.smarthealth.cards/examples/issuer5', None, None),
+        ]
+
+        diffs = compute_diffs(curent_entries, new_entries)
+
+        self.assertEqual(
+            diffs.additions, 
+            [
+                IssuerEntry('SHC Example Issuer 4', 'https://spec.smarthealth.cards/examples/issuer4', None, None),
+                IssuerEntry('SHC Example Issuer 5', 'https://spec.smarthealth.cards/examples/issuer5', None, None),
+            ]
+        )
+        self.assertEqual(diffs.deletions, [])
+        self.assertEqual(diffs.changes, [])
+
+    def test_diffs_deletions(self):
+        curent_entries = [
+            IssuerEntry('SHC Example Issuer 1', 'https://spec.smarthealth.cards/examples/issuer1', None, None),
+            IssuerEntry('SHC Example Issuer 2', 'https://spec.smarthealth.cards/examples/issuer2', None, None),
+            IssuerEntry('SHC Example Issuer 3', 'https://spec.smarthealth.cards/examples/issuer3', None, None),
+            IssuerEntry('SHC Example Issuer 4', 'https://spec.smarthealth.cards/examples/issuer4', None, None),
+            IssuerEntry('SHC Example Issuer 5', 'https://spec.smarthealth.cards/examples/issuer5', None, None),
+        ]
+        new_entries = [
+            IssuerEntry('SHC Example Issuer 1', 'https://spec.smarthealth.cards/examples/issuer1', None, None),
+            IssuerEntry('SHC Example Issuer 2', 'https://spec.smarthealth.cards/examples/issuer2', None, None),
+            IssuerEntry('SHC Example Issuer 3', 'https://spec.smarthealth.cards/examples/issuer3', None, None),
+        ]
+
+        diffs = compute_diffs(curent_entries, new_entries)
+
+        self.assertEqual(diffs.additions, [])
+        self.assertEqual(
+            diffs.deletions, 
+            [
+                IssuerEntry('SHC Example Issuer 4', 'https://spec.smarthealth.cards/examples/issuer4', None, None),
+                IssuerEntry('SHC Example Issuer 5', 'https://spec.smarthealth.cards/examples/issuer5', None, None),
+            ]
+        )
+        self.assertEqual(diffs.changes, [])
+
+    def test_diffs_changes(self):
+        curent_entries = [
+            IssuerEntry('SHC Example Issuer 1', 'https://spec.smarthealth.cards/examples/issuer1', None, None),
+            IssuerEntry('SHC Example Issuer 2', 'https://spec.smarthealth.cards/examples/issuer2', None, None),
+            IssuerEntry('SHC Example Issuer 3', 'https://spec.smarthealth.cards/examples/issuer3', None, None),
+        ]
+        new_entries = [
+            IssuerEntry('SHC Example Issuer 1', 'https://spec.smarthealth.cards/examples/issuer1', None, None),
+            IssuerEntry('SHC Example Issuer 2', 'https://spec.smarthealth.cards/examples/issuer2', None, None),
+            IssuerEntry('SHC Example Issuer 3a', 'https://spec.smarthealth.cards/examples/issuer3', None, None),
+        ]
+
+        diffs = compute_diffs(curent_entries, new_entries)
+
+        self.assertEqual(diffs.additions, [])
+        self.assertEqual(diffs.deletions, [])
+        self.assertEqual(
+            diffs.changes, 
+            [
+                IssuerEntryChange(
+                    IssuerEntry('SHC Example Issuer 3', 'https://spec.smarthealth.cards/examples/issuer3', None, None),
+                    IssuerEntry('SHC Example Issuer 3a', 'https://spec.smarthealth.cards/examples/issuer3', None, None),
+                )
+            ]
+        )
+
+    
 
