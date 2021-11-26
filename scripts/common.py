@@ -428,6 +428,7 @@ def analyze_results(
     is_valid = True
     for result in validation_results:
 
+        ## Remove this once CORS issues are marked errors
         if cors_issue_is_error:
             for issue in result.issues:
                 if issue.type == IssueType.CORS_HEADER_MISSING or issue.type == IssueType.CORS_HEADER_INCORRECT:
