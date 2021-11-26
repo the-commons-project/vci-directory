@@ -35,7 +35,7 @@ def main():
         print(addition)
 
     validation_results = common.validate_entries(additions)
-    valid = common.analyze_results(validation_results, True, args.show_warnings)
+    valid = common.analyze_results(validation_results, True, args.show_warnings, cors_issue_is_error=True)
 
     if valid:
         print('All entries are valid')
