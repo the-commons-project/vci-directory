@@ -8,6 +8,7 @@ import httpx
 from enum import Enum, auto
 from jwcrypto import jwk as _jwk
 IssuerEntry = namedtuple('IssuerEntry', 'name iss website canonical_iss')
+IssuerEntryChange = namedtuple('IssuerEntryChange', 'old new')
 
 ## Reduce SSL context security level due to SSL / TLS error with some domains
 ## https://www.openssl.org/docs/manmaster/man3/SSL_CTX_set_security_level.html
@@ -15,7 +16,6 @@ httpx._config.DEFAULT_CIPHERS = httpx._config.DEFAULT_CIPHERS + ':@SECLEVEL=1'
 
 class IssException(BaseException):
     pass
-
 
 class IssueLevel(Enum):
     WARNING = auto()
@@ -44,6 +44,9 @@ class IssueType(Enum):
     CANONICAL_ISS_SELF_REFERENCE = (auto(), IssueLevel.ERROR)
     CANONICAL_ISS_REFERENCE_INVALID = (auto(), IssueLevel.ERROR)
     CANONICAL_ISS_MULTIHOP_REFERENCE = (auto(), IssueLevel.ERROR)
+    ## TODO - convert CORS issues to ERROR in the future 
+    CORS_HEADER_MISSING = (auto(), IssueLevel.WARNING)
+    CORS_HEADER_INCORRECT = (auto(), IssueLevel.WARNING)
 
     def __init__(self, id, level):
         self.id = id
@@ -54,6 +57,16 @@ class IssueType(Enum):
 
     def __repr__(self):
         return f'{self.name}: {self.level}'
+
+class VCIDirectoryDiffs():
+
+    def __init__(self, additions: List[IssuerEntry], deletions: List[IssuerEntry], changes: List[IssuerEntryChange]):
+        self.additions = additions
+        self.deletions = deletions
+        self.changes = changes
+
+    def __repr__(self):
+        return f'additons={self.additions}\ndeletions={self.deletions}\nchanges={self.changes}'
 
 
 Issue = namedtuple('Issue', 'description type')
@@ -79,6 +92,9 @@ EXPECTED_KEY_CRV = 'P-256'
 
 MAX_FETCH_RETRY_COUNT=5
 FETCH_RETRY_COUNT_DELAY=2
+FETCH_REQUEST_ORIGIN = 'https://example.org'
+CORS_ACAO_HEADER = 'access-control-allow-origin'
+CORS_ACAO_HEADER_ALL = '*'
 
 def read_issuer_entries_from_tsv_file(
     input_file: str,
@@ -221,6 +237,27 @@ def validate_keyset(jwks_dict) -> Tuple[bool, List[Issue]]:
 
     return [keyset_is_valid, keyset_issues]
 
+def validate_response_headers(
+    response_headers: any,
+) -> List[Issue]:
+    '''
+    Validates response headers from the jwks.json fetch
+        Ensures that CORS headers are configured properly
+    '''
+    acao_header = response_headers.get(CORS_ACAO_HEADER)
+    if acao_header == None or len(acao_header) == 0:
+        issues = [
+            Issue(f'{CORS_ACAO_HEADER} header is missing', IssueType.CORS_HEADER_MISSING)
+        ]
+        return issues
+    elif acao_header == CORS_ACAO_HEADER_ALL or acao_header == FETCH_REQUEST_ORIGIN:
+        return []
+    else:
+        issues = [
+            Issue(f'{CORS_ACAO_HEADER} header is incorrect. Expected {CORS_ACAO_HEADER_ALL} or {FETCH_REQUEST_ORIGIN}, but got {acao_header}', IssueType.CORS_HEADER_INCORRECT)
+        ]
+        return issues
+
 async def fetch_jwks(
     jwks_url: str,
     retry_count: int = 0
@@ -228,10 +265,13 @@ async def fetch_jwks(
 
     try:
         async with httpx.AsyncClient() as client:
-            headers = {'User-Agent': USER_AGENT}
-            res = await client.get(jwks_url, headers=headers)
+            headers = {
+                'User-Agent': USER_AGENT,
+                'Origin': FETCH_REQUEST_ORIGIN
+            }
+            res = await client.get(jwks_url, headers=headers, follow_redirects=True)
             res.raise_for_status()
-            return res.json()
+            return (res.json(), res.headers)
     except BaseException as ex:
         if retry_count < MAX_FETCH_RETRY_COUNT:
             ## Add exponential backoff, starting with 1s
@@ -251,7 +291,7 @@ async def validate_website(
     try:
         async with httpx.AsyncClient() as client:
             headers = {'User-Agent': USER_AGENT}
-            res = await client.get(website_url, headers=headers)
+            res = await client.get(website_url, headers=headers, follow_redirects=True)
             res.raise_for_status()
     except BaseException as ex:
         if retry_count < MAX_FETCH_RETRY_COUNT:
@@ -278,8 +318,14 @@ async def validate_issuer(
         jwks_url = f'{iss}/.well-known/jwks.json'
     
     try:
-        jwks = await fetch_jwks(jwks_url)
-        return validate_keyset(jwks)
+        (jwks, response_headers) = await fetch_jwks(jwks_url)
+        headers_issues = validate_response_headers(response_headers)
+        header_errors = [issue for issue in headers_issues if issue.type.level == IssueLevel.ERROR]
+        headers_are_valid = len(header_errors) == 0
+        (keyset_is_valid, keyset_issues) = validate_keyset(jwks)
+        is_valid = headers_are_valid and keyset_is_valid
+        issues = headers_issues + keyset_issues
+        return (is_valid, issues)
     except BaseException as ex:
         issues = [
             Issue(f'An exception occurred when fetching {jwks_url}: {ex}', IssueType.FETCH_EXCEPTION)
@@ -375,11 +421,19 @@ def duplicate_entries(
 def analyze_results(
     validation_results: List[ValidationResult],
     show_errors_and_warnings: bool,
-    show_warnings: bool
+    show_warnings: bool,
+    cors_issue_is_error: bool = False
 ) -> bool:
 
     is_valid = True
     for result in validation_results:
+
+        ## Remove this once CORS issues are marked errors
+        if cors_issue_is_error:
+            for issue in result.issues:
+                if issue.type == IssueType.CORS_HEADER_MISSING or issue.type == IssueType.CORS_HEADER_INCORRECT:
+                    is_valid = False
+                    print(f'{result.issuer_entry.iss}: {issue.description}')
 
         errors = [issue for issue in result.issues if issue.type.level == IssueLevel.ERROR]
         assert(result.is_valid == (len(errors) == 0))
@@ -396,3 +450,39 @@ def analyze_results(
                 print(f'{result.issuer_entry.iss} warning: {warning}') 
 
     return is_valid
+
+def is_different(entry1: IssuerEntry, entry2: IssuerEntry) -> bool:
+    return entry1.name != entry2.name or entry1.website != entry2.website or entry1.canonical_iss != entry2.canonical_iss
+
+def compute_diffs(curent_entries: List[IssuerEntry], new_entries: List[IssuerEntry]) -> VCIDirectoryDiffs:
+    current_entry_map = { entry.iss:entry for entry in curent_entries }
+    new_entry_map = { entry.iss:entry for entry in new_entries }
+
+    ## for all, the primary key is the iss values
+    ## additions are items with keys that are contained in new_entries but not curent_entries
+    ## deletions are items with keys that are contained in curent_entries but not new_entries
+    ## changes are items with keys in both, but they are not the same
+    additions = []
+    for entry in new_entries:
+        if entry.iss not in current_entry_map:
+            additions.append(entry)
+
+    deletions = []
+    for entry in curent_entries:
+        if entry.iss not in new_entry_map:
+            deletions.append(entry)
+
+    changes = []
+    for entry in new_entries:
+        if entry.iss in current_entry_map and is_different(entry, current_entry_map[entry.iss]):
+            change = IssuerEntryChange(
+                old=current_entry_map[entry.iss],
+                new=entry
+            )
+            changes.append(change)
+
+    return VCIDirectoryDiffs(
+        additions,
+        deletions,
+        changes
+    )
