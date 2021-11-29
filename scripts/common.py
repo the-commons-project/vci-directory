@@ -269,7 +269,7 @@ async def fetch_jwks(
                 'User-Agent': USER_AGENT,
                 'Origin': FETCH_REQUEST_ORIGIN
             }
-            res = await client.get(jwks_url, headers=headers)
+            res = await client.get(jwks_url, headers=headers, follow_redirects=True)
             res.raise_for_status()
             return (res.json(), res.headers)
     except BaseException as ex:
@@ -291,7 +291,7 @@ async def validate_website(
     try:
         async with httpx.AsyncClient() as client:
             headers = {'User-Agent': USER_AGENT}
-            res = await client.get(website_url, headers=headers)
+            res = await client.get(website_url, headers=headers, follow_redirects=True)
             res.raise_for_status()
     except BaseException as ex:
         if retry_count < MAX_FETCH_RETRY_COUNT:
