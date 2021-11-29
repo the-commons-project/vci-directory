@@ -21,23 +21,30 @@ def main():
             print(entry)
         exit(1)
 
-    ## only validate new entries
-    
+    ## only validate new entries and changes
     diffs = common.compute_diffs(base_entries_from_json, head_entries_from_json)
     additions = diffs.additions
+    changes = [change.new for change in diffs.changes]
 
-    if len(additions) == 0:
-        print('No new entries have been added')
+    if len(additions) + len(changes) == 0:
+        print('No entries have been added or changed')
         exit(0)
 
     print(f'Validating {len(additions)} new entries')
     for addition in additions:
         print(addition)
 
-    validation_results = common.validate_entries(additions)
-    valid = common.analyze_results(validation_results, True, args.show_warnings, cors_issue_is_error=True)
+    print(f'Validating {len(changes)} changed entries')
+    for change in changes:
+        print(change)
 
-    if valid:
+    additions_validation_results = common.validate_entries(additions)
+    additions_valid = common.analyze_results(additions_validation_results, True, args.show_warnings, cors_issue_is_error=True)
+
+    changes_validation_results = common.validate_entries(changes)
+    changes_valid = common.analyze_results(changes_validation_results, True, args.show_warnings, cors_issue_is_error=True)
+
+    if additions_valid and changes_valid:
         print('All entries are valid')
         exit(0)
     else:
