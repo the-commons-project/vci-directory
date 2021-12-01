@@ -254,7 +254,7 @@ def validate_response_headers(
         return []
     else:
         issues = [
-            Issue(f'{CORS_ACAO_HEADER} header is incorrect. Expected {CORS_ACAO_HEADER_ALL} or {FETCH_REQUEST_ORIGIN}, but got {acao_header}', IssueType.CORS_HEADER_MISSING)
+            Issue(f'{CORS_ACAO_HEADER} header is incorrect. Expected {CORS_ACAO_HEADER_ALL} or {FETCH_REQUEST_ORIGIN}, but got {acao_header}', IssueType.CORS_HEADER_INCORRECT)
         ]
         return issues
 
@@ -269,7 +269,7 @@ async def fetch_jwks(
                 'User-Agent': USER_AGENT,
                 'Origin': FETCH_REQUEST_ORIGIN
             }
-            res = await client.get(jwks_url, headers=headers)
+            res = await client.get(jwks_url, headers=headers, follow_redirects=True)
             res.raise_for_status()
             return (res.json(), res.headers)
     except BaseException as ex:
@@ -291,7 +291,7 @@ async def validate_website(
     try:
         async with httpx.AsyncClient() as client:
             headers = {'User-Agent': USER_AGENT}
-            res = await client.get(website_url, headers=headers)
+            res = await client.get(website_url, headers=headers, follow_redirects=True)
             res.raise_for_status()
     except BaseException as ex:
         if retry_count < MAX_FETCH_RETRY_COUNT:
@@ -421,11 +421,19 @@ def duplicate_entries(
 def analyze_results(
     validation_results: List[ValidationResult],
     show_errors_and_warnings: bool,
-    show_warnings: bool
+    show_warnings: bool,
+    cors_issue_is_error: bool = False
 ) -> bool:
 
     is_valid = True
     for result in validation_results:
+
+        ## Remove this once CORS issues are marked errors
+        if cors_issue_is_error:
+            for issue in result.issues:
+                if issue.type == IssueType.CORS_HEADER_MISSING or issue.type == IssueType.CORS_HEADER_INCORRECT:
+                    is_valid = False
+                    print(f'{result.issuer_entry.iss}: {issue.description}')
 
         errors = [issue for issue in result.issues if issue.type.level == IssueLevel.ERROR]
         assert(result.is_valid == (len(errors) == 0))
