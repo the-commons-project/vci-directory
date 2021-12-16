@@ -12,11 +12,24 @@ jobs:
       - uses: "actions/checkout@v2"
         with:
           ref: ${{ github.event.pull_request.head.sha }}
+          path: 'head'
+
+      - uses: "actions/checkout@v2"
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: 'base'
+
+      - name: Cache Python venv
+        uses: actions/cache@v2
+        with:
+          path: venv
+          key: ${{ runner.os }}-build-${{ hashFiles('head/scripts/requirements.txt') }}
 
       - name: "Run tests"
+        if: ${{ hashFiles('head/scripts') != hashFiles('base/scripts') }}
         run: |
-          cd scripts
           python -m venv venv
           source venv/bin/activate
-          pip install -r requirements.txt
+          pip install -r head/scripts/requirements.txt
+          cd head/scripts
           python -m unittest test.common_test
