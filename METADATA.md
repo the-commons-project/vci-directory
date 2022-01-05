@@ -21,12 +21,12 @@ This location representation is heavily inspired by the [FHIR `Address` type][fh
 
 | Attribute | Meaning |
 |-----------|---------|
-| `state` | Which state, province, territory, or other administrative division within a country the issuer represents |
-| `country` | The country the issuer represents as ISO 3166 2 or 3 letter code |
+| `state` | The state, province, territory, or other administrative division within a country associated with the issuer |
+| `country` | The country associated with the issuer expressed as ISO 3166 2 or 3 letter code |
 
 Each location within the list of `locations` should be independently-defined. For
-example, if an issuer operations in the states of New York and New Jersey, its
-`locations` should be represented by (country should not be omitted):
+example, if an issuer has operations in the states of New York and New Jersey, each of its
+`locations` should include both state and country:
 
 
 ```json
