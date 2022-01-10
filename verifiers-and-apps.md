@@ -43,6 +43,6 @@ SMART Health Cards validators are website or applications which read a SMART Hea
 
 || Description | Purpose | License | links |
 | ----- | ----- | ---- | -- | -- |
-| demo-portals.smarthealth.cards | Starting with a FHIR Bundle, generate a SMART Health Card | Educational and troubleshooting tool. | MIT | https://demo-portals.smarthealth.cards/DevPortal.html |
+| demo-portals.smarthealth.cards | Starting with a FHIR Bundle, generate a SMART Health Card | Educational and troubleshooting tool. | [MIT](https://github.com/smart-on-fhir/health-cards-dev-tools/blob/main/LICENSE) | https://demo-portals.smarthealth.cards/DevPortal.html |
 | Jupyter Notebook  | Walkthrough with code snippets for creating a SMART Health Card. | Educational documentation | [Apache 2.0](https://github.com/dvci/health-cards-walkthrough/blob/main/LICENSE.txt) | https://github.com/dvci/health-cards-walkthrough/blob/main/SMART%20Health%20Cards.ipynb |
 | Epic Vaccination Credentials Tutorial | Walkthrough of consuming an Epic-generated SMART Health Card. | Educational documentation | [license](https://fhir.epic.com/Resources/Terms) | https://fhir.epic.com/Documentation?docId=vaccinecredential | 
