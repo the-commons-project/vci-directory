@@ -29,12 +29,15 @@ Apple Health               | yes (read and produce) | yes  | yes | yes | yes | p
 SMART Health Cards validators are website or applications which read a SMART Health Card and identify any problems with its content, formatting, structure, etc. towards the goal of ensuring it can be read by verifier, wallets and other apps. 
 
 || Usable by non-programmers? | Validates FHIR content? | links | 
-| ----- | -- | -- | ---- |
-| Health Cards Dev Tools | No. |Partial. | https://github.com/smart-on-fhir/health-cards-dev-tools |
-| demo-portals.smarthealth.cards | Yes! | No. | https://demo-portals.smarthealth.cards/VerifierPortal.html |
-| Health Cards Validation SDK | No. | No. | https://github.com/microsoft/health-cards-validation-SDK |
-| HL7 FHIR Validator | No. | Only validates FHIR content | https://confluence.hl7.org/display/FHIR/Using+the+FHIR+Validator |
-| Grahame's FHIR toolkit (in progress -- check back here!) | | | |
+| ---- | -- | -- | --- | 
+| Health Cards Dev Tools | No. |Partial. | https://github.com/smart-on-fhir/health-cards-dev-tools | 
+| demo-portals.smarthealth.cards | Yes! | No. | https://demo-portals.smarthealth.cards/VerifierPortal.html | 
+| Health Cards Validation SDK | No. | No. | https://github.com/microsoft/health-cards-validation-SDK | 
+| HL7 FHIR Validator | No. | Only validates FHIR content | https://confluence.hl7.org/display/FHIR/Using+the+FHIR+Validator | 
+| Grahame's FHIR toolkit (in progress -- check back here!) | | | | 
+| Online Health Certificate Decoder | No. | No. | https://ehealth.vyncke.org/index.php |
+| Pathcheck Verifiable Credential Debugger | No. | No. | https://github.pathcheck.org/debug.html | 
+
 
 ### Additional developer resources
 
