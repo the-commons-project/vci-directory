@@ -1,0 +1,24 @@
+name: 'Deploy'
+on:
+  push:
+    tags:
+      - v*env:
+
+env:
+  S3_BUCKET: shc-verifier-services-dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --content-type application/json
+      env:
+        AWS_S3_BUCKET: $S3_BUCKET
+        AWS_ACCESS_KEY_ID: ${{ secrets.TERRAFORM_AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.TERRAFORM_AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: 'us-east-1'
+        SOURCE_DIR: './vci-issuers.json'
+        DEST_DIR: 'vci-directory'
