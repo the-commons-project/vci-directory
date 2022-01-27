@@ -2,13 +2,17 @@ name: 'Deploy'
 on:
   push:
     tags:
-      - v*env:
+      - v*
 
 env:
-  S3_BUCKET: shc-verifier-services-dev
+  S3_BUCKET_DEV: shc-verifier-services-dev
+  S3_BUCKET_TEST: shc-verifier-services-test
+  S3_BUCKET_PROD: shc-verifier-services-prod
 
 jobs:
-  deploy:
+  deployDev:
+    if: contains(github.ref, 'dev')
+    name: 'Deploy VCI issuers list to TCP dev'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -16,7 +20,41 @@ jobs:
       with:
         args: --content-type application/json
       env:
-        AWS_S3_BUCKET: $S3_BUCKET
+        AWS_S3_BUCKET: $S3_BUCKET_DEV
+        AWS_ACCESS_KEY_ID: ${{ secrets.TERRAFORM_AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.TERRAFORM_AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: 'us-east-1'
+        SOURCE_DIR: './vci-issuers.json'
+        DEST_DIR: 'vci-directory'
+
+  deployTest:
+    if: contains(github.ref, 'test')
+    name: 'Deploy VCI issuers list to TCP test'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --content-type application/json
+      env:
+        AWS_S3_BUCKET: $S3_BUCKET_TEST
+        AWS_ACCESS_KEY_ID: ${{ secrets.TERRAFORM_AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.TERRAFORM_AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: 'us-east-1'
+        SOURCE_DIR: './vci-issuers.json'
+        DEST_DIR: 'vci-directory'
+
+  deployProd:
+    if: contains(github.ref, '-prod')
+    name: 'Deploy VCI issuers list to TCP production'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --content-type application/json
+      env:
+        AWS_S3_BUCKET: $S3_BUCKET_PROD
         AWS_ACCESS_KEY_ID: ${{ secrets.TERRAFORM_AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.TERRAFORM_AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: 'us-east-1'
