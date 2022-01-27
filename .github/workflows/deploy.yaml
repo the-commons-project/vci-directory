@@ -8,6 +8,9 @@ env:
   S3_BUCKET_DEV: shc-verifier-services-dev
   S3_BUCKET_TEST: shc-verifier-services-test
   S3_BUCKET_PROD: shc-verifier-services-prod
+  S3_DIR: vci-directory
+  LOCAL_SOURCE_FILE: vci-issuers.json
+  REGION: us-east-1
 
 jobs:
   deployDev:
@@ -23,9 +26,9 @@ jobs:
         AWS_S3_BUCKET: $S3_BUCKET_DEV
         AWS_ACCESS_KEY_ID: ${{ secrets.TERRAFORM_AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.TERRAFORM_AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: 'us-east-1'
-        SOURCE_DIR: './vci-issuers.json'
-        DEST_DIR: 'vci-directory'
+        AWS_REGION: $REGION
+        SOURCE_DIR: $LOCAL_SOURCE_FILE
+        DEST_DIR: $S3_DIR
 
   deployTest:
     if: contains(github.ref, 'test')
@@ -40,9 +43,9 @@ jobs:
         AWS_S3_BUCKET: $S3_BUCKET_TEST
         AWS_ACCESS_KEY_ID: ${{ secrets.TERRAFORM_AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.TERRAFORM_AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: 'us-east-1'
-        SOURCE_DIR: './vci-issuers.json'
-        DEST_DIR: 'vci-directory'
+        AWS_REGION: $REGION
+        SOURCE_DIR: $LOCAL_SOURCE_FILE
+        DEST_DIR: $S3_DIR
 
   deployProd:
     if: contains(github.ref, '-prod')
@@ -57,6 +60,6 @@ jobs:
         AWS_S3_BUCKET: $S3_BUCKET_PROD
         AWS_ACCESS_KEY_ID: ${{ secrets.TERRAFORM_AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.TERRAFORM_AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: 'us-east-1'
-        SOURCE_DIR: './vci-issuers.json'
-        DEST_DIR: 'vci-directory'
+        AWS_REGION: $REGION
+        SOURCE_DIR: $LOCAL_SOURCE_FILE
+        DEST_DIR: $S3_DIR
