@@ -21,13 +21,12 @@ jobs:
     - uses: actions/checkout@master
     - uses: jakejarvis/s3-sync-action@master
       with:
-        args: --content-type application/json
+        args: --include ${{ env.LOCAL_SOURCE_FILE }} --content-type application/json
       env:
-        AWS_S3_BUCKET: $S3_BUCKET_DEV
+        AWS_S3_BUCKET: ${{ env.S3_BUCKET_DEV }}
         AWS_ACCESS_KEY_ID: ${{ secrets.TERRAFORM_AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.TERRAFORM_AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: ${{ env.REGION }}
-        SOURCE_DIR: ${{ env.LOCAL_SOURCE_FILE }}
         DEST_DIR: ${{ env.S3_DIR }}
 
   deployTest:
@@ -38,13 +37,12 @@ jobs:
     - uses: actions/checkout@master
     - uses: jakejarvis/s3-sync-action@master
       with:
-        args: --content-type application/json
+        args: --include ${{ env.LOCAL_SOURCE_FILE }} --content-type application/json
       env:
-        AWS_S3_BUCKET: $S3_BUCKET_TEST
+        AWS_S3_BUCKET: ${{ env.S3_BUCKET_TEST }}
         AWS_ACCESS_KEY_ID: ${{ secrets.TERRAFORM_AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.TERRAFORM_AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: ${{ env.REGION }}
-        SOURCE_DIR: ${{ env.LOCAL_SOURCE_FILE }}
         DEST_DIR: ${{ env.S3_DIR }}
 
   deployProd:
@@ -55,11 +53,10 @@ jobs:
     - uses: actions/checkout@master
     - uses: jakejarvis/s3-sync-action@master
       with:
-        args: --content-type application/json
+        args: --include ${{ env.LOCAL_SOURCE_FILE }} --content-type application/json
       env:
-        AWS_S3_BUCKET: $S3_BUCKET_PROD
+        AWS_S3_BUCKET: ${{ env.S3_BUCKET_PROD }}
         AWS_ACCESS_KEY_ID: ${{ secrets.TERRAFORM_AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.TERRAFORM_AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: ${{ env.REGION }}
-        SOURCE_DIR: ${{ env.LOCAL_SOURCE_FILE }}
         DEST_DIR: ${{ env.S3_DIR }}
