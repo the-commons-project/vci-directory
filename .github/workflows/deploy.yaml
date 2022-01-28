@@ -21,16 +21,7 @@ jobs:
     - uses: actions/checkout@master
     - uses: jakejarvis/s3-sync-action@master
       with:
-        args: --exclude * --include ${{ env.LOCAL_SOURCE_FILE }} --content-type application/json --dryrun
-      env:
-        AWS_S3_BUCKET: ${{ env.S3_BUCKET_DEV }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.TERRAFORM_AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.TERRAFORM_AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: ${{ env.REGION }}
-        DEST_DIR: ${{ env.S3_DIR }}
-    - uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --exclude * --include ${{ env.LOCAL_SOURCE_FILE }} --content-type application/json
+        args: --exclude '*' --include '${{ env.LOCAL_SOURCE_FILE }}' --content-type application/json --dryrun
       env:
         AWS_S3_BUCKET: ${{ env.S3_BUCKET_DEV }}
         AWS_ACCESS_KEY_ID: ${{ secrets.TERRAFORM_AWS_ACCESS_KEY_ID }}
