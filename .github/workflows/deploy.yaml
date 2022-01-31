@@ -30,6 +30,8 @@ jobs:
         role-session-name: GithubActionsECSDev
     - name: 'Sync issuers file to S3'
       run: |
+        pwd
+        ls -ahl
         aws s3 sync ${{ env.LOCAL_SOURCE_FILE }} 's3://${{ env.S3_BUCKET_DEV }}/${{ env.S3_DIR }}'
 
   deployTest:
