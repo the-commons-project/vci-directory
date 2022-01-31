@@ -32,8 +32,6 @@ jobs:
         role-session-name: ${{ env.ROLE_SESSION_NAME }}
     - name: 'Sync issuers file to S3'
       run: |
-        pwd
-        ls -ahl
         aws s3 sync . 's3://${{ env.S3_BUCKET_DEV }}/${{ env.S3_DIR }}' --exclude='*' --include='${{ env.LOCAL_SOURCE_FILE }}'
 
   deployTest:
