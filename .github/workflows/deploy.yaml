@@ -11,6 +11,8 @@ env:
   S3_DIR: vci-directory
   LOCAL_SOURCE_FILE: vci-issuers.json
   REGION: us-east-1
+  ROLE_TO_ASSUME: arn:aws:iam::789379687343:role/GithubECSRole
+  ROLE_SESSION_NAME: GithubActionsECSDev
 
 jobs:
   deployDev:
@@ -19,15 +21,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - uses: jakejarvis/s3-sync-action@master
+    - name: 'Configure Dev AWS Role'
+      uses: aws-actions/configure-aws-credentials@v1
       with:
-        args: --exclude '*' --include '${{ env.LOCAL_SOURCE_FILE }}' --content-type application/json --dryrun
-      env:
-        AWS_S3_BUCKET: ${{ env.S3_BUCKET_DEV }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.TERRAFORM_AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.TERRAFORM_AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: ${{ env.REGION }}
-        DEST_DIR: ${{ env.S3_DIR }}
+        aws-access-key-id: ${{ secrets.TERRAFORM_AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.TERRAFORM_AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.REGION }}
+        role-to-assume: ${{ env.ROLE_TO_ASSUME }}
+        role-duration-seconds: 1200
+        role-session-name: ${{ env.ROLE_SESSION_NAME }}
+    - name: 'Sync issuers file to S3'
+      run: |
+        aws s3 sync . 's3://${{ env.S3_BUCKET_DEV }}/${{ env.S3_DIR }}' --exclude='*' --include='${{ env.LOCAL_SOURCE_FILE }}'
 
   deployTest:
     if: contains(github.ref, 'test')
@@ -35,15 +40,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - uses: jakejarvis/s3-sync-action@master
+    - name: 'Configure Test AWS Role'
+      uses: aws-actions/configure-aws-credentials@v1
       with:
-        args: --exclude * --include ${{ env.LOCAL_SOURCE_FILE }} --content-type application/json
-      env:
-        AWS_S3_BUCKET: ${{ env.S3_BUCKET_TEST }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.TERRAFORM_AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.TERRAFORM_AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: ${{ env.REGION }}
-        DEST_DIR: ${{ env.S3_DIR }}
+        aws-access-key-id: ${{ secrets.TERRAFORM_AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.TERRAFORM_AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.REGION }}
+        role-to-assume: ${{ env.ROLE_TO_ASSUME }}
+        role-duration-seconds: 1200
+        role-session-name: ${{ env.ROLE_SESSION_NAME }}
+    - name: 'Sync issuers file to S3'
+      run: |
+        aws s3 sync . 's3://${{ env.S3_BUCKET_TEST }}/${{ env.S3_DIR }}' --exclude='*' --include='${{ env.LOCAL_SOURCE_FILE }}'
 
   deployProd:
     if: contains(github.ref, '-prod')
@@ -51,12 +59,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - uses: jakejarvis/s3-sync-action@master
+    - name: 'Configure Prod AWS Role'
+      uses: aws-actions/configure-aws-credentials@v1
       with:
-        args: --exclude * --include ${{ env.LOCAL_SOURCE_FILE }} --content-type application/json
-      env:
-        AWS_S3_BUCKET: ${{ env.S3_BUCKET_PROD }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.TERRAFORM_AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.TERRAFORM_AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: ${{ env.REGION }}
-        DEST_DIR: ${{ env.S3_DIR }}
+        aws-access-key-id: ${{ secrets.TERRAFORM_AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.TERRAFORM_AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.REGION }}
+        role-to-assume: ${{ env.ROLE_TO_ASSUME }}
+        role-duration-seconds: 1200
+        role-session-name: ${{ env.ROLE_SESSION_NAME }}
+    - name: 'Sync issuers file to S3'
+      run: |
+        aws s3 sync . 's3://${{ env.S3_BUCKET_PROD }}/${{ env.S3_DIR }}' --exclude='*' --include='${{ env.LOCAL_SOURCE_FILE }}'
