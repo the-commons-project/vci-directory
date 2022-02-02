@@ -9,8 +9,6 @@ import Url from 'url-parse';
 import { AuditLog, CRL, DirectoryLog, IssuerKey, IssuerKids, IssuerLogInfo, TrustedIssuers } from './interfaces';
 import { auditTlsDetails, getDefaultTlsDetails } from './bcp195';
 
-const VCI_ISSUERS_DIR_URL = "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json";
-
 interface KeySet {
     keys : IssuerKey[]
 }
@@ -28,7 +26,7 @@ interface Options {
 // program options
 //
 const program = new Command();
-program.option('-o, --outlog <outlog>', 'output directory log storing directory issuer keys, TLS details, CRLs, and errors');
+program.option('-o, --outlog <outlog>', 'output directory log storing directory issuer keys, TLS details, CRLs, and errors/warnings');
 program.option('-s, --outsnapshot <outsnapshot>', 'output snapshot file storing directory issuer keys for non-erroneous issuers');
 program.option('-p, --previous <previous>', 'directory log file from a previous audit, for comparison with current one');
 program.option('-a, --auditlog <auditlog>', 'output audit file on the directory');
@@ -65,7 +63,8 @@ async function fetchDirectory(directoryPath: string, verbose: boolean = false) :
             keys: [],
             tlsDetails: undefined,
             crls: [],
-            errors: []
+            errors: [],
+            warnings: []
         }
         const requestedOrigin = 'https://example.org'; // request bogus origin to test CORS response
         try {
@@ -76,9 +75,9 @@ async function fetchDirectory(directoryPath: string, verbose: boolean = false) :
             }
             const acaoHeader = response.headers['access-control-allow-origin'];
             if (!acaoHeader) {
-                issuerLogInfo.errors?.push("Issuer key endpoint does not contain a CORS 'access-control-allow-origin' header");
+                issuerLogInfo.warnings?.push("Issuer key endpoint does not contain a CORS 'access-control-allow-origin' header");
             } else if (acaoHeader !== '*' && acaoHeader !== requestedOrigin) {
-                issuerLogInfo.errors?.push(`Issuer key endpoint's CORS 'access-control-allow-origin' header ${acaoHeader} does not match the requested origin`);
+                issuerLogInfo.warnings?.push(`Issuer key endpoint's CORS 'access-control-allow-origin' header ${acaoHeader} does not match the requested origin`);
             }
             const keySet = JSON.parse(response.body) as KeySet;
             if (!keySet) {
@@ -92,12 +91,15 @@ async function fetchDirectory(directoryPath: string, verbose: boolean = false) :
         try {
             issuerLogInfo.tlsDetails = getDefaultTlsDetails(new Url(issuer.iss).hostname);
             if (issuerLogInfo.tlsDetails) {
-                auditTlsDetails(issuerLogInfo.tlsDetails).map(a => issuerLogInfo.errors?.push(a));
+                // we report TLS issues as warnings
+                auditTlsDetails(issuerLogInfo.tlsDetails).map(a => issuerLogInfo.warnings?.push(a));
             }
         } catch (err) {
-            issuerLogInfo.errors?.push((err as Error).toString());
+            // report TLS issues as warnings
+            issuerLogInfo.warnings?.push((err as Error).toString());
         }
         for (const key of issuerLogInfo.keys) {
+            // the issuer has a card revocation list (CRL); fetch it
             if (key.crlVersion) {
                 try {
                     const crlURL = `${issuer.iss}/.well-known/crl/${key.kid}.json`;

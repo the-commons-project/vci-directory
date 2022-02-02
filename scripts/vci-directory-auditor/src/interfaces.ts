@@ -2,8 +2,6 @@
 // interfaces
 //
 
-import { JWK } from "node-jose";
-
 export interface IssuerKey {
     kty: string,
     kid: string,
@@ -53,6 +51,8 @@ export interface IssuerLogInfo {
     crls?: CRL[],
     // errors while retrieving the issuer JWK set, if any
     errors?: string[]
+    // warnings about issuer configuration (TLS, CORS), if any
+    warnings?: string[]
 }
 
 // Key identifiers (KID) of one issuer
@@ -69,16 +69,6 @@ export interface DirectoryLog {
     time: string,
     // directory issuers
     issuerInfo: IssuerLogInfo[]
-}
-
-// a snapshot of the directory, including keys
-interface DirectorySnapshot {
-    // directory URL
-    directory: string,
-    // snapshot time
-    time: string,
-    // directory issuers
-    issuerInfo: IssuerInfoWithKeys[]
 }
 
 // audit log

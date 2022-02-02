@@ -1,6 +1,6 @@
 # vci-directory-auditor
 
-Audit tool for the [VCI directory](https://github.com/the-commons-project/vci-directory/). Scripts in this project create snapshot (including issuer keys) of the VCI directory, along with an audit log.
+Audit tool for the [VCI directory](https://github.com/the-commons-project/vci-directory/). Scripts in this project create snapshot (including issuer keys and revocation information) of the VCI directory, along with an audit log.
 
 ## Setup
 
@@ -24,7 +24,7 @@ npm run build
 npm run audit -- <options>
 ```
 where `<options>` are:
-- `-o, --outlog <outlog>`: output directory log storing directory issuer keys, TLS details, CRLs, and errors
+- `-o, --outlog <outlog>`: output directory log storing directory issuer keys, TLS details, CRLs, and errors/warnings
 - `-s, --outsnapshot <outsnapshot>`: output snapshot file storing directory issuer keys for non-erroneous issuers
 - `-p, --previous <previous>`: directory log file from a previous audit, for comparison with current one
 - `-a, --auditlog <auditlog>`: output audit file on the directory
