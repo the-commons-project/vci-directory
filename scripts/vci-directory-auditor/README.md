@@ -1,10 +1,12 @@
 # vci-directory-auditor
 
-Audit tool for the [VCI directory](https://github.com/the-commons-project/vci-directory/). Scripts in this project create snapshot (including issuer keys and revocation information) of the VCI directory, along with an audit log.
+Management tools for the [VCI directory](https://github.com/the-commons-project/vci-directory/). Scripts in this project:
+* create a snapshot (including issuer keys and revocation information) of the VCI directory, along with an audit log
+* package snapshots into a redistributable directory snapshot
 
 ## Setup
 
-Make sure [node.js](https://nodejs.org/) and [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) are installed on your system; the latest Long-Term Support (LTS) version is recommended for both. [OpenSSL](https://www.openssl.org/) is also needed to validate TLS connections.
+Make sure [node.js](https://nodejs.org/) and [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) are installed on your system; the latest Long-Term Support (LTS) version is recommended for both. [OpenSSL](https://www.openssl.org/) is also needed to validate endpoint TLS configurations.
 
 1. Get the source, for example using `git`
 ```
@@ -20,6 +22,11 @@ npm run build
 
 ## Usage
 
+### Audit script
+
+The audit script creates a snapshot (including issuer keys and revocation information) of the VCI directory, along with an audit log.
+
+Usage:
 ```
 npm run audit -- <options>
 ```
@@ -31,7 +38,6 @@ where `<options>` are:
 - `-d, --dirpath <dirpath>`: path of the directory to audit, uses "../../vci-issuers.json" by default
 - `-v, --verbose`: verbose mode
 
-
 For example, to audit the VCI directory stored in this repository, run:
 ```
 npm run audit -- -d ../../vci-issuers.json
@@ -41,9 +47,40 @@ To create a directory snapshot `snapshot.json` (including issuer keys (and CRLs,
 ```
 npm run audit -- -d ../../vci-issuers.json -o today.json -s snapshot.json -p yesterday.json -a audit.json
 ```
+
+### Packaging script
+
+The packaging script builds a redistributable snapshot, incorporating new information collected by the audit script. The resulting snapshot is a JSON file containing the following properties:
+* `directory`: URL of the directory source
+* `time`: time when the last updated data was included (timestamp from the last updated snapshot)
+* `issuerInfo`: array of:
+  * `issuer`: issuer information copied from the directory
+  * `keys`: JWK set retrieved from the issuer's `iss`
+  * `crls`: CRL retrieved from the issuers's revocation endpoint, if advertized in the JWK
+  * `lastRetrieved`: timestamp when this entry was last retrieved
+
+Usage:
+```
+npm run assemble -- <options>
+```
+where `<options>` are:
+- `-s, --snapshot <snapshot>`: path to the previous directory snapshot to update
+- `-c, --current <current>`: path to current snapshot to integrate in the previous snapshot
+- `-n, --new`: create a new directory snapshot from the current snapshot
+
+To create a new redistributable directory snapshot `vci_snapshot.json` from a (e.g., daily) snapshot `snapshot.json` (created using the `audit` script above), run:
+```
+ npm run assemble -- --snapshot vci_snapshot.json --current snapshot.json --new
+```
+
+To update the redistributable directory snapshot `vci_snapshot.json` with a new (e.g., daily) snapshot `snapshot.json` (created using the `audit` script above), run:
+```
+ npm run assemble -- --snapshot vci_snapshot.json --current snapshot.json
+```
+
 ## Checks
 
-The tool does the following:
+The audi tool does the following checks:
  - Parse the specified issuer directory. For each issuer:
    - Download and validate its JWK set
    - Check its default TLS connection configuration (see below)

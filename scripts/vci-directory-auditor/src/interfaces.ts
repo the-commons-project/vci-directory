@@ -53,6 +53,8 @@ export interface IssuerLogInfo {
     errors?: string[]
     // warnings about issuer configuration (TLS, CORS), if any
     warnings?: string[]
+    // timestamp when this entry was collected
+    lastRetrieved?: string
 }
 
 // Key identifiers (KID) of one issuer
