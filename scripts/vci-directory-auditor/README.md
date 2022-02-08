@@ -57,7 +57,9 @@ The packaging script builds a redistributable snapshot, incorporating new inform
   * `issuer`: issuer information copied from the directory
   * `keys`: JWK set retrieved from the issuer's `iss`
   * `crls`: CRL retrieved from the issuers's revocation endpoint, if advertized in the JWK
-  * `lastRetrieved`: timestamp when this entry was last retrieved
+  * `lastRetrieved`: timestamp when this entry was last retrieved (in YYYY-MM-DD HH:MM:SS format)
+
+The `issuerInfo` property is replaced by newer ones as the snapshot is updated. If an issuer info is not present in a snapshot update, it is kept in the assembled one; this allows temporarily unavailable issuers and archived issuers to be included in the redistributed snapshot (verifiers can filter data they deem too old using the `lastRetrieved` property).
 
 Usage:
 ```
