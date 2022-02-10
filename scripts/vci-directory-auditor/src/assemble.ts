@@ -22,12 +22,12 @@ const options = program.opts() as Options;
 
 function updateDirectorySnapshot(snapshot: DirectoryLog, current: DirectoryLog) : DirectoryLog {
     if (snapshot.directory !== current.directory) {
-        // uncommon scenario, so let's warn about that
-        console.log("Warning current log is not from the same directory");
+        throw "Current log is not from the same directory";
     }
 
-    if (snapshot.time > current.time) { // TODO: will that work?
-        // throw "Current log is older than snapshot"; // TODO: workaround for tests
+    // compare YYYY-MM-DD HH:MM:SS lexicographically
+    if (snapshot.time > current.time) {
+        throw "Current log is older than snapshot";
     }
 
     const issuerMap = new Map<string, IssuerLogInfo>();
