@@ -24,9 +24,10 @@ A simple hierarchy provides an easier means to segregate government and non-gove
 | `organizational.pharmacy` | A national or regional pharmacy chain |
 | `organizational.laboratory` | A national or regional laboratory diagnostics provider |
 | `organizational.insurer` | A national or regional health insurance payor |
-| `governmental.nation` | A nation or national governmental agency |
-| `governmental.state_province_territory` | A state, province, territory or state, provincial, or territorial governmental agency |
-| `governmental.city` | A city or city governmental agency |
+| `governmental.nation` | A nation or national governmental agency issuing for a nation |
+| `governmental.state_province_territory` | A state, province, territory or governmental agency issuing for a state, province, or territory |
+| `governmental.city` | A city or governmental agency issuing for a city |
+| `governmental.agency` | A governmental agency |
 
 ## Location Representation
 

@@ -82,7 +82,7 @@ To update the redistributable directory snapshot `vci_snapshot.json` with a new 
 
 ## Checks
 
-The audi tool does the following checks:
+The audit tool does the following checks:
  - Parse the specified issuer directory. For each issuer:
    - Download and validate its JWK set
    - Check its default TLS connection configuration (see below)
