@@ -52,12 +52,12 @@ npm run audit -- -d ../../vci-issuers.json -o today.json -s snapshot.json -p yes
 
 The packaging script builds a redistributable snapshot, incorporating new information collected by the audit script. The resulting snapshot is a JSON file containing the following properties:
 * `directory`: URL of the directory source
-* `time`: time when the last updated data was included (timestamp from the last updated snapshot)
+* `time`: UTC timestamp from the last updated snapshot, in ISO 8601 date-time format (YYYY-MM-DDTHH:MM:SSZ)
 * `issuerInfo`: array of:
   * `issuer`: issuer information copied from the directory
   * `keys`: JWK set retrieved from the issuer's `iss`
   * `crls`: CRL retrieved from the issuers's revocation endpoint, if advertized in the JWK
-  * `lastRetrieved`: timestamp when this entry was last retrieved (in YYYY-MM-DD HH:MM:SS format)
+  * `lastRetrieved`: UTC timestamp when this entry was last retrieved, in ISO 8601 date-time format (YYYY-MM-DDTHH:MM:SSZ)
 
 The `issuerInfo` property is replaced by newer ones as the snapshot is updated. If an issuer info is not present in a snapshot update, it is kept in the assembled one; this allows temporarily unavailable issuers and archived issuers to be included in the redistributed snapshot (verifiers can filter data they deem too old using the `lastRetrieved` property).
 
