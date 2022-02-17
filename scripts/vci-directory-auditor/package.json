@@ -5,7 +5,9 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "tsc",
-    "audit": "ts-node --files src/index.ts"
+    "audit": "ts-node --files src/index.ts",
+    "assemble": "ts-node --files src/assemble.ts",
+    "test": "ts-node --files src/assemble.ts -s tests/actual.json -c tests/snapshot1.json -n && ts-node --files src/assemble.ts -s tests/actual.json -c tests/snapshot2.json && ts-node --files src/assemble.ts -s tests/actual.json -c tests/snapshot3.json && diff tests/expected.json tests/actual.json"
   },
   "author": "",
   "license": "ISC",

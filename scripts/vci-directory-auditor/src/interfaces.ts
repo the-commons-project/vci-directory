@@ -50,9 +50,11 @@ export interface IssuerLogInfo {
     // the issuer's cert revocation lists (CRLs)
     crls?: CRL[],
     // errors while retrieving the issuer JWK set, if any
-    errors?: string[]
+    errors?: string[],
     // warnings about issuer configuration (TLS, CORS), if any
-    warnings?: string[]
+    warnings?: string[],
+    // timestamp when this entry was collected
+    lastRetrieved?: string
 }
 
 // Key identifiers (KID) of one issuer

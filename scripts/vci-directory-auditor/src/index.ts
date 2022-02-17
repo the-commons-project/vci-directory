@@ -40,14 +40,15 @@ const options = program.opts() as Options;
 if (!options.dirpath) {
     options.dirpath = "../../vci-issuers.json";
 }
+const outputUTC = true;
 if (!options.outlog) {
-    options.outlog = path.join('logs', `directory_log_${date.format(currentTime, 'YYYY-MM-DD-HHmmss')}.json`);
+    options.outlog = path.join('logs', `directory_log_${date.format(currentTime, 'YYYY-MM-DD-HHmmss', outputUTC)}.json`);
 }
 if (!options.outsnapshot) {
-    options.outsnapshot = path.join('logs', `directory_snapshot_${date.format(currentTime, 'YYYY-MM-DD-HHmmss')}.json`);
+    options.outsnapshot = path.join('logs', `directory_snapshot_${date.format(currentTime, 'YYYY-MM-DD-HHmmss', outputUTC)}.json`);
 }
 if (!options.auditlog) {
-    options.auditlog = path.join('logs', `audit_log_${date.format(currentTime, 'YYYY-MM-DD-HHmmss')}.json`);
+    options.auditlog = path.join('logs', `audit_log_${date.format(currentTime, 'YYYY-MM-DD-HHmmss', outputUTC)}.json`);
 }
 
 // download the specified directory
@@ -124,8 +125,8 @@ async function fetchDirectory(directoryPath: string, verbose: boolean = false) :
     console.log("done"); // also puts a newline after the progress markers
 
     const directoryLog: DirectoryLog = {
-        directory: "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json", // directoryUrl, TODO
-        time: date.format(currentTime, 'YYYY-MM-DD HH:mm:ss'),
+        directory: "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
+        time: date.format(currentTime, 'YYYY-MM-DDTHH:mm:ss', outputUTC).concat('Z'),
         issuerInfo: issuerLogInfoArray
     }
 
