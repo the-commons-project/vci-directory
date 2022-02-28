@@ -19,6 +19,7 @@ interface Options {
     previous: string;
     auditlog: string;
     dirpath: string;
+    notls: boolean,
     verbose: boolean;
 }
 
@@ -31,6 +32,7 @@ program.option('-s, --outsnapshot <outsnapshot>', 'output snapshot file storing 
 program.option('-p, --previous <previous>', 'directory log file from a previous audit, for comparison with current one');
 program.option('-a, --auditlog <auditlog>', 'output audit file on the directory');
 program.option('-d, --dirpath <dirpath>', 'path of the directory to audit');
+program.option('-n, --notls', 'do not run the TLS audit (using OpenSSL)');
 program.option('-v, --verbose', 'verbose mode');
 program.parse(process.argv);
 const currentTime = new Date();
@@ -89,15 +91,18 @@ async function fetchDirectory(directoryPath: string, verbose: boolean = false) :
         } catch (err) {
             issuerLogInfo.errors?.push((err as Error).toString());
         }
-        try {
-            issuerLogInfo.tlsDetails = getDefaultTlsDetails(new Url(issuer.iss).hostname);
-            if (issuerLogInfo.tlsDetails) {
-                // we report TLS issues as warnings
-                auditTlsDetails(issuerLogInfo.tlsDetails).map(a => issuerLogInfo.warnings?.push(a));
+        // audit TLS configuration, if enabled
+        if (!options.notls) {
+            try {
+                issuerLogInfo.tlsDetails = getDefaultTlsDetails(new Url(issuer.iss).hostname);
+                if (issuerLogInfo.tlsDetails) {
+                    // we report TLS issues as warnings
+                    auditTlsDetails(issuerLogInfo.tlsDetails).map(a => issuerLogInfo.warnings?.push(a));
+                }
+            } catch (err) {
+                // report TLS issues as warnings
+                issuerLogInfo.warnings?.push((err as Error).toString());
             }
-        } catch (err) {
-            // report TLS issues as warnings
-            issuerLogInfo.warnings?.push((err as Error).toString());
         }
         for (const key of issuerLogInfo.keys) {
             // the issuer has a card revocation list (CRL); fetch it
