@@ -36,6 +36,7 @@ where `<options>` are:
 - `-p, --previous <previous>`: directory log file from a previous audit, for comparison with current one
 - `-a, --auditlog <auditlog>`: output audit file on the directory
 - `-d, --dirpath <dirpath>`: path of the directory to audit, uses "../../vci-issuers.json" by default
+- `-n, --notls`: do not run the TLS audit (using OpenSSL)
 - `-v, --verbose`: verbose mode
 
 For example, to audit the VCI directory stored in this repository, run:
