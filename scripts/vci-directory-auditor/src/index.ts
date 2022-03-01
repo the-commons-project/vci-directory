@@ -6,7 +6,7 @@ import fs from 'fs';
 import path from 'path';
 import date from 'date-and-time';
 import Url from 'url-parse';
-import { AuditLog, CRL, DirectoryLog, IssuerKey, IssuerKids, IssuerLogInfo, TrustedIssuers } from './interfaces';
+import { AuditLog, CRL, DirectoryLog, IssuerKey, IssuerKids, IssuerLogInfo, TlsDetails, TrustedIssuers } from './interfaces';
 import { auditTlsDetails, getDefaultTlsDetails } from './bcp195';
 
 interface KeySet {
@@ -94,10 +94,15 @@ async function fetchDirectory(directoryPath: string, verbose: boolean = false) :
         // audit TLS configuration, if enabled
         if (!options.notls) {
             try {
-                issuerLogInfo.tlsDetails = getDefaultTlsDetails(new Url(issuer.iss).hostname);
-                if (issuerLogInfo.tlsDetails) {
-                    // we report TLS issues as warnings
-                    auditTlsDetails(issuerLogInfo.tlsDetails).map(a => issuerLogInfo.warnings?.push(a));
+                const tlsResult = getDefaultTlsDetails(new Url(issuer.iss).hostname);
+                if (tlsResult) {
+                    // we report TLS issues (OpenSSL error or TLS config issues) as warnings
+                    if (typeof tlsResult === "string") {
+                        issuerLogInfo.warnings?.push(tlsResult);
+                    } else {
+                        issuerLogInfo.tlsDetails = <TlsDetails>(tlsResult);
+                        auditTlsDetails(issuerLogInfo.tlsDetails).map(a => issuerLogInfo.warnings?.push(a));
+                    }
                 }
             } catch (err) {
                 // report TLS issues as warnings
