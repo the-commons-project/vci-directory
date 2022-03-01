@@ -36,15 +36,14 @@ const openssl = (args: string[]): execa.ExecaSyncReturnValue<string> => {
 }
 
 // Connect to the specified server and return its default TLS connection details
-export function getDefaultTlsDetails(server: string): TlsDetails | undefined {
+export function getDefaultTlsDetails(server: string): TlsDetails | string | undefined {
     if (!isOpensslAvailable()) {
         console.log("OpenSSL not available");
         return undefined;
     }
     const result = openssl(['s_client', '-connect', `${server}:443`]);
     if (!result || result.failed) {
-        console.log(result ? result.stderr : "openssl failed");
-        return undefined;
+        return result ? `OpenSSL error: ${result.stderr}` : "OpenSSL failed";
     }
 
     let version = result.stdout.match(new RegExp('^    Protocol  : (.*)$', 'm'))?.[1];
