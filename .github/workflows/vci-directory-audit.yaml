@@ -17,6 +17,7 @@ jobs:
           npm install
           npm run build --if-present
       - run: |
+          cd scripts/vci-directory-auditor
           npm run audit -- -o ../../logs/new_log.json -p ../../logs/daily_log.json -s ../../logs/daily_log_snapshot.json -a ../../logs/daily_audit.json -d ../../vci-issuers.json
           mv ../../logs/new_log.json ../../logs/daily_log.json
           npm run assemble -- -s ../../logs/vci_snapshot.json -c ../../logs/daily_log_snapshot.json
