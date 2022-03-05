@@ -1,26 +1,26 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2022-03-04T12:22:23Z",
+    "auditTime": "2022-03-05T12:20:07Z",
     "issuerCount": 530,
     "issuersWithErrors": [
         {
             "issuer": {
-                "iss": "https://epicsoapprd.communitymedical.org/arr_fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Community Medical Centers",
-                "website": "https://communitymedical.org/"
+                "iss": "https://haiku.scrippshealth.org/ARR-PRD-FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Scripps Health",
+                "website": "https://www.scripps.org/"
             },
             "keys": [],
             "tlsDetails": {
                 "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-SHA384",
-                "kexAlg": "ECDH, P-521, 521 bits",
+                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
+                "kexAlg": "ECDH, P-256, 256 bits",
                 "authAlg": "RSA",
                 "pubKeySize": "2048",
                 "compression": "NONE"
             },
             "crls": [],
             "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+                "HTTPError: Response code 404 (Resource not available)"
             ],
             "warnings": []
         },
@@ -60,24 +60,30 @@
         },
         {
             "issuer": {
-                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/hartig+drug+co",
-                "name": "Hartig Drug Co",
-                "website": "https://www.hartigdrug.com/covidvaccine"
+                "iss": "https://fhir.lluh.org/interconnect-fhir-prd/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Loma Linda University Health, Riverside University Health System, SAC Health System, and Affiliates",
+                "website": "https://mychart.ieccn.org/MyChart"
             },
             "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [
                 "TimeoutError: Timeout awaiting 'request' for 5000ms"
             ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "warnings": []
         },
         {
             "issuer": {
-                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/meijer",
-                "name": "Meijer",
-                "website": "https://clinic.meijer.com/"
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/harps+pharmacy",
+                "name": "Harps Pharmacy",
+                "website": "https://www.harpsfood.com/Pages/19653/COVID-19%20Vaccination%20Information"
             },
             "keys": [],
             "crls": [],
@@ -138,20 +144,26 @@
         "Genesis Healthcare System",
         "MyHealthHome"
     ],
-    "previousAuditTime": "2022-03-03T21:23:18Z",
+    "previousAuditTime": "2022-03-04T12:22:23Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://epicsoapprd.communitymedical.org/arr_fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://haiku.scrippshealth.org/ARR-PRD-FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "ujxdFgXdMW4j2lfl3F5OWt6xhae2K_zsbFvZUvGUChg"
+                "n3D7Wq5B0hHw3QA3Ir8AUGhUYdti09tEL2is9fSEqsc"
             ]
         },
         {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/meijer",
+            "iss": "https://fhir.lluh.org/interconnect-fhir-prd/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "cmm6eWwLYLwRtBU69V-_jsUxfpVtPgrZshDbf5X4Z9k"
+                "kct_SdbBMVt5x66BpspAK1oljykq8xWX6r8wgTmzi8w"
+            ]
+        },
+        {
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/harps+pharmacy",
+            "kids": [
+                "4KHf7aJBy3mcDRm-Avfdch7Ps5qekl1FFGs4EQpDuo4"
             ]
         }
     ]
