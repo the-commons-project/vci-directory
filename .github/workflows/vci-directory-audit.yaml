@@ -48,6 +48,11 @@ jobs:
             git add -f logs/daily_audit.json
             git add -f logs/vci_snapshot.json
             git commit -a -m "daily dir and audit snapshot"
+            COMMIT=$(git rev-parse HEAD)
+            DATETIME=$(git log -n 1 --no-decorate --date=iso-strict -- logs/daily_log.json | head -3 | grep Date | cut -c 9-)
+            echo $COMMIT,$DATETIME >> logs/audit-index.csv
+            git add -f logs/audit-index.csv
+            git commit -a -m "added commit hash to audit index"
             git remote add myorigin https://$GIT_OWNER_NAME:$GITHUB_TOKEN@github.com/$GIT_OWNER_NAME/vci-directory.git
             git push myorigin HEAD:main
           else
