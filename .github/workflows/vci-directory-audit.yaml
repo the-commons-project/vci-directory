@@ -46,7 +46,6 @@ jobs:
           git config user.email "$GIT_OWNER_EMAIL"
           git config user.name "$GIT_OWNER_NAME"
           if [[ `git status --porcelain` ]]; then
-            git pull --rebase
             git add -f logs/daily_log.json
             git add -f logs/daily_log_snapshot.json
             git add -f logs/daily_audit.json
@@ -58,6 +57,7 @@ jobs:
             git add -f logs/audit-index.csv
             git commit -a -m "added commit hash to audit index"
             git remote add myorigin https://$GIT_OWNER_NAME:$GITHUB_TOKEN@github.com/$GIT_OWNER_NAME/vci-directory.git
+            git pull --rebase
             git status -v
             git push myorigin HEAD:main
           else
