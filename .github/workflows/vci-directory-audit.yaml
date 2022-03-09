@@ -57,10 +57,8 @@ jobs:
             echo $COMMIT,$DATETIME >> logs/audit-index.csv
             git add -f logs/audit-index.csv
             git commit -a -m "added commit hash to audit index"
-            git remote add myorigin https://$GIT_OWNER_NAME:$GITHUB_TOKEN@github.com/$GIT_REPO_PATH/vci-directory.git
-            echo Added origin https://$GIT_OWNER_NAME:XXXXXXX@github.com/$GIT_REPO_PATH/vci-directory.git
+            git remote add myorigin https://$GITHUB_TOKEN@github.com/$GIT_REPO_PATH/vci-directory.git
             git pull --rebase
-            git status -v
             git push myorigin HEAD:fix-push-error
           else
             echo 'no changes'
