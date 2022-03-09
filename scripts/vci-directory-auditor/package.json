@@ -5,7 +5,9 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "tsc",
-    "audit": "ts-node --files src/index.ts"
+    "audit": "ts-node --files src/index.ts",
+    "assemble": "ts-node --files src/assemble.ts",
+    "test": "ts-node --files src/assemble.ts -s tests/actual.json -c tests/snapshot1.json -n && ts-node --files src/assemble.ts -s tests/actual.json -c tests/snapshot2.json && ts-node --files src/assemble.ts -s tests/actual.json -c tests/snapshot3.json && diff tests/expected.json tests/actual.json"
   },
   "author": "",
   "license": "ISC",
@@ -15,11 +17,11 @@
     "execa": "^5.1.1",
     "fs": "*",
     "got": "^11.8.2",
-    "node-jose": "^2.0.0",
+    "node-jose": "^2.1.0",
     "path": "^0.12.7",
     "ts-node": "^10.2.0",
     "typescript": "^4.3.5",
-    "url-parse": "^1.5.3"
+    "url-parse": "^1.5.9"
   },
   "devDependencies": {
     "@types/date-and-time": "^0.13.0",
