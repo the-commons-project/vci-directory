@@ -38,6 +38,7 @@ jobs:
         env:
           GIT_OWNER_EMAIL: ${{ secrets.GIT_OWNER_EMAIL }}
           GIT_OWNER_NAME: ${{ secrets.GIT_OWNER_NAME }}
+          GIT_REPO_PATH: ${{ secrets.GIT_REPO_PATH }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.email "$GIT_OWNER_EMAIL"
@@ -53,7 +54,8 @@ jobs:
             echo $COMMIT,$DATETIME >> logs/audit-index.csv
             git add -f logs/audit-index.csv
             git commit -a -m "added commit hash to audit index"
-            git remote add myorigin https://$GIT_OWNER_NAME:$GITHUB_TOKEN@github.com/$GIT_OWNER_NAME/vci-directory.git
+            git remote add myorigin https://$GITHUB_TOKEN@github.com/$GIT_REPO_PATH/vci-directory.git
+            git pull --rebase
             git push myorigin HEAD:main
           else
             echo 'no changes'
