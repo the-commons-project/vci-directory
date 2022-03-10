@@ -1,8 +1,5 @@
 name: VCI Directory audit action
 on:
-  push:
-    branches:
-    - fix-push-error
   schedule:
       - cron: '0 12 * * *'
 permissions:
@@ -59,7 +56,7 @@ jobs:
             git commit -a -m "added commit hash to audit index"
             git remote add myorigin https://$GITHUB_TOKEN@github.com/$GIT_REPO_PATH/vci-directory.git
             git pull --rebase
-            git push myorigin HEAD:fix-push-error
+            git push myorigin HEAD:main
           else
             echo 'no changes'
           fi
