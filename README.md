@@ -1,4 +1,4 @@
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/) [![Validate on push](https://github.com/the-commons-project/vci-directory/actions/workflows/validate_vci_issuers_on_push.yaml/badge.svg)](https://github.com/the-commons-project/vci-directory/actions/workflows/validate_vci_issuers_on_push.yaml)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/) [![Validate on push](https://github.com/the-commons-project/vci-directory/actions/workflows/validate-issuers-on-push.yaml/badge.svg)](https://github.com/the-commons-project/vci-directory/actions/workflows/validate-issuers-on-push.yaml)
 
 # VCI Directory
 
