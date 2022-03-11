@@ -1,7 +1,7 @@
 name: VCI Directory audit action
 on:
   schedule:
-      - cron: '0 12 * * *'
+      - cron: '30 4 * * *'
 permissions:
   actions: read
   checks: read
@@ -20,6 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          persist-credentials: 'false'
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
@@ -54,9 +56,9 @@ jobs:
             echo $COMMIT,$DATETIME >> logs/audit-index.csv
             git add -f logs/audit-index.csv
             git commit -a -m "added commit hash to audit index"
-            git remote add myorigin https://$GITHUB_TOKEN@github.com/$GIT_REPO_PATH/vci-directory.git
+            git remote add myorigin https://$GIT_OWNER_NAME:$GITHUB_TOKEN@github.com/$GIT_REPO_PATH/vci-directory.git
             git pull --rebase
-            git push myorigin HEAD:main
+            git push myorigin HEAD:${GITHUB_REF##*/}
           else
             echo 'no changes'
           fi
