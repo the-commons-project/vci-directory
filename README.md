@@ -1,3 +1,5 @@
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/) [![Validate on push](https://github.com/the-commons-project/vci-directory/actions/workflows/validate_vci_issuers_on_push.yaml/badge.svg)](https://github.com/the-commons-project/vci-directory/actions/workflows/validate_vci_issuers_on_push.yaml)
+
 # VCI Directory
 
 This repository provides a public directory of institutions issuing [SMART Health Cards](https://smarthealth.cards) for COVID-19 vaccination and laboratory diagnostic testing records. The directory, represented in the [vci-issuers.json file](vci-issuers.json), is a simple listing of issuer name, issuer URL (`iss`), and issuer website that can be used for purposes of verification and display. Additional metadata about issuers is listed in [vci-issuers-metadata.json][vci-issuers-metadata.json]. An overview of the issuer metadata listed is described in [METADATA.md](METADATA.md).
