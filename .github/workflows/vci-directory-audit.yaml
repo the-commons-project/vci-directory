@@ -36,6 +36,14 @@ jobs:
           npm run audit -- -o ../../logs/new_log.json -p ../../logs/daily_log.json -s ../../logs/daily_log_snapshot.json -a ../../logs/daily_audit.json -d ../../vci-issuers.json
           mv ../../logs/new_log.json ../../logs/daily_log.json
           npm run assemble -- -s ../../logs/vci_snapshot.json -c ../../logs/daily_log_snapshot.json
+      - name: sign snapshot
+        env:
+          PRIVATE_SIG_KEY_PWD: ${{ secrets.PRIVATE_SIG_KEY_PWD }}
+          PRIVATE_SIG_KEY: ${{ secrets.PRIVATE_SIG_KEY }}
+        run: |
+          echo "$PRIVATE_SIG_KEY" > private.pem
+          openssl dgst -sha512 -sign private.pem -out logs/vci_snapshot.sig -passin env:PRIVATE_SIG_KEY_PWD logs/vci_snapshot.json
+          rm private.pem
       - name: git check in
         env:
           GIT_OWNER_EMAIL: ${{ secrets.GIT_OWNER_EMAIL }}
@@ -50,6 +58,7 @@ jobs:
             git add -f logs/daily_log_snapshot.json
             git add -f logs/daily_audit.json
             git add -f logs/vci_snapshot.json
+            git add -f logs/vci_snapshot.sig
             git commit -a -m "daily dir and audit snapshot"
             COMMIT=$(git rev-parse HEAD)
             DATETIME=$(git log -n 1 --no-decorate --date=iso-strict -- logs/daily_log.json | head -3 | grep Date | cut -c 9-)
