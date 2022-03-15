@@ -49,7 +49,7 @@ jobs:
           GIT_OWNER_EMAIL: ${{ secrets.GIT_OWNER_EMAIL }}
           GIT_OWNER_NAME: ${{ secrets.GIT_OWNER_NAME }}
           GIT_REPO_PATH: ${{ secrets.GIT_REPO_PATH }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_PUSH_TOKEN: ${{ secrets.GIT_PUSH_TOKEN }}
         run: |
           git config user.email "$GIT_OWNER_EMAIL"
           git config user.name "$GIT_OWNER_NAME"
@@ -62,10 +62,10 @@ jobs:
             git commit -a -m "daily dir and audit snapshot"
             COMMIT=$(git rev-parse HEAD)
             DATETIME=$(git log -n 1 --no-decorate --date=iso-strict -- logs/daily_log.json | head -3 | grep Date | cut -c 9-)
-            echo $COMMIT,$DATETIME >> logs/audit-index.csv
+            echo $COMMIT, $DATETIME >> logs/audit-index.csv
             git add -f logs/audit-index.csv
             git commit -a -m "added commit hash to audit index"
-            git remote add myorigin https://$GIT_OWNER_NAME:$GITHUB_TOKEN@github.com/$GIT_REPO_PATH/vci-directory.git
+            git remote add myorigin https://$GIT_OWNER_NAME:$GIT_PUSH_TOKEN@github.com/$GIT_REPO_PATH/vci-directory.git
             git pull --rebase
             git push myorigin HEAD:${GITHUB_REF##*/}
           else
