@@ -2,6 +2,9 @@ name: Nightly audit
 on:
   schedule:
       - cron: '30 4 * * *'
+  push:
+    tags:
+      - audit*
 permissions:
   actions: read
   checks: read
