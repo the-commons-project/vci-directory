@@ -5,26 +5,14 @@ on:
   push:
     tags:
       - audit*
-permissions:
-  actions: read
-  checks: read
-  contents: write
-  deployments: none
-  issues: none
-  discussions: none
-  packages: none
-  pages: none
-  pull-requests: read
-  repository-projects: read
-  security-events: none
-  statuses: read
 jobs:
   vci-directory-audit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
-          persist-credentials: 'false'
+          ref: main
+          token: ${{ secrets.GIT_PUSH_TOKEN }}
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
@@ -70,7 +58,7 @@ jobs:
             git commit -a -m "added commit hash to audit index"
             git remote add myorigin https://$GIT_OWNER_NAME:$GIT_PUSH_TOKEN@github.com/$GIT_REPO_PATH/vci-directory.git
             git pull --rebase
-            git push myorigin HEAD:${GITHUB_REF##*/}
+            git push myorigin HEAD:main --force
           else
             echo 'no changes'
           fi
