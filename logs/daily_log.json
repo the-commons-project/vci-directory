@@ -1,6 +1,6 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "time": "2022-04-02T04:40:00Z",
+    "time": "2022-04-03T04:39:58Z",
     "issuerInfo": [
         {
             "issuer": {
@@ -4674,28 +4674,14 @@
                 "iss": "https://unified-api.ucsf.edu/clinical/apex/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "UCSF Health"
             },
-            "keys": [
-                {
-                    "x": "_FFLdNDMrLdKgHM7z7hpAIVIeIf4mgJA7UauIgmqVBI",
-                    "y": "2Z0QoNcrw-N80Jhpctaxj89LpWhulJLyF7g4I7nmdJU",
-                    "kid": "ZwFzkFHXRFwE_0Jy0oyINwNZg4yLPKk5DW96xDwjMEo",
-                    "use": "sig",
-                    "kty": "EC",
-                    "alg": "ES256",
-                    "crv": "P-256"
-                }
-            ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
+            "keys": [],
             "crls": [],
-            "errors": [],
-            "warnings": []
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -4844,17 +4830,7 @@
                 "iss": "https://ccpintconfg.ohiohealth.com/Interconnect-PRD-MUAPI/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "OhioHealth"
             },
-            "keys": [
-                {
-                    "x": "ls3_WB4qHrX-ShDnCbL7x1wXVGU2SWaNEGIBvXTj5TQ",
-                    "y": "CnJ70thIqBaolS4CgzPnvXmZVE33sZ8GoxaDhrQP-V4",
-                    "kid": "bmZaEJ1u1TD7LAAWuUTNaq0AycbDuCtJL1v9rZUvD9g",
-                    "use": "sig",
-                    "kty": "EC",
-                    "alg": "ES256",
-                    "crv": "P-256"
-                }
-            ],
+            "keys": [],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
@@ -4864,7 +4840,9 @@
                 "compression": "NONE"
             },
             "crls": [],
-            "errors": [],
+            "errors": [
+                "HTTPError: Response code 503 (Service Unavailable)"
+            ],
             "warnings": []
         },
         {
@@ -5925,28 +5903,14 @@
                 "iss": "https://api.baptist-health.org/Interconnect-FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "Baptist Health"
             },
-            "keys": [
-                {
-                    "x": "hA1cB_UjKPGaLnIm9mlJ0wLrK6g5QCd_eae2UKFRvpw",
-                    "y": "o1SsIsu0ZWeSsGkyxR6it-8MdJRny_deosxdrm1a3FI",
-                    "kid": "2Y6IshBllIuZBWuUMPeefWvqSHynjSDrmXHpOKo9JnU",
-                    "use": "sig",
-                    "kty": "EC",
-                    "alg": "ES256",
-                    "crv": "P-256"
-                }
-            ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-SHA384",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
+            "keys": [],
             "crls": [],
-            "errors": [],
-            "warnings": []
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -6334,17 +6298,11 @@
                     "crv": "P-256"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-SHA384",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -8565,11 +8523,17 @@
                     "crv": "P-256"
                 }
             ],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, P-521, 521 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "warnings": []
         },
         {
             "issuer": {
@@ -8591,7 +8555,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: depth=2 C = US, ST = New Jersey, L = Jersey City, O = The USERTRUST Network, CN = USERTrust RSA Certification Authority\nverify return:1\ndepth=1 C = US, ST = MI, L = Ann Arbor, O = Internet2, OU = InCommon, CN = InCommon RSA Server CA\nverify return:1\ndepth=0 C = US, postalCode = 77030, ST = Texas, L = Houston, street = 1515 Holcombe Blvd, O = The University of Texas M.D. Anderson Cancer Center, OU = IT Engineering, CN = fhir.mdanderson.edu\nverify return:1\n140046358062400:error:1414D172:SSL routines:tls12_check_peer_sigalg:wrong signature type:../ssl/t1_lib.c:1145:"
+                "OpenSSL error: depth=2 C = US, ST = New Jersey, L = Jersey City, O = The USERTRUST Network, CN = USERTrust RSA Certification Authority\nverify return:1\ndepth=1 C = US, ST = MI, L = Ann Arbor, O = Internet2, OU = InCommon, CN = InCommon RSA Server CA\nverify return:1\ndepth=0 C = US, postalCode = 77030, ST = Texas, L = Houston, street = 1515 Holcombe Blvd, O = The University of Texas M.D. Anderson Cancer Center, OU = IT Engineering, CN = fhir.mdanderson.edu\nverify return:1\n140635657037120:error:1414D172:SSL routines:tls12_check_peer_sigalg:wrong signature type:../ssl/t1_lib.c:1145:"
             ]
         },
         {
@@ -8896,17 +8860,11 @@
                     "crv": "P-256"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -9563,8 +9521,8 @@
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
-                "cipher": "DHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "DH, 2048 bits",
+                "cipher": "ECDHE-RSA-AES256-SHA384",
+                "kexAlg": "ECDH, P-521, 521 bits",
                 "authAlg": "RSA",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -9849,17 +9807,11 @@
                     "crv": "P-256"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -10344,7 +10296,7 @@
             },
             "crls": [],
             "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+                "HTTPError: Response code 404 (Not Found)"
             ],
             "warnings": []
         },
@@ -10939,7 +10891,7 @@
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-SHA384",
-                "kexAlg": "ECDH, P-256, 256 bits",
+                "kexAlg": "ECDH, P-521, 521 bits",
                 "authAlg": "RSA",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -12936,7 +12888,7 @@
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-SHA384",
-                "kexAlg": "ECDH, P-256, 256 bits",
+                "kexAlg": "ECDH, P-521, 521 bits",
                 "authAlg": "RSA",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -15011,22 +14963,36 @@
                     "alg": "ES256"
                 }
             ],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "warnings": []
         },
         {
             "issuer": {
                 "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/giant+eagle+pharmacy",
                 "name": "Giant Eagle Pharmacy"
             },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            "keys": [
+                {
+                    "kty": "EC",
+                    "crv": "P-256",
+                    "x": "-QUS_j6Ks7tTL1IyCmkKkHeI-IW55BgRD5JJ6NDKbL0",
+                    "y": "iz2BwmfltxYBrETZ70pkRWfdGbPCcynrMMgNEIZ02Pc",
+                    "kid": "fM26plwst5o5yrC_rN6FVUtlmMr7nT4eLtgLJ6IfBTE",
+                    "use": "sig",
+                    "alg": "ES256"
+                }
             ],
+            "crls": [],
+            "errors": [],
             "warnings": [
                 "OpenSSL error: "
             ]
@@ -15191,17 +15157,11 @@
                     "alg": "ES256"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
