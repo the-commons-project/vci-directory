@@ -207,7 +207,7 @@ function directoryLogToSnapshot(log: DirectoryLog) : DirectoryLog {
         directory: log.directory,
         time: log.time,
         // don't list issuers with errors, and remove errors param from IssuerLogInfo for the directory snapshot
-        issuerInfo: log.issuerInfo.filter(ii => ii.errors ? true : false).map(ii => {
+        issuerInfo: log.issuerInfo.filter(ii => (ii.errors && ii.errors.length > 0) ? false : true).map(ii => {
             const issuer: IssuerLogInfo = 
             {
                 issuer: ii.issuer,
