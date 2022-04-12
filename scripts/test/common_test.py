@@ -790,14 +790,13 @@ class ValidateIssuerEntryTestCase(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(validation_result.issuer_entry, entry)
 
     @respx.mock
-    async def test_invalid_iss_keyset_with_canonical(self):
+    async def test_canonical_iss_skips_iss_keyset_checks(self):
         entry = IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, canonical_iss='https://spec.smarthealth.cards/examples/issuer1')
         canonical_entry = IssuerEntry('SHC Example Issuer 1', 'https://spec.smarthealth.cards/examples/issuer1', None, None)
 
         entry_map = {entry.iss: entry, canonical_entry.iss: canonical_entry}
         route = respx.get('https://spec.smarthealth.cards/examples/issuer/.well-known/jwks.json').mock(return_value=self.example_not_found_response)
         validation_result = await validate_entry(entry, entry_map, self.semaphore)
-
         # If a canonical_entry iss is defined, we have no expectation of behavior for the iss value, so we should skip validation
         self.assertFalse(route.called)
         self.assertIsNotNone(validation_result)

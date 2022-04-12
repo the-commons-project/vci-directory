@@ -306,7 +306,8 @@ async def validate_website(
             raise ex
 
 async def validate_issuer(
-    issuer_entry: IssuerEntry
+    issuer_entry: IssuerEntry,
+    skip_keyset_check: bool = False
 ) -> Tuple[bool, List[Issue]]:
     iss = issuer_entry.iss
     if iss.endswith('/'):
@@ -316,6 +317,9 @@ async def validate_issuer(
         return (False, issues)
     else:
         jwks_url = f'{iss}/.well-known/jwks.json'
+
+    if skip_keyset_check:
+        return (True, [])
 
     try:
         (jwks, response_headers) = await fetch_jwks(jwks_url)
@@ -339,7 +343,7 @@ async def validate_entry(
 ) -> ValidationResult:
     async with semaphore:
         print('.', end='', flush=True)
-        (iss_is_valid, iss_issues) = await validate_issuer(issuer_entry)
+        (iss_is_valid, iss_issues) = await validate_issuer(issuer_entry, skip_keyset_check=issuer_entry.canonical_iss is not None)
 
         website_is_valid = True
         website_issues = []
@@ -355,7 +359,6 @@ async def validate_entry(
         canonical_iss_is_valid = True
         canonical_iss_issues = []
         if issuer_entry.canonical_iss:
-
             ## check that canonical_iss does not reference itself
             if issuer_entry.iss == issuer_entry.canonical_iss:
                 canonical_iss_is_valid = False
