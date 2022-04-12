@@ -412,7 +412,7 @@ class ValidateKeysetTestCase(unittest.TestCase):
         jwks = json.loads(jwks_json)
         (actual_is_valid, actual_issues) = validate_keyset(jwks)
 
-        expected_is_valid = False
+        expected_is_valid = True
         expected_issues = [
             Issue('Key with kid=5iNYX3Im0lBD4B3tZTQRkDw1BsJROIrcnYOsb6qjAHM contains private key material', IssueType.KEY_CONTAINS_PRIVATE_MATERIAL),
         ]
@@ -449,7 +449,7 @@ class ValidateKeysetTestCase(unittest.TestCase):
         jwks = json.loads(jwks_json)
         (actual_is_valid, actual_issues) = validate_keyset(jwks)
 
-        expected_is_valid = False
+        expected_is_valid = True
         expected_issues = [
             Issue('kid is missing', IssueType.KID_IS_MISSING)
         ]
@@ -756,7 +756,7 @@ class ComputeDiffsTestCase(unittest.TestCase):
 class ValidateIssuerEntryTestCase(unittest.IsolatedAsyncioTestCase):
 
     def setUp(self):
-        self.semaphore = asyncio.BoundedSemaphore(10)
+        self.semaphore = asyncio.BoundedSemaphore(1)
         with open(f'{FIXTURE_DIRECTORY}/example_iss_jwks.json') as f:
             self.example_valid_iss_jwks = json.load(f)
 
