@@ -233,7 +233,7 @@ def validate_keyset(jwks_dict) -> Tuple[bool, List[Issue]]:
         keyset_issues.extend(issues)
 
     errors = [issue for issue in keyset_issues if issue.type.level == IssueLevel.ERROR]
-    keyset_is_valid = at_least_one_valid_keyset and len(errors) == 0
+    keyset_is_valid = at_least_one_valid_keyset
 
     return [keyset_is_valid, keyset_issues]
 
