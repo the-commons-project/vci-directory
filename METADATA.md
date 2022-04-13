@@ -26,7 +26,7 @@ A simple hierarchy provides an easier means to segregate government and non-gove
 | `organizational.insurer` | A national or regional health insurance payor |
 | `governmental.nation` | A nation or national governmental agency issuing for a nation |
 | `governmental.state_province_territory` | A state, province, territory or governmental agency issuing for a state, province, or territory |
-| `governmental.city` | A city or governmental agency issuing for a city |
+| `governmental.city_county` | A city, county or governmental agency issuing for a city |
 | `governmental.agency` | A governmental agency |
 
 ## Location Representation
