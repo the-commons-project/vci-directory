@@ -4,8 +4,11 @@ import json
 from common import (
     read_issuer_entries_from_tsv_file, IssuerEntry, validate_entries, ValidationResult,
     validate_key, IssueType, validate_keyset, Issue, duplicate_entries, read_issuer_entries_from_json_file,
-    analyze_results, compute_diffs, IssuerEntryChange
+    analyze_results, compute_diffs, IssuerEntryChange, validate_entry
 )
+import asyncio
+import respx
+from httpx import Response
 
 FIXTURE_DIRECTORY = f'{os.path.dirname(__file__)}/fixtures'
 
@@ -409,7 +412,7 @@ class ValidateKeysetTestCase(unittest.TestCase):
         jwks = json.loads(jwks_json)
         (actual_is_valid, actual_issues) = validate_keyset(jwks)
 
-        expected_is_valid = False
+        expected_is_valid = True
         expected_issues = [
             Issue('Key with kid=5iNYX3Im0lBD4B3tZTQRkDw1BsJROIrcnYOsb6qjAHM contains private key material', IssueType.KEY_CONTAINS_PRIVATE_MATERIAL),
         ]
@@ -446,7 +449,7 @@ class ValidateKeysetTestCase(unittest.TestCase):
         jwks = json.loads(jwks_json)
         (actual_is_valid, actual_issues) = validate_keyset(jwks)
 
-        expected_is_valid = False
+        expected_is_valid = True
         expected_issues = [
             Issue('kid is missing', IssueType.KID_IS_MISSING)
         ]
@@ -584,8 +587,8 @@ class ValidateEntriesTestCase(unittest.TestCase):
 class DuplicateEntriesTestCase(unittest.TestCase):
 
     '''
-    This is testing the validate_entries function, which is a wrapper that concurrently performs validation on each item in the list. 
-    It currently returns List[ValidationResult] (one for each input entry) and is not checking for duplicates 
+    This is testing the validate_entries function, which is a wrapper that concurrently performs validation on each item in the list.
+    It currently returns List[ValidationResult] (one for each input entry) and is not checking for duplicates
     (this happens before we call validate_entries in validate_entries.py).
     '''
 
@@ -626,7 +629,7 @@ class DuplicateEntriesTestCase(unittest.TestCase):
         self.assertEqual(actual, expected)
 
 class ValidateEntriesIntegrationTestCase(unittest.TestCase):
-    
+
     def test_validate_entries_integration(self):
         entries_from_json = read_issuer_entries_from_json_file(f'{FIXTURE_DIRECTORY}/sample_directory.json')
 
@@ -689,7 +692,7 @@ class ComputeDiffsTestCase(unittest.TestCase):
         diffs = compute_diffs(curent_entries, new_entries)
 
         self.assertEqual(
-            diffs.additions, 
+            diffs.additions,
             [
                 IssuerEntry('SHC Example Issuer 4', 'https://spec.smarthealth.cards/examples/issuer4', None, None),
                 IssuerEntry('SHC Example Issuer 5', 'https://spec.smarthealth.cards/examples/issuer5', None, None),
@@ -716,7 +719,7 @@ class ComputeDiffsTestCase(unittest.TestCase):
 
         self.assertEqual(diffs.additions, [])
         self.assertEqual(
-            diffs.deletions, 
+            diffs.deletions,
             [
                 IssuerEntry('SHC Example Issuer 4', 'https://spec.smarthealth.cards/examples/issuer4', None, None),
                 IssuerEntry('SHC Example Issuer 5', 'https://spec.smarthealth.cards/examples/issuer5', None, None),
@@ -741,7 +744,7 @@ class ComputeDiffsTestCase(unittest.TestCase):
         self.assertEqual(diffs.additions, [])
         self.assertEqual(diffs.deletions, [])
         self.assertEqual(
-            diffs.changes, 
+            diffs.changes,
             [
                 IssuerEntryChange(
                     IssuerEntry('SHC Example Issuer 3', 'https://spec.smarthealth.cards/examples/issuer3', None, None),
@@ -750,5 +753,53 @@ class ComputeDiffsTestCase(unittest.TestCase):
             ]
         )
 
-    
+class ValidateIssuerEntryTestCase(unittest.IsolatedAsyncioTestCase):
 
+    def setUp(self):
+        self.semaphore = asyncio.BoundedSemaphore(1)
+        with open(f'{FIXTURE_DIRECTORY}/example_iss_jwks.json') as f:
+            self.example_valid_iss_jwks = json.load(f)
+
+        self.example_valid_jwks_response = Response(200, json=self.example_valid_iss_jwks, headers={"access-control-allow-origin": "*"})
+        self.example_not_found_response = Response(404)
+
+    @respx.mock
+    async def test_valid_iss(self):
+        entry = IssuerEntry('SHC Example Issuer 1', 'https://spec.smarthealth.cards/examples/issuer1', None, None)
+        entry_map = {entry.iss: entry}
+        route = respx.get('https://spec.smarthealth.cards/examples/issuer1/.well-known/jwks.json').mock(return_value=self.example_valid_jwks_response)
+        validation_result = await validate_entry(entry, entry_map, self.semaphore)
+
+        self.assertTrue(route.called)
+        self.assertIsNotNone(validation_result)
+        self.assertTrue(validation_result.is_valid)
+        self.assertEqual(len(validation_result.issues), 0)
+        self.assertEqual(validation_result.issuer_entry, entry)
+
+    @respx.mock
+    async def test_invalid_iss_keyset(self):
+        entry = IssuerEntry('SHC Example Issuer 1', 'https://spec.smarthealth.cards/examples/issuer1', None, None)
+        entry_map = {entry.iss: entry}
+        route = respx.get('https://spec.smarthealth.cards/examples/issuer1/.well-known/jwks.json').mock(return_value=self.example_not_found_response)
+        validation_result = await validate_entry(entry, entry_map, self.semaphore)
+
+        self.assertTrue(route.called)
+        self.assertIsNotNone(validation_result)
+        self.assertFalse(validation_result.is_valid)
+        self.assertTrue(len(validation_result.issues) > 0)
+        self.assertEqual(validation_result.issuer_entry, entry)
+
+    @respx.mock
+    async def test_canonical_iss_skips_iss_keyset_checks(self):
+        entry = IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, canonical_iss='https://spec.smarthealth.cards/examples/issuer1')
+        canonical_entry = IssuerEntry('SHC Example Issuer 1', 'https://spec.smarthealth.cards/examples/issuer1', None, None)
+
+        entry_map = {entry.iss: entry, canonical_entry.iss: canonical_entry}
+        route = respx.get('https://spec.smarthealth.cards/examples/issuer/.well-known/jwks.json').mock(return_value=self.example_not_found_response)
+        validation_result = await validate_entry(entry, entry_map, self.semaphore)
+        # If a canonical_entry iss is defined, we have no expectation of behavior for the iss value, so we should skip validation
+        self.assertFalse(route.called)
+        self.assertIsNotNone(validation_result)
+        self.assertTrue(validation_result.is_valid)
+        self.assertEqual(len(validation_result.issues), 0)
+        self.assertEqual(validation_result.issuer_entry, entry)
