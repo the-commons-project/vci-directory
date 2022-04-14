@@ -1,27 +1,21 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2022-04-13T04:41:17Z",
+    "auditTime": "2022-04-14T04:39:51Z",
     "issuerCount": 554,
     "issuersWithErrors": [
         {
             "issuer": {
-                "iss": "https://interconnect.wellspan.org/interconnect-prd-fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "WellSpan Health"
+                "iss": "https://unified-api.ucsf.edu/clinical/apex/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "UCSF Health"
             },
             "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.3",
-                "cipher": "TLS_CHACHA20_POLY1305_SHA256",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA-PSS",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 503 (Service Unavailable)"
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
             ],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -59,27 +53,6 @@
         },
         {
             "issuer": {
-                "iss": "https://tpc-shield.tpcllp.com/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "The Portland Clinic",
-                "website": "https://www.theportlandclinic.com/"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-SHA384",
-                "kexAlg": "ECDH, P-521, 521 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": []
-        },
-        {
-            "issuer": {
                 "iss": "https://guam.mdcareclik.net/fhir",
                 "name": "American Medical Center"
             },
@@ -104,40 +77,13 @@
                 "name": "Piedmont Healthcare/Affiliates and Shepherd Center"
             },
             "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [
                 "TimeoutError: Timeout awaiting 'request' for 5000ms"
             ],
-            "warnings": []
-        },
-        {
-            "issuer": {
-                "iss": "https://soapproxy.atlantichealth.org/FHIRPrd/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Atlantic Health System",
-                "website": "https://www.atlantichealth.org/"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-SHA384",
-                "kexAlg": "ECDH, P-521, 521 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -211,26 +157,14 @@
         "Genesis Healthcare System",
         "MyHealthHome"
     ],
-    "previousAuditTime": "2022-04-12T04:40:11Z",
+    "previousAuditTime": "2022-04-13T04:41:17Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://interconnect.wellspan.org/interconnect-prd-fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://unified-api.ucsf.edu/clinical/apex/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "2CTIFrq4etN7ahQYM9VVQBH2JaHZvaqt6jvfl3CbMGo"
-            ]
-        },
-        {
-            "iss": "https://tpc-shield.tpcllp.com/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-            "kids": [
-                "5vKTYrz-IoaW6hEqbeZGD-UIdlTJ5WtXQ9TpdzBlTPw"
-            ]
-        },
-        {
-            "iss": "https://soapproxy.atlantichealth.org/FHIRPrd/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-            "kids": [
-                "nrVWTxXZnpk7WWh0roDnaBgRsE-HzhOkGUUlvOK2Uro"
+                "ZwFzkFHXRFwE_0Jy0oyINwNZg4yLPKk5DW96xDwjMEo"
             ]
         }
     ]
