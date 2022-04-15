@@ -19,7 +19,7 @@ def main():
             print(entry)
         exit(1)
 
-    validation_results = common.validate_entries(entries_from_json)
+    validation_results = common.validate_entries(entries_from_json, entries_from_json)
     valid = common.analyze_results(validation_results, True, args.show_warnings)
 
     if valid:
