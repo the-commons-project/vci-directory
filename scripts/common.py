@@ -390,19 +390,21 @@ async def validate_entry(
         )
 
 async def validate_all_entries(
-    entries: List[IssuerEntry]
+    entries: List[IssuerEntry],
+    full_issuer_list: List[IssuerEntry]
 ) -> List[ValidationResult]:
-    entry_map = {entry.iss: entry for entry in entries}
+    full_issuer_entry_map = {entry.iss: entry for entry in full_issuer_list}
     asyncio_semaphore = asyncio.BoundedSemaphore(50)
-    aws = [validate_entry(issuer_entry, entry_map, asyncio_semaphore) for issuer_entry in entries]
+    aws = [validate_entry(issuer_entry, full_issuer_entry_map, asyncio_semaphore) for issuer_entry in entries]
     return await asyncio.gather(
         *aws
     )
 
 def validate_entries(
-    entries: List[IssuerEntry]
+    entries_to_validate: List[IssuerEntry],
+    full_issuer_list: List[IssuerEntry]
 ) -> List[ValidationResult]:
-    results = asyncio.run(validate_all_entries(entries))
+    results = asyncio.run(validate_all_entries(entries_to_validate, full_issuer_list))
     print('')
     return results
 

@@ -12,7 +12,7 @@ def main():
     args = parser.parse_args()
     entries_from_json = common.read_issuer_entries_from_json_file(args.input_file)
 
-    validation_results = common.validate_entries(entries_from_json)
+    validation_results = common.validate_entries(entries_from_json, entries_from_json)
 
     invalid_cors_entries = []
 
@@ -23,13 +23,13 @@ def main():
 
     if len(invalid_cors_entries) > 0:
         writer = csv.DictWriter(
-            sys.stdout, 
+            sys.stdout,
             fieldnames=common.IssuerEntry._fields,
             delimiter='\t'
         )
         writer.writeheader()
         writer.writerows([entry._asdict() for entry in invalid_cors_entries])
-    
+
 
 if __name__ == "__main__":
     main()
