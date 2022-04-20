@@ -38,10 +38,10 @@ def main():
     for change in changes:
         print(change)
 
-    additions_validation_results = common.validate_entries(additions)
+    additions_validation_results = common.validate_entries(additions, head_entries_from_json)
     additions_valid = common.analyze_results(additions_validation_results, True, args.show_warnings, cors_issue_is_error=True)
 
-    changes_validation_results = common.validate_entries(changes)
+    changes_validation_results = common.validate_entries(changes, head_entries_from_json)
     changes_valid = common.analyze_results(changes_validation_results, True, args.show_warnings, cors_issue_is_error=True)
 
     if additions_valid and changes_valid:

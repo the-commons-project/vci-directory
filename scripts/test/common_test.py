@@ -4,7 +4,7 @@ import json
 from common import (
     read_issuer_entries_from_tsv_file, IssuerEntry, validate_entries, ValidationResult,
     validate_key, IssueType, validate_keyset, Issue, duplicate_entries, read_issuer_entries_from_json_file,
-    analyze_results, compute_diffs, IssuerEntryChange, validate_entry
+    analyze_results, compute_diffs, IssuerEntryChange, validate_entry, validate_all_entries
 )
 import asyncio
 import respx
@@ -475,7 +475,7 @@ class ValidateEntriesTestCase(unittest.TestCase):
             IssuerEntry('SHC Example Issuer 10', 'https://spec.smarthealth.cards/examples/issuer', None, None)
         ]
 
-        actual = validate_entries(entries)
+        actual = validate_entries(entries, entries)
 
         expected = [ValidationResult(entry, True, []) for entry in entries]
 
@@ -488,7 +488,7 @@ class ValidateEntriesTestCase(unittest.TestCase):
             IssuerEntry('Invalid issuer 2', 'https://spec.smarthealth.cards/examples/issuer/', None, None),
         ]
 
-        actual = validate_entries(entries)
+        actual = validate_entries(entries, entries)
         self.assertEqual(actual[0].issuer_entry, entries[0])
         self.assertEqual(actual[0].is_valid, True)
         self.assertEqual(actual[0].issues, [])
@@ -506,7 +506,7 @@ class ValidateEntriesTestCase(unittest.TestCase):
             IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', 'https://spec.smarthealth.cards/unknown', None),
         ]
 
-        actual = validate_entries(entries)
+        actual = validate_entries(entries, entries)
         self.assertEqual(actual[0].issuer_entry, entries[0])
         self.assertEqual(actual[0].is_valid, False)
         self.assertEqual(actual[0].issues[0].type, IssueType.WEBSITE_DOES_NOT_RESOLVE)
@@ -518,7 +518,7 @@ class ValidateEntriesTestCase(unittest.TestCase):
             IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://myvaccinerecord.cdph.ca.gov/creds'),
         ]
 
-        actual = validate_entries(entries)
+        actual = validate_entries(entries, entries)
 
         expected = [ValidationResult(entry, True, []) for entry in entries]
 
@@ -531,7 +531,7 @@ class ValidateEntriesTestCase(unittest.TestCase):
             IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://spec.smarthealth.cards/examples/issuer'),
         ]
 
-        actual = validate_entries(entries)
+        actual = validate_entries(entries, entries)
         self.assertEqual(actual[0].issuer_entry, entries[0])
         self.assertEqual(actual[0].is_valid, True)
         self.assertEqual(actual[0].issues, [])
@@ -551,7 +551,7 @@ class ValidateEntriesTestCase(unittest.TestCase):
             IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://spec.smarthealth.cards/examples/issuer1'),
         ]
 
-        actual = validate_entries(entries)
+        actual = validate_entries(entries, entries)
         self.assertEqual(actual[0].issuer_entry, entries[0])
         self.assertEqual(actual[0].is_valid, True)
         self.assertEqual(actual[0].issues, [])
@@ -571,7 +571,7 @@ class ValidateEntriesTestCase(unittest.TestCase):
             IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://healthcardcert.lawallet.com'),
         ]
 
-        actual = validate_entries(entries)
+        actual = validate_entries(entries, entries)
         self.assertEqual(actual[0].issuer_entry, entries[0])
         self.assertEqual(actual[0].is_valid, True)
         self.assertEqual(actual[0].issues, [])
@@ -641,7 +641,7 @@ class ValidateEntriesIntegrationTestCase(unittest.TestCase):
 
         self.assertEqual(entries_from_json, expected)
 
-        validation_results = validate_entries(entries_from_json)
+        validation_results = validate_entries(entries_from_json, entries_from_json)
         valid = analyze_results(validation_results, True, True)
         self.assertTrue(valid)
 
@@ -803,3 +803,66 @@ class ValidateIssuerEntryTestCase(unittest.IsolatedAsyncioTestCase):
         self.assertTrue(validation_result.is_valid)
         self.assertEqual(len(validation_result.issues), 0)
         self.assertEqual(validation_result.issuer_entry, entry)
+
+    @respx.mock
+    async def test_canonical_iss_must_be_in_full_issuer_list(self):
+        entry = IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, canonical_iss='https://spec.smarthealth.cards/examples/issuer1')
+
+        entry_map = {entry.iss: entry}
+        route = respx.get('https://spec.smarthealth.cards/examples/issuer/.well-known/jwks.json').mock(return_value=self.example_not_found_response)
+        validation_result = await validate_entry(entry, entry_map, self.semaphore)
+        # If a canonical_entry iss is defined, we have no expectation of behavior for the iss value, so we should skip validation
+        self.assertFalse(route.called)
+        self.assertIsNotNone(validation_result)
+        self.assertFalse(validation_result.is_valid)
+        self.assertEqual(len(validation_result.issues), 1)
+        issue = validation_result.issues[0]
+        self.assertEqual(issue.type, IssueType.CANONICAL_ISS_REFERENCE_INVALID)
+
+    @respx.mock
+    async def test_canonical_iss_cannot_self_reference(self):
+        entry = IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, canonical_iss='https://spec.smarthealth.cards/examples/issuer')
+
+        entry_map = {entry.iss: entry}
+        route = respx.get('https://spec.smarthealth.cards/examples/issuer/.well-known/jwks.json').mock(return_value=self.example_not_found_response)
+        validation_result = await validate_entry(entry, entry_map, self.semaphore)
+        # If a canonical_entry iss is defined, we have no expectation of behavior for the iss value, so we should skip validation
+        self.assertFalse(route.called)
+        self.assertIsNotNone(validation_result)
+        self.assertFalse(validation_result.is_valid)
+        self.assertEqual(len(validation_result.issues), 1)
+        issue = validation_result.issues[0]
+        self.assertEqual(issue.type, IssueType.CANONICAL_ISS_SELF_REFERENCE)
+
+    @respx.mock
+    async def test_canonical_iss_entry_cannot_have_itself_canonical_iss(self):
+        entry = IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, canonical_iss='https://spec.smarthealth.cards/examples/issuer1')
+        canonical_entry = IssuerEntry('SHC Example Issuer 1', 'https://spec.smarthealth.cards/examples/issuer1', None, canonical_iss='https://spec.smarthealth.cards/examples/issuer2')
+
+        entry_map = {entry.iss: entry, canonical_entry.iss: canonical_entry}
+        route = respx.get('https://spec.smarthealth.cards/examples/issuer/.well-known/jwks.json').mock(return_value=self.example_not_found_response)
+        validation_result = await validate_entry(entry, entry_map, self.semaphore)
+        # If a canonical_entry iss is defined, we have no expectation of behavior for the iss value, so we should skip validation
+        self.assertFalse(route.called)
+        self.assertIsNotNone(validation_result)
+        self.assertFalse(validation_result.is_valid)
+        self.assertEqual(len(validation_result.issues), 1)
+        issue = validation_result.issues[0]
+        self.assertEqual(issue.type, IssueType.CANONICAL_ISS_MULTIHOP_REFERENCE)
+
+
+class ValidateAllEntriesTestCase(unittest.IsolatedAsyncioTestCase):
+
+    @respx.mock
+    async def test_adding_entry_with_canonical(self):
+        entry = IssuerEntry('SHC Example Issuer 1', 'https://spec.smarthealth.cards/examples/issuer', None, canonical_iss='https://spec.smarthealth.cards/examples/issuer1')
+        canonical_entry = IssuerEntry('SHC Example Issuer 1', 'https://spec.smarthealth.cards/examples/issuer1', None, None)
+
+        route = respx.get('https://spec.smarthealth.cards/examples/issuer/.well-known/jwks.json').mock(return_value=Response(404))
+        validation_results = await validate_all_entries([entry], [entry, canonical_entry])
+
+        self.assertFalse(route.called)
+        self.assertIsNotNone(validation_results)
+        self.assertEqual(len(validation_results), 1)
+        result = validation_results[0]
+        self.assertTrue(result.is_valid)
