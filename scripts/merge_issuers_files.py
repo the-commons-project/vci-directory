@@ -13,7 +13,7 @@ def main():
     entries_from_json_2 = common.read_issuer_entries_from_json_file(args.input_file_2)
 
     ## validate entries_from_json_2
-    validation_results = common.validate_entries(entries_from_json_2)
+    validation_results = common.validate_entries(entries_from_json_2, entries_from_json_2)
     is_valid = common.analyze_results(validation_results, False, False)
     if not is_valid:
         print('One or more entries are invalid')
@@ -29,6 +29,6 @@ def main():
 
     merged_entries = list(merged_entry_dict.values())
     common.write_issuer_entries_to_json_file(args.output_file, merged_entries)
-        
+
 if __name__ == "__main__":
     main()

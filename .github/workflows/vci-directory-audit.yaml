@@ -1,0 +1,69 @@
+name: Nightly audit
+on:
+  schedule:
+      - cron: '30 4 * * *'
+  push:
+    tags:
+      - audit*
+jobs:
+  vci-directory-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: main
+          token: ${{ secrets.GIT_PUSH_TOKEN }}
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: npm setup
+        run: |
+          cd scripts/vci-directory-auditor
+          npm install
+          npm run build --if-present
+      - name: run audit scripts
+        run: |
+          cd scripts/vci-directory-auditor
+          npm run audit -- -o ../../logs/new_log.json -p ../../logs/daily_log.json -s ../../logs/daily_log_snapshot.json -a ../../logs/daily_audit.json -d ../../vci-issuers.json
+          mv ../../logs/new_log.json ../../logs/daily_log.json
+          npm run assemble -- -s ../../logs/vci_snapshot.json -c ../../logs/daily_log_snapshot.json
+      - name: sign snapshot
+        env:
+          PRIVATE_SIG_KEY_PWD: ${{ secrets.PRIVATE_SIG_KEY_PWD }}
+          PRIVATE_SIG_KEY: ${{ secrets.PRIVATE_SIG_KEY }}
+        run: |
+          echo "$PRIVATE_SIG_KEY" > private.pem
+          openssl dgst -sha512 -sign private.pem -out logs/vci_snapshot.sig -passin env:PRIVATE_SIG_KEY_PWD logs/vci_snapshot.json
+          rm private.pem
+      - name: git check in
+        env:
+          GIT_OWNER_EMAIL: ${{ secrets.GIT_OWNER_EMAIL }}
+          GIT_OWNER_NAME: ${{ secrets.GIT_OWNER_NAME }}
+          GIT_REPO_PATH: ${{ secrets.GIT_REPO_PATH }}
+          GIT_PUSH_TOKEN: ${{ secrets.GIT_PUSH_TOKEN }}
+        run: |
+          git config user.email "$GIT_OWNER_EMAIL"
+          git config user.name "$GIT_OWNER_NAME"
+          if [[ `git status --porcelain` ]]; then
+            git add -f logs/daily_log.json
+            git add -f logs/daily_log_snapshot.json
+            git add -f logs/daily_audit.json
+            git add -f logs/vci_snapshot.json
+            git add -f logs/vci_snapshot.sig
+            git commit -a -m "daily dir and audit snapshot"
+            COMMIT=$(git rev-parse HEAD)
+            DATETIME=$(git log -n 1 --no-decorate --date=iso-strict -- logs/daily_log.json | head -3 | grep Date | cut -c 9-)
+            echo $COMMIT, $DATETIME >> logs/audit-index.csv
+            git add -f logs/audit-index.csv
+            git commit -a -m "added commit hash to audit index"
+            git remote add myorigin https://$GIT_OWNER_NAME:$GIT_PUSH_TOKEN@github.com/$GIT_REPO_PATH/vci-directory.git
+            git pull --rebase
+            git push myorigin HEAD:main --force
+          else
+            echo 'no changes'
+          fi
+      - name: save log files
+        uses: actions/upload-artifact@v2
+        with:
+          name: save-log-files
+          path: logs/*
