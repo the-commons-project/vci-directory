@@ -1,21 +1,48 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2022-04-22T04:48:14Z",
-    "issuerCount": 557,
+    "auditTime": "2022-04-23T04:40:15Z",
+    "issuerCount": 558,
     "issuersWithErrors": [
         {
             "issuer": {
-                "iss": "https://unified-api.ucsf.edu/clinical/apex/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "UCSF Health"
+                "iss": "https://skphr.prd.telushealthspace.com",
+                "name": "eHealth Saskatchewan"
             },
             "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+                "HTTPError: Response code 403 (Forbidden)"
             ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "warnings": []
+        },
+        {
+            "issuer": {
+                "iss": "https://fhir.hfhs.org/fhirproxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Henry Ford Health System",
+                "website": "https://www.henryford.com/"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 503 (Service Unavailable)"
+            ],
+            "warnings": []
         },
         {
             "issuer": {
@@ -82,9 +109,9 @@
         },
         {
             "issuer": {
-                "iss": "https://soapproxy.atlantichealth.org/FHIRPrd/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Atlantic Health System",
-                "website": "https://www.atlantichealth.org/"
+                "iss": "https://epicsoap.wellstar.org/fhirproxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Wellstar",
+                "website": "https://www.wellstar.org/"
             },
             "keys": [],
             "tlsDetails": {
@@ -97,28 +124,7 @@
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 500 (Internal Server Error)"
-            ],
-            "warnings": []
-        },
-        {
-            "issuer": {
-                "iss": "https://rp.catholichealth.net/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "CommonSpirit Health",
-                "website": "https://www.commonspirit.org/"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+                "HTTPError: Response code 502 (Bad Gateway)"
             ],
             "warnings": []
         },
@@ -177,6 +183,27 @@
                 "TimeoutError: Timeout awaiting 'request' for 5000ms"
             ],
             "warnings": []
+        },
+        {
+            "issuer": {
+                "iss": "https://myelectronicvaccinecard.oregon.gov/creds",
+                "name": "Oregon Health Authority",
+                "website": "https://www.oregon.gov/oha/pages/index.aspx"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, P-384, 384 bits",
+                "authAlg": "RSA-PSS",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 403 (Forbidden)"
+            ],
+            "warnings": []
         }
     ],
     "issuerWithCRLCount": 2,
@@ -225,38 +252,26 @@
         "Genesis Healthcare System",
         "MyHealthHome"
     ],
-    "previousAuditTime": "2022-04-21T04:47:38Z",
-    "newIssuerCount": 0,
-    "deletedIssuerCount": 0,
+    "previousAuditTime": "2022-04-22T04:48:14Z",
+    "newIssuerCount": 2,
+    "deletedIssuerCount": 1,
     "removedKids": [
         {
-            "iss": "https://unified-api.ucsf.edu/clinical/apex/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://skphr.prd.telushealthspace.com",
             "kids": [
-                "ZwFzkFHXRFwE_0Jy0oyINwNZg4yLPKk5DW96xDwjMEo"
+                "xOqUO82bEz8APn_5wohZZvSK4Ui6pqWdSAv5BEhkes0"
             ]
         },
         {
-            "iss": "https://soapproxy.atlantichealth.org/FHIRPrd/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://fhir.hfhs.org/fhirproxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "nrVWTxXZnpk7WWh0roDnaBgRsE-HzhOkGUUlvOK2Uro"
+                "o0GnOoIBxND1SYy0EKl1d_qCXTNqKjtUCe--nVqrmsI"
             ]
         },
         {
-            "iss": "https://rp.catholichealth.net/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://epicsoap.wellstar.org/fhirproxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "S1Jwo6u3CruACCe8P-l-97WhmNC3TGgp3LKvq4ry5vo"
-            ]
-        },
-        {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/harps+pharmacy",
-            "kids": [
-                "4KHf7aJBy3mcDRm-Avfdch7Ps5qekl1FFGs4EQpDuo4"
-            ]
-        },
-        {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/kmart+pharmacy",
-            "kids": [
-                "U_C_KSRk6GRqOuT-tTTVid-zHxihv7fRdyuvNQPeBvM"
+                "9cJjNUd_mdaZMqe4Q4BblQYvi2vbpXM9NQp7U6P0qvg"
             ]
         }
     ]

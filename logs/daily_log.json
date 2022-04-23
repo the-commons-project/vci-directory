@@ -1,6 +1,6 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "time": "2022-04-22T04:48:14Z",
+    "time": "2022-04-23T04:40:15Z",
     "issuerInfo": [
         {
             "issuer": {
@@ -4282,17 +4282,11 @@
                     "crv": "P-256"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.3",
-                "cipher": "TLS_AES_256_GCM_SHA384",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA-PSS",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -4312,17 +4306,11 @@
                     "crv": "P-256"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -4692,14 +4680,28 @@
                 "iss": "https://unified-api.ucsf.edu/clinical/apex/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "UCSF Health"
             },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            "keys": [
+                {
+                    "x": "_FFLdNDMrLdKgHM7z7hpAIVIeIf4mgJA7UauIgmqVBI",
+                    "y": "2Z0QoNcrw-N80Jhpctaxj89LpWhulJLyF7g4I7nmdJU",
+                    "kid": "ZwFzkFHXRFwE_0Jy0oyINwNZg4yLPKk5DW96xDwjMEo",
+                    "use": "sig",
+                    "kty": "EC",
+                    "alg": "ES256",
+                    "crv": "P-256"
+                }
             ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [],
+            "warnings": []
         },
         {
             "issuer": {
@@ -5729,17 +5731,15 @@
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
-                "cipher": "AES128-SHA256",
-                "kexAlg": "RSA",
+                "cipher": "DHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "DH, 2048 bits",
                 "authAlg": "RSA",
                 "pubKeySize": "4096",
                 "compression": "NONE"
             },
             "crls": [],
             "errors": [],
-            "warnings": [
-                "TLS error: Static RSA SHOULD NOT be used, MUST prefer ECDHE and DHE"
-            ]
+            "warnings": []
         },
         {
             "issuer": {
@@ -6146,17 +6146,7 @@
                 "iss": "https://skphr.prd.telushealthspace.com",
                 "name": "eHealth Saskatchewan"
             },
-            "keys": [
-                {
-                    "kty": "EC",
-                    "use": "sig",
-                    "crv": "P-256",
-                    "kid": "xOqUO82bEz8APn_5wohZZvSK4Ui6pqWdSAv5BEhkes0",
-                    "x": "Hk4ktlNfoIIo7jp5I8cefp54Ils3TsKvKXw_E9CGIPE",
-                    "y": "7hVieFGuHJeaNRCxVgKeVpoxDJevytgoCxqVZ6cfcdk",
-                    "alg": "ES256"
-                }
-            ],
+            "keys": [],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
@@ -6166,7 +6156,9 @@
                 "compression": "NONE"
             },
             "crls": [],
-            "errors": [],
+            "errors": [
+                "HTTPError: Response code 403 (Forbidden)"
+            ],
             "warnings": []
         },
         {
@@ -6548,7 +6540,7 @@
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
+                "cipher": "ECDHE-RSA-AES128-SHA",
                 "kexAlg": "ECDH, P-256, 256 bits",
                 "authAlg": "RSA",
                 "pubKeySize": "2048",
@@ -8274,17 +8266,7 @@
                 "name": "Henry Ford Health System",
                 "website": "https://www.henryford.com/"
             },
-            "keys": [
-                {
-                    "x": "cHnkQHA_R3KUh1l32rOB7PAit9Lw81H3YlL8FoR2cqo",
-                    "y": "8wF8AzsXPNOnmQSkWgUR7viOTgvz82p2IPxvqi5aiR8",
-                    "kid": "o0GnOoIBxND1SYy0EKl1d_qCXTNqKjtUCe--nVqrmsI",
-                    "use": "sig",
-                    "kty": "EC",
-                    "alg": "ES256",
-                    "crv": "P-256"
-                }
-            ],
+            "keys": [],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
@@ -8294,7 +8276,9 @@
                 "compression": "NONE"
             },
             "crls": [],
-            "errors": [],
+            "errors": [
+                "HTTPError: Response code 503 (Service Unavailable)"
+            ],
             "warnings": []
         },
         {
@@ -8657,11 +8641,17 @@
                     "crv": "P-256"
                 }
             ],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, P-521, 521 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "warnings": []
         },
         {
             "issuer": {
@@ -8683,7 +8673,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: depth=2 C = US, ST = New Jersey, L = Jersey City, O = The USERTRUST Network, CN = USERTrust RSA Certification Authority\nverify return:1\ndepth=1 C = US, ST = MI, L = Ann Arbor, O = Internet2, OU = InCommon, CN = InCommon RSA Server CA\nverify return:1\ndepth=0 C = US, postalCode = 77030, ST = Texas, L = Houston, street = 1515 Holcombe Blvd, O = The University of Texas M.D. Anderson Cancer Center, OU = IT Engineering, CN = fhir.mdanderson.edu\nverify return:1\n140052368295232:error:1414D172:SSL routines:tls12_check_peer_sigalg:wrong signature type:../ssl/t1_lib.c:1145:"
+                "OpenSSL error: depth=2 C = US, ST = New Jersey, L = Jersey City, O = The USERTRUST Network, CN = USERTrust RSA Certification Authority\nverify return:1\ndepth=1 C = US, ST = MI, L = Ann Arbor, O = Internet2, OU = InCommon, CN = InCommon RSA Server CA\nverify return:1\ndepth=0 C = US, postalCode = 77030, ST = Texas, L = Houston, street = 1515 Holcombe Blvd, O = The University of Texas M.D. Anderson Cancer Center, OU = IT Engineering, CN = fhir.mdanderson.edu\nverify return:1\n140319863842112:error:1414D172:SSL routines:tls12_check_peer_sigalg:wrong signature type:../ssl/t1_lib.c:1145:"
             ]
         },
         {
@@ -9655,8 +9645,8 @@
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
-                "cipher": "DHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "DH, 2048 bits",
+                "cipher": "ECDHE-RSA-AES256-SHA384",
+                "kexAlg": "ECDH, P-521, 521 bits",
                 "authAlg": "RSA",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -10960,11 +10950,17 @@
                     "crv": "P-256"
                 }
             ],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-SHA384",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "warnings": []
         },
         {
             "issuer": {
@@ -11014,7 +11010,7 @@
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-SHA384",
-                "kexAlg": "ECDH, P-521, 521 bits",
+                "kexAlg": "ECDH, P-256, 256 bits",
                 "authAlg": "RSA",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -12134,7 +12130,17 @@
                 "name": "Atlantic Health System",
                 "website": "https://www.atlantichealth.org/"
             },
-            "keys": [],
+            "keys": [
+                {
+                    "x": "_W-NydWub2b6bjN0pj_lHo89E-lb4vRBUzXcyYvoDAQ",
+                    "y": "SgLKsx3Kbwn5ibNv9QIyUQI-nD5wNu8uIeCnu2qneYw",
+                    "kid": "nrVWTxXZnpk7WWh0roDnaBgRsE-HzhOkGUUlvOK2Uro",
+                    "use": "sig",
+                    "kty": "EC",
+                    "alg": "ES256",
+                    "crv": "P-256"
+                }
+            ],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-SHA384",
@@ -12144,9 +12150,7 @@
                 "compression": "NONE"
             },
             "crls": [],
-            "errors": [
-                "HTTPError: Response code 500 (Internal Server Error)"
-            ],
+            "errors": [],
             "warnings": []
         },
         {
@@ -12981,17 +12985,11 @@
                     "crv": "P-256"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -13346,7 +13344,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: depth=2 C = US, O = \"Entrust, Inc.\", OU = See www.entrust.net/legal-terms, OU = \"(c) 2009 Entrust, Inc. - for authorized use only\", CN = Entrust Root Certification Authority - G2\nverify return:1\ndepth=1 C = US, O = \"Entrust, Inc.\", OU = See www.entrust.net/legal-terms, OU = \"(c) 2012 Entrust, Inc. - for authorized use only\", CN = Entrust Certification Authority - L1K\nverify return:1\ndepth=0 C = US, ST = Illinois, L = Skokie, O = NorthShore University HealthSystem, CN = haiku.northshore.org\nverify return:1\n140201254999360:error:141A318A:SSL routines:tls_process_ske_dhe:dh key too small:../ssl/statem/statem_clnt.c:2149:"
+                "OpenSSL error: depth=2 C = US, O = \"Entrust, Inc.\", OU = See www.entrust.net/legal-terms, OU = \"(c) 2009 Entrust, Inc. - for authorized use only\", CN = Entrust Root Certification Authority - G2\nverify return:1\ndepth=1 C = US, O = \"Entrust, Inc.\", OU = See www.entrust.net/legal-terms, OU = \"(c) 2012 Entrust, Inc. - for authorized use only\", CN = Entrust Certification Authority - L1K\nverify return:1\ndepth=0 C = US, ST = Illinois, L = Skokie, O = NorthShore University HealthSystem, CN = haiku.northshore.org\nverify return:1\n140647916528960:error:141A318A:SSL routines:tls_process_ske_dhe:dh key too small:../ssl/statem/statem_clnt.c:2149:"
             ]
         },
         {
@@ -13964,17 +13962,7 @@
                 "name": "Wellstar",
                 "website": "https://www.wellstar.org/"
             },
-            "keys": [
-                {
-                    "x": "7mWji24Frfq5yIQ12l0oXPiWc9PYVdZeWhc0A175sZY",
-                    "y": "3e0FUoVWLeEPqbEbxyEsvqZRr3yNExD0CZuWi_2-BUs",
-                    "kid": "9cJjNUd_mdaZMqe4Q4BblQYvi2vbpXM9NQp7U6P0qvg",
-                    "use": "sig",
-                    "kty": "EC",
-                    "alg": "ES256",
-                    "crv": "P-256"
-                }
-            ],
+            "keys": [],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-SHA384",
@@ -13984,7 +13972,9 @@
                 "compression": "NONE"
             },
             "crls": [],
-            "errors": [],
+            "errors": [
+                "HTTPError: Response code 502 (Bad Gateway)"
+            ],
             "warnings": []
         },
         {
@@ -14807,7 +14797,17 @@
                 "name": "CommonSpirit Health",
                 "website": "https://www.commonspirit.org/"
             },
-            "keys": [],
+            "keys": [
+                {
+                    "x": "90p0Qai0WS_CWyxIcrNkXbyykSsnZ14iDq4shORb-Ag",
+                    "y": "TqqXmTDW916J73T24qXH4uqy1z2-7kyeBZuAvjX9VYs",
+                    "kid": "S1Jwo6u3CruACCe8P-l-97WhmNC3TGgp3LKvq4ry5vo",
+                    "use": "sig",
+                    "kty": "EC",
+                    "alg": "ES256",
+                    "crv": "P-256"
+                }
+            ],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
@@ -14817,9 +14817,7 @@
                 "compression": "NONE"
             },
             "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
+            "errors": [],
             "warnings": []
         },
         {
@@ -15321,11 +15319,17 @@
                     "crv": "P-256"
                 }
             ],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "warnings": []
         },
         {
             "issuer": {
@@ -16448,7 +16452,7 @@
             "keys": [
                 {
                     "alg": "ES256",
-                    "crlVersion": 6,
+                    "crlVersion": 12,
                     "crv": "P-256",
                     "kid": "TKPyzMtKh7WQaCzsw6rOK8ZUOZlND2VcBwhFIIcCqUE",
                     "kty": "EC",
@@ -16467,7 +16471,7 @@
             },
             "crls": [
                 {
-                    "ctr": 6,
+                    "ctr": 12,
                     "kid": "TKPyzMtKh7WQaCzsw6rOK8ZUOZlND2VcBwhFIIcCqUE",
                     "method": "rid",
                     "rids": [
@@ -16475,7 +16479,13 @@
                         "8dPgHYssT9m5BvaXlTm2Ig",
                         "TMlCjyVIRfO94G5fA4Cn7A",
                         "fSW6Z2NfR8yoeev7epv-KA",
-                        "qm23JyufSlKdUhN3hXxL9w"
+                        "qQnbKcmqTB6LMFq62t7XSQ",
+                        "qm23JyufSlKdUhN3hXxL9w",
+                        "fQoddmBFQW6O0YBb_53eQg",
+                        "GpXysSJ7S9ykVBsr2vwOSw",
+                        "xA6fOampRI6EbshZMGSvbQ",
+                        "4-TGEu0rQmm1S8gt2hTDwA",
+                        "G-W-0_RjRN6ssEN2AJVxWQ"
                     ]
                 }
             ],
@@ -16484,7 +16494,7 @@
         },
         {
             "issuer": {
-                "iss": "https://www.hy-vee.com/my-pharmacy/static",
+                "iss": "https://hy-vee.com/my-pharmacy/static",
                 "name": "Hy-Vee",
                 "website": "https://www.hy-vee.com/"
             },
@@ -16509,6 +16519,27 @@
             },
             "crls": [],
             "errors": [],
+            "warnings": []
+        },
+        {
+            "issuer": {
+                "iss": "https://myelectronicvaccinecard.oregon.gov/creds",
+                "name": "Oregon Health Authority",
+                "website": "https://www.oregon.gov/oha/pages/index.aspx"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, P-384, 384 bits",
+                "authAlg": "RSA-PSS",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 403 (Forbidden)"
+            ],
             "warnings": []
         }
     ]
