@@ -372,16 +372,93 @@ class ValidateKeysetTestCase(unittest.TestCase):
         jwks = json.loads(jwks_json)
         (actual_is_valid, actual_issues) = validate_keyset(jwks)
 
-        expected_is_valid = True
-        expected_issues = [
-            Issue('Key with kid=UoGD6QXSfg5glPtfg9sgKQzmUkUtCYb9Df2oidXXkeA has an incorrect key use. It should be \"sig\"', IssueType.KEY_USE_IS_INCORRECT),
-            Issue('Key with kid=UoGD6QXSfg5glPtfg9sgKQzmUkUtCYb9Df2oidXXkeA has an incorrect key alg. It should be \"ES256\"', IssueType.KEY_ALG_IS_INCORRECT),
-        ]
+        self.assertTrue(actual_is_valid)
+        self.assertEqual(len(actual_issues), 0)
 
-        self.assertEqual(actual_is_valid, expected_is_valid)
-        self.assertEqual(actual_issues, expected_issues)
+    def test_invalid_keyset_wrong_key_use_wrong_alg(self):
 
-    def test_invalid_keyset_1_key_invalid(self):
+        jwks_json = """
+        {
+            "keys": [
+                {
+                    "kty": "EC",
+                    "use": "enc",
+                    "alg": "ECDH-ES",
+                    "kid": "UoGD6QXSfg5glPtfg9sgKQzmUkUtCYb9Df2oidXXkeA",
+                    "crv": "P-256",
+                    "x": "ULq4jmu0kzCgJRSUuR2hvKGJfXZmX0ckGIRpYYdvbQw",
+                    "y": "wNv2WCwH3if340DrtfpO9netZt_Cr9Po4FcYkNWFxf0"
+                }
+            ]
+        }
+        """
+
+        jwks = json.loads(jwks_json)
+        (actual_is_valid, actual_issues) = validate_keyset(jwks)
+
+        self.assertFalse(actual_is_valid)
+        self.assertEqual(len(actual_issues), 2)
+
+        invalid_key_use = actual_issues[0]
+        self.assertEqual(invalid_key_use.type, IssueType.KEY_USE_IS_INCORRECT)
+
+        invalid_key_use = actual_issues[1]
+        self.assertEqual(invalid_key_use.type, IssueType.KEY_ALG_IS_INCORRECT)
+
+    def test_invalid_keyset_wrong_kid(self):
+
+        jwks_json = """
+        {
+            "keys": [
+                {
+                    "kty": "EC",
+                    "use": "sig",
+                    "alg": "ES256",
+                    "kid": "notanexpectedKid",
+                    "crv": "P-256",
+                    "x": "SM85B9i8alfba9WcWehUYY5WTn6lnRQ9ivlOGrIELzY",
+                    "y": "I9Agmt_PyqNv3LLkcCBA3iNmi9dieDNrXHnQdplNvHI"
+                }
+            ]
+        }
+        """
+
+        jwks = json.loads(jwks_json)
+        (actual_is_valid, actual_issues) = validate_keyset(jwks)
+
+        self.assertFalse(actual_is_valid)
+        self.assertEqual(len(actual_issues), 1)
+
+        wrong_kid = actual_issues[0]
+        self.assertEqual(wrong_kid.type, IssueType.KID_IS_INCORRECT)
+
+    def test_invalid_keyset_wrong_kid(self):
+
+        jwks_json = """
+        {
+            "keys": [
+                {
+                    "kty": "EC",
+                    "use": "sig",
+                    "alg": "ES256",
+                    "crv": "P-256",
+                    "x": "SM85B9i8alfba9WcWehUYY5WTn6lnRQ9ivlOGrIELzY",
+                    "y": "I9Agmt_PyqNv3LLkcCBA3iNmi9dieDNrXHnQdplNvHI"
+                }
+            ]
+        }
+        """
+
+        jwks = json.loads(jwks_json)
+        (actual_is_valid, actual_issues) = validate_keyset(jwks)
+
+        self.assertFalse(actual_is_valid)
+        self.assertEqual(len(actual_issues), 1)
+
+        missing_kid = actual_issues[0]
+        self.assertEqual(missing_kid.type, IssueType.KID_IS_MISSING)
+
+    def test_keyset_1_key_valid_1_key_invalid(self):
 
         jwks_json = """
         {
@@ -412,15 +489,10 @@ class ValidateKeysetTestCase(unittest.TestCase):
         jwks = json.loads(jwks_json)
         (actual_is_valid, actual_issues) = validate_keyset(jwks)
 
-        expected_is_valid = True
-        expected_issues = [
-            Issue('Key with kid=5iNYX3Im0lBD4B3tZTQRkDw1BsJROIrcnYOsb6qjAHM contains private key material', IssueType.KEY_CONTAINS_PRIVATE_MATERIAL),
-        ]
+        self.assertTrue(actual_is_valid)
+        self.assertEqual(len(actual_issues), 0)
 
-        self.assertEqual(actual_is_valid, expected_is_valid)
-        self.assertEqual(actual_issues, expected_issues)
-
-    def test_invalid_keyset_kid_missing(self):
+    def test_keyset_1_key_valid_1_key_kid_missing(self):
 
         jwks_json = """
         {
@@ -449,13 +521,8 @@ class ValidateKeysetTestCase(unittest.TestCase):
         jwks = json.loads(jwks_json)
         (actual_is_valid, actual_issues) = validate_keyset(jwks)
 
-        expected_is_valid = True
-        expected_issues = [
-            Issue('kid is missing', IssueType.KID_IS_MISSING)
-        ]
-
-        self.assertEqual(actual_is_valid, expected_is_valid)
-        self.assertEqual(actual_issues, expected_issues)
+        self.assertTrue(actual_is_valid)
+        self.assertEqual(len(actual_issues), 0)
 
 class ValidateEntriesTestCase(unittest.TestCase):
 
