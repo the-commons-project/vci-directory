@@ -232,10 +232,12 @@ def validate_keyset(jwks_dict) -> Tuple[bool, List[Issue]]:
         at_least_one_valid_keyset = at_least_one_valid_keyset or is_valid
         keyset_issues.extend(issues)
 
-    errors = [issue for issue in keyset_issues if issue.type.level == IssueLevel.ERROR]
-    keyset_is_valid = at_least_one_valid_keyset
-
-    return [keyset_is_valid, keyset_issues]
+    # Issuers may host other keys in their keyset unrelated to SHC issuance.
+    # In that case we have no expectation of what those kids should look like
+    if at_least_one_valid_keyset:
+        return [True, []]
+    else:
+        return [False, keyset_issues]
 
 def validate_response_headers(
     response_headers: any,
