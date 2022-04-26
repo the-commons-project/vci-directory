@@ -55,7 +55,7 @@ if (!options.auditlog) {
 
 // download the specified directory
 async function fetchDirectory(directoryPath: string, verbose: boolean = false) : Promise<DirectoryLog> {
-    const issuers = JSON.parse(fs.readFileSync(options.dirpath).toString('utf-8')) as TrustedIssuers;
+    const issuers = JSON.parse(fs.readFileSync(directoryPath).toString('utf-8')) as TrustedIssuers;
     console.log(`Retrieving ${issuers.participating_issuers.length} issuers`);
 
     const issuerLogInfoArray: IssuerLogInfo[] = [];
