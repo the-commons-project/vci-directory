@@ -1,23 +1,8 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2022-04-29T04:43:40Z",
+    "auditTime": "2022-04-30T04:41:52Z",
     "issuerCount": 564,
     "issuersWithErrors": [
-        {
-            "issuer": {
-                "iss": "https://fhir.promedica.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "ProMedica",
-                "website": "https://www.promedica.org/"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
-        },
         {
             "issuer": {
                 "iss": "https://webproxy.mynovant.org/fhir-prd/api/epic/2021/Security/Open/EcKeys/32001/SHC",
@@ -54,13 +39,19 @@
                 "name": "Tampa General Hospital and University of South Florida"
             },
             "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "DHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "DH, 2048 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [
                 "RequestError: certificate has expired"
             ],
-            "warnings": [
-                "OpenSSL error: write:errno=104"
-            ]
+            "warnings": []
         },
         {
             "issuer": {
@@ -98,38 +89,58 @@
         },
         {
             "issuer": {
+                "iss": "https://pvcprod.gov.pe.ca",
+                "name": "Government of Prince Edward Island"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA-PSS",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": []
+        },
+        {
+            "issuer": {
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/giant+eagle+pharmacy",
+                "name": "Giant Eagle Pharmacy"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/harps+pharmacy",
+                "name": "Harps Pharmacy",
+                "website": "https://www.harpsfood.com/Pages/19653/COVID-19%20Vaccination%20Information"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
+        {
+            "issuer": {
                 "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/hartig+drug+co",
                 "name": "Hartig Drug Co",
                 "website": "https://www.hartigdrug.com/covidvaccine"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
-        },
-        {
-            "issuer": {
-                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/kmart+pharmacy",
-                "name": "KMART PHARMACY"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
-        },
-        {
-            "issuer": {
-                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/meijer",
-                "name": "Meijer",
-                "website": "https://clinic.meijer.com/"
             },
             "keys": [],
             "tlsDetails": {
@@ -159,20 +170,6 @@
             ],
             "warnings": [
                 "OpenSSL error: "
-            ]
-        },
-        {
-            "issuer": {
-                "iss": "https://accusense.health",
-                "name": "AccuSense Health"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "RequestError: getaddrinfo ENOTFOUND accusense.health"
-            ],
-            "warnings": [
-                "OpenSSL error: 139898780001600:error:2008F002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/b_addr.c:726:Name or service not known\nconnect:errno=22"
             ]
         }
     ],
@@ -224,32 +221,38 @@
         "Genesis Healthcare System",
         "MyHealthHome"
     ],
-    "previousAuditTime": "2022-04-28T04:54:05Z",
-    "newIssuerCount": 3,
+    "previousAuditTime": "2022-04-29T04:43:40Z",
+    "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://fhir.promedica.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://pvcprod.gov.pe.ca",
             "kids": [
-                "uPWKKpoWI3OIa11UbV9xdoRHdf5ZsYsAyvczK79L3RE"
+                "Z8YjtXO3hGPpbDR9wMcrifbcL-PswLyMFhEJGSn1yC0",
+                "uXqBkl4jkadfFUtcrkeVtXRaCCy-nNHA1aD6nKb0OJ4",
+                "rDW5Ssu6mvGAnouM1oaeiDh06OdTePgH9ZwC1MbwAoY",
+                "AWbze1dsT_69BBvlCv8g8rzUAyIBM3q6OT7zMQxBWVU",
+                "icKN8sxNH2ijHGcmqCOWHKziRPd25BoENF5Z0dVrkaI",
+                "SkSCQeF4JDcLSShAM5wejAAdB8rIT3X9-EH8rLNk0fY",
+                "L0ACjkybPcCgJOrMywfz3gJGDeEvxkUSa2j9Pbhjwz8",
+                "pCmOvJBUfo30WuG9UVlDCOvyBhPScLU2_CrAGy9A4Q8",
+                "gzeRVlR44Ia5cL67gN-6HhWsBikN_ZodlGAeGLv_HsI",
+                "D86U5NZ_OusITiBEqmgW2gRUAw1vhcbRtHujJ4wPx7w",
+                "JMCyyrr9wjXT5FY8rx6Jiel4DCfXS0ZDQPUuGdv4P1k",
+                "B5zoHRXFX54o1XgT9IbQLEqTc1GK4SEJg9vjd-K4n3o",
+                "cZxJnAOT6390E103SoaVyX2RNJenO46qyBcceU4A8go"
             ]
         },
         {
-            "iss": "https://webproxy.mynovant.org/fhir-prd/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/giant+eagle+pharmacy",
             "kids": [
-                "LscjYTUMp733zsMu6D6tGCmvR7Rk4rTO7FV5w9r4e8E"
+                "fM26plwst5o5yrC_rN6FVUtlmMr7nT4eLtgLJ6IfBTE"
             ]
         },
         {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/kmart+pharmacy",
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/harps+pharmacy",
             "kids": [
-                "U_C_KSRk6GRqOuT-tTTVid-zHxihv7fRdyuvNQPeBvM"
-            ]
-        },
-        {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/meijer",
-            "kids": [
-                "cmm6eWwLYLwRtBU69V-_jsUxfpVtPgrZshDbf5X4Z9k"
+                "4KHf7aJBy3mcDRm-Avfdch7Ps5qekl1FFGs4EQpDuo4"
             ]
         }
     ]
