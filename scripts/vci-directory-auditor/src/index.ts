@@ -3,6 +3,7 @@
 import { Command } from 'commander';
 import got from 'got';
 import fs from 'fs';
+import * as jose from 'jose';
 import path from 'path';
 import date from 'date-and-time';
 import Url from 'url-parse';
@@ -53,6 +54,22 @@ if (!options.auditlog) {
     options.auditlog = path.join('logs', `audit_log_${date.format(currentTime, 'YYYY-MM-DD-HHmmss', outputUTC)}.json`);
 }
 
+// check if a key is a valid SHC key
+async function isSHCKey(key: IssuerKey) {
+    const jwk = key as jose.JWK;
+    if (!jwk.kid || !jwk.crv || !jwk.kty || !jwk.use || !jwk.crv || !jwk.alg || !jwk.use || !jwk.x || !jwk.y) {
+        return false; // missing fields
+    }
+    if (jwk.kid !== await jose.calculateJwkThumbprint(jwk, 'sha256')) {
+        return false; // invalid kid
+    }
+    if (jwk.alg.toLowerCase() !== "es256" || jwk.use.toLowerCase() !== "sig" || jwk.crv.toLowerCase() !== "p-256") {
+        return false; // wrong key type
+    }
+    // everything is ok
+    return true;
+}
+
 // download the specified directory
 async function fetchDirectory(directoryPath: string, verbose: boolean = false) : Promise<DirectoryLog> {
     const issuers = JSON.parse(fs.readFileSync(directoryPath).toString('utf-8')) as TrustedIssuers;
@@ -86,8 +103,33 @@ async function fetchDirectory(directoryPath: string, verbose: boolean = false) :
             if (!keySet) {
                 issuerLogInfo.errors?.push("Failed to parse JSON KeySet schema");
             }
-            // TODO: try to import keys
-            issuerLogInfo.keys = keySet.keys;
+
+            // check each key; at least one must be a SHC key (some issuers might have non-SHC keys in their JWK set;
+            // not best practice, but possible). All valid keys will be logged, but only valid SHC keys will appear in
+            // the snapshot
+            let hasSHCKey = false;
+            let hasNonSHCKey = false;
+            issuerLogInfo.keys = [];
+            for await (const key of keySet.keys) { // using for loop because filter doesn't support async predicates
+                try {
+                    if (await isSHCKey(key)) {
+                        hasSHCKey = true;
+                    } else {
+                        hasNonSHCKey = true;
+                    }
+                    issuerLogInfo.keys.push(key);
+                }
+                catch (err) {
+                    issuerLogInfo.errors?.push("Error parsing key", (err as Error).toString());
+                }
+            }
+            if (!hasSHCKey) {
+                issuerLogInfo.errors?.push("No valid SHC key in issuer key set");
+            }
+            if (hasNonSHCKey) {
+                issuerLogInfo.warnings?.push("Issuer key set contains non-valid keys for SHC issuance");
+            }
+
         } catch (err) {
             issuerLogInfo.errors?.push((err as Error).toString());
         }
@@ -111,8 +153,11 @@ async function fetchDirectory(directoryPath: string, verbose: boolean = false) :
         }
         for (const key of issuerLogInfo.keys) {
             // the issuer has a card revocation list (CRL); fetch it
-            if (key.crlVersion) {
+            if (key.crlVersion !== undefined) {
                 try {
+                    if (key.crlVersion <= 0) {
+                        throw "Invalid crlVersion: " + key.crlVersion;
+                    }
                     const crlURL = `${issuer.iss}/.well-known/crl/${key.kid}.json`;
                     if (verbose) console.log("fetching CRL at " + crlURL);
                     const response = await got(crlURL, { timeout:5000 });
@@ -122,6 +167,14 @@ async function fetchDirectory(directoryPath: string, verbose: boolean = false) :
                     const crl = JSON.parse(response.body) as CRL;
                     if (!crl) {
                         throw "Can't parse CRL at " + crlURL;
+                    }
+                    if (!crl.rids || crl.rids.length == 0) {
+                        issuerLogInfo.warnings?.push("Empty CRL at " + crlURL);
+                    }
+                    // check for rid duplicates
+                    const ridsWithoutTimestamps: string[] = crl.rids.map(rid => rid.split('.')[0]);
+                    if (Array.from(new Set(ridsWithoutTimestamps)).length !== ridsWithoutTimestamps.length) {
+                        issuerLogInfo.warnings?.push("Duplicate rid values in CRL at " + crlURL);
                     }
                     issuerLogInfo.crls?.push(crl);
                 } catch (err) {
@@ -156,7 +209,7 @@ function getDuplicates(array: string[]) : string[] {
     return Array.from(new Set(duplicates));
 }
 
-// audit the directory, optionaly comparing it to a previously obtained directory
+// audit the directory, optionally comparing it to a previously obtained directory
 function audit(currentLog: DirectoryLog, previousLog: DirectoryLog | undefined) : AuditLog {
     // get the issuers from a directory log
     const getIssuers = (dir: DirectoryLog) => dir.issuerInfo.map(info => info.issuer.iss);
@@ -201,24 +254,33 @@ function audit(currentLog: DirectoryLog, previousLog: DirectoryLog | undefined) 
     return auditLog;
 }
 
-
-function directoryLogToSnapshot(log: DirectoryLog) : DirectoryLog {
+async function directoryLogToSnapshot(log: DirectoryLog) : Promise<DirectoryLog> {
     const snapshot: DirectoryLog = {
         directory: log.directory,
         time: log.time,
-        // don't list issuers with errors, and remove errors param from IssuerLogInfo for the directory snapshot
-        issuerInfo: log.issuerInfo.filter(ii => (ii.errors && ii.errors.length > 0) ? false : true).map(ii => {
-            const issuer: IssuerLogInfo = 
-            {
-                issuer: ii.issuer,
-                keys: ii.keys,
+        issuerInfo: []
+    };
+    // copy non-erroneous issuers, keeping only SHC keys and CRLs
+    for await (const ii of log.issuerInfo) { // using for loop because filter doesn't support async predicates
+        if (ii.errors && ii.errors.length > 0) {
+            continue; // skip issuers with errors
+        }
+        const issuer: IssuerLogInfo =
+        {
+            issuer: ii.issuer,
+            keys: []
+        }
+        for await (const key of ii.keys) {
+            if (await isSHCKey(key)) {
+                issuer.keys.push(key); // only keep SHC keys
             }
-            if (ii.crls && ii.crls.length > 0) {
-                issuer.crls = ii.crls;
-            }
-            return issuer;
-        })
+        }
+        if (ii.crls && ii.crls.length > 0) {
+            issuer.crls = ii.crls;
+        }
+        snapshot.issuerInfo.push(issuer);
     }
+
     return snapshot;
 }
 
@@ -227,14 +289,14 @@ function directoryLogToSnapshot(log: DirectoryLog) : DirectoryLog {
 void (async () => {
     console.log(`Auditing ${options.dirpath}`);
     try {
-        // dowload a fresh copy of the directory (with keys)
+        // download a fresh copy of the directory (with keys)
         const directoryLog = await fetchDirectory(options.dirpath, options.verbose);
         fs.writeFileSync(options.outlog, JSON.stringify(directoryLog, null, 4));
         console.log(`Directory log written to ${options.outlog}`);
 
         if (directoryLog) {
             // save a snapshot of issuers (without errors) with keys and CRLs
-            const directorySnapshot = directoryLogToSnapshot(directoryLog);
+            const directorySnapshot = await directoryLogToSnapshot(directoryLog);
             fs.writeFileSync(options.outsnapshot, JSON.stringify(directorySnapshot, null, 4));
             console.log(`Directory snapshot written to ${options.outsnapshot}`);
         }
@@ -242,7 +304,7 @@ void (async () => {
             throw "No directory available; aborting";
         }
 
-        // the audit script optionally compare the directory with a previous version to highlight changes
+        // the audit script optionally compares the directory with a previous version to highlight changes
         let previousDirectoryLog: DirectoryLog | undefined = undefined;
         if (options.previous) {
             let errMsg = `Can't read ${options.previous}`;
