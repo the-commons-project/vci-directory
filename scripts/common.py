@@ -29,7 +29,7 @@ class IssueLevel(Enum):
 
 
 class IssueType(Enum):
-    
+
     ISS_ENDS_WITH_TRAILING_SLASH = (auto(), IssueLevel.ERROR)
     FETCH_EXCEPTION = (auto(), IssueLevel.ERROR)
     KEYS_PROPERTY_MISSING = (auto(), IssueLevel.ERROR)
@@ -44,7 +44,7 @@ class IssueType(Enum):
     CANONICAL_ISS_SELF_REFERENCE = (auto(), IssueLevel.ERROR)
     CANONICAL_ISS_REFERENCE_INVALID = (auto(), IssueLevel.ERROR)
     CANONICAL_ISS_MULTIHOP_REFERENCE = (auto(), IssueLevel.ERROR)
-    ## TODO - convert CORS issues to ERROR in the future 
+    ## TODO - convert CORS issues to ERROR in the future
     CORS_HEADER_MISSING = (auto(), IssueLevel.WARNING)
     CORS_HEADER_INCORRECT = (auto(), IssueLevel.WARNING)
 
@@ -137,7 +137,7 @@ def read_issuer_entries_from_json_file(
         return list(entries.values())
 
 def issuer_entry_to_dict(issuer_entry: IssuerEntry) -> dict:
-    d = {ISS_KEY: issuer_entry.iss, NAME_KEY: issuer_entry.name} 
+    d = {ISS_KEY: issuer_entry.iss, NAME_KEY: issuer_entry.name}
     if issuer_entry.website:
         d[WEBSITE_KEY] = issuer_entry.website
     if issuer_entry.canonical_iss:
@@ -180,7 +180,7 @@ def validate_key(jwk_dict) -> Tuple[bool, List[Issue]]:
             Issue(f'Key with kid={kid} contains private key material', IssueType.KEY_CONTAINS_PRIVATE_MATERIAL)
         ]
         return [False, issues]
-    
+
     is_valid = True
     issues = []
     ## check that use matches expected use
@@ -232,10 +232,12 @@ def validate_keyset(jwks_dict) -> Tuple[bool, List[Issue]]:
         at_least_one_valid_keyset = at_least_one_valid_keyset or is_valid
         keyset_issues.extend(issues)
 
-    errors = [issue for issue in keyset_issues if issue.type.level == IssueLevel.ERROR]
-    keyset_is_valid = at_least_one_valid_keyset and len(errors) == 0
-
-    return [keyset_is_valid, keyset_issues]
+    # Issuers may host other keys in their keyset unrelated to SHC issuance.
+    # In that case we have no expectation of what those kids should look like
+    if at_least_one_valid_keyset:
+        return [True, []]
+    else:
+        return [False, keyset_issues]
 
 def validate_response_headers(
     response_headers: any,
@@ -306,7 +308,8 @@ async def validate_website(
             raise ex
 
 async def validate_issuer(
-    issuer_entry: IssuerEntry
+    issuer_entry: IssuerEntry,
+    skip_keyset_check: bool = False
 ) -> Tuple[bool, List[Issue]]:
     iss = issuer_entry.iss
     if iss.endswith('/'):
@@ -316,7 +319,10 @@ async def validate_issuer(
         return (False, issues)
     else:
         jwks_url = f'{iss}/.well-known/jwks.json'
-    
+
+    if skip_keyset_check:
+        return (True, [])
+
     try:
         (jwks, response_headers) = await fetch_jwks(jwks_url)
         headers_issues = validate_response_headers(response_headers)
@@ -330,7 +336,7 @@ async def validate_issuer(
         issues = [
             Issue(f'An exception occurred when fetching {jwks_url}: {ex}', IssueType.FETCH_EXCEPTION)
         ]
-        return (False, issues) 
+        return (False, issues)
 
 async def validate_entry(
     issuer_entry: IssuerEntry,
@@ -339,7 +345,7 @@ async def validate_entry(
 ) -> ValidationResult:
     async with semaphore:
         print('.', end='', flush=True)
-        (iss_is_valid, iss_issues) = await validate_issuer(issuer_entry)
+        (iss_is_valid, iss_issues) = await validate_issuer(issuer_entry, skip_keyset_check=issuer_entry.canonical_iss is not None)
 
         website_is_valid = True
         website_issues = []
@@ -355,7 +361,6 @@ async def validate_entry(
         canonical_iss_is_valid = True
         canonical_iss_issues = []
         if issuer_entry.canonical_iss:
-
             ## check that canonical_iss does not reference itself
             if issuer_entry.iss == issuer_entry.canonical_iss:
                 canonical_iss_is_valid = False
@@ -387,19 +392,21 @@ async def validate_entry(
         )
 
 async def validate_all_entries(
-    entries: List[IssuerEntry]
+    entries: List[IssuerEntry],
+    full_issuer_list: List[IssuerEntry]
 ) -> List[ValidationResult]:
-    entry_map = {entry.iss: entry for entry in entries}
+    full_issuer_entry_map = {entry.iss: entry for entry in full_issuer_list}
     asyncio_semaphore = asyncio.BoundedSemaphore(50)
-    aws = [validate_entry(issuer_entry, entry_map, asyncio_semaphore) for issuer_entry in entries]
+    aws = [validate_entry(issuer_entry, full_issuer_entry_map, asyncio_semaphore) for issuer_entry in entries]
     return await asyncio.gather(
         *aws
     )
 
 def validate_entries(
-    entries: List[IssuerEntry]
+    entries_to_validate: List[IssuerEntry],
+    full_issuer_list: List[IssuerEntry]
 ) -> List[ValidationResult]:
-    results = asyncio.run(validate_all_entries(entries))
+    results = asyncio.run(validate_all_entries(entries_to_validate, full_issuer_list))
     print('')
     return results
 
@@ -443,11 +450,11 @@ def analyze_results(
                 print(f'{result.issuer_entry.iss} is INVALID')
                 for error in errors:
                     print(f'{result.issuer_entry.iss}: {error.description}')
-        
+
         if show_errors_and_warnings and show_warnings:
             warnings = [issue for issue in result.issues if issue.type.level == IssueLevel.WARNING]
             for warning in warnings:
-                print(f'{result.issuer_entry.iss} warning: {warning}') 
+                print(f'{result.issuer_entry.iss} warning: {warning}')
 
     return is_valid
 

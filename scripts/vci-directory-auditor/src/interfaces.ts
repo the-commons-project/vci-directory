@@ -7,7 +7,7 @@ export interface IssuerKey {
     kid: string,
     use: string,
     alg: string,
-    crlVersion: number
+    crlVersion?: number
 }
 
 // issuer info in the directory
