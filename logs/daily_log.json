@@ -1,6 +1,6 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "time": "2022-05-04T04:43:33Z",
+    "time": "2022-05-05T04:45:16Z",
     "issuerInfo": [
         {
             "issuer": {
@@ -4595,17 +4595,7 @@
                 "iss": "https://patientfhirapis.ynhh.org/PFF/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "Yale New Haven Health System and Yale University"
             },
-            "keys": [
-                {
-                    "x": "I4AzTlLReCmNFvjeCI5j0Atm7JmXf4xVJmLzQgCagd4",
-                    "y": "rchrXnw0iDvaOtbnEFJ_zT9B5bDQuFxp5x6cUpLK-fM",
-                    "kid": "57uZ0pBa-RU1i70nVRNhcfhjmCoenByGdoYbY_n_RNM",
-                    "use": "sig",
-                    "kty": "EC",
-                    "alg": "ES256",
-                    "crv": "P-256"
-                }
-            ],
+            "keys": [],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-SHA384",
@@ -4615,7 +4605,9 @@
                 "compression": "NONE"
             },
             "crls": [],
-            "errors": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
             "warnings": []
         },
         {
@@ -5518,7 +5510,17 @@
                 "name": "Molina Healthcare",
                 "website": "https://www.molinahealthcare.com/"
             },
-            "keys": [],
+            "keys": [
+                {
+                    "x": "lPguGQMrlJua0-u3sWPExa40VXUvkjg5oz9aJk5TsUg",
+                    "y": "c3DsIvrnTZ5qt6oVy6o7EyAp1dJRXiLNH3PDgxQNQ7s",
+                    "kid": "k_n5C2uxa3xRhCUh7N6Tbc-bt7Nu2HiQpCQcygxX4h8",
+                    "use": "sig",
+                    "kty": "EC",
+                    "alg": "ES256",
+                    "crv": "P-256"
+                }
+            ],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
@@ -5528,9 +5530,7 @@
                 "compression": "NONE"
             },
             "crls": [],
-            "errors": [
-                "HTTPError: Response code 503 (Service Unavailable)"
-            ],
+            "errors": [],
             "warnings": []
         },
         {
@@ -5682,7 +5682,17 @@
                 "iss": "https://mhssp.mhs.net/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "Memorial Healthcare System"
             },
-            "keys": [],
+            "keys": [
+                {
+                    "x": "SZFlWcg1UdEcrLh-6v2sh99VclXhQFM0ypED14PV3sE",
+                    "y": "v5gpnzRVBMXJ0LdeYY9rug2xLEFQnJkO0qozGGKqM7E",
+                    "kid": "jGSgVTJh5uLgH2gR5llGJcDE90PfREMqJ55GWOHqoVk",
+                    "use": "sig",
+                    "kty": "EC",
+                    "alg": "ES256",
+                    "crv": "P-256"
+                }
+            ],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
@@ -5692,9 +5702,7 @@
                 "compression": "NONE"
             },
             "crls": [],
-            "errors": [
-                "RequestError: unable to verify the first certificate"
-            ],
+            "errors": [],
             "warnings": []
         },
         {
@@ -5715,15 +5723,17 @@
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
-                "cipher": "DHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "DH, 2048 bits",
+                "cipher": "AES128-SHA256",
+                "kexAlg": "RSA",
                 "authAlg": "RSA",
                 "pubKeySize": "4096",
                 "compression": "NONE"
             },
             "crls": [],
             "errors": [],
-            "warnings": []
+            "warnings": [
+                "TLS error: Static RSA SHOULD NOT be used, MUST prefer ECDHE and DHE"
+            ]
         },
         {
             "issuer": {
@@ -6197,17 +6207,11 @@
                     "crv": "P-256"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "4096",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -6538,7 +6542,7 @@
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
+                "cipher": "ECDHE-RSA-AES128-SHA",
                 "kexAlg": "ECDH, P-256, 256 bits",
                 "authAlg": "RSA",
                 "pubKeySize": "2048",
@@ -8248,17 +8252,11 @@
                     "crv": "P-256"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.3",
-                "cipher": "TLS_AES_256_GCM_SHA384",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA-PSS",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -8342,7 +8340,7 @@
                     "crv": "P-256",
                     "x": "9B8CKA868OKjH3ydtM1jw2ax-wo0qCHP3qDR3b9jilY",
                     "y": "pEudYHfIMz20vz-WNZargtgDDXj6GQeN410x8u2xjQ0",
-                    "crlVersion": 38
+                    "crlVersion": 39
                 }
             ],
             "tlsDetails": {
@@ -8357,7 +8355,7 @@
                 {
                     "kid": "sZ5ca2a73SgPl7aC9v4PyA4cR5zk9A6BhHX8I2CVNwM",
                     "method": "rid",
-                    "ctr": 38,
+                    "ctr": 39,
                     "rids": [
                         "YheGzx4ezAE.1643950799",
                         "24YkDsjgGsg.1643950799",
@@ -8632,7 +8630,12 @@
                         "Q9xrLsro_J4.1651550399",
                         "cJH1tWHv-Uc.1651550399",
                         "4PfZkdtN4co.1651550399",
-                        "KyDJuhVltEg.1651550399"
+                        "KyDJuhVltEg.1651550399",
+                        "pxU0uLo8WGQ.1651723199",
+                        "HuRVpSnbcUw.1651723199",
+                        "lWI7X1bzH-U.1651723199",
+                        "_y_hzSr4XAg.1651723199",
+                        "kx_5Cf11R0k.1651723199"
                     ]
                 }
             ],
@@ -8712,7 +8715,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: depth=2 C = US, ST = New Jersey, L = Jersey City, O = The USERTRUST Network, CN = USERTrust RSA Certification Authority\nverify return:1\ndepth=1 C = US, ST = MI, L = Ann Arbor, O = Internet2, OU = InCommon, CN = InCommon RSA Server CA\nverify return:1\ndepth=0 C = US, postalCode = 77030, ST = Texas, L = Houston, street = 1515 Holcombe Blvd, O = The University of Texas M.D. Anderson Cancer Center, OU = IT Engineering, CN = fhir.mdanderson.edu\nverify return:1\n140596451943744:error:1414D172:SSL routines:tls12_check_peer_sigalg:wrong signature type:../ssl/t1_lib.c:1145:"
+                "OpenSSL error: depth=2 C = US, ST = New Jersey, L = Jersey City, O = The USERTRUST Network, CN = USERTrust RSA Certification Authority\nverify return:1\ndepth=1 C = US, ST = MI, L = Ann Arbor, O = Internet2, OU = InCommon, CN = InCommon RSA Server CA\nverify return:1\ndepth=0 C = US, postalCode = 77030, ST = Texas, L = Houston, street = 1515 Holcombe Blvd, O = The University of Texas M.D. Anderson Cancer Center, OU = IT Engineering, CN = fhir.mdanderson.edu\nverify return:1\n140607482406208:error:1414D172:SSL routines:tls12_check_peer_sigalg:wrong signature type:../ssl/t1_lib.c:1145:"
             ]
         },
         {
@@ -9970,17 +9973,11 @@
                     "crv": "P-256"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -10208,14 +10205,28 @@
                 "iss": "https://epic-fhir-prd.upmc.com/FHIR-PRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "University of Pittsburgh Medical Center (UPMC)"
             },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            "keys": [
+                {
+                    "x": "CYuBPgiP1ILvF7BoSuvGwymdzLhW2hD8lCZilC7hFg0",
+                    "y": "1gy11quqQ07FyEVRWHJt7PXt5-DZ5ko8tHRZv81pTIU",
+                    "kid": "4jzUyIF5gJ_IbzzkJ0c8S1iBJ5aTLoSEt9FQ4ZMiu94",
+                    "use": "sig",
+                    "kty": "EC",
+                    "alg": "ES256",
+                    "crv": "P-256"
+                }
             ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [],
+            "warnings": []
         },
         {
             "issuer": {
@@ -10484,19 +10495,13 @@
                 "name": "Tampa General Hospital and University of South Florida"
             },
             "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "DHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "DH, 2048 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [
                 "RequestError: certificate has expired"
             ],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: write:errno=104"
+            ]
         },
         {
             "issuer": {
@@ -11185,17 +11190,7 @@
                 "name": "Shannon Health",
                 "website": "https://www.shannonhealth.com/"
             },
-            "keys": [
-                {
-                    "x": "kNlR4zhxdqeKNn8l3fy-uMhqEo1f8a3xysRyOOTmF-U",
-                    "y": "lVXU0elu7s9ojOkcOwaeAq-6v-VCPXgMkrx6T7NYBIY",
-                    "kid": "olVoBiDPbga16QNVEO914-DbInqPozljsdlSS523898",
-                    "use": "sig",
-                    "kty": "EC",
-                    "alg": "ES256",
-                    "crv": "P-256"
-                }
-            ],
+            "keys": [],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
@@ -11205,7 +11200,9 @@
                 "compression": "NONE"
             },
             "crls": [],
-            "errors": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
             "warnings": []
         },
         {
@@ -11368,17 +11365,11 @@
                     "crv": "P-256"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "DHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "DH, 2048 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: depth=2 OU = GlobalSign Root CA - R3, O = GlobalSign, CN = GlobalSign\nverify return:1\ndepth=1 C = BE, O = GlobalSign nv-sa, CN = GlobalSign RSA OV SSL CA 2018\nverify return:1\ndepth=0 C = US, ST = Minnesota, L = Saint Paul, O = Fairview Health Services, CN = *.fairview.org\nverify return:1\nwrite:errno=104"
+            ]
         },
         {
             "issuer": {
@@ -13094,17 +13085,11 @@
                     "crv": "P-256"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -15168,22 +15153,36 @@
                     "alg": "ES256"
                 }
             ],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "warnings": []
         },
         {
             "issuer": {
                 "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/giant+eagle+pharmacy",
                 "name": "Giant Eagle Pharmacy"
             },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            "keys": [
+                {
+                    "kty": "EC",
+                    "crv": "P-256",
+                    "x": "-QUS_j6Ks7tTL1IyCmkKkHeI-IW55BgRD5JJ6NDKbL0",
+                    "y": "iz2BwmfltxYBrETZ70pkRWfdGbPCcynrMMgNEIZ02Pc",
+                    "kid": "fM26plwst5o5yrC_rN6FVUtlmMr7nT4eLtgLJ6IfBTE",
+                    "use": "sig",
+                    "alg": "ES256"
+                }
             ],
+            "crls": [],
+            "errors": [],
             "warnings": [
                 "OpenSSL error: "
             ]
@@ -15194,11 +15193,19 @@
                 "name": "Harps Pharmacy",
                 "website": "https://www.harpsfood.com/Pages/19653/COVID-19%20Vaccination%20Information"
             },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            "keys": [
+                {
+                    "kty": "EC",
+                    "crv": "P-256",
+                    "x": "NlILTIQoZgmcvHtsMxx6KgaLuUljAgg0_HuDyAcTBR4",
+                    "y": "XnAVyx0OVdEw9SdIAZyMpvqRvkna4zbzOcISU0onmx4",
+                    "kid": "4KHf7aJBy3mcDRm-Avfdch7Ps5qekl1FFGs4EQpDuo4",
+                    "use": "sig",
+                    "alg": "ES256"
+                }
             ],
+            "crls": [],
+            "errors": [],
             "warnings": [
                 "OpenSSL error: "
             ]
@@ -15237,19 +15244,11 @@
                 "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/kmart+pharmacy",
                 "name": "KMART PHARMACY"
             },
-            "keys": [
-                {
-                    "kty": "EC",
-                    "crv": "P-256",
-                    "x": "vnz-riIGGnG5QXoN9hCRh7HiK0X-YWaduPOK82_qtq0",
-                    "y": "Aw6J9vSzG0w7UO6CaznTRvLndFnZ5RCjl3mK5H0497s",
-                    "kid": "U_C_KSRk6GRqOuT-tTTVid-zHxihv7fRdyuvNQPeBvM",
-                    "use": "sig",
-                    "alg": "ES256"
-                }
-            ],
+            "keys": [],
             "crls": [],
-            "errors": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
             "warnings": [
                 "OpenSSL error: "
             ]
@@ -15282,14 +15281,28 @@
                 "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/pharmaca",
                 "name": "Pharmaca"
             },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            "keys": [
+                {
+                    "kty": "EC",
+                    "crv": "P-256",
+                    "x": "5oc8ywImdTcDeJHk_x2A7XQaXHgpOpHqGO7cFRLl5yU",
+                    "y": "hX9Rs7g47Dn04eezx_5RUQQ42bnuCH15LvJPV_VoUy0",
+                    "kid": "3Dtn69t66RKUD8y06Dgig0TIoyh1V1T3cW9Bkex2uQk",
+                    "use": "sig",
+                    "alg": "ES256"
+                }
             ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [],
+            "warnings": []
         },
         {
             "issuer": {
@@ -15297,14 +15310,28 @@
                 "name": "Skripts",
                 "website": "https://www.skriptspharmacy.com/immunizations"
             },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            "keys": [
+                {
+                    "kty": "EC",
+                    "crv": "P-256",
+                    "x": "4Oqpp8MbWLjn1vtNIQ4-t6phpguPubaNfpBW3P5SmaQ",
+                    "y": "FaRtKLd60fjiBQeBC0jaxcuP6kBSHsKmxcS4MSnSHug",
+                    "kid": "Rzl1pLWRH1SI-ybhG9EpVbUaKQNBF0Sv2jR6Vk3XiYM",
+                    "use": "sig",
+                    "alg": "ES256"
+                }
             ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [],
+            "warnings": []
         },
         {
             "issuer": {
@@ -15410,17 +15437,11 @@
                     "crv": "P-256"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -15625,7 +15646,17 @@
                 "name": "Yuma Regional Medical Center",
                 "website": "https://www.yumaregional.org/Home"
             },
-            "keys": [],
+            "keys": [
+                {
+                    "x": "aNy2ZfeGMDzhT1YWfkHbGklE7u5GYS_Uql-74HlcXDA",
+                    "y": "ujE0UrcsgeiipvsZM2EFlO1F4cTiozKTBUirHpIseI4",
+                    "kid": "teYn5RVZyzJOH0oWqb0hDiMyXEDjT2Ut5c5xigpXmrQ",
+                    "use": "sig",
+                    "kty": "EC",
+                    "alg": "ES256",
+                    "crv": "P-256"
+                }
+            ],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
@@ -15635,9 +15666,7 @@
                 "compression": "NONE"
             },
             "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
+            "errors": [],
             "warnings": []
         },
         {
@@ -16535,7 +16564,7 @@
             "keys": [
                 {
                     "alg": "ES256",
-                    "crlVersion": 47,
+                    "crlVersion": 48,
                     "crv": "P-256",
                     "kid": "TKPyzMtKh7WQaCzsw6rOK8ZUOZlND2VcBwhFIIcCqUE",
                     "kty": "EC",
@@ -16554,56 +16583,57 @@
             },
             "crls": [
                 {
-                    "ctr": 47,
+                    "ctr": 48,
                     "kid": "TKPyzMtKh7WQaCzsw6rOK8ZUOZlND2VcBwhFIIcCqUE",
                     "method": "rid",
                     "rids": [
-                        "8dPgHYssT9m5BvaXlTm2Ig",
-                        "pp9IIofaQ6aptStmCrOZXQ",
+                        "xA6fOampRI6EbshZMGSvbQ",
+                        "qm23JyufSlKdUhN3hXxL9w",
                         "fQoddmBFQW6O0YBb_53eQg",
+                        "pp9IIofaQ6aptStmCrOZXQ",
+                        "8dPgHYssT9m5BvaXlTm2Ig",
                         "TMlCjyVIRfO94G5fA4Cn7A",
                         "fSW6Z2NfR8yoeev7epv-KA",
                         "qQnbKcmqTB6LMFq62t7XSQ",
-                        "qm23JyufSlKdUhN3hXxL9w",
-                        "G-W-0_RjRN6ssEN2AJVxWQ",
-                        "4-TGEu0rQmm1S8gt2hTDwA",
                         "GpXysSJ7S9ykVBsr2vwOSw",
-                        "xA6fOampRI6EbshZMGSvbQ",
-                        "CtUSbi0aSIOqBAoCxLKvcw",
-                        "o_X344wVSLKRRKvNoPBpVQ",
-                        "wOYijr3FS22wd3xuMi4myg",
-                        "NMXNuohgQNmtvDW-xCnRcQ",
+                        "4-TGEu0rQmm1S8gt2hTDwA",
                         "sNTQdOq5To-a2Z_aPhjVMw",
+                        "G-W-0_RjRN6ssEN2AJVxWQ",
+                        "wOYijr3FS22wd3xuMi4myg",
+                        "o_X344wVSLKRRKvNoPBpVQ",
+                        "NMXNuohgQNmtvDW-xCnRcQ",
+                        "OK_SsH-6QD2tYrWDuOJOPw",
+                        "CtUSbi0aSIOqBAoCxLKvcw",
                         "KXzJw5UaR6mMl9oe1lW6jA",
-                        "50Bj-G_iTJGBlBlqf66AUQ",
-                        "6-Zuh-3iQdWGm1ZFEIjpog",
                         "BH-awAGaTq-K5zzN4st6EA",
                         "Pm0yv9H6SAyuJLBLoZic6Q",
+                        "6-Zuh-3iQdWGm1ZFEIjpog",
+                        "saN0QoSBSe-zC9QqSTq9Qg",
                         "2k6BGJKgRMSpl8cOFTOZ3Q",
+                        "SHGNyPy8Qnmceu9ja3nxdA",
+                        "qCx1w6fxS0-W87LwctZ63Q",
                         "dkHFdSeIQ1SIz5hWrEFnNA",
+                        "VwGltb10T6CkBNR9HHggTA",
                         "7Ez7xueATwSeICt8Pdm_YQ",
                         "ivSRK2cKSUWzj7oB71KFKA",
                         "tfhrFt7aSBqd-dJEi4LHag",
-                        "9yndpTWuQ_SZSZN8r618pA",
-                        "OK_SsH-6QD2tYrWDuOJOPw",
-                        "saN0QoSBSe-zC9QqSTq9Qg",
-                        "qCx1w6fxS0-W87LwctZ63Q",
-                        "SHGNyPy8Qnmceu9ja3nxdA",
-                        "VwGltb10T6CkBNR9HHggTA",
+                        "Atqb5-flRLWBMk0HpIFt_A",
                         "SEFPNnRZRMGfrAucHV-3MA",
+                        "50Bj-G_iTJGBlBlqf66AUQ",
                         "rQvY5KBRSeOZyMi-GNIcWw",
                         "fBs8zh3LQK-hMpFfO1nE4Q",
-                        "Atqb5-flRLWBMk0HpIFt_A",
                         "csDMIQ1MTsWEb5DE3w9bfg",
                         "cujw9e2pQ_CKo7hEZA5tSQ",
-                        "11vdJcZnQT6FmR2m52xtSA",
-                        "W95UIoxDTTuT3B9ChfxcBw",
-                        "e22u6xCYRHmaBWfBnpLGag",
-                        "01hsiOTpT5uvam9RrGcFwQ",
+                        "9yndpTWuQ_SZSZN8r618pA",
                         "rBubvRbeTiq63KVXiM7UUA",
+                        "01hsiOTpT5uvam9RrGcFwQ",
+                        "W95UIoxDTTuT3B9ChfxcBw",
+                        "11vdJcZnQT6FmR2m52xtSA",
+                        "e22u6xCYRHmaBWfBnpLGag",
                         "xZa3gXulSGugK5TI50sLXw",
                         "qx1nP4SiTxWhl1KZQM5brw",
-                        "IhX6f2YfScShh1hWDQaGPQ"
+                        "IhX6f2YfScShh1hWDQaGPQ",
+                        "Oez5cTifSayFJ_gYkec7iQ"
                     ]
                 }
             ],
