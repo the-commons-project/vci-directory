@@ -10,6 +10,8 @@
 | `website` | A website where the consumer can get their SMART Health Card or learn where they can get their SMART Health Card |
 | `help_line` | A phone number a consumer can call for assistance |
 | `issuer_type` | The type of issuer (see below for details) |
+| `label` | A representative label for the issuer. Used when issuer name may be too long, misrepresentative, or provides more common nomenclature. |
+| `currently_issuing` | Boolean variable that indicates if an issuer is currently issuing. It is assumed an issuer is actively issuing if not included in metadata. |
 | `locations` | A list of locations (see below for details) that the issuer is associated with |
 
 ## Issuer Type Representation
