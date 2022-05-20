@@ -29,6 +29,7 @@ A simple hierarchy provides an easier means to segregate government and non-gove
 | `governmental.nation` | A nation or national governmental agency issuing for a nation |
 | `governmental.state_province_territory` | A state, province, territory or governmental agency issuing for a state, province, or territory |
 | `governmental.city_county` | A city, county or governmental agency issuing for a city |
+| `governmental.health_jurisdiction` | A jurisdiction or governmental agency issuing for a jurisdiction |
 | `governmental.agency` | A governmental agency |
 
 ## Location Representation
