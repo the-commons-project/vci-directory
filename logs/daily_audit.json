@@ -1,17 +1,17 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2022-06-03T04:40:03Z",
+    "auditTime": "2022-06-04T04:39:16Z",
     "issuerCount": 569,
     "issuersWithErrors": [
         {
             "issuer": {
-                "iss": "https://skphr.prd.telushealthspace.com",
-                "name": "eHealth Saskatchewan"
+                "iss": "https://epicproxy.et1073.epichosted.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Englewood Hospital and Medical Center"
             },
             "keys": [],
             "tlsDetails": {
                 "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
                 "kexAlg": "ECDH, P-256, 256 bits",
                 "authAlg": "RSA",
                 "pubKeySize": "2048",
@@ -19,9 +19,23 @@
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 500 (Internal Server Error)"
+                "HTTPError: Response code 503 (Service Unavailable)"
             ],
             "warnings": []
+        },
+        {
+            "issuer": {
+                "iss": "https://unified-api.ucsf.edu/clinical/apex/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "UCSF Health"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -78,18 +92,45 @@
         },
         {
             "issuer": {
-                "iss": "https://webproxy.mynovant.org/fhir-prd/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Novant Health",
-                "website": "https://www.novanthealth.org/"
+                "iss": "https://fhir.promedica.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "ProMedica",
+                "website": "https://www.promedica.org/"
             },
             "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, P-521, 521 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [
                 "TimeoutError: Timeout awaiting 'request' for 5000ms"
             ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "warnings": []
+        },
+        {
+            "issuer": {
+                "iss": "https://epproxy.bayhealth.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Bayhealth Medical Center",
+                "website": "https://www.bayhealth.org/"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": []
         },
         {
             "issuer": {
@@ -108,23 +149,30 @@
         },
         {
             "issuer": {
-                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/giant+eagle+pharmacy",
-                "name": "Giant Eagle Pharmacy"
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/fruth",
+                "name": "Fruth",
+                "website": "https://fruthpharmacy.com/"
             },
             "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [
                 "TimeoutError: Timeout awaiting 'request' for 5000ms"
             ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "warnings": []
         },
         {
             "issuer": {
-                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/hartig+drug+co",
-                "name": "Hartig Drug Co",
-                "website": "https://www.hartigdrug.com/covidvaccine"
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/skripts",
+                "name": "Skripts",
+                "website": "https://www.skriptspharmacy.com/immunizations"
             },
             "keys": [],
             "crls": [],
@@ -184,20 +232,44 @@
         "Genesis Healthcare System",
         "MyHealthHome"
     ],
-    "previousAuditTime": "2022-06-02T04:47:56Z",
+    "previousAuditTime": "2022-06-03T04:40:03Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://webproxy.mynovant.org/fhir-prd/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://epicproxy.et1073.epichosted.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "LscjYTUMp733zsMu6D6tGCmvR7Rk4rTO7FV5w9r4e8E"
+                "4nvtz4SKm7W0Kl5AZ-3tIpw_FqqcrdWIVqryIUzfygs"
             ]
         },
         {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/hartig+drug+co",
+            "iss": "https://unified-api.ucsf.edu/clinical/apex/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "85iFG1HeKPc-TFBQxy_U5eSDa3X_XUhDGRVp9h3eU_w"
+                "ZwFzkFHXRFwE_0Jy0oyINwNZg4yLPKk5DW96xDwjMEo"
+            ]
+        },
+        {
+            "iss": "https://fhir.promedica.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "kids": [
+                "uPWKKpoWI3OIa11UbV9xdoRHdf5ZsYsAyvczK79L3RE"
+            ]
+        },
+        {
+            "iss": "https://epproxy.bayhealth.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "kids": [
+                "Ya2s4TJq_SEWD8Kl_uDPLMmsYKHTsiNuRrv8cbQtq0o"
+            ]
+        },
+        {
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/fruth",
+            "kids": [
+                "BCP1AWL6exueHVfIMeS2xADaXQy6pa-O2lWEL2JQJdc"
+            ]
+        },
+        {
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/skripts",
+            "kids": [
+                "Rzl1pLWRH1SI-ybhG9EpVbUaKQNBF0Sv2jR6Vk3XiYM"
             ]
         }
     ]

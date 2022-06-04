@@ -1,6 +1,6 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "time": "2022-06-03T04:40:03Z",
+    "time": "2022-06-04T04:39:16Z",
     "issuerInfo": [
         {
             "issuer": {
@@ -4291,11 +4291,17 @@
                     "crv": "P-256"
                 }
             ],
+            "tlsDetails": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA-PSS",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "warnings": []
         },
         {
             "issuer": {
@@ -4315,11 +4321,17 @@
                     "crv": "P-256"
                 }
             ],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "warnings": []
         },
         {
             "issuer": {
@@ -4547,17 +4559,7 @@
                 "iss": "https://epicproxy.et1073.epichosted.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "Englewood Hospital and Medical Center"
             },
-            "keys": [
-                {
-                    "x": "UPDdYJf5wLmgrD1oPJ0mUYWUk3yDFAQcp7odjj0icwE",
-                    "y": "8L8j_UfdwQMknH94eKhX_uOGn2UBfSJmQaB5ohWn-MM",
-                    "kid": "4nvtz4SKm7W0Kl5AZ-3tIpw_FqqcrdWIVqryIUzfygs",
-                    "use": "sig",
-                    "kty": "EC",
-                    "alg": "ES256",
-                    "crv": "P-256"
-                }
-            ],
+            "keys": [],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
@@ -4567,7 +4569,9 @@
                 "compression": "NONE"
             },
             "crls": [],
-            "errors": [],
+            "errors": [
+                "HTTPError: Response code 503 (Service Unavailable)"
+            ],
             "warnings": []
         },
         {
@@ -4689,28 +4693,14 @@
                 "iss": "https://unified-api.ucsf.edu/clinical/apex/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "UCSF Health"
             },
-            "keys": [
-                {
-                    "x": "_FFLdNDMrLdKgHM7z7hpAIVIeIf4mgJA7UauIgmqVBI",
-                    "y": "2Z0QoNcrw-N80Jhpctaxj89LpWhulJLyF7g4I7nmdJU",
-                    "kid": "ZwFzkFHXRFwE_0Jy0oyINwNZg4yLPKk5DW96xDwjMEo",
-                    "use": "sig",
-                    "kty": "EC",
-                    "alg": "ES256",
-                    "crv": "P-256"
-                }
-            ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
+            "keys": [],
             "crls": [],
-            "errors": [],
-            "warnings": []
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -5655,17 +5645,15 @@
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
-                "cipher": "AES128-SHA256",
-                "kexAlg": "RSA",
+                "cipher": "ECDHE-RSA-AES256-SHA384",
+                "kexAlg": "ECDH, P-521, 521 bits",
                 "authAlg": "RSA",
                 "pubKeySize": "2048",
                 "compression": "NONE"
             },
             "crls": [],
             "errors": [],
-            "warnings": [
-                "TLS error: Static RSA SHOULD NOT be used, MUST prefer ECDHE and DHE"
-            ]
+            "warnings": []
         },
         {
             "issuer": {
@@ -6157,7 +6145,17 @@
                 "iss": "https://skphr.prd.telushealthspace.com",
                 "name": "eHealth Saskatchewan"
             },
-            "keys": [],
+            "keys": [
+                {
+                    "kty": "EC",
+                    "use": "sig",
+                    "crv": "P-256",
+                    "kid": "xOqUO82bEz8APn_5wohZZvSK4Ui6pqWdSAv5BEhkes0",
+                    "x": "Hk4ktlNfoIIo7jp5I8cefp54Ils3TsKvKXw_E9CGIPE",
+                    "y": "7hVieFGuHJeaNRCxVgKeVpoxDJevytgoCxqVZ6cfcdk",
+                    "alg": "ES256"
+                }
+            ],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
@@ -6167,9 +6165,7 @@
                 "compression": "NONE"
             },
             "crls": [],
-            "errors": [
-                "HTTPError: Response code 500 (Internal Server Error)"
-            ],
+            "errors": [],
             "warnings": []
         },
         {
@@ -6352,11 +6348,17 @@
                     "crv": "P-256"
                 }
             ],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-SHA384",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "warnings": []
         },
         {
             "issuer": {
@@ -6459,17 +6461,11 @@
                     "crv": "P-256"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "DHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "DH, 2048 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: depth=2 C = US, O = DigiCert Inc, OU = www.digicert.com, CN = DigiCert Global Root CA\nverify return:1\ndepth=1 C = US, O = DigiCert Inc, CN = DigiCert TLS RSA SHA256 2020 CA1\nverify return:1\ndepth=0 C = US, ST = Ohio, L = Dayton, O = Premier Health, CN = *.premierhealthpartners.org\nverify return:1\nwrite:errno=104"
+            ]
         },
         {
             "issuer": {
@@ -8341,7 +8337,7 @@
                     "crv": "P-256",
                     "x": "9B8CKA868OKjH3ydtM1jw2ax-wo0qCHP3qDR3b9jilY",
                     "y": "pEudYHfIMz20vz-WNZargtgDDXj6GQeN410x8u2xjQ0",
-                    "crlVersion": 49
+                    "crlVersion": 50
                 }
             ],
             "tlsDetails": {
@@ -8356,7 +8352,7 @@
                 {
                     "kid": "sZ5ca2a73SgPl7aC9v4PyA4cR5zk9A6BhHX8I2CVNwM",
                     "method": "rid",
-                    "ctr": 49,
+                    "ctr": 50,
                     "rids": [
                         "YheGzx4ezAE.1643950799",
                         "24YkDsjgGsg.1643950799",
@@ -8726,7 +8722,10 @@
                         "Nu5rJB0FQpQ.1654142399",
                         "aol-6ukozOY.1654142399",
                         "I3ZiEZg4N_w.1654228799",
-                        "J8vVroMh-gI.1654228799"
+                        "J8vVroMh-gI.1654228799",
+                        "sg7OInQbEqw.1654315199",
+                        "HKfN-Oc8ib4.1654315199",
+                        "05O8-Tbo3Po.1654315199"
                     ]
                 }
             ],
@@ -8769,22 +8768,20 @@
                 "name": "ProMedica",
                 "website": "https://www.promedica.org/"
             },
-            "keys": [
-                {
-                    "x": "Hty2sTB8Apkrr-Zvi7nuchk-U9dey3nS5wZxxsP6ZeY",
-                    "y": "3zXcnWpnWc6jJEvVUuHph2SZ4h7KSJm8HSnL3HoFAuk",
-                    "kid": "uPWKKpoWI3OIa11UbV9xdoRHdf5ZsYsAyvczK79L3RE",
-                    "use": "sig",
-                    "kty": "EC",
-                    "alg": "ES256",
-                    "crv": "P-256"
-                }
-            ],
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, P-521, 521 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
-            "errors": [],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": []
         },
         {
             "issuer": {
@@ -8806,7 +8803,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: depth=2 C = US, ST = New Jersey, L = Jersey City, O = The USERTRUST Network, CN = USERTrust RSA Certification Authority\nverify return:1\ndepth=1 C = US, ST = MI, L = Ann Arbor, O = Internet2, OU = InCommon, CN = InCommon RSA Server CA\nverify return:1\ndepth=0 C = US, postalCode = 77030, ST = Texas, L = Houston, street = 1515 Holcombe Blvd, O = The University of Texas M.D. Anderson Cancer Center, OU = IT Engineering, CN = fhir.mdanderson.edu\nverify return:1\n140253134312768:error:1414D172:SSL routines:tls12_check_peer_sigalg:wrong signature type:../ssl/t1_lib.c:1145:"
+                "OpenSSL error: depth=2 C = US, ST = New Jersey, L = Jersey City, O = The USERTRUST Network, CN = USERTrust RSA Certification Authority\nverify return:1\ndepth=1 C = US, ST = MI, L = Ann Arbor, O = Internet2, OU = InCommon, CN = InCommon RSA Server CA\nverify return:1\ndepth=0 C = US, postalCode = 77030, ST = Texas, L = Houston, street = 1515 Holcombe Blvd, O = The University of Texas M.D. Anderson Cancer Center, OU = IT Engineering, CN = fhir.mdanderson.edu\nverify return:1\n140239026328896:error:1414D172:SSL routines:tls12_check_peer_sigalg:wrong signature type:../ssl/t1_lib.c:1145:"
             ]
         },
         {
@@ -8929,17 +8926,7 @@
                 "name": "Bayhealth Medical Center",
                 "website": "https://www.bayhealth.org/"
             },
-            "keys": [
-                {
-                    "x": "4hveK2kzzXi8wEIyeefUy7YN0YstZwqsqFGxoYdeqN8",
-                    "y": "fjpoYraIHwlUDJomnI9EZBbHZzpL6wORSRfqgv7Qh1Y",
-                    "kid": "Ya2s4TJq_SEWD8Kl_uDPLMmsYKHTsiNuRrv8cbQtq0o",
-                    "use": "sig",
-                    "kty": "EC",
-                    "alg": "ES256",
-                    "crv": "P-256"
-                }
-            ],
+            "keys": [],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
@@ -8949,7 +8936,9 @@
                 "compression": "NONE"
             },
             "crls": [],
-            "errors": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
             "warnings": []
         },
         {
@@ -9111,17 +9100,11 @@
                     "crv": "P-256"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -9778,8 +9761,8 @@
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
-                "cipher": "DHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "DH, 2048 bits",
+                "cipher": "ECDHE-RSA-AES256-SHA384",
+                "kexAlg": "ECDH, P-521, 521 bits",
                 "authAlg": "RSA",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -9851,14 +9834,28 @@
                 "name": "Novant Health",
                 "website": "https://www.novanthealth.org/"
             },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            "keys": [
+                {
+                    "x": "RwQD66A1lYQrXG8P9wyS1jY7N8EDGtjyd-Pr_OkDRFM",
+                    "y": "u_yR5xJqB6UIu4L2P8ivcs0y1G2GV2n2MJxNDtFrjIA",
+                    "kid": "LscjYTUMp733zsMu6D6tGCmvR7Rk4rTO7FV5w9r4e8E",
+                    "use": "sig",
+                    "kty": "EC",
+                    "alg": "ES256",
+                    "crv": "P-256"
+                }
             ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, P-384, 384 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "4096",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [],
+            "warnings": []
         },
         {
             "issuer": {
@@ -10050,17 +10047,11 @@
                     "crv": "P-256"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -10774,11 +10765,17 @@
                     "crv": "P-256"
                 }
             ],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "warnings": []
         },
         {
             "issuer": {
@@ -11160,7 +11157,7 @@
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-SHA384",
-                "kexAlg": "ECDH, P-521, 521 bits",
+                "kexAlg": "ECDH, P-256, 256 bits",
                 "authAlg": "RSA",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -12818,8 +12815,8 @@
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-SHA384",
-                "kexAlg": "ECDH, P-256, 256 bits",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, P-384, 384 bits",
                 "authAlg": "RSA",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -13198,11 +13195,17 @@
                     "crv": "P-256"
                 }
             ],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "warnings": []
         },
         {
             "issuer": {
@@ -15264,6 +15267,49 @@
                     "alg": "ES256"
                 }
             ],
+            "crls": [],
+            "errors": [],
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/fruth",
+                "name": "Fruth",
+                "website": "https://fruthpharmacy.com/"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": []
+        },
+        {
+            "issuer": {
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/giant+eagle+pharmacy",
+                "name": "Giant Eagle Pharmacy"
+            },
+            "keys": [
+                {
+                    "kty": "EC",
+                    "crv": "P-256",
+                    "x": "-QUS_j6Ks7tTL1IyCmkKkHeI-IW55BgRD5JJ6NDKbL0",
+                    "y": "iz2BwmfltxYBrETZ70pkRWfdGbPCcynrMMgNEIZ02Pc",
+                    "kid": "fM26plwst5o5yrC_rN6FVUtlmMr7nT4eLtgLJ6IfBTE",
+                    "use": "sig",
+                    "alg": "ES256"
+                }
+            ],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
@@ -15275,43 +15321,6 @@
             "crls": [],
             "errors": [],
             "warnings": []
-        },
-        {
-            "issuer": {
-                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/fruth",
-                "name": "Fruth",
-                "website": "https://fruthpharmacy.com/"
-            },
-            "keys": [
-                {
-                    "kty": "EC",
-                    "crv": "P-256",
-                    "x": "V6pQ7NEjjqLS9osxCsugj-ER3C1ZPwYurMnJ0qkrXNo",
-                    "y": "c_iP7MHdJJbmdQXh9LAlVZgxCIfMeufkJt_TDXgiYi0",
-                    "kid": "BCP1AWL6exueHVfIMeS2xADaXQy6pa-O2lWEL2JQJdc",
-                    "use": "sig",
-                    "alg": "ES256"
-                }
-            ],
-            "crls": [],
-            "errors": [],
-            "warnings": [
-                "OpenSSL error: "
-            ]
-        },
-        {
-            "issuer": {
-                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/giant+eagle+pharmacy",
-                "name": "Giant Eagle Pharmacy"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
         },
         {
             "issuer": {
@@ -15330,11 +15339,17 @@
                     "alg": "ES256"
                 }
             ],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "warnings": []
         },
         {
             "issuer": {
@@ -15342,14 +15357,28 @@
                 "name": "Hartig Drug Co",
                 "website": "https://www.hartigdrug.com/covidvaccine"
             },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            "keys": [
+                {
+                    "kty": "EC",
+                    "crv": "P-256",
+                    "x": "2DRkq2sHgzzLvLOx8kz_6LbihPoXWkGQbvajRgfeR0U",
+                    "y": "V1wBkYRvzUs83iOplhXjxBOJKl3C6dFPV0xbgCW0MQc",
+                    "kid": "85iFG1HeKPc-TFBQxy_U5eSDa3X_XUhDGRVp9h3eU_w",
+                    "use": "sig",
+                    "alg": "ES256"
+                }
             ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [],
+            "warnings": []
         },
         {
             "issuer": {
@@ -15396,11 +15425,17 @@
                     "alg": "ES256"
                 }
             ],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "warnings": []
         },
         {
             "issuer": {
@@ -15418,17 +15453,11 @@
                     "alg": "ES256"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -15436,19 +15465,11 @@
                 "name": "Skripts",
                 "website": "https://www.skriptspharmacy.com/immunizations"
             },
-            "keys": [
-                {
-                    "kty": "EC",
-                    "crv": "P-256",
-                    "x": "4Oqpp8MbWLjn1vtNIQ4-t6phpguPubaNfpBW3P5SmaQ",
-                    "y": "FaRtKLd60fjiBQeBC0jaxcuP6kBSHsKmxcS4MSnSHug",
-                    "kid": "Rzl1pLWRH1SI-ybhG9EpVbUaKQNBF0Sv2jR6Vk3XiYM",
-                    "use": "sig",
-                    "alg": "ES256"
-                }
-            ],
+            "keys": [],
             "crls": [],
-            "errors": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
             "warnings": [
                 "OpenSSL error: "
             ]
@@ -15557,11 +15578,17 @@
                     "crv": "P-256"
                 }
             ],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "warnings": []
         },
         {
             "issuer": {
@@ -16686,7 +16713,7 @@
             "keys": [
                 {
                     "alg": "ES256",
-                    "crlVersion": 195,
+                    "crlVersion": 197,
                     "crv": "P-256",
                     "kid": "TKPyzMtKh7WQaCzsw6rOK8ZUOZlND2VcBwhFIIcCqUE",
                     "kty": "EC",
@@ -16705,204 +16732,206 @@
             },
             "crls": [
                 {
-                    "ctr": 195,
+                    "ctr": 197,
                     "kid": "TKPyzMtKh7WQaCzsw6rOK8ZUOZlND2VcBwhFIIcCqUE",
                     "method": "rid",
                     "rids": [
-                        "TMlCjyVIRfO94G5fA4Cn7A",
                         "pp9IIofaQ6aptStmCrOZXQ",
                         "8dPgHYssT9m5BvaXlTm2Ig",
                         "qm23JyufSlKdUhN3hXxL9w",
-                        "fSW6Z2NfR8yoeev7epv-KA",
                         "qQnbKcmqTB6LMFq62t7XSQ",
+                        "TMlCjyVIRfO94G5fA4Cn7A",
+                        "fSW6Z2NfR8yoeev7epv-KA",
                         "fQoddmBFQW6O0YBb_53eQg",
                         "GpXysSJ7S9ykVBsr2vwOSw",
-                        "G-W-0_RjRN6ssEN2AJVxWQ",
                         "xA6fOampRI6EbshZMGSvbQ",
-                        "4-TGEu0rQmm1S8gt2hTDwA",
                         "o_X344wVSLKRRKvNoPBpVQ",
+                        "4-TGEu0rQmm1S8gt2hTDwA",
+                        "G-W-0_RjRN6ssEN2AJVxWQ",
                         "sNTQdOq5To-a2Z_aPhjVMw",
                         "wOYijr3FS22wd3xuMi4myg",
-                        "NMXNuohgQNmtvDW-xCnRcQ",
+                        "6-Zuh-3iQdWGm1ZFEIjpog",
                         "CtUSbi0aSIOqBAoCxLKvcw",
                         "KXzJw5UaR6mMl9oe1lW6jA",
-                        "OK_SsH-6QD2tYrWDuOJOPw",
+                        "NMXNuohgQNmtvDW-xCnRcQ",
                         "Pm0yv9H6SAyuJLBLoZic6Q",
-                        "6-Zuh-3iQdWGm1ZFEIjpog",
                         "BH-awAGaTq-K5zzN4st6EA",
-                        "qCx1w6fxS0-W87LwctZ63Q",
+                        "OK_SsH-6QD2tYrWDuOJOPw",
+                        "9yndpTWuQ_SZSZN8r618pA",
                         "saN0QoSBSe-zC9QqSTq9Qg",
+                        "qCx1w6fxS0-W87LwctZ63Q",
                         "SHGNyPy8Qnmceu9ja3nxdA",
-                        "tfhrFt7aSBqd-dJEi4LHag",
-                        "ivSRK2cKSUWzj7oB71KFKA",
                         "2k6BGJKgRMSpl8cOFTOZ3Q",
-                        "VwGltb10T6CkBNR9HHggTA",
                         "dkHFdSeIQ1SIz5hWrEFnNA",
                         "7Ez7xueATwSeICt8Pdm_YQ",
-                        "9yndpTWuQ_SZSZN8r618pA",
-                        "50Bj-G_iTJGBlBlqf66AUQ",
+                        "ivSRK2cKSUWzj7oB71KFKA",
+                        "VwGltb10T6CkBNR9HHggTA",
+                        "tfhrFt7aSBqd-dJEi4LHag",
+                        "csDMIQ1MTsWEb5DE3w9bfg",
                         "SEFPNnRZRMGfrAucHV-3MA",
+                        "50Bj-G_iTJGBlBlqf66AUQ",
                         "rQvY5KBRSeOZyMi-GNIcWw",
                         "fBs8zh3LQK-hMpFfO1nE4Q",
                         "e22u6xCYRHmaBWfBnpLGag",
                         "cujw9e2pQ_CKo7hEZA5tSQ",
-                        "Atqb5-flRLWBMk0HpIFt_A",
                         "W95UIoxDTTuT3B9ChfxcBw",
-                        "rBubvRbeTiq63KVXiM7UUA",
-                        "csDMIQ1MTsWEb5DE3w9bfg",
                         "01hsiOTpT5uvam9RrGcFwQ",
-                        "0gy5RKvuQUyQtMuZU46yOg",
+                        "rBubvRbeTiq63KVXiM7UUA",
+                        "Atqb5-flRLWBMk0HpIFt_A",
+                        "ywG3w5bNSLi_7XkQpxoUog",
                         "11vdJcZnQT6FmR2m52xtSA",
-                        "IhX6f2YfScShh1hWDQaGPQ",
+                        "0gy5RKvuQUyQtMuZU46yOg",
                         "qx1nP4SiTxWhl1KZQM5brw",
                         "xZa3gXulSGugK5TI50sLXw",
-                        "Oez5cTifSayFJ_gYkec7iQ",
+                        "IhX6f2YfScShh1hWDQaGPQ",
                         "mZrO9WAVR-y7QReA3Wugvw",
-                        "ywG3w5bNSLi_7XkQpxoUog",
+                        "pBhAj4G3Rnqa_4ePx9ae1A",
                         "D7snl-nzS_mZHdCXJ6VbGQ",
                         "HY3jiWXhSsaEF0IYiNpwkw",
-                        "pBhAj4G3Rnqa_4ePx9ae1A",
-                        "iUHRQ-izTryj-R2lc4vbbw",
-                        "0Qd4OT0fSDiNVMW12O-wWg",
-                        "EjsA5sPkR6aU1-P2XBVUhw",
-                        "Q2g8JVgzT3GOM2Wvd7f2Fg",
-                        "NZw07H4NTviQbQ159L31zQ",
+                        "Oez5cTifSayFJ_gYkec7iQ",
                         "IvZProg3Qd2lRKdJxfyaZA",
+                        "0Qd4OT0fSDiNVMW12O-wWg",
+                        "Q2g8JVgzT3GOM2Wvd7f2Fg",
                         "SI3LBoscTRujRTFrmSkF0A",
+                        "EjsA5sPkR6aU1-P2XBVUhw",
+                        "NZw07H4NTviQbQ159L31zQ",
                         "bZCjodJSRPavu0I6kuAJtQ",
+                        "iUHRQ-izTryj-R2lc4vbbw",
                         "wSsd1C3aTN-IHItmfYpTxQ",
-                        "-GyS6lhFTWOw_dJTDLaLUA",
-                        "iBnyrEaPT7erGeUi3N1SIQ",
-                        "dyi-gOIaSf2z8cpKJCrNpg",
-                        "p7GPKHaaTqOs899K0uzjtA",
-                        "yMz9K2LUQO2J9dntOaqgAA",
-                        "fav1nN_GS46dNXnp2m0nLw",
+                        "zjo2kP4-TE26xfN7UQHomw",
+                        "oX9VylIrTUyGHqwAjejOVw",
                         "rBbmC6EBT8mljlKrSfcCxg",
                         "ndIOh8rPQQSKbdFn5VenrA",
-                        "NhxASrOjTTu9EM1bNDlxQw",
-                        "zjo2kP4-TE26xfN7UQHomw",
+                        "-GyS6lhFTWOw_dJTDLaLUA",
+                        "dyi-gOIaSf2z8cpKJCrNpg",
+                        "iBnyrEaPT7erGeUi3N1SIQ",
                         "NeFbIgd3T_K7Y4BogsqxWg",
+                        "yMz9K2LUQO2J9dntOaqgAA",
+                        "fav1nN_GS46dNXnp2m0nLw",
                         "8m1yLj0bR3C_B1vuP0J8jQ",
-                        "oX9VylIrTUyGHqwAjejOVw",
-                        "mrxl9Oc4SoK_CYYdxUhuLQ",
-                        "MDi2QVcuRHekNcTqJf6wJQ",
+                        "NhxASrOjTTu9EM1bNDlxQw",
+                        "p7GPKHaaTqOs899K0uzjtA",
                         "ihXC9WbBSeW5OqJMXZOurw",
-                        "yEEjhxE_Q--Bf3GSt3RhyQ",
+                        "MDi2QVcuRHekNcTqJf6wJQ",
                         "EGd5oZIzTO2x_cpeIYiS-g",
+                        "yEEjhxE_Q--Bf3GSt3RhyQ",
+                        "LS6GHfMBQTqxauFSitbG4g",
+                        "mrxl9Oc4SoK_CYYdxUhuLQ",
                         "HidS3M-WT0-hweAi5bPokQ",
                         "Go4fC0uGTjub2hf7_F12PQ",
-                        "viE2lw-MSfutMddt8FJgrg",
                         "8K2eigKUTbaChaJQ2KdxvQ",
                         "ZxigD9_ORNeN25XqsNQEaA",
-                        "LS6GHfMBQTqxauFSitbG4g",
-                        "PoqHtcVCRmWcGjR4jf0m0A",
-                        "9bBnIFrBTPaUt58VvEb_RQ",
                         "fU_nPMLzQTeC3ZtFhVD5XQ",
+                        "viE2lw-MSfutMddt8FJgrg",
+                        "9bBnIFrBTPaUt58VvEb_RQ",
+                        "PoqHtcVCRmWcGjR4jf0m0A",
                         "CRYtEpr0TkeKgxqdtMxXGQ",
-                        "AxXJquzaRE6W1hgAUyXWIA",
+                        "vtDy0ZQXRDmrakNHBYErfA",
                         "Ly-nk3VIRlGEIIll93jlrQ",
+                        "AxXJquzaRE6W1hgAUyXWIA",
                         "vmNlaaR2QG-BycJEisEf9w",
                         "E8WjylCLRumQb_iS2g9PXg",
                         "KF2gQw8uSLigo-kaFEy5gw",
                         "7YcLl2_0SGGMHeC7IY9GXQ",
-                        "vtDy0ZQXRDmrakNHBYErfA",
-                        "EbD_x_uaRmaFDWfrRNROXw",
                         "HhNgkKHfQ1iqm_vdFbtGBg",
+                        "EbD_x_uaRmaFDWfrRNROXw",
                         "SORPrLiMQwOS-P0RiOgrDA",
                         "5wB8DuXLTgG0iDtMqtX_FA",
-                        "Um7uxD-oTWizmPCAOZaqNQ",
-                        "j6f-K75XQ8CDdCFbvjy-Bg",
-                        "zuQ_b8feSkaNlL_UeBjR8Q",
+                        "o0iayECETOaTRgIdrbNjGQ",
                         "cOJFRuAJTuqQSKApKfQppA",
+                        "Um7uxD-oTWizmPCAOZaqNQ",
+                        "zuQ_b8feSkaNlL_UeBjR8Q",
+                        "j6f-K75XQ8CDdCFbvjy-Bg",
+                        "BWUMJao5QmuuVUKhgAJJdA",
                         "5T0fj50mSbSzT-b-ynT3ng",
                         "0WJZ9kwWTQqij6G3bPQyvg",
-                        "BWUMJao5QmuuVUKhgAJJdA",
-                        "Y1Wig0kjSo2vt_eII2QgMQ",
-                        "o0iayECETOaTRgIdrbNjGQ",
-                        "ccb354rTQo2c67BOQDDRAQ",
                         "_05v-3viQvO3faCGSi3oUg",
+                        "Y1Wig0kjSo2vt_eII2QgMQ",
                         "bWVVm-JvQ3i_x7RseK4ubA",
-                        "Cm7hJOoKSceEb60CNa5kCw",
+                        "ccb354rTQo2c67BOQDDRAQ",
+                        "KTsJxQb1Rtu8X4TgKSHpYw",
                         "qNcMlNJ-TIqzyVYRfBkOTg",
-                        "oVZS4vz6QUmc-dzpairKNw",
-                        "40vD_P-nSIOxJmWWEe0MwA",
                         "m2vfr5HGTVWgraUdZ36kmw",
+                        "40vD_P-nSIOxJmWWEe0MwA",
                         "kUroSHirTGCVMX-OksOiuw",
                         "Fpxrdur5TB6i6zbdtOj12g",
-                        "KTsJxQb1Rtu8X4TgKSHpYw",
-                        "JWQ_5_8bSymZAV-CA9J_4A",
+                        "Cm7hJOoKSceEb60CNa5kCw",
+                        "oVZS4vz6QUmc-dzpairKNw",
+                        "KbFhGY0yQfaD7Yc0jB0eSg",
                         "feMDGaShSz-l9-17aJREzQ",
                         "ODcjIonVQeyRSN7mIKVSaQ",
-                        "JycFHtF_R-2W_Uudjza-ow",
-                        "KbFhGY0yQfaD7Yc0jB0eSg",
-                        "eoRvJ_VgTJatVdGln9S5XA",
-                        "qh-HKKBgTOyQ0CwT0eHzqA",
+                        "JWQ_5_8bSymZAV-CA9J_4A",
                         "T1rnFBSYSBOP40QOJlg3qw",
+                        "eoRvJ_VgTJatVdGln9S5XA",
+                        "JycFHtF_R-2W_Uudjza-ow",
                         "1ZXwdSuHTJ2vz58wtiIuHg",
+                        "qh-HKKBgTOyQ0CwT0eHzqA",
+                        "YJq3gc_cR9aAmLZ11dh17A",
                         "rQyxwCy3S2KRMZV9dPtVww",
                         "E4ebv3ldQLe3L6BPXaQvkw",
-                        "YJq3gc_cR9aAmLZ11dh17A",
-                        "4UKGfnAcSsWX-XWv5K-NQw",
                         "n9r1HV8-Rh-fmlfjxh0nEQ",
-                        "Yr30tzpjSdqNKafKCV0Itg",
+                        "hlrb-9ljTj6HXkXW-sxotA",
+                        "4UKGfnAcSsWX-XWv5K-NQw",
                         "DkPanmqTQvygyNvYkj18Mg",
-                        "UBMZzRN6SPKRamJoKxbt5Q",
-                        "kvMpefyTSu6_DlO8xsZG_w",
                         "0zRQbQw7SPiMIPiEm8HIGw",
+                        "EREXEgo8SRmbuEUfcdlyQg",
+                        "UBMZzRN6SPKRamJoKxbt5Q",
+                        "Yr30tzpjSdqNKafKCV0Itg",
                         "3YparpS6St28da4bmuT6tg",
                         "wWivYvFhTsG5AlANxnb7Yw",
-                        "EREXEgo8SRmbuEUfcdlyQg",
+                        "ETiHTiJpQ3W619d1f4ZhkA",
+                        "qHkl_AZpR5y43CnoZoM0pw",
                         "V1CMKIYRQf-XnZ0yMMRoVA",
                         "AXAFo0cAQSeIVdCruqmcJw",
-                        "hlrb-9ljTj6HXkXW-sxotA",
-                        "qHkl_AZpR5y43CnoZoM0pw",
                         "aGZd4BQXTTOcka64l0c6zg",
-                        "ETiHTiJpQ3W619d1f4ZhkA",
-                        "9Jtt8OBvQDuRdQmHS3jMAA",
+                        "kvMpefyTSu6_DlO8xsZG_w",
+                        "zXf9etZbQiK6kNWoBO-Yzg",
+                        "B6e1XsFJSqK-rvmj8V5eOA",
                         "3iwowbnESKq9EFck8zefpA",
                         "LcAgKkNZTFO6hyKHbUTYXg",
-                        "B6e1XsFJSqK-rvmj8V5eOA",
-                        "zXf9etZbQiK6kNWoBO-Yzg",
+                        "9Jtt8OBvQDuRdQmHS3jMAA",
                         "9xTDh0v7Tr22gMcagPFAKA",
                         "jTnbKq7YRAuV3uKSF16YYw",
                         "yT2-hqI3TK-bTPeiVhaz_Q",
-                        "tpVvlHA2SZepeojP0nY8Kg",
-                        "l_xMyRrrRDulvcJ41f_uQQ",
+                        "YW1votijSryT-rcfye6AmA",
                         "9yTGjb58QAm7Ck-BxiGDQg",
                         "iAIzqVCDRZ2geyO7AvqEjQ",
-                        "ZPOlWX6GQM6GIIiaTY0lxg",
+                        "tpVvlHA2SZepeojP0nY8Kg",
                         "avk6CyJ9TcWvCTjZTjruTw",
-                        "YW1votijSryT-rcfye6AmA",
+                        "l_xMyRrrRDulvcJ41f_uQQ",
                         "TL_CB8bLR9CQ7dJI3jH5Ew",
-                        "vaVVBQgpSKC3jq8iR46b9g",
                         "PnZehbddQKG4vcVQxbzBMA",
+                        "ZPOlWX6GQM6GIIiaTY0lxg",
                         "Z9J-C7t1S-6qvyMoP7_ITA",
+                        "vaVVBQgpSKC3jq8iR46b9g",
                         "E17gmvLHS4mhF9mhT2LXDw",
-                        "ErcMXABAQn--f5VB5Ji0WA",
-                        "2Dfc2kRrQiiPqN5gzgOkZA",
-                        "1NMh9HWbQdOt1bBmAJbqvA",
                         "BgZ85KFATv2AKMuGVMBgWQ",
-                        "GnoUZCVjQPKZY8hFGGRkWA",
-                        "bZ2jZ9wLQ7mTo9NPJVS9Dg",
-                        "08IxVxvZRCyUZW8IZWNQAw",
                         "EV4_poVrSYy71Xe3uw2kvg",
+                        "MAclZ4ZtQD2Q6SG9Ylq2Ng",
+                        "2Dfc2kRrQiiPqN5gzgOkZA",
                         "uBLiLiU4S02IcdzFJPA7fQ",
                         "404u52dYQzGF5vM75nZQaA",
-                        "MAclZ4ZtQD2Q6SG9Ylq2Ng",
+                        "1NMh9HWbQdOt1bBmAJbqvA",
                         "hXrlUFZCQEGQ8y3jDQCj1Q",
-                        "lPw8ztm1TYyOURhduzxrVA",
+                        "bZ2jZ9wLQ7mTo9NPJVS9Dg",
+                        "GnoUZCVjQPKZY8hFGGRkWA",
+                        "08IxVxvZRCyUZW8IZWNQAw",
                         "_GFFaOjnSiWHy_YQqLjcLw",
+                        "lPw8ztm1TYyOURhduzxrVA",
+                        "ErcMXABAQn--f5VB5Ji0WA",
                         "hWMMvm1NR2at5ZChp_suWw",
-                        "i4VvLpnnQgmkelFs1ILUMQ",
                         "7eF2c_05QUuxyb5aBbsnVg",
-                        "YF9uLfP8QO23t_D4cCLY0w",
+                        "i4VvLpnnQgmkelFs1ILUMQ",
                         "98h473HzR1itROjO1-yVvA",
-                        "Vlvey_jDR6qgVt9DRCy0cQ",
+                        "YObV51ueRS2YYk0kXCeE5Q",
                         "EjJzc7oYR96ApRKUj2fyBQ",
-                        "O2_cYl0eQTC4uwAtmgGBKw",
                         "x6obrgKMThGWx4AdwpN3zw",
+                        "O2_cYl0eQTC4uwAtmgGBKw",
+                        "Vlvey_jDR6qgVt9DRCy0cQ",
+                        "YF9uLfP8QO23t_D4cCLY0w",
+                        "ZmsFgWhVT8aXoOky4r7HrA",
                         "YgWvUkOQQs-CYkXcEhE6Kw",
-                        "ZmsFgWhVT8aXoOky4r7HrA"
+                        "Zwysuy8HTUSPP5GP88MxUw"
                     ]
                 }
             ],
@@ -17183,11 +17212,17 @@
                     "alg": "ES256"
                 }
             ],
+            "tlsDetails": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384",
+                "kexAlg": "X25519, 253 bits",
+                "authAlg": "RSA-PSS",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "warnings": []
         },
         {
             "issuer": {
