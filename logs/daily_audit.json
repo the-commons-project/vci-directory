@@ -1,13 +1,28 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2022-06-15T04:45:14Z",
-    "issuerCount": 573,
+    "auditTime": "2022-06-16T04:44:26Z",
+    "issuerCount": 575,
     "issuersWithErrors": [
         {
             "issuer": {
+                "iss": "https://fhir.promedica.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "ProMedica",
+                "website": "https://mychart.promedica.org/MyChart/"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
+        {
+            "issuer": {
                 "iss": "https://prodsoap1.tgh.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "canonical_iss": "https://epicproxy.et0761.epichosted.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Tampa General Hospital and University of South Florida"
+                "name": "Tampa General Hospital and University of South Florida",
+                "website": "https://mychart.tgh.org/mychart/"
             },
             "keys": [],
             "crls": [],
@@ -20,14 +35,14 @@
         },
         {
             "issuer": {
-                "iss": "https://soapproxy.atlantichealth.org/FHIRPrd/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Atlantic Health System",
-                "website": "https://www.atlantichealth.org/"
+                "iss": "https://epic.garnethealth.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Garnet Health",
+                "website": "https://mychart.garnethealth.org/GH"
             },
             "keys": [],
             "tlsDetails": {
                 "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-SHA384",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
                 "kexAlg": "ECDH, P-521, 521 bits",
                 "authAlg": "RSA",
                 "pubKeySize": "2048",
@@ -62,35 +77,6 @@
         },
         {
             "issuer": {
-                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/pharmaca",
-                "name": "Pharmaca"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
-        },
-        {
-            "issuer": {
-                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/skripts",
-                "name": "Skripts",
-                "website": "https://www.skriptspharmacy.com/immunizations"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
-        },
-        {
-            "issuer": {
                 "iss": "https://rjhislandhealth.us-southeast-1.linodeobjects.com",
                 "name": "Royal Jubilee Hospital"
             },
@@ -106,27 +92,6 @@
             "crls": [],
             "errors": [
                 "HTTPError: Response code 403 (Forbidden)"
-            ],
-            "warnings": []
-        },
-        {
-            "issuer": {
-                "iss": "https://epicproxy.et1296.epichosted.com/APIProxyPRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Duly Health and Care",
-                "website": "https://www.dulyhealthandcare.com/"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "HTTPError: Response code 503 (Service Unavailable)"
             ],
             "warnings": []
         }
@@ -152,9 +117,12 @@
         "bRi8F_YcgjcfiBFxyNv6zO1mUSomobp4APHA6uabYKw",
         "IVzjSimVvH8ZyQ3AJEjI8LXm5HfrdrDYuEmG0QcXzOI",
         "afXT8j9iwJJ7IRP24ZUKPhbkga79MfqPreO2DlK0sLA",
-        "KBBgSdgGdb2_Nqufjj09pcISTziLYhj9meR19MmKLDk"
+        "KBBgSdgGdb2_Nqufjj09pcISTziLYhj9meR19MmKLDk",
+        "dKEeeC7VTe912gisnMXHxBCd3iFRuDHj76tWtb3uaBc"
     ],
-    "duplicatedIss": [],
+    "duplicatedIss": [
+        "https://smart.medconciergela.com/api/ISSUER"
+    ],
     "duplicatedNames": [
         "UC Health (San Diego / Irvine / Riverside) and Affiliates",
         "Dignity Health",
@@ -173,38 +141,27 @@
         "CVS Health",
         "Cedars-Sinai Health System",
         "Lakeland Regional Health",
+        "Med Concierge LA",
         "CommonSpirit Health",
         "State of Louisiana",
         "Washington State Department of Health",
         "Genesis Healthcare System",
         "MyHealthHome"
     ],
-    "previousAuditTime": "2022-06-14T04:48:54Z",
-    "newIssuerCount": 0,
+    "previousAuditTime": "2022-06-15T04:45:14Z",
+    "newIssuerCount": 1,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://soapproxy.atlantichealth.org/FHIRPrd/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://fhir.promedica.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "nrVWTxXZnpk7WWh0roDnaBgRsE-HzhOkGUUlvOK2Uro"
+                "uPWKKpoWI3OIa11UbV9xdoRHdf5ZsYsAyvczK79L3RE"
             ]
         },
         {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/pharmaca",
+            "iss": "https://epic.garnethealth.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "3Dtn69t66RKUD8y06Dgig0TIoyh1V1T3cW9Bkex2uQk"
-            ]
-        },
-        {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/skripts",
-            "kids": [
-                "Rzl1pLWRH1SI-ybhG9EpVbUaKQNBF0Sv2jR6Vk3XiYM"
-            ]
-        },
-        {
-            "iss": "https://epicproxy.et1296.epichosted.com/APIProxyPRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-            "kids": [
-                "EaQNVA8yremdk_91EEzZMZt2R4PHMiyThhwrxK0r0u4"
+                "oN0RRJOk-S5CRlycQ60NpNnzSUyyxzqse5l7IVUZDe8"
             ]
         }
     ]
