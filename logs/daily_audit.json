@@ -1,8 +1,23 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2022-07-09T04:41:05Z",
+    "auditTime": "2022-07-10T04:42:09Z",
     "issuerCount": 580,
     "issuersWithErrors": [
+        {
+            "issuer": {
+                "iss": "https://uhealthsoap.med.miami.edu/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "UHealth – University of Miami Health System",
+                "website": "https://myuhealthchart.com/mychart/"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
         {
             "issuer": {
                 "iss": "https://api.utmsa.com/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
@@ -26,17 +41,17 @@
         },
         {
             "issuer": {
-                "iss": "https://fhir.promedica.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "ProMedica",
-                "website": "https://mychart.promedica.org/MyChart/"
+                "iss": "https://fhir.samhealth.org/fhir-arr/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Samaritan Health Services",
+                "website": "https://mychart.samhealth.org/MyChart"
             },
             "keys": [],
             "crls": [],
             "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+                "RequestError: getaddrinfo EAI_AGAIN fhir.samhealth.org"
             ],
             "warnings": [
-                "OpenSSL error: "
+                "OpenSSL error: 140577110926656:error:2008F002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/b_addr.c:726:Temporary failure in name resolution\nconnect:errno=11"
             ]
         },
         {
@@ -56,22 +71,22 @@
         },
         {
             "issuer": {
-                "iss": "https://tpc-shield.tpcllp.com/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "The Portland Clinic",
-                "website": "https://mychart.tpcllp.com/mychart"
+                "iss": "https://epicproxy.et1138.epichosted.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Brown and Toland Physicians",
+                "website": "https://www.brownandtoland.com/"
             },
             "keys": [],
             "tlsDetails": {
                 "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-SHA384",
-                "kexAlg": "ECDH, P-521, 521 bits",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, P-256, 256 bits",
                 "authAlg": "RSA",
                 "pubKeySize": "2048",
                 "compression": "NONE"
             },
             "crls": [],
             "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+                "HTTPError: Response code 503 (Service Unavailable)"
             ],
             "warnings": []
         },
@@ -98,30 +113,9 @@
         },
         {
             "issuer": {
-                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/hartig+drug+co",
-                "name": "Hartig Drug Co",
-                "website": "https://www.hartigdrug.com/covidvaccine"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": []
-        },
-        {
-            "issuer": {
-                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/kmart+pharmacy",
-                "name": "KMART PHARMACY",
-                "website": "https://pharmacy.kmart.com/newrx-immunization"
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/fruth",
+                "name": "Fruth",
+                "website": "https://fruthpharmacy.com/"
             },
             "keys": [],
             "crls": [],
@@ -134,24 +128,18 @@
         },
         {
             "issuer": {
-                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/meijer",
-                "name": "Meijer",
-                "website": "https://clinic.meijer.com/"
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/hartig+drug+co",
+                "name": "Hartig Drug Co",
+                "website": "https://www.hartigdrug.com/covidvaccine"
             },
             "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [
                 "TimeoutError: Timeout awaiting 'request' for 5000ms"
             ],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -222,38 +210,32 @@
         "Genesis Healthcare System",
         "MyHealthHome"
     ],
-    "previousAuditTime": "2022-07-08T04:46:53Z",
+    "previousAuditTime": "2022-07-09T04:41:05Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://fhir.promedica.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://uhealthsoap.med.miami.edu/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "uPWKKpoWI3OIa11UbV9xdoRHdf5ZsYsAyvczK79L3RE"
+                "R1svAJAoGZR1TklkMYpoFrrNHxEBRVB84Cl9H7vBTF0"
             ]
         },
         {
-            "iss": "https://tpc-shield.tpcllp.com/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://fhir.samhealth.org/fhir-arr/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "5vKTYrz-IoaW6hEqbeZGD-UIdlTJ5WtXQ9TpdzBlTPw"
+                "g3e0Mc14ryLe1pHUHkPwFMQRFRy5JeYXooUwECYo7kg"
             ]
         },
         {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/kmart+pharmacy",
+            "iss": "https://epicproxy.et1138.epichosted.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "U_C_KSRk6GRqOuT-tTTVid-zHxihv7fRdyuvNQPeBvM"
+                "DdQ5s69nLlRAa5VnNNnxEITZd4ene9Qg2XPmTEdXI4E"
             ]
         },
         {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/meijer",
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/fruth",
             "kids": [
-                "cmm6eWwLYLwRtBU69V-_jsUxfpVtPgrZshDbf5X4Z9k"
-            ]
-        },
-        {
-            "iss": "https://mycynchealth.org",
-            "kids": [
-                "5LvhU3xdh35pTFEM089S_PG46FSHBlVdrd4D-RLEJaU"
+                "BCP1AWL6exueHVfIMeS2xADaXQy6pa-O2lWEL2JQJdc"
             ]
         }
     ]
