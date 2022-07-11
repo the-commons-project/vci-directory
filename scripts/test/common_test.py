@@ -933,3 +933,15 @@ class ValidateAllEntriesTestCase(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(len(validation_results), 1)
         result = validation_results[0]
         self.assertTrue(result.is_valid)
+
+class ValidateJSONsyntax(unittest.TestCase):
+    # no schema is provided error will be related to syntax errors only
+    def test_validate_vci_issuer_json(self):
+        with open('../vci-issuers.json') as json_file:
+            data = json.load(json_file)
+            self.assertTrue(data)
+
+    def test_validate_vci_metadata_json(self):
+        with open('../vci-issuers-metadata.json') as json_file:
+            data = json.load(json_file)
+            self.assertTrue(data)
