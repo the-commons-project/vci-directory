@@ -1,43 +1,78 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2022-07-13T04:45:31Z",
+    "auditTime": "2022-07-14T04:48:32Z",
     "issuerCount": 581,
     "issuersWithErrors": [
         {
             "issuer": {
-                "iss": "https://fhir.promedica.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "ProMedica",
-                "website": "https://mychart.promedica.org/MyChart/"
+                "iss": "https://rxedi.bmhcc.org/prd-fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Baptist Memorial Health Care",
+                "website": "https://mychart.baptistonecare.org/prd/"
             },
             "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "AES256-SHA",
+                "kexAlg": "RSA",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 503 (Service Unavailable)"
+            ],
+            "warnings": [
+                "TLS error: Static RSA SHOULD NOT be used, MUST prefer ECDHE and DHE"
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://epicproxy.hosp.wisc.edu/FhirProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "UW Health",
+                "website": "https://mychart.uwhealth.org/mychart"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "4096",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 503 (Service Unavailable)"
+            ],
+            "warnings": []
+        },
+        {
+            "issuer": {
+                "iss": "https://FHIR.umm.edu/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "University of Maryland Medical System",
+                "website": "https://myportfolio.umm.edu/MyChart/"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [
                 "TimeoutError: Timeout awaiting 'request' for 5000ms"
             ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "warnings": []
         },
         {
             "issuer": {
                 "iss": "https://prodsoap1.tgh.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "Tampa General Hospital and University of South Florida",
                 "website": "https://mychart.tgh.org/mychart/"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
-        },
-        {
-            "issuer": {
-                "iss": "https://soapproxy.atlantichealth.org/FHIRPrd/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Atlantic Health System",
-                "website": "https://www.atlantichealth.org/"
             },
             "keys": [],
             "crls": [],
@@ -71,21 +106,6 @@
         },
         {
             "issuer": {
-                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/harps+pharmacy",
-                "name": "Harps Pharmacy",
-                "website": "https://www.harpsfood.com/Pages/19653/COVID-19%20Vaccination%20Information"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
-        },
-        {
-            "issuer": {
                 "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/hartig+drug+co",
                 "name": "Hartig Drug Co",
                 "website": "https://www.hartigdrug.com/covidvaccine"
@@ -106,19 +126,28 @@
                 "website": "https://pharmacy.kmart.com/newrx-immunization"
             },
             "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [
                 "TimeoutError: Timeout awaiting 'request' for 5000ms"
             ],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/meijer",
+                "name": "Meijer",
+                "website": "https://clinic.meijer.com/"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -189,38 +218,32 @@
         "Genesis Healthcare System",
         "MyHealthHome"
     ],
-    "previousAuditTime": "2022-07-12T04:50:58Z",
+    "previousAuditTime": "2022-07-13T04:45:31Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://fhir.promedica.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://rxedi.bmhcc.org/prd-fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "uPWKKpoWI3OIa11UbV9xdoRHdf5ZsYsAyvczK79L3RE"
+                "6DSzdcfY2mk5IwLt85m2FZUufO42M0RaQeltkgsN8HU"
             ]
         },
         {
-            "iss": "https://soapproxy.atlantichealth.org/FHIRPrd/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://epicproxy.hosp.wisc.edu/FhirProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "nrVWTxXZnpk7WWh0roDnaBgRsE-HzhOkGUUlvOK2Uro"
+                "OIco740ONLpRLW0WKL5VY8vcMTOftq_JqFPH-bwBce8"
             ]
         },
         {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/harps+pharmacy",
+            "iss": "https://FHIR.umm.edu/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "4KHf7aJBy3mcDRm-Avfdch7Ps5qekl1FFGs4EQpDuo4"
+                "aF7NDjNDFWNS7W2l4H3y7fDq5Q9gjp7KllTjSMQ86aA"
             ]
         },
         {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/hartig+drug+co",
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/meijer",
             "kids": [
-                "85iFG1HeKPc-TFBQxy_U5eSDa3X_XUhDGRVp9h3eU_w"
-            ]
-        },
-        {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/kmart+pharmacy",
-            "kids": [
-                "U_C_KSRk6GRqOuT-tTTVid-zHxihv7fRdyuvNQPeBvM"
+                "cmm6eWwLYLwRtBU69V-_jsUxfpVtPgrZshDbf5X4Z9k"
             ]
         }
     ]
