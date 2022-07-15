@@ -1,0 +1,57 @@
+name: 'Deploy'
+on:
+  push:
+    # branches:
+    #    - main
+    tags:
+      - test-snapshot*
+env:
+  S3_BUCKET_DEV: vci-snapshot-dev
+  S3_BUCKET_TEST: vci-snapshot-test
+  S3_BUCKET_PROD: vci-snapshot-prod
+  S3_DIR: current-snapshot
+  ISSUER_FILE: vci-issuers.json
+  META_FILE: vci-issuers-metadata.json
+  LOCAL_SOURCE_INCLUDE_LOG_DIR: logs/*
+  REGION: us-east-1
+  ROLE_TO_ASSUME: 
+  ROLE_SESSION_NAME: 
+
+jobs:
+  uploadSnapShot:
+    name: 'Send Snapshot to S3'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - bucket: '${S3_BUCKET_DEV}'
+            assume-role: arn:aws:iam::789379687343:role/GithubECSRole
+            role-session-name: GithubActionsECSDev
+          - bucket: '${S3_BUCKET_TEST}'
+            assume-role: arn:aws:iam::496986085600:role/GithubECSRole
+            role-session-name: GithubActionsECSTest
+          - bucket: '${S3_BUCKET_PROD}'
+            assume-role: arn:aws:iam::583457431358:role/GithubECSRole
+            role-session-name: GithubActionsECSProd
+        bucket: [ '${S3_BUCKET_DEV}', '${S3_BUCKET_TEST}', '${S3_BUCKET_PROD}' ]
+    steps:
+      - name: "List bucket"
+        run: |
+          echo "uploading to ${{matrix.bucket}}"
+
+      - uses: actions/checkout@master
+      - name: 'Configure AWS Role'
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.TERRAFORM_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.TERRAFORM_AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.REGION }}
+          role-to-assume: ${{ matrix.assume-role }}
+          role-duration-seconds: 1200
+          role-session-name: ${{ matrix.role-session-name }}
+      - name: 'Sync issuers file to S3'
+        run: |
+          aws s3 sync . "s3://${{matrix.bucket}}/${{env.S3_DIR}}" --exclude='*' \
+          --include='${{ env.ISSUER_FILE }}' \
+          --include='${{ env.META_FILE }}' 
+
