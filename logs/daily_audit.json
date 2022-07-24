@@ -1,6 +1,6 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2022-07-23T04:43:51Z",
+    "auditTime": "2022-07-24T04:44:32Z",
     "issuerCount": 583,
     "issuersWithErrors": [
         {
@@ -42,18 +42,24 @@
         },
         {
             "issuer": {
-                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/kmart+pharmacy",
-                "name": "KMART PHARMACY",
-                "website": "https://pharmacy.kmart.com/newrx-immunization"
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/hartig+drug+co",
+                "name": "Hartig Drug Co",
+                "website": "https://www.hartigdrug.com/covidvaccine"
             },
             "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, P-256, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [
                 "TimeoutError: Timeout awaiting 'request' for 5000ms"
             ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "warnings": []
         },
         {
             "issuer": {
@@ -72,6 +78,27 @@
             "crls": [],
             "errors": [
                 "HTTPError: Response code 403 (Forbidden)"
+            ],
+            "warnings": []
+        },
+        {
+            "issuer": {
+                "iss": "https://epx1.chsli.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Catholic Health",
+                "website": "https://www.chsli.org/catholic-health-mychart"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-SHA384",
+                "kexAlg": "ECDH, P-521, 521 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 503 (Service Unavailable)"
             ],
             "warnings": []
         }
@@ -124,14 +151,20 @@
         "Genesis Healthcare System",
         "MyHealthHome"
     ],
-    "previousAuditTime": "2022-07-22T04:47:42Z",
+    "previousAuditTime": "2022-07-23T04:43:51Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/kmart+pharmacy",
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/hartig+drug+co",
             "kids": [
-                "U_C_KSRk6GRqOuT-tTTVid-zHxihv7fRdyuvNQPeBvM"
+                "85iFG1HeKPc-TFBQxy_U5eSDa3X_XUhDGRVp9h3eU_w"
+            ]
+        },
+        {
+            "iss": "https://epx1.chsli.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "kids": [
+                "ALVEROpd2CNyaE4RcZgG6T9cM38Erfg8oSIgiK_JSVo"
             ]
         }
     ]
