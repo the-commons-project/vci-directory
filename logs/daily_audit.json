@@ -1,28 +1,22 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2022-09-18T04:56:32Z",
+    "auditTime": "2022-09-19T05:07:35Z",
     "issuerCount": 590,
     "issuersWithErrors": [
         {
             "issuer": {
-                "iss": "https://uhealthsoap.med.miami.edu/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "UHealth – University of Miami Health System",
-                "website": "https://myuhealthchart.com/mychart/"
+                "iss": "https://unified-api.ucsf.edu/clinical/apex/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "UCSF Health",
+                "website": "https://www.ucsfhealth.org/mychart"
             },
             "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-SHA384",
-                "kexAlg": "ECDH, P-521, 521 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 503 (Service Unavailable)"
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
             ],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -47,18 +41,24 @@
         },
         {
             "issuer": {
-                "iss": "https://fhir.mdanderson.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "The University of Texas MD Anderson Cancer Center",
-                "website": "https://my.mdanderson.org/Account/Login"
+                "iss": "https://scripts.prevea.com/FHIR-ARR-PRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Hospital Sisters Health System",
+                "website": "https://www.myhshs.org/myhshs"
             },
             "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "DHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "DH, 2048 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [
                 "TimeoutError: Timeout awaiting 'request' for 5000ms"
             ],
-            "warnings": [
-                "OpenSSL error: depth=2 C = US, ST = New Jersey, L = Jersey City, O = The USERTRUST Network, CN = USERTrust RSA Certification Authority\nverify return:1\ndepth=1 C = US, ST = MI, L = Ann Arbor, O = Internet2, OU = InCommon, CN = InCommon RSA Server CA\nverify return:1\ndepth=0 C = US, ST = Texas, O = The University of Texas M.D. Anderson Cancer Center, CN = fhir.mdanderson.edu\nverify return:1\n140466414261568:error:1414D172:SSL routines:tls12_check_peer_sigalg:wrong signature type:../ssl/t1_lib.c:1145:"
-            ]
+            "warnings": []
         },
         {
             "issuer": {
@@ -98,64 +98,22 @@
         },
         {
             "issuer": {
-                "iss": "https://epicproxy.et0915.epichosted.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Prisma Health",
-                "website": "https://mychart.prismahealth.org/MyChart/"
+                "iss": "https://pvcprod.gov.pe.ca",
+                "name": "Government of Prince Edward Island",
+                "website": "https://www.princeedwardisland.ca/en/information/health-and-wellness/covid-19-immunization-record"
             },
             "keys": [],
             "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384",
                 "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA",
+                "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 503 (Service Unavailable)"
-            ],
-            "warnings": []
-        },
-        {
-            "issuer": {
-                "iss": "https://mobile.adventhealth.com/oauth2-PRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "AdventHealth",
-                "website": "https://account.adventhealth.com/login"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "HTTPError: Response code 503 (Service Unavailable)"
-            ],
-            "warnings": []
-        },
-        {
-            "issuer": {
-                "iss": "https://epicscripts.trihealth.com/fhirproxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "TriHealth",
-                "website": "https://www.trihealth.com/"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, P-256, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "HTTPError: Response code 503 (Service Unavailable)"
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
             ],
             "warnings": []
         },
@@ -268,27 +226,6 @@
         },
         {
             "issuer": {
-                "iss": "https://fhir.jefferson.edu/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Jefferson Health",
-                "website": "https://my.jeffersonhealth.org"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.3",
-                "cipher": "TLS_AES_128_GCM_SHA256",
-                "kexAlg": "X25519, 253 bits",
-                "authAlg": "RSA-PSS",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "HTTPError: Response code 502 (Bad Gateway)"
-            ],
-            "warnings": []
-        },
-        {
-            "issuer": {
                 "iss": "https://rmgpxy.riverbendmedical.com/fhir_proxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "Riverbend Medical Group",
                 "website": "https://mychart.riverbendmedical.com/MyChart"
@@ -364,44 +301,38 @@
         "Genesis Healthcare System",
         "MyHealthHome"
     ],
-    "previousAuditTime": "2022-09-17T04:51:27Z",
+    "previousAuditTime": "2022-09-18T04:56:32Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://uhealthsoap.med.miami.edu/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://unified-api.ucsf.edu/clinical/apex/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "R1svAJAoGZR1TklkMYpoFrrNHxEBRVB84Cl9H7vBTF0"
+                "ZwFzkFHXRFwE_0Jy0oyINwNZg4yLPKk5DW96xDwjMEo"
             ]
         },
         {
-            "iss": "https://fhir.mdanderson.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://scripts.prevea.com/FHIR-ARR-PRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "WG_qC2lsWHa2WgqHa_dcCG27Tic7kyNi8WulJ3DUbNQ"
+                "brUxRd9nVAk5WpPbHrpJx0wx2ABpgUQ4bP1kp90o8gc"
             ]
         },
         {
-            "iss": "https://epicproxy.et0915.epichosted.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://pvcprod.gov.pe.ca",
             "kids": [
-                "nV5trGWntRI-iemPFzEhKBiaT9jy1wKbffVLM2mzfpE"
-            ]
-        },
-        {
-            "iss": "https://mobile.adventhealth.com/oauth2-PRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-            "kids": [
-                "NIYjamR_uv5paKe7T9kn4mueOQFx2WlSaNSZzwIUILA"
-            ]
-        },
-        {
-            "iss": "https://epicscripts.trihealth.com/fhirproxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-            "kids": [
-                "SrCqDaxmBy71tT6aH3HFRH5vIwq5oazM05Xhmg8VPQo"
-            ]
-        },
-        {
-            "iss": "https://fhir.jefferson.edu/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-            "kids": [
-                "Yo7FakZX2dm8c05k7FHcP_7EGLc6cUyj0vFSIdW-M2E"
+                "Z8YjtXO3hGPpbDR9wMcrifbcL-PswLyMFhEJGSn1yC0",
+                "uXqBkl4jkadfFUtcrkeVtXRaCCy-nNHA1aD6nKb0OJ4",
+                "rDW5Ssu6mvGAnouM1oaeiDh06OdTePgH9ZwC1MbwAoY",
+                "AWbze1dsT_69BBvlCv8g8rzUAyIBM3q6OT7zMQxBWVU",
+                "icKN8sxNH2ijHGcmqCOWHKziRPd25BoENF5Z0dVrkaI",
+                "SkSCQeF4JDcLSShAM5wejAAdB8rIT3X9-EH8rLNk0fY",
+                "L0ACjkybPcCgJOrMywfz3gJGDeEvxkUSa2j9Pbhjwz8",
+                "pCmOvJBUfo30WuG9UVlDCOvyBhPScLU2_CrAGy9A4Q8",
+                "gzeRVlR44Ia5cL67gN-6HhWsBikN_ZodlGAeGLv_HsI",
+                "D86U5NZ_OusITiBEqmgW2gRUAw1vhcbRtHujJ4wPx7w",
+                "JMCyyrr9wjXT5FY8rx6Jiel4DCfXS0ZDQPUuGdv4P1k",
+                "B5zoHRXFX54o1XgT9IbQLEqTc1GK4SEJg9vjd-K4n3o",
+                "cZxJnAOT6390E103SoaVyX2RNJenO46qyBcceU4A8go"
             ]
         }
     ]
