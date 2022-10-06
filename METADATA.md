@@ -13,6 +13,7 @@
 | `label` | A representative label for the issuer. Used when issuer name may be too long, misrepresentative, or provides more common nomenclature. |
 | `currently_issuing` | Boolean variable that indicates if an issuer is currently issuing. It is assumed an issuer is actively issuing if not included in metadata. |
 | `locations` | A list of locations (see below for details) that the issuer is associated with |
+| `network_participants` | A list of participants. Populated when issuer_type is `network` (see below for details) |
 
 ## Issuer Type Representation
 
@@ -31,6 +32,8 @@ A simple hierarchy provides an easier means to segregate government and non-gove
 | `governmental.city_county` | A city, county or governmental agency issuing for a city |
 | `governmental.health_jurisdiction` | A jurisdiction or governmental agency issuing for a jurisdiction |
 | `governmental.agency` | A governmental agency |
+| `network` | A group of distinct organizations sharing a single issuer.  |
+
 
 ## Location Representation
 
@@ -53,6 +56,26 @@ locations: [
   { "state": "NY", "country": "US" },
   { "state": "NJ", "country": "US" }
 ]
+```
+
+## Network issuer type
+
+Specific organizations that share a `network` issuer are identified within a single entry in the metadata file. Each network_participant has a label and an issuer_type and may include a list of locations.
+
+```json
+	"network_participants": [{
+		"label": "Clinic",
+		"issuer_type": "organization.health_system",
+		"locations": [{
+				"state": "NY",
+				"country": "US"
+			},
+			{
+				"state": "NJ",
+				"country": "US"
+			}
+		]
+	}]
 ```
 
 [example-metadata.json](example-metadata.json) shows basic example representing what an entry in the metadata file would look like.
