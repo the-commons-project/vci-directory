@@ -63,19 +63,20 @@ locations: [
 Specific organizations that share a `network` issuer are grouped together within a single entry in the metadata file. Each network_participant must have a label, an issuer_type, and should include a list of locations. (The meaning and value sets of `label`, `issuer-type`, and `locations` are defined above).
 
 ```json
-	"network_participants": [{
-		"label": "Clinic",
-		"issuer_type": "organization.health_system",
-		"locations": [{
-				"state": "NY",
-				"country": "US"
-			},
-			{
-				"state": "NJ",
-				"country": "US"
-			}
-		]
-	}]
+"network_participants":[{
+  "label":"Clinic",
+  "issuer_type":"organization.health_system",
+  "locations":[
+    {
+      "state":"NY",
+      "country":"US"
+    },
+    {
+      "state":"NJ",
+      "country":"US"
+    }
+  ]
+} 
 ```
 
 [example-metadata.json](example-metadata.json) shows basic example representing what an entry in the metadata file would look like.
