@@ -37,7 +37,7 @@ A simple hierarchy provides an easier means to segregate government and non-gove
 
 ## Location Representation
 
-In order to best represent the reality of a SHC issuer issuing SHCs in multiple locations, an issuer can be associated to multiple country-state locations.
+In order to best represent the reality of a SHC issuer issuing SHCs in multiple locations, an issuer can be associated to multiple country-state locations. In the case of `network` `issuer-type`s, this list of locations includes all of the locations of the network participants.
 
 This location representation is heavily inspired by the [FHIR `Address` type][fhir-address-type].
 
@@ -60,7 +60,7 @@ locations: [
 
 ## Network issuer type
 
-Specific organizations that share a `network` issuer are identified within a single entry in the metadata file. Each network_participant has a label and an issuer_type and may include a list of locations.
+Specific organizations that share a `network` issuer are grouped together within a single entry in the metadata file. Each network_participant must have a label, an issuer_type, and should include a list of locations. (The meaning and value sets of `label`, `issuer-type`, and `locations` are defined above).
 
 ```json
 	"network_participants": [{
