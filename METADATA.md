@@ -76,7 +76,7 @@ Specific clinical health systems or hospitals that share a `network.health_syste
       "country":"US"
     }
   ]
-} 
+}] 
 ```
 
 [example-metadata.json](example-metadata.json) shows basic example representing what an entry in the metadata file would look like.
