@@ -31,7 +31,7 @@ jobs:
           - bucket: '${S3_BUCKET_PROD}'
             assume-role: arn:aws:iam::583457431358:role/GithubECSRole
             role-session-name: GithubActionsECSProd
-        bucket: [ '${S3_BUCKET_DEV}', '${S3_BUCKET_TEST}', '${S3_BUCKET_PROD}' ]
+        bucket: [ '${S3_BUCKET_DEV}', '${S3_BUCKET_QA}', '${S3_BUCKET_PROD}' ]
     steps:
       - name: "List bucket"
         run: |
