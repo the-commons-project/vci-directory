@@ -1,28 +1,22 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2022-11-25T04:37:55Z",
+    "auditTime": "2022-11-26T04:37:43Z",
     "issuerCount": 615,
     "issuersWithErrors": [
         {
             "issuer": {
-                "iss": "https://scproxy.gundersenhealth.org/FHIRARR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Gundersen Health System",
-                "website": "https://mychart.gundersenhealth.org/mychart"
+                "iss": "https://unified-api.ucsf.edu/clinical/apex/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "UCSF Health",
+                "website": "https://www.ucsfhealth.org/mychart"
             },
             "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "DHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "DH, 2048 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [
                 "TimeoutError: Timeout awaiting 'request' for 5000ms"
             ],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -189,6 +183,21 @@
         },
         {
             "issuer": {
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/harps+pharmacy",
+                "name": "Harps Pharmacy",
+                "website": "https://www.harpsfood.com/Pages/19653/COVID-19%20Vaccination%20Information"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
+        {
+            "issuer": {
                 "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/hartig+drug+co",
                 "name": "Hartig Drug Co",
                 "website": "https://www.hartigdrug.com/covidvaccine"
@@ -204,9 +213,9 @@
         },
         {
             "issuer": {
-                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/kmart+pharmacy",
-                "name": "KMART PHARMACY",
-                "website": "https://pharmacy.kmart.com/newrx-immunization"
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/skripts",
+                "name": "Skripts",
+                "website": "https://www.skriptspharmacy.com/immunizations"
             },
             "keys": [],
             "crls": [],
@@ -277,27 +286,6 @@
                 "RequestError: unable to verify the first certificate"
             ],
             "warnings": []
-        },
-        {
-            "issuer": {
-                "iss": "https://epicarr.rochesterregional.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Rochester Regional Health",
-                "website": "https://www.rochesterregional.org/"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "X25519, 253 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "HTTPError: Response code 404 (Not Found)"
-            ],
-            "warnings": []
         }
     ],
     "issuerWithCRLCount": 3,
@@ -357,14 +345,26 @@
         "MyHealthHome",
         "HCA National"
     ],
-    "previousAuditTime": "2022-11-24T04:37:54Z",
+    "previousAuditTime": "2022-11-25T04:37:55Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://scproxy.gundersenhealth.org/FHIRARR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://unified-api.ucsf.edu/clinical/apex/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "t8ECc0bKpCa5j7Hhu5gejMrHXMoJHRiPT_AXjrX9rk4"
+                "ZwFzkFHXRFwE_0Jy0oyINwNZg4yLPKk5DW96xDwjMEo"
+            ]
+        },
+        {
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/harps+pharmacy",
+            "kids": [
+                "4KHf7aJBy3mcDRm-Avfdch7Ps5qekl1FFGs4EQpDuo4"
+            ]
+        },
+        {
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/skripts",
+            "kids": [
+                "Rzl1pLWRH1SI-ybhG9EpVbUaKQNBF0Sv2jR6Vk3XiYM"
             ]
         }
     ]
