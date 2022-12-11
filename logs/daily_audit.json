@@ -1,6 +1,6 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2022-12-10T04:36:47Z",
+    "auditTime": "2022-12-11T04:36:52Z",
     "issuerCount": 621,
     "issuersWithErrors": [
         {
@@ -42,6 +42,27 @@
             "crls": [],
             "errors": [
                 "HTTPError: Response code 403 (Ip Forbidden)"
+            ],
+            "warnings": []
+        },
+        {
+            "issuer": {
+                "iss": "https://fhir.archildrens.org/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Arkansas Children's",
+                "website": "https://mychart.archildrens.org/mychart/"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-SHA384",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 404 (Not Found)"
             ],
             "warnings": []
         },
@@ -92,7 +113,7 @@
                 "RequestError: unable to verify the first certificate"
             ],
             "warnings": [
-                "OpenSSL error: 80DB57AAC27F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 807B89448B7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -119,22 +140,22 @@
         },
         {
             "issuer": {
-                "iss": "https://epicapp.mylrh.org/OAuth2/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Lakeland Regional Health",
-                "website": "https://www.mylrh.org/"
+                "iss": "https://epicproxy.et1138.epichosted.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Brown and Toland Physicians",
+                "website": "https://www.brownandtoland.com/"
             },
             "keys": [],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp384r1, 384 bits",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
                 "authAlg": "RSA",
                 "pubKeySize": "2048",
                 "compression": "NONE"
             },
             "crls": [],
             "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+                "HTTPError: Response code 503 (Service Unavailable)"
             ],
             "warnings": []
         },
@@ -172,7 +193,22 @@
                 "HTTPError: Response code 503 (Service Unavailable)"
             ],
             "warnings": [
-                "OpenSSL error: 805B7664357F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 801B26FE6A7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/pharmaca",
+                "name": "Pharmaca",
+                "website": "https://www.pharmacarx.com/"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
             ]
         },
         {
@@ -235,69 +271,6 @@
                 "RequestError: unable to verify the first certificate"
             ],
             "warnings": []
-        },
-        {
-            "issuer": {
-                "iss": "https://dvc.mohw.gov.tw",
-                "name": "Taiwan",
-                "website": "https://www.mohw.gov.tw/mp-2.html"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.3",
-                "cipher": "TLS_AES_256_GCM_SHA384",
-                "kexAlg": "X25519, 253 bits",
-                "authAlg": "RSA-PSS",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": []
-        },
-        {
-            "issuer": {
-                "iss": "https://memorialhealthfhirprd.app.medcity.net/fhir-proxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "HCA National"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
-        },
-        {
-            "issuer": {
-                "iss": "https://stdavidsfhirprd.app.medcity.net/fhir-proxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "HCA National"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
-        },
-        {
-            "issuer": {
-                "iss": "https://mountainstarhealthfhirprd.app.medcity.net/fhir-proxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "HCA National"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
         }
     ],
     "issuerWithCRLCount": 3,
@@ -360,47 +333,26 @@
         "HCA National",
         "West Tennessee Healthcare"
     ],
-    "previousAuditTime": "2022-12-09T04:36:50Z",
+    "previousAuditTime": "2022-12-10T04:36:47Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://epicapp.mylrh.org/OAuth2/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://fhir.archildrens.org/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "h_Z1WIF7m6_q59f7JiB1_q2-rRhr8uGlJiiBBzGlXUY"
+                "nQbMGYnIP4z_aCA5fXOy-wH1O8Rv_FJE0yjnfCsc0Fs"
             ]
         },
         {
-            "iss": "https://epicweb.challiance.org/Interconnect-FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://epicproxy.et1138.epichosted.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "AiB-cTlmIM07DDNjfdXghP_qAns0Y8eaXZ7CA1m7pW0",
-                "zKbXKVoQpThDLFSiQPQVcljHkFIlPR3ZcVVJntSyk80",
-                "HFh-_XqH7cgzvyA2pEGnlYSix9BvlrSOaD2aCSbmzYc"
+                "DdQ5s69nLlRAa5VnNNnxEITZd4ene9Qg2XPmTEdXI4E"
             ]
         },
         {
-            "iss": "https://dvc.mohw.gov.tw",
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/pharmaca",
             "kids": [
-                "e321KG2oVcL8QVUG59NKlgEg20kkJwiqpJ9jBvZdz-o",
-                "WouwNX4pUA1SBWVtJ4Wej6pY3KcwNCbC4amiB7VOO5o"
-            ]
-        },
-        {
-            "iss": "https://memorialhealthfhirprd.app.medcity.net/fhir-proxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-            "kids": [
-                "hhenlBjTHf2GM-UDt5jor8HWbWFBt4gM4W1sB22mHwo"
-            ]
-        },
-        {
-            "iss": "https://stdavidsfhirprd.app.medcity.net/fhir-proxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-            "kids": [
-                "VsvOU5i9muXim8MpvCRrCYmVg7xkR6o5lmk-rI-H6iM"
-            ]
-        },
-        {
-            "iss": "https://mountainstarhealthfhirprd.app.medcity.net/fhir-proxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-            "kids": [
-                "ykrKegqiOHXxxwWxbQZctLATYpcMn1pYT53TJNrxnk0"
+                "3Dtn69t66RKUD8y06Dgig0TIoyh1V1T3cW9Bkex2uQk"
             ]
         }
     ]
