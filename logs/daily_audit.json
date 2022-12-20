@@ -1,6 +1,6 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2022-12-19T04:35:31Z",
+    "auditTime": "2022-12-20T04:35:43Z",
     "issuerCount": 622,
     "issuersWithErrors": [
         {
@@ -20,7 +20,7 @@
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 503 (Service Unavailable)"
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
             ],
             "warnings": []
         },
@@ -44,21 +44,6 @@
                 "HTTPError: Response code 403 (Ip Forbidden)"
             ],
             "warnings": []
-        },
-        {
-            "issuer": {
-                "iss": "https://ssrx.ksnet.com/FHIRproxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Kelsey-Seybold Clinic",
-                "website": "https://www.mykelseyonline.com/MyChart/"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
         },
         {
             "issuer": {
@@ -128,7 +113,7 @@
                 "RequestError: unable to verify the first certificate"
             ],
             "warnings": [
-                "OpenSSL error: 80EBD930A57F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 80DBF3B1067F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -176,6 +161,27 @@
         },
         {
             "issuer": {
+                "iss": "https://epicfhir.sentara.com/ARR-FHIR-PRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Sentara Healthcare",
+                "website": "https://myhealth.sentara.com/account/log-in"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_CHACHA20_POLY1305_SHA256",
+                "kexAlg": "X25519, 253 bits",
+                "authAlg": "RSA-PSS",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "RequestError: read ECONNRESET"
+            ],
+            "warnings": []
+        },
+        {
+            "issuer": {
                 "iss": "https://rp.sleh.com/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "canonical_iss": "https://rpsouth.catholichealth.net/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "CommonSpirit Health",
@@ -187,22 +193,7 @@
                 "HTTPError: Response code 503 (Service Unavailable)"
             ],
             "warnings": [
-                "OpenSSL error: 80CB5F50B87F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
-            ]
-        },
-        {
-            "issuer": {
-                "iss": "https://fhir.omhs.org/rp-prd-fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Owensboro Health",
-                "website": "https://mychart.omhs.org/mychart"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
+                "OpenSSL error: 806B30D3D97F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -263,57 +254,6 @@
             "crls": [],
             "errors": [
                 "RequestError: unable to verify the first certificate"
-            ],
-            "warnings": []
-        },
-        {
-            "issuer": {
-                "iss": "https://fhir.tmcaz.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Tucson Medical Center",
-                "website": "https://mychart.tmcaz.com/MyChart"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
-        },
-        {
-            "issuer": {
-                "iss": "https://epicarr.aahs.org/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Luminis Health",
-                "website": "https://www.aahs.org/en/login"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
-        },
-        {
-            "issuer": {
-                "iss": "https://epicarr.rochesterregional.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Rochester Regional Health",
-                "website": "https://www.rochesterregional.org/"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "X25519, 253 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "HTTPError: Response code 404 (Not Found)"
             ],
             "warnings": []
         }
@@ -378,14 +318,14 @@
         "HCA National",
         "West Tennessee Healthcare"
     ],
-    "previousAuditTime": "2022-12-18T04:35:16Z",
+    "previousAuditTime": "2022-12-19T04:35:31Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://epicarr.aahs.org/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://epicfhir.sentara.com/ARR-FHIR-PRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "OmrNtWr0mK2ZYUqI8-KBmDBvvmdh5s6xqmX4ABMhbME"
+                "0_ZcobwGIYr7HFa8F1Y3nWbC63_d6MR880hNRB0mCzk"
             ]
         }
     ]
