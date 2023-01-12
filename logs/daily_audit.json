@@ -1,6 +1,6 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2023-01-11T04:36:15Z",
+    "auditTime": "2023-01-12T04:35:57Z",
     "issuerCount": 622,
     "issuersWithErrors": [
         {
@@ -64,27 +64,6 @@
             "crls": [],
             "errors": [
                 "HTTPError: Response code 503 (Service Unavailable)"
-            ],
-            "warnings": []
-        },
-        {
-            "issuer": {
-                "iss": "https://covid19.quebec.ca/PreuveVaccinaleApi/issuer",
-                "name": "Gouvernement du Québec - Government of Quebec",
-                "website": "https://www.quebec.ca/vaccinationpassport"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp384r1, 384 bits",
-                "authAlg": "RSA-PSS",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
             ],
             "warnings": []
         },
@@ -156,7 +135,7 @@
                 "RequestError: unable to verify the first certificate"
             ],
             "warnings": [
-                "OpenSSL error: 80EB4ADEC47F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 808B6701A17F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -180,6 +159,21 @@
                 "HTTPError: Response code 503 (Service Unavailable)"
             ],
             "warnings": []
+        },
+        {
+            "issuer": {
+                "iss": "https://epicapp.mylrh.org/OAuth2/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Lakeland Regional Health",
+                "website": "https://www.mylrh.org/"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -215,7 +209,7 @@
                 "HTTPError: Response code 503 (Service Unavailable)"
             ],
             "warnings": [
-                "OpenSSL error: 80EB304F6B7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 801BB43CBC7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -257,30 +251,9 @@
                 "RequestError: Hostname/IP does not match certificate's altnames: Host: accusense.health. is not in the cert's altnames: DNS:*.prod.phx3.secureserver.net, DNS:prod.phx3.secureserver.net"
             ],
             "warnings": []
-        },
-        {
-            "issuer": {
-                "iss": "https://senegal.tbi.ohms.oracle.com",
-                "name": "République du Sénégal",
-                "website": "https://www.sante.gouv.sn/"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.3",
-                "cipher": "TLS_AES_256_GCM_SHA384",
-                "kexAlg": "X25519, 253 bits",
-                "authAlg": "ECDSA",
-                "pubKeySize": "256",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": []
         }
     ],
-    "issuerWithCRLCount": 2,
+    "issuerWithCRLCount": 3,
     "duplicatedKids": [
         "nQM-36EWDZU5kLoCoeOvshvT2P9JUyc8Do6yWRhNokg",
         "N2maG8qOhITe_zyPqcrCa6LT_mW18ZtFPy09cGAB24w",
@@ -339,22 +312,14 @@
         "HCA National",
         "West Tennessee Healthcare"
     ],
-    "previousAuditTime": "2023-01-10T04:35:53Z",
+    "previousAuditTime": "2023-01-11T04:36:15Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://covid19.quebec.ca/PreuveVaccinaleApi/issuer",
+            "iss": "https://epicapp.mylrh.org/OAuth2/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "2XlWk1UQMqavMtLt-aX35q_q9snFtGgdjH4-Y1gfH1M",
-                "sZ5ca2a73SgPl7aC9v4PyA4cR5zk9A6BhHX8I2CVNwM",
-                "q-jdwRFL7uv9SihJOTHpQUoqUiRecfxfsTuoGQstogU"
-            ]
-        },
-        {
-            "iss": "https://senegal.tbi.ohms.oracle.com",
-            "kids": [
-                "VEccqX9LvPZJXqv11staEs0qPN2OR9bMS_PXEAZODXg"
+                "h_Z1WIF7m6_q59f7JiB1_q2-rRhr8uGlJiiBBzGlXUY"
             ]
         }
     ]
