@@ -1,8 +1,29 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2023-01-18T04:36:22Z",
+    "auditTime": "2023-01-19T04:36:48Z",
     "issuerCount": 622,
     "issuersWithErrors": [
+        {
+            "issuer": {
+                "iss": "https://scproxy.gundersenhealth.org/FHIRARR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Gundersen Health System",
+                "website": "https://mychart.gundersenhealth.org/mychart"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "DHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "DH, 2048 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 503 (Service Unavailable)"
+            ],
+            "warnings": []
+        },
         {
             "issuer": {
                 "iss": "https://epicprisfd01.wpahs.org/PRD-FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
@@ -135,7 +156,7 @@
                 "RequestError: unable to verify the first certificate"
             ],
             "warnings": [
-                "OpenSSL error: 800BDA67C77F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 4077C1C3BB7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -162,6 +183,21 @@
         },
         {
             "issuer": {
+                "iss": "https://epicapp.mylrh.org/OAuth2/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Lakeland Regional Health",
+                "website": "https://www.mylrh.org/"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
+        {
+            "issuer": {
                 "iss": "https://epicweb.challiance.org/Interconnect-FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "Cambridge Health Alliance",
                 "website": "https://mychart.challiance.org/mychart"
@@ -183,6 +219,21 @@
         },
         {
             "issuer": {
+                "iss": "https://fhir.clinical.bcm.edu/stage1fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Baylor Medicine",
+                "website": "https://mychart.bcm.edu/MyChartPRD/"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
+        {
+            "issuer": {
                 "iss": "https://rp.sleh.com/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "canonical_iss": "https://rpsouth.catholichealth.net/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "CommonSpirit Health",
@@ -194,7 +245,22 @@
                 "HTTPError: Response code 503 (Service Unavailable)"
             ],
             "warnings": [
-                "OpenSSL error: 802BAFB2EB7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 405771984A7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/hartig+drug+co",
+                "name": "Hartig Drug Co",
+                "website": "https://www.hartigdrug.com/covidvaccine"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
             ]
         },
         {
@@ -288,8 +354,29 @@
                 "RequestError: getaddrinfo ENOTFOUND accusense.health"
             ],
             "warnings": [
-                "OpenSSL error: 805BD118F87F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 40A7EFF5947F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
+        },
+        {
+            "issuer": {
+                "iss": "https://appprd.childrensdayton.org/interconnect-prd-fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Dayton Children’s Hospital",
+                "website": "https://mykidschart.childrensdayton.org/mychart/Authentication/Login?"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "RequestError: unable to verify the first certificate"
+            ],
+            "warnings": []
         },
         {
             "issuer": {
@@ -372,38 +459,38 @@
         "HCA National",
         "West Tennessee Healthcare"
     ],
-    "previousAuditTime": "2023-01-17T04:35:47Z",
+    "previousAuditTime": "2023-01-18T04:36:22Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/kmart+pharmacy",
+            "iss": "https://scproxy.gundersenhealth.org/FHIRARR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "U_C_KSRk6GRqOuT-tTTVid-zHxihv7fRdyuvNQPeBvM"
+                "t8ECc0bKpCa5j7Hhu5gejMrHXMoJHRiPT_AXjrX9rk4"
             ]
         },
         {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/meijer",
+            "iss": "https://epicapp.mylrh.org/OAuth2/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "cmm6eWwLYLwRtBU69V-_jsUxfpVtPgrZshDbf5X4Z9k"
+                "h_Z1WIF7m6_q59f7JiB1_q2-rRhr8uGlJiiBBzGlXUY"
             ]
         },
         {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/pharmaca",
+            "iss": "https://fhir.clinical.bcm.edu/stage1fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "3Dtn69t66RKUD8y06Dgig0TIoyh1V1T3cW9Bkex2uQk"
+                "-h7TjqJB9Sn2yp2e9wO-Pf6YibiRGKjceNHgLGBvaM8"
             ]
         },
         {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/skripts",
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/hartig+drug+co",
             "kids": [
-                "Rzl1pLWRH1SI-ybhG9EpVbUaKQNBF0Sv2jR6Vk3XiYM"
+                "85iFG1HeKPc-TFBQxy_U5eSDa3X_XUhDGRVp9h3eU_w"
             ]
         },
         {
-            "iss": "https://epicarr.rochesterregional.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://appprd.childrensdayton.org/interconnect-prd-fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "D_s7dMJ2fJt7q6tGayd31v0yarYgdD8mWb_Euk8PxLQ"
+                "NbIxdaroYhTu23PTcrVJWturNwugXfzFpLywAsugvhY"
             ]
         }
     ]
