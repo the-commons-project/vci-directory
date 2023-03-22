@@ -1,7 +1,7 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2023-03-21T04:34:48Z",
-    "issuerCount": 628,
+    "auditTime": "2023-03-22T04:35:06Z",
+    "issuerCount": 630,
     "issuersWithErrors": [
         {
             "issuer": {
@@ -15,7 +15,7 @@
                 "RequestError: unable to verify the first certificate"
             ],
             "warnings": [
-                "OpenSSL error: 807B9969597F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 804B5EAB837F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -38,7 +38,8 @@
             "issuer": {
                 "iss": "https://epicsoap.carle.com/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "Carle Foundation Hospital",
-                "website": "https://www.mycarle.com/MyChart"
+                "website": "https://www.mycarle.com/MyChart",
+                "canonical_iss": "https://epicproxy.et0316.epichosted.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC"
             },
             "keys": [],
             "tlsDetails": {
@@ -201,6 +202,27 @@
         },
         {
             "issuer": {
+                "iss": "https://epicproxy.et1200.epichosted.com/oauth2-PRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "VCU Health",
+                "website": "https://www.vcuhealth.org/"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 503 (Service Unavailable)"
+            ],
+            "warnings": []
+        },
+        {
+            "issuer": {
                 "iss": "https://rp.sleh.com/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "canonical_iss": "https://rpsouth.catholichealth.net/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "CommonSpirit Health",
@@ -212,22 +234,7 @@
                 "HTTPError: Response code 503 (Service Unavailable)"
             ],
             "warnings": [
-                "OpenSSL error: 80DBC5ED447F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
-            ]
-        },
-        {
-            "issuer": {
-                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/kmart+pharmacy",
-                "name": "KMART PHARMACY",
-                "website": "https://pharmacy.kmart.com/newrx-immunization"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
+                "OpenSSL error: 807BFEBCBB7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -306,7 +313,7 @@
                 "RequestError: getaddrinfo ENOTFOUND accusense.health"
             ],
             "warnings": [
-                "OpenSSL error: 802B4E31687F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 80EBBA65637F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         }
     ],
@@ -335,6 +342,7 @@
         "NdTA9DTXn_7fOnQXp0Lpqt_3qZu4W9VChV1FN_h3wH0",
         "uGQkrVuVAZhysB0yD33u-i6xoTlw27F8_ENEjQPqGEw",
         "9DN7I5pt-f_WlVi02Mr2R_1WnF6Dv9Va1ttS3mn56MU",
+        "0jzWwbsnyP2wrDPYMCe96n0DztcJBVZLNwAq0VghGG4",
         "bRi8F_YcgjcfiBFxyNv6zO1mUSomobp4APHA6uabYKw",
         "IVzjSimVvH8ZyQ3AJEjI8LXm5HfrdrDYuEmG0QcXzOI",
         "afXT8j9iwJJ7IRP24ZUKPhbkga79MfqPreO2DlK0sLA",
@@ -352,8 +360,10 @@
         "Baptist Health",
         "eHealth Saskatchewan",
         "Allegheny Health Network",
+        "Carle Foundation Hospital",
         "Methodist Health System",
         "Hackensack Meridian Health",
+        "UT Health San Antonio",
         "Atrium Health",
         "State of Colorado",
         "Hospital for Special Surgery",
@@ -371,14 +381,14 @@
         "HCA National",
         "West Tennessee Healthcare"
     ],
-    "previousAuditTime": "2023-03-20T04:35:57Z",
-    "newIssuerCount": 0,
+    "previousAuditTime": "2023-03-21T04:34:48Z",
+    "newIssuerCount": 2,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/kmart+pharmacy",
+            "iss": "https://epicproxy.et1200.epichosted.com/oauth2-PRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "U_C_KSRk6GRqOuT-tTTVid-zHxihv7fRdyuvNQPeBvM"
+                "kdCa2g-1ZpTKyMZewje_Bpf14QXI0VDqboyGQNJ8gKc"
             ]
         }
     ]
