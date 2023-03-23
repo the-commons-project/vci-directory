@@ -1,6 +1,6 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2023-03-22T04:35:06Z",
+    "auditTime": "2023-03-23T04:34:58Z",
     "issuerCount": 630,
     "issuersWithErrors": [
         {
@@ -15,7 +15,7 @@
                 "RequestError: unable to verify the first certificate"
             ],
             "warnings": [
-                "OpenSSL error: 804B5EAB837F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 801BC9914E7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -101,6 +101,27 @@
         },
         {
             "issuer": {
+                "iss": "https://epicproxy.et1222.epichosted.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "GW University Medical Faculty Associates",
+                "website": "https://mychart.gwdocs.com/MyChart"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": []
+        },
+        {
+            "issuer": {
                 "iss": "https://www.gov.nl.ca/covid-19/life-during-covid-19/vaccination-record/prod",
                 "name": "Government of Newfoundland and Labrador",
                 "website": "https://www.gov.nl.ca/covid-19/life-during-covid-19/vaccination-record/citizens/"
@@ -143,19 +164,13 @@
                 "website": "https://www.christushealth.org/"
             },
             "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-SHA384",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [
                 "HTTPError: Response code 503 (Service Unavailable)"
             ],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -202,27 +217,6 @@
         },
         {
             "issuer": {
-                "iss": "https://epicproxy.et1200.epichosted.com/oauth2-PRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "VCU Health",
-                "website": "https://www.vcuhealth.org/"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "HTTPError: Response code 503 (Service Unavailable)"
-            ],
-            "warnings": []
-        },
-        {
-            "issuer": {
                 "iss": "https://rp.sleh.com/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "canonical_iss": "https://rpsouth.catholichealth.net/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "CommonSpirit Health",
@@ -234,7 +228,7 @@
                 "HTTPError: Response code 503 (Service Unavailable)"
             ],
             "warnings": [
-                "OpenSSL error: 807BFEBCBB7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 804B7F9CB07F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -313,7 +307,7 @@
                 "RequestError: getaddrinfo ENOTFOUND accusense.health"
             ],
             "warnings": [
-                "OpenSSL error: 80EBBA65637F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 808B6EA9477F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         }
     ],
@@ -381,14 +375,14 @@
         "HCA National",
         "West Tennessee Healthcare"
     ],
-    "previousAuditTime": "2023-03-21T04:34:48Z",
-    "newIssuerCount": 2,
+    "previousAuditTime": "2023-03-22T04:35:06Z",
+    "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://epicproxy.et1200.epichosted.com/oauth2-PRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://epicproxy.et1222.epichosted.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "kdCa2g-1ZpTKyMZewje_Bpf14QXI0VDqboyGQNJ8gKc"
+                "WYErh5snsU6mJV_BbWDLk6M4TxyEhn6iEJMVkW585wI"
             ]
         }
     ]
