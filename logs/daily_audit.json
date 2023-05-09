@@ -1,6 +1,6 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2023-05-08T04:34:22Z",
+    "auditTime": "2023-05-09T04:34:09Z",
     "issuerCount": 630,
     "issuersWithErrors": [
         {
@@ -15,7 +15,7 @@
                 "RequestError: unable to verify the first certificate"
             ],
             "warnings": [
-                "OpenSSL error: 80ABA70DE07F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 809BEB7DEB7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -74,6 +74,27 @@
             "crls": [],
             "errors": [
                 "HTTPError: Response code 403 (Ip Forbidden)"
+            ],
+            "warnings": []
+        },
+        {
+            "issuer": {
+                "iss": "https://epicproxy.et1052.epichosted.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Premise Health",
+                "website": "https://www.mypremisehealth.com/MyChart"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 503 (Service Unavailable)"
             ],
             "warnings": []
         },
@@ -191,6 +212,27 @@
             "crls": [],
             "errors": [
                 "HTTPError: Response code 401 (Unauthorized)"
+            ],
+            "warnings": []
+        },
+        {
+            "issuer": {
+                "iss": "https://fhir.mah.org/prd-fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Beth Israel Lahey Health Mount Auburn Hospital",
+                "website": "https://mychart.mah.org/mychart"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-SHA384",
+                "kexAlg": "ECDH, secp521r1, 521 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
             ],
             "warnings": []
         },
@@ -316,8 +358,21 @@
         "HCA National",
         "West Tennessee Healthcare"
     ],
-    "previousAuditTime": "2023-05-07T04:33:55Z",
+    "previousAuditTime": "2023-05-08T04:34:22Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
-    "removedKids": []
+    "removedKids": [
+        {
+            "iss": "https://epicproxy.et1052.epichosted.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "kids": [
+                "bTxaoSI1nmcCMM2OpMPHg9pOdDd-s2hiAxULsHA1gPw"
+            ]
+        },
+        {
+            "iss": "https://fhir.mah.org/prd-fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "kids": [
+                "-MhcwalYrsFlCdSkM02QaT-av4I8YgZAavGw5R4VGdw"
+            ]
+        }
+    ]
 }
