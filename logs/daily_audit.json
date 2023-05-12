@@ -1,6 +1,6 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2023-05-11T04:33:57Z",
+    "auditTime": "2023-05-12T04:34:09Z",
     "issuerCount": 630,
     "issuersWithErrors": [
         {
@@ -15,7 +15,7 @@
                 "RequestError: unable to verify the first certificate"
             ],
             "warnings": [
-                "OpenSSL error: 808BF3BDE67F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 809BAE3ADE7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -232,16 +232,16 @@
         },
         {
             "issuer": {
-                "iss": "https://fhir.laheyhealth.org/proxy-prd-fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Lahey Health",
-                "website": "https://mylaheychart.org/MyChart"
+                "iss": "https://fhir.mah.org/prd-fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Beth Israel Lahey Health Mount Auburn Hospital",
+                "website": "https://mychart.mah.org/mychart"
             },
             "keys": [],
             "tlsDetails": {
-                "version": "TLSv1.3",
-                "cipher": "TLS_AES_128_GCM_SHA256",
-                "kexAlg": "X25519, 253 bits",
-                "authAlg": "RSA-PSS",
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-SHA384",
+                "kexAlg": "ECDH, secp521r1, 521 bits",
+                "authAlg": "RSA",
                 "pubKeySize": "2048",
                 "compression": "NONE"
             },
@@ -304,7 +304,7 @@
             },
             "crls": [],
             "errors": [
-                "SyntaxError: Unexpected token < in JSON at position 2"
+                "SyntaxError: Unexpected token < in JSON at position 0"
             ],
             "warnings": [
                 "Issuer key endpoint does not contain a CORS 'access-control-allow-origin' header"
@@ -417,26 +417,14 @@
         "HCA National",
         "West Tennessee Healthcare"
     ],
-    "previousAuditTime": "2023-05-10T04:34:05Z",
+    "previousAuditTime": "2023-05-11T04:33:57Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://epicapp.mylrh.org/OAuth2/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://fhir.mah.org/prd-fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "h_Z1WIF7m6_q59f7JiB1_q2-rRhr8uGlJiiBBzGlXUY"
-            ]
-        },
-        {
-            "iss": "https://fhir.laheyhealth.org/proxy-prd-fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-            "kids": [
-                "sD58-y5XzRBuAYTrnM5nS-UATnz-svgmrg9k5_HIrFM"
-            ]
-        },
-        {
-            "iss": "https://myelectronicvaccinecard.oregon.gov/creds",
-            "kids": [
-                "PlKCsSW0QNOFNgh5hKIvRbHzmExaQPSPknJzK9gvyk4"
+                "-MhcwalYrsFlCdSkM02QaT-av4I8YgZAavGw5R4VGdw"
             ]
         }
     ]
