@@ -1,8 +1,23 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2023-06-13T04:34:00Z",
+    "auditTime": "2023-06-14T04:34:15Z",
     "issuerCount": 631,
     "issuersWithErrors": [
+        {
+            "issuer": {
+                "iss": "https://cslinkmobile.csmc.edu/fhirproxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Cedars-Sinai Medical Center",
+                "website": "https://mycslink.cedars-sinai.org/mycslink"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
         {
             "issuer": {
                 "iss": "https://s.bilh.org/healthcard/issuer",
@@ -15,8 +30,29 @@
                 "RequestError: unable to verify the first certificate"
             ],
             "warnings": [
-                "OpenSSL error: 803B7E4E2C7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 80DB50C7B67F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
+        },
+        {
+            "issuer": {
+                "iss": "https://ovc-api.optum.com/imm/ocm/issuer",
+                "name": "United Healthcare Services, Inc.",
+                "website": "https://www.uhc.com/sign-in"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384",
+                "kexAlg": "X25519, 253 bits",
+                "authAlg": "RSA-PSS",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 503 (Service Temporarily Unavailable)"
+            ],
+            "warnings": []
         },
         {
             "issuer": {
@@ -102,15 +138,36 @@
             "keys": [],
             "tlsDetails": {
                 "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp384r1, 384 bits",
+                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 409 (Conflict)"
+                "HTTPError: Response code 409 (Public access is not permitted on this storage account.)"
+            ],
+            "warnings": []
+        },
+        {
+            "issuer": {
+                "iss": "https://epicproxy.et0883.epichosted.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "One Brooklyn Health System",
+                "website": "https://www.myonebrooklynhealth.org/MyChart/Authentication/Login"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
             ],
             "warnings": []
         },
@@ -173,21 +230,6 @@
         },
         {
             "issuer": {
-                "iss": "https://edhwebportal.hitchcock.org/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Dartmouth-Hitchcock Health",
-                "website": "https://www.mydh.org/portal/"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
-        },
-        {
-            "issuer": {
                 "iss": "https://proxy.christushealth.org/FHIRproxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "canonical_iss": "https://proxy.christushealth.org/FHIRPRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "CHRISTUS Health",
@@ -210,6 +252,20 @@
         },
         {
             "issuer": {
+                "iss": "https://cslinkmobile.csmc.edu",
+                "name": "Cedars-Sinai Health System"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
+        {
+            "issuer": {
                 "iss": "https://pvc.cloud.forces.gc.ca",
                 "name": "Government of Canada - Gouvernement du Canada",
                 "website": "https://www.canada.ca/en/public-health/services/diseases/coronavirus-disease-covid-19/vaccines/vaccine-proof/get-canadian.html"
@@ -226,6 +282,27 @@
             "crls": [],
             "errors": [
                 "RequestError: certificate has expired"
+            ],
+            "warnings": []
+        },
+        {
+            "issuer": {
+                "iss": "https://soapproxy.atlantichealth.org/FHIRPrd/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Atlantic Health System",
+                "website": "https://www.atlantichealth.org/"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, secp384r1, 384 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
             ],
             "warnings": []
         },
@@ -262,7 +339,7 @@
                 "RequestError: getaddrinfo ENOTFOUND dashboard.au.accredify.io"
             ],
             "warnings": [
-                "OpenSSL error: 80CBBF23CE7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 809B17DE387F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -288,31 +365,70 @@
         },
         {
             "issuer": {
-                "iss": "https://app.outpost.health/smart",
-                "name": "Outpost Healthcare",
-                "website": "https://www.outpost.health/patients"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp384r1, 384 bits",
-                "authAlg": "RSA-PSS",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "HTTPError: Response code 403 (Site Disabled)"
-            ],
-            "warnings": []
-        },
-        {
-            "issuer": {
                 "iss": "https://rp.sleh.com/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "canonical_iss": "https://rpsouth.catholichealth.net/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "CommonSpirit Health",
                 "website": "https://www.commonspirit.org/"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/kmart+pharmacy",
+                "name": "KMART PHARMACY",
+                "website": "https://pharmacy.kmart.com/newrx-immunization"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/meijer",
+                "name": "Meijer",
+                "website": "https://clinic.meijer.com/"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/pharmaca",
+                "name": "Pharmaca",
+                "website": "https://www.pharmacarx.com/"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/skripts",
+                "name": "Skripts",
+                "website": "https://www.skriptspharmacy.com/immunizations"
             },
             "keys": [],
             "crls": [],
@@ -376,10 +492,10 @@
             "keys": [],
             "tlsDetails": {
                 "version": "TLSv1.3",
-                "cipher": "TLS_AES_256_GCM_SHA384",
+                "cipher": "TLS_AES_128_GCM_SHA256",
                 "kexAlg": "X25519, 253 bits",
-                "authAlg": "RSA-PSS",
-                "pubKeySize": "2048",
+                "authAlg": "ECDSA",
+                "pubKeySize": "256",
                 "compression": "NONE"
             },
             "crls": [],
@@ -450,8 +566,7 @@
         "0jzWwbsnyP2wrDPYMCe96n0DztcJBVZLNwAq0VghGG4",
         "bRi8F_YcgjcfiBFxyNv6zO1mUSomobp4APHA6uabYKw",
         "IVzjSimVvH8ZyQ3AJEjI8LXm5HfrdrDYuEmG0QcXzOI",
-        "afXT8j9iwJJ7IRP24ZUKPhbkga79MfqPreO2DlK0sLA",
-        "KBBgSdgGdb2_Nqufjj09pcISTziLYhj9meR19MmKLDk"
+        "afXT8j9iwJJ7IRP24ZUKPhbkga79MfqPreO2DlK0sLA"
     ],
     "duplicatedIss": [],
     "duplicatedNames": [
@@ -486,14 +601,62 @@
         "HCA National",
         "West Tennessee Healthcare"
     ],
-    "previousAuditTime": "2023-06-12T04:34:14Z",
+    "previousAuditTime": "2023-06-13T04:34:00Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://app.outpost.health/smart",
+            "iss": "https://cslinkmobile.csmc.edu/fhirproxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "RnTJ2-fHoqbCfTZJDsKokUNxBPZO9-vT5qJbFltDEM4"
+                "CqfJ_R5DTOoBzVdpTiTCiD9xLkho4lKY0nxJVqTP-mA"
+            ]
+        },
+        {
+            "iss": "https://ovc-api.optum.com/imm/ocm/issuer",
+            "kids": [
+                "F8F5TxPt4A1jBA5ytKc-bKw8C4bG6BL_qh0mzKQ6QVA"
+            ]
+        },
+        {
+            "iss": "https://epicproxy.et0883.epichosted.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "kids": [
+                "bbODBOYLJ30uqUYEfA8rVrNHxnCt8YaYrWjOv65aozk"
+            ]
+        },
+        {
+            "iss": "https://cslinkmobile.csmc.edu",
+            "kids": [
+                "KBBgSdgGdb2_Nqufjj09pcISTziLYhj9meR19MmKLDk"
+            ]
+        },
+        {
+            "iss": "https://soapproxy.atlantichealth.org/FHIRPrd/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "kids": [
+                "nrVWTxXZnpk7WWh0roDnaBgRsE-HzhOkGUUlvOK2Uro"
+            ]
+        },
+        {
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/kmart+pharmacy",
+            "kids": [
+                "U_C_KSRk6GRqOuT-tTTVid-zHxihv7fRdyuvNQPeBvM"
+            ]
+        },
+        {
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/meijer",
+            "kids": [
+                "cmm6eWwLYLwRtBU69V-_jsUxfpVtPgrZshDbf5X4Z9k"
+            ]
+        },
+        {
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/pharmaca",
+            "kids": [
+                "3Dtn69t66RKUD8y06Dgig0TIoyh1V1T3cW9Bkex2uQk"
+            ]
+        },
+        {
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/skripts",
+            "kids": [
+                "Rzl1pLWRH1SI-ybhG9EpVbUaKQNBF0Sv2jR6Vk3XiYM"
             ]
         }
     ]
