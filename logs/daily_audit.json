@@ -1,6 +1,6 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2023-06-20T04:34:17Z",
+    "auditTime": "2023-06-21T04:34:12Z",
     "issuerCount": 631,
     "issuersWithErrors": [
         {
@@ -15,7 +15,7 @@
                 "RequestError: unable to verify the first certificate"
             ],
             "warnings": [
-                "OpenSSL error: 80AB4E7AA57F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 40C7F646817F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -137,6 +137,42 @@
         },
         {
             "issuer": {
+                "iss": "https://ws-interconnect-fhir.partners.org/Interconnect-FHIR-MU-PRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Mass General Brigham",
+                "website": "https://patientgateway.massgeneralbrigham.org/mychart-prd"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 401 (Unauthorized)"
+            ],
+            "warnings": []
+        },
+        {
+            "issuer": {
+                "iss": "https://epicrpprd.inova.org/fhirrp/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Inova Health System",
+                "website": "https://mychart.inova.org/mychart/"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
+        {
+            "issuer": {
                 "iss": "https://epicsoap.nortonhealthcare.org/FHIRPRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "Norton Healthcare",
                 "website": "https://mychart.nortonhealthcare.org/mychart"
@@ -216,27 +252,6 @@
         },
         {
             "issuer": {
-                "iss": "https://apps.mywvuchart.com/FHIRproxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "WVU Medicine",
-                "website": "https://wvumedicine.org/"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "HTTPError: Response code 404 (Not Found)"
-            ],
-            "warnings": []
-        },
-        {
-            "issuer": {
                 "iss": "https://pvc.cloud.forces.gc.ca",
                 "name": "Government of Canada - Gouvernement du Canada",
                 "website": "https://www.canada.ca/en/public-health/services/diseases/coronavirus-disease-covid-19/vaccines/vaccine-proof/get-canadian.html"
@@ -289,29 +304,8 @@
                 "RequestError: getaddrinfo ENOTFOUND dashboard.au.accredify.io"
             ],
             "warnings": [
-                "OpenSSL error: 80CBB2F6A37F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 40774283D47F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
-        },
-        {
-            "issuer": {
-                "iss": "https://fhir.mah.org/prd-fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Beth Israel Lahey Health Mount Auburn Hospital",
-                "website": "https://mychart.mah.org/mychart"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-SHA384",
-                "kexAlg": "ECDH, secp521r1, 521 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": []
         },
         {
             "issuer": {
@@ -319,21 +313,6 @@
                 "canonical_iss": "https://rpsouth.catholichealth.net/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "CommonSpirit Health",
                 "website": "https://www.commonspirit.org/"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
-        },
-        {
-            "issuer": {
-                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/meijer",
-                "name": "Meijer",
-                "website": "https://clinic.meijer.com/"
             },
             "keys": [],
             "crls": [],
@@ -531,14 +510,20 @@
         "HCA National",
         "West Tennessee Healthcare"
     ],
-    "previousAuditTime": "2023-06-19T04:34:21Z",
+    "previousAuditTime": "2023-06-20T04:34:17Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://apps.mywvuchart.com/FHIRproxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://ws-interconnect-fhir.partners.org/Interconnect-FHIR-MU-PRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "wtPhmGoFcUyhN7SOOZ9c0LXEVBIWyYXNT_oejKWrMEM"
+                "imnTqWDx_qeAsWg9OE-_hojNlEGxcU4RIsVa1lv1r-w"
+            ]
+        },
+        {
+            "iss": "https://epicrpprd.inova.org/fhirrp/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "kids": [
+                "cswulU3rwkOXTyIgtVzUQNw2_s4JaRCsHlH8Q1i02QE"
             ]
         }
     ]
