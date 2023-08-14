@@ -1,6 +1,6 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2023-08-13T04:34:19Z",
+    "auditTime": "2023-08-14T04:34:12Z",
     "issuerCount": 632,
     "issuersWithErrors": [
         {
@@ -15,7 +15,22 @@
                 "RequestError: unable to verify the first certificate"
             ],
             "warnings": [
-                "OpenSSL error: 803B183FD67F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 806B0D76507F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://unified-api.ucsf.edu/clinical/apex/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "UCSF Health",
+                "website": "https://www.ucsfhealth.org/mychart"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
             ]
         },
         {
@@ -100,6 +115,27 @@
         },
         {
             "issuer": {
+                "iss": "https://erx.aspirus.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Aspirus",
+                "website": "https://myaspirus.org/MyChart"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384",
+                "kexAlg": "X25519, 253 bits",
+                "authAlg": "RSA-PSS",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "RequestError: unable to verify the first certificate"
+            ],
+            "warnings": []
+        },
+        {
+            "issuer": {
                 "iss": "https://mepic.hackensackumc.net/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "canonical_iss": "https://mepic.hmhn.org/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "Hackensack Meridian Health",
@@ -132,27 +168,6 @@
             "crls": [],
             "errors": [
                 "HTTPError: Response code 409 (Conflict)"
-            ],
-            "warnings": []
-        },
-        {
-            "issuer": {
-                "iss": "https://ihismufhir.osumc.edu/fhir-prd/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "The Ohio State University Wexner Medical Center",
-                "website": "https://wexnermedical.osu.edu/features/mychart"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp384r1, 384 bits",
-                "authAlg": "RSA-PSS",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
             ],
             "warnings": []
         },
@@ -268,7 +283,7 @@
                 "RequestError: getaddrinfo ENOTFOUND dashboard.au.accredify.io"
             ],
             "warnings": [
-                "OpenSSL error: 800B4659207F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 800B2EC1DA7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -294,27 +309,6 @@
         },
         {
             "issuer": {
-                "iss": "https://fhir.laheyhealth.org/proxy-prd-fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Lahey Health",
-                "website": "https://mylaheychart.org/MyChart"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.3",
-                "cipher": "TLS_AES_128_GCM_SHA256",
-                "kexAlg": "X25519, 253 bits",
-                "authAlg": "RSA-PSS",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": []
-        },
-        {
-            "issuer": {
                 "iss": "https://api.vaulthealth.com/smart",
                 "name": "Vault Health",
                 "website": "https://www.vaulthealth.com/"
@@ -325,7 +319,7 @@
                 "RequestError: getaddrinfo ENOTFOUND api.vaulthealth.com"
             ],
             "warnings": [
-                "OpenSSL error: 803BFACEB77F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 804B45E5D47F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -334,51 +328,6 @@
                 "canonical_iss": "https://rpsouth.catholichealth.net/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "CommonSpirit Health",
                 "website": "https://www.commonspirit.org/"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
-        },
-        {
-            "issuer": {
-                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/meijer",
-                "name": "Meijer",
-                "website": "https://clinic.meijer.com/"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
-        },
-        {
-            "issuer": {
-                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/pharmaca",
-                "name": "Pharmaca",
-                "website": "https://www.pharmacarx.com/"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
-        },
-        {
-            "issuer": {
-                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/skripts",
-                "name": "Skripts",
-                "website": "https://www.skriptspharmacy.com/immunizations"
             },
             "keys": [],
             "crls": [],
@@ -546,38 +495,20 @@
         "HCA National",
         "West Tennessee Healthcare"
     ],
-    "previousAuditTime": "2023-08-12T04:34:11Z",
+    "previousAuditTime": "2023-08-13T04:34:19Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://ihismufhir.osumc.edu/fhir-prd/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://unified-api.ucsf.edu/clinical/apex/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "r1M-HNS30Li0J4WlLMrKUwKppsOK61ZfkZy7WhTez7w"
+                "ZwFzkFHXRFwE_0Jy0oyINwNZg4yLPKk5DW96xDwjMEo"
             ]
         },
         {
-            "iss": "https://fhir.laheyhealth.org/proxy-prd-fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://erx.aspirus.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "sD58-y5XzRBuAYTrnM5nS-UATnz-svgmrg9k5_HIrFM"
-            ]
-        },
-        {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/meijer",
-            "kids": [
-                "cmm6eWwLYLwRtBU69V-_jsUxfpVtPgrZshDbf5X4Z9k"
-            ]
-        },
-        {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/pharmaca",
-            "kids": [
-                "3Dtn69t66RKUD8y06Dgig0TIoyh1V1T3cW9Bkex2uQk"
-            ]
-        },
-        {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/skripts",
-            "kids": [
-                "Rzl1pLWRH1SI-ybhG9EpVbUaKQNBF0Sv2jR6Vk3XiYM"
+                "8wr-HDQqc2uqz_TgQAjati-OD41IpgJqGJDXd2CaSbg"
             ]
         }
     ]
