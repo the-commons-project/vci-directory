@@ -1,29 +1,8 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2023-09-14T04:34:09Z",
+    "auditTime": "2023-09-15T04:34:29Z",
     "issuerCount": 633,
     "issuersWithErrors": [
-        {
-            "issuer": {
-                "iss": "https://mychart.uchealth.org",
-                "name": "UCHealth",
-                "website": "https://my.uchealth.com/myuchealth"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "4096",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "HTTPError: Response code 403 (Forbidden)"
-            ],
-            "warnings": []
-        },
         {
             "issuer": {
                 "iss": "https://s.bilh.org/healthcard/issuer",
@@ -36,8 +15,29 @@
                 "RequestError: unable to verify the first certificate"
             ],
             "warnings": [
-                "OpenSSL error: 805B863C557F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 809B660EFD7E0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
+        },
+        {
+            "issuer": {
+                "iss": "https://pvc.service.yukon.ca/issuer",
+                "name": "Government of Yukon",
+                "website": "https://yukon.ca/en/vaccine-proof"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_128_GCM_SHA256",
+                "kexAlg": "X25519, 253 bits",
+                "authAlg": "RSA-PSS",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "RequestError: Hostname/IP does not match certificate's altnames: Host: pvc.service.yukon.ca. is not in the cert's altnames: DNS:*.yukon.ca, DNS:yukon.ca"
+            ],
+            "warnings": []
         },
         {
             "issuer": {
@@ -121,6 +121,21 @@
         },
         {
             "issuer": {
+                "iss": "https://www.hss.gov.nt.ca/covax",
+                "name": "Government of the Northwest Territories",
+                "website": "https://www.hss.gov.nt.ca/en/services/covid-19/request-electronic-proof-vaccination"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
+        {
+            "issuer": {
                 "iss": "https://mepic.hackensackumc.net/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "canonical_iss": "https://mepic.hmhn.org/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "Hackensack Meridian Health",
@@ -153,42 +168,6 @@
             "crls": [],
             "errors": [
                 "HTTPError: Response code 409 (Conflict)"
-            ],
-            "warnings": []
-        },
-        {
-            "issuer": {
-                "iss": "https://soapproxy.peacehealth.org/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "PeaceHealth",
-                "website": "https://my.peacehealth.org/MyPeaceHealth/"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
-        },
-        {
-            "issuer": {
-                "iss": "https://FHIR.umm.edu/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "University of Maryland Medical System",
-                "website": "https://myportfolio.umm.edu/MyChart/"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
             ],
             "warnings": []
         },
@@ -252,6 +231,21 @@
         },
         {
             "issuer": {
+                "iss": "https://pvc.gov.nu.ca/pvc",
+                "name": "Department of Health, Government of Nunavut",
+                "website": "https://www.canada.ca/en/public-health/services/diseases/coronavirus-disease-covid-19/vaccines/vaccine-proof/get-canadian.html"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "RequestError: getaddrinfo ENOTFOUND pvc.gov.nu.ca"
+            ],
+            "warnings": [
+                "OpenSSL error: 802BD9837D7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+            ]
+        },
+        {
+            "issuer": {
                 "iss": "https://arr.mysrhs.com/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "Singing River Health System",
                 "website": "https://mychart.mysrhs.com/mychart"
@@ -298,7 +292,7 @@
                 "RequestError: getaddrinfo ENOTFOUND dashboard.au.accredify.io"
             ],
             "warnings": [
-                "OpenSSL error: 80DB4DFEE07F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 805BBBC7EB7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -313,7 +307,7 @@
                 "RequestError: getaddrinfo ENOTFOUND epicproxy.et0946.epichosted.com"
             ],
             "warnings": [
-                "OpenSSL error: 801B7C0E927F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 80AB14980B7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -328,7 +322,7 @@
                 "RequestError: getaddrinfo ENOTFOUND api.vaulthealth.com"
             ],
             "warnings": [
-                "OpenSSL error: 80DB8920267F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 80FBAC48367F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -337,6 +331,36 @@
                 "canonical_iss": "https://rpsouth.catholichealth.net/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "CommonSpirit Health",
                 "website": "https://www.commonspirit.org/"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/kmart+pharmacy",
+                "name": "KMART PHARMACY",
+                "website": "https://pharmacy.kmart.com/newrx-immunization"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/meijer",
+                "name": "Meijer",
+                "website": "https://clinic.meijer.com/"
             },
             "keys": [],
             "crls": [],
@@ -438,6 +462,21 @@
         },
         {
             "issuer": {
+                "iss": "https://epicedi.leememorial.org/FHIR-prd/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Lee Health",
+                "website": "https://www.leehealth.org/covid-19-vaccine/"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
+        {
+            "issuer": {
                 "iss": "https://soap.bassett.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "Bassett Healthcare Network",
                 "website": "https://www.bassett.org/"
@@ -468,27 +507,6 @@
             "warnings": [
                 "Issuer key set contains non-valid keys for SHC issuance"
             ]
-        },
-        {
-            "issuer": {
-                "iss": "https://epicproxy.et1206.epichosted.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Baptist Health – Northeast Florida",
-                "website": "https://my.baptistchart.com/MyChart/Authentication/Login?"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "HTTPError: Response code 400 (An error occurred while executing the command: USER-NOT-AUTHENTICATED.)"
-            ],
-            "warnings": []
         },
         {
             "issuer": {
@@ -565,7 +583,7 @@
             "warnings": []
         }
     ],
-    "issuerWithCRLCount": 3,
+    "issuerWithCRLCount": 2,
     "duplicatedKids": [
         "nQM-36EWDZU5kLoCoeOvshvT2P9JUyc8Do6yWRhNokg",
         "MhFC5Nju-gakQX0lGUbkOrPzkeWSNb-iW0pHNiYERio",
@@ -630,44 +648,50 @@
         "HCA National",
         "West Tennessee Healthcare"
     ],
-    "previousAuditTime": "2023-09-13T04:34:02Z",
+    "previousAuditTime": "2023-09-14T04:34:09Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://mychart.uchealth.org",
+            "iss": "https://pvc.service.yukon.ca/issuer",
             "kids": [
-                "lJy0tb3fWq3xdiws7bCxz1goyxTu22xHc2TrXB8UERQ"
+                "UnHGY-iyCIr__dzyqcxUiApMwU9lfeXnzT2i5Eo7TvE",
+                "5xg8uSlGi4aHdSG4KG9R8auOmKh5VS38Ao44KmYMHgo",
+                "QN9XZf6C--UcWGVuZGS5nbAUv6ZV-rV_ESrtsBhkoKw",
+                "LF4I5vj9mSzx7W7XlbCaEs8UuY0USX3lVUXHY3b8tRg",
+                "oUamA58kt4bF2XQx0BSXcgwGWt3oWC66WFheXDJX4XM"
             ]
         },
         {
-            "iss": "https://soapproxy.peacehealth.org/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://www.hss.gov.nt.ca/covax",
             "kids": [
-                "dtvI30LBfmPBc8KH47PpgJpDGMBQhnTJn01IGmG6t68"
+                "8C-9TNgyGuOqc-3FXyNRq6m5U9S1wyhCS1TvpgjzkoU",
+                "AQlUbxO9XumTe_MC4BO5SVlYZFj9NRRBDcNYKyjk7tw"
             ]
         },
         {
-            "iss": "https://FHIR.umm.edu/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://pvc.gov.nu.ca/pvc",
             "kids": [
-                "aF7NDjNDFWNS7W2l4H3y7fDq5Q9gjp7KllTjSMQ86aA"
+                "MXH6EAfEDZ0JH46r3j5axkCTo-QdreVtEXE-dbvydUU",
+                "DftUSIlFGWXfFr0cm1tYwpQ1rL1wOS7_YtjyAGzRI68"
             ]
         },
         {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/pharmaca",
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/kmart+pharmacy",
             "kids": [
-                "3Dtn69t66RKUD8y06Dgig0TIoyh1V1T3cW9Bkex2uQk"
+                "U_C_KSRk6GRqOuT-tTTVid-zHxihv7fRdyuvNQPeBvM"
             ]
         },
         {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/skripts",
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/meijer",
             "kids": [
-                "Rzl1pLWRH1SI-ybhG9EpVbUaKQNBF0Sv2jR6Vk3XiYM"
+                "cmm6eWwLYLwRtBU69V-_jsUxfpVtPgrZshDbf5X4Z9k"
             ]
         },
         {
-            "iss": "https://epicproxy.et1206.epichosted.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://epicedi.leememorial.org/FHIR-prd/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "tV-uO7L7Uuinaq3-oJ07sVf7rCClr0hEjfLWMol1V5Y"
+                "u2vVlB0dvaWy1ZkXEDUmiVg4LAeZCWxuwqAFWc_HrVI"
             ]
         }
     ]
