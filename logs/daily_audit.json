@@ -1,8 +1,29 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2023-09-28T04:34:12Z",
+    "auditTime": "2023-09-29T04:34:37Z",
     "issuerCount": 634,
     "issuersWithErrors": [
+        {
+            "issuer": {
+                "iss": "https://mychart.uchealth.org",
+                "name": "UCHealth",
+                "website": "https://my.uchealth.com/myuchealth"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "4096",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 403 (Forbidden)"
+            ],
+            "warnings": []
+        },
         {
             "issuer": {
                 "iss": "https://s.bilh.org/healthcard/issuer",
@@ -15,7 +36,7 @@
                 "RequestError: unable to verify the first certificate"
             ],
             "warnings": [
-                "OpenSSL error: 80BB105CC77F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 802B9D5F557F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -137,6 +158,29 @@
         },
         {
             "issuer": {
+                "iss": "https://epicmobile.ohsu.edu/FHIRPRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Oregon Health & Science University",
+                "website": "https://mychartweb.ohsu.edu/mychart"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "AES256-SHA",
+                "kexAlg": "RSA",
+                "authAlg": "RSA",
+                "pubKeySize": "4096",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "RequestError: unable to verify the first certificate"
+            ],
+            "warnings": [
+                "TLS error: Static RSA SHOULD NOT be used, MUST prefer ECDHE and DHE"
+            ]
+        },
+        {
+            "issuer": {
                 "iss": "https://www.gov.nl.ca/covid-19/life-during-covid-19/vaccination-record/prod",
                 "name": "Government of Newfoundland and Labrador",
                 "website": "https://www.gov.nl.ca/covid-19/life-during-covid-19/vaccination-record/citizens/"
@@ -195,21 +239,6 @@
         },
         {
             "issuer": {
-                "iss": "https://arr.mysrhs.com/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Singing River Health System",
-                "website": "https://mychart.mysrhs.com/mychart"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
-        },
-        {
-            "issuer": {
                 "iss": "https://epicweb.challiance.org/Interconnect-FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "Cambridge Health Alliance",
                 "website": "https://mychart.challiance.org/mychart",
@@ -241,7 +270,7 @@
                 "RequestError: getaddrinfo ENOTFOUND dashboard.au.accredify.io"
             ],
             "warnings": [
-                "OpenSSL error: 803BC759C77F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 808BAFA39C7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -256,7 +285,7 @@
                 "RequestError: getaddrinfo ENOTFOUND epicproxy.et0946.epichosted.com"
             ],
             "warnings": [
-                "OpenSSL error: 805BEC45DA7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 800B9972207F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -271,7 +300,7 @@
                 "RequestError: getaddrinfo ENOTFOUND api.vaulthealth.com"
             ],
             "warnings": [
-                "OpenSSL error: 800BCE62867F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 801B2766CF7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -280,6 +309,36 @@
                 "canonical_iss": "https://rpsouth.catholichealth.net/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "CommonSpirit Health",
                 "website": "https://www.commonspirit.org/"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/pharmaca",
+                "name": "Pharmaca",
+                "website": "https://www.pharmacarx.com/"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/skripts",
+                "name": "Skripts",
+                "website": "https://www.skriptspharmacy.com/immunizations"
             },
             "keys": [],
             "crls": [],
@@ -450,21 +509,6 @@
             "warnings": [
                 "Issuer key set contains non-valid keys for SHC issuance"
             ]
-        },
-        {
-            "issuer": {
-                "iss": "https://rp-prd.copcp.com/fhirProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Central Ohio Primary Care Physicians",
-                "website": "https://mychart.copcp.com/mychart/Authentication/Login?"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
         }
     ],
     "issuerWithCRLCount": 2,
@@ -532,14 +576,32 @@
         "HCA National",
         "West Tennessee Healthcare"
     ],
-    "previousAuditTime": "2023-09-27T04:34:07Z",
+    "previousAuditTime": "2023-09-28T04:34:12Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://rp-prd.copcp.com/fhirProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://mychart.uchealth.org",
             "kids": [
-                "eBGefdOXaJ3BzXhnAyfSVwyT1v60OFjupCF-eIpCXko"
+                "lJy0tb3fWq3xdiws7bCxz1goyxTu22xHc2TrXB8UERQ"
+            ]
+        },
+        {
+            "iss": "https://epicmobile.ohsu.edu/FHIRPRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "kids": [
+                "GF4J7iNjERUsXgF7d3PTiHZMNMldLKLk4SP50qkJX-8"
+            ]
+        },
+        {
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/pharmaca",
+            "kids": [
+                "3Dtn69t66RKUD8y06Dgig0TIoyh1V1T3cW9Bkex2uQk"
+            ]
+        },
+        {
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/skripts",
+            "kids": [
+                "Rzl1pLWRH1SI-ybhG9EpVbUaKQNBF0Sv2jR6Vk3XiYM"
             ]
         }
     ]
