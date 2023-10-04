@@ -1,6 +1,6 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "time": "2023-10-03T04:34:20Z",
+    "time": "2023-10-04T04:34:15Z",
     "issuerInfo": [
         {
             "issuer": {
@@ -5679,7 +5679,7 @@
                 "RequestError: unable to verify the first certificate"
             ],
             "warnings": [
-                "OpenSSL error: 803B13E94E7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 800B7DFD377F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -6231,7 +6231,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 80CBBE12E77F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 806BF289E67F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -6371,7 +6371,7 @@
             "errors": [],
             "warnings": [
                 "Issuer key endpoint's CORS 'access-control-allow-origin' header *, * does not match the requested origin",
-                "OpenSSL error: 80BB6E977C7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 80CB16CC5F7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -6451,7 +6451,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 804B0F65E37F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 809B0720407F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -8937,7 +8937,7 @@
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
                 "kexAlg": "ECDH, secp384r1, 384 bits",
-                "authAlg": "RSA-PSS",
+                "authAlg": "RSA",
                 "pubKeySize": "2048",
                 "compression": "NONE"
             },
@@ -8981,7 +8981,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 80FB7226617F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 803BA69F667F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -11011,11 +11011,17 @@
                     "crv": "P-256"
                 }
             ],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, secp521r1, 521 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "warnings": []
         },
         {
             "issuer": {
@@ -12194,8 +12200,8 @@
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-SHA384",
-                "kexAlg": "ECDH, secp521r1, 521 bits",
+                "cipher": "DHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "DH, 2048 bits",
                 "authAlg": "RSA",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -12253,7 +12259,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 806B3E1BD97F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 805BC7C8477F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -12478,8 +12484,8 @@
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-SHA384",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "cipher": "DHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "DH, 2048 bits",
                 "authAlg": "RSA",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -12911,17 +12917,7 @@
                 "name": "TidalHealth",
                 "website": "https://mychart.tidalhealth.org/MyChart/"
             },
-            "keys": [
-                {
-                    "x": "4ReY4ndHrMiU6ZyeTl7uMgO0EOwzpBt-AcMbCC3DNT0",
-                    "y": "lWTK3BNO1G0EXGO2yOf-X1MBjQI0ht64ZT55XOwLT3Q",
-                    "kid": "t4PytV9gPYYrMFLSIqgRxaHLfKvggfY5oHPGTL2CFDs",
-                    "use": "sig",
-                    "kty": "EC",
-                    "alg": "ES256",
-                    "crv": "P-256"
-                }
-            ],
+            "keys": [],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-SHA384",
@@ -12931,7 +12927,9 @@
                 "compression": "NONE"
             },
             "crls": [],
-            "errors": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
             "warnings": []
         },
         {
@@ -13517,7 +13515,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 800B0E4A927F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 80DB50812E7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -15866,7 +15864,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 80CBEE9F107F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 802B974F287F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -16246,7 +16244,7 @@
                 "RequestError: getaddrinfo ENOTFOUND dashboard.au.accredify.io"
             ],
             "warnings": [
-                "OpenSSL error: 80DB3D25787F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 805B3F54777F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -16527,7 +16525,7 @@
                 "RequestError: getaddrinfo ENOTFOUND epicproxy.et0946.epichosted.com"
             ],
             "warnings": [
-                "OpenSSL error: 80ABFE86287F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 802BDC21DF7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -17610,7 +17608,7 @@
                 "RequestError: getaddrinfo ENOTFOUND api.vaulthealth.com"
             ],
             "warnings": [
-                "OpenSSL error: 803BE117FB7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 80DBA317627F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -17793,7 +17791,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 80EB4C3E857F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 80CB3BAA927F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -17903,7 +17901,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 80FBC2F9327F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 806BFDFB8D7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -17926,7 +17924,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 804B285CE57F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 800B8E3F437F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -17949,7 +17947,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 805B662DF97F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 805B20A20D7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -17972,7 +17970,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 80CB6BA4397F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 80FB2323867F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -17995,7 +17993,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 805B0881EB7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 80EBA6E2F87F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -18018,7 +18016,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 802B4B2BB57F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 804BA7A2A37F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -18041,7 +18039,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 80BBDAEB507F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 805BB038C27F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -18064,7 +18062,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 806BF3D1D37F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 801BA902757F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -18087,7 +18085,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: "
+                "OpenSSL error: 804BDC41037F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -18096,13 +18094,21 @@
                 "name": "Meijer",
                 "website": "https://clinic.meijer.com/"
             },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            "keys": [
+                {
+                    "kty": "EC",
+                    "crv": "P-256",
+                    "x": "4rGpwqa648ZOQ51AM8jvjXAWlhbOKQjhaL6PY8O-4kc",
+                    "y": "2bieuXyJYIUSgA9YFma8ogWSE4TK0lrssEg3NeTiisc",
+                    "kid": "cmm6eWwLYLwRtBU69V-_jsUxfpVtPgrZshDbf5X4Z9k",
+                    "use": "sig",
+                    "alg": "ES256"
+                }
             ],
+            "crls": [],
+            "errors": [],
             "warnings": [
-                "OpenSSL error: "
+                "OpenSSL error: 808BE18D9A7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -18111,13 +18117,21 @@
                 "name": "Pharmaca",
                 "website": "https://www.pharmacarx.com/"
             },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            "keys": [
+                {
+                    "kty": "EC",
+                    "crv": "P-256",
+                    "x": "5oc8ywImdTcDeJHk_x2A7XQaXHgpOpHqGO7cFRLl5yU",
+                    "y": "hX9Rs7g47Dn04eezx_5RUQQ42bnuCH15LvJPV_VoUy0",
+                    "kid": "3Dtn69t66RKUD8y06Dgig0TIoyh1V1T3cW9Bkex2uQk",
+                    "use": "sig",
+                    "alg": "ES256"
+                }
             ],
+            "crls": [],
+            "errors": [],
             "warnings": [
-                "OpenSSL error: "
+                "OpenSSL error: 803B0130197F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -18126,13 +18140,21 @@
                 "name": "Skripts",
                 "website": "https://www.skriptspharmacy.com/immunizations"
             },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            "keys": [
+                {
+                    "kty": "EC",
+                    "crv": "P-256",
+                    "x": "4Oqpp8MbWLjn1vtNIQ4-t6phpguPubaNfpBW3P5SmaQ",
+                    "y": "FaRtKLd60fjiBQeBC0jaxcuP6kBSHsKmxcS4MSnSHug",
+                    "kid": "Rzl1pLWRH1SI-ybhG9EpVbUaKQNBF0Sv2jR6Vk3XiYM",
+                    "use": "sig",
+                    "alg": "ES256"
+                }
             ],
+            "crls": [],
+            "errors": [],
             "warnings": [
-                "OpenSSL error: "
+                "OpenSSL error: 80FBAE874C7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -18747,7 +18769,7 @@
             "errors": [],
             "warnings": [
                 "Issuer key endpoint does not contain a CORS 'access-control-allow-origin' header",
-                "OpenSSL error: 800BE40E8C7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 80DB23688F7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -19798,11 +19820,17 @@
                     "crv": "P-256"
                 }
             ],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "DHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "DH, 2048 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [],
-            "warnings": [
-                "OpenSSL error: depth=2 C = US, O = \"Entrust, Inc.\", OU = See www.entrust.net/legal-terms, OU = \"(c) 2009 Entrust, Inc. - for authorized use only\", CN = Entrust Root Certification Authority - G2\nverify return:1\ndepth=1 C = US, O = \"Entrust, Inc.\", OU = See www.entrust.net/legal-terms, OU = \"(c) 2012 Entrust, Inc. - for authorized use only\", CN = Entrust Certification Authority - L1K\nverify return:1\ndepth=0 C = US, ST = Michigan, L = Livonia, O = Trinity Health, CN = myloyola.luhs.org\nverify return:1\nwrite:errno=104"
-            ]
+            "warnings": []
         },
         {
             "issuer": {
@@ -19911,7 +19939,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 80FB9BA4367F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 80DB433E087F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -20861,7 +20889,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 806BAA98717F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 801B7F4FC87F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
