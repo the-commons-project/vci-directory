@@ -1,8 +1,29 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2023-10-10T04:34:24Z",
+    "auditTime": "2023-10-11T04:34:27Z",
     "issuerCount": 634,
     "issuersWithErrors": [
+        {
+            "issuer": {
+                "iss": "https://mychart.uchealth.org",
+                "name": "UCHealth",
+                "website": "https://my.uchealth.com/myuchealth"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "4096",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 403 (Forbidden)"
+            ],
+            "warnings": []
+        },
         {
             "issuer": {
                 "iss": "https://s.bilh.org/healthcard/issuer",
@@ -15,8 +36,29 @@
                 "RequestError: unable to verify the first certificate"
             ],
             "warnings": [
-                "OpenSSL error: 801B5A24567F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 80CBBA3B547F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
+        },
+        {
+            "issuer": {
+                "iss": "https://linkpoint.ghcscw.com/Interconnect-PRD-FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Group Health Cooperative - South Central Wisconsin",
+                "website": "https://ghcmychart.com/mychart/"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "authAlg": "RSA-PSS",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 503 (Service Unavailable)"
+            ],
+            "warnings": []
         },
         {
             "issuer": {
@@ -131,9 +173,24 @@
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 409 (Conflict)"
+                "HTTPError: Response code 409 (Public access is not permitted on this storage account.)"
             ],
             "warnings": []
+        },
+        {
+            "issuer": {
+                "iss": "https://fhir.promedica.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "ProMedica",
+                "website": "https://mychart.promedica.org/MyChart/"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 503 (Service Unavailable)"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -262,7 +319,7 @@
                 "RequestError: getaddrinfo ENOTFOUND dashboard.au.accredify.io"
             ],
             "warnings": [
-                "OpenSSL error: 803B04FE617F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 80BB2681B97F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -277,7 +334,7 @@
                 "RequestError: getaddrinfo ENOTFOUND epicproxy.et0946.epichosted.com"
             ],
             "warnings": [
-                "OpenSSL error: 804B2AB0AA7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 800B1CB6FC7E0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -292,7 +349,7 @@
                 "RequestError: getaddrinfo ENOTFOUND api.vaulthealth.com"
             ],
             "warnings": [
-                "OpenSSL error: 80EBB258877F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 80EB78AF787F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -301,6 +358,36 @@
                 "canonical_iss": "https://rpsouth.catholichealth.net/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "CommonSpirit Health",
                 "website": "https://www.commonspirit.org/"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/pharmaca",
+                "name": "Pharmaca",
+                "website": "https://www.pharmacarx.com/"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/skripts",
+                "name": "Skripts",
+                "website": "https://www.skriptspharmacy.com/immunizations"
             },
             "keys": [],
             "crls": [],
@@ -329,6 +416,27 @@
             "crls": [],
             "errors": [
                 "HTTPError: Response code 401 (Unauthorized)"
+            ],
+            "warnings": []
+        },
+        {
+            "issuer": {
+                "iss": "https://epicproxy.et1296.epichosted.com/APIProxyPRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Duly Health and Care",
+                "website": "https://mychart.dupagemd.com/MyChart"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 503 (Service Unavailable)"
             ],
             "warnings": []
         },
@@ -538,8 +646,45 @@
         "HCA National",
         "West Tennessee Healthcare"
     ],
-    "previousAuditTime": "2023-10-09T04:35:17Z",
+    "previousAuditTime": "2023-10-10T04:34:24Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
-    "removedKids": []
+    "removedKids": [
+        {
+            "iss": "https://mychart.uchealth.org",
+            "kids": [
+                "lJy0tb3fWq3xdiws7bCxz1goyxTu22xHc2TrXB8UERQ"
+            ]
+        },
+        {
+            "iss": "https://linkpoint.ghcscw.com/Interconnect-PRD-FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "kids": [
+                "O9F5s7NFdLhpbWtPGaNATiaND6att30ljwd81UtZh7s"
+            ]
+        },
+        {
+            "iss": "https://fhir.promedica.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "kids": [
+                "uPWKKpoWI3OIa11UbV9xdoRHdf5ZsYsAyvczK79L3RE"
+            ]
+        },
+        {
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/pharmaca",
+            "kids": [
+                "3Dtn69t66RKUD8y06Dgig0TIoyh1V1T3cW9Bkex2uQk"
+            ]
+        },
+        {
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/skripts",
+            "kids": [
+                "Rzl1pLWRH1SI-ybhG9EpVbUaKQNBF0Sv2jR6Vk3XiYM"
+            ]
+        },
+        {
+            "iss": "https://epicproxy.et1296.epichosted.com/APIProxyPRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "kids": [
+                "EaQNVA8yremdk_91EEzZMZt2R4PHMiyThhwrxK0r0u4"
+            ]
+        }
+    ]
 }
