@@ -1,6 +1,6 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "time": "2023-11-02T04:34:17Z",
+    "time": "2023-11-03T04:34:09Z",
     "issuerInfo": [
         {
             "issuer": {
@@ -5671,7 +5671,7 @@
                 "RequestError: unable to verify the first certificate"
             ],
             "warnings": [
-                "OpenSSL error: 40F7AF3BAA7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 80BBE7AB047F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -6223,7 +6223,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 40B72C63DC7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 80CB5399957F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -6363,7 +6363,7 @@
             "errors": [],
             "warnings": [
                 "Issuer key endpoint's CORS 'access-control-allow-origin' header *, * does not match the requested origin",
-                "OpenSSL error: 40C7A74C2D7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 80CBBC5BC47F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -7132,17 +7132,7 @@
                 "name": "Molina Healthcare",
                 "website": "https://mychart.molinahealthcare.com/mychart/"
             },
-            "keys": [
-                {
-                    "x": "lPguGQMrlJua0-u3sWPExa40VXUvkjg5oz9aJk5TsUg",
-                    "y": "c3DsIvrnTZ5qt6oVy6o7EyAp1dJRXiLNH3PDgxQNQ7s",
-                    "kid": "k_n5C2uxa3xRhCUh7N6Tbc-bt7Nu2HiQpCQcygxX4h8",
-                    "use": "sig",
-                    "kty": "EC",
-                    "alg": "ES256",
-                    "crv": "P-256"
-                }
-            ],
+            "keys": [],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
@@ -7152,7 +7142,9 @@
                 "compression": "NONE"
             },
             "crls": [],
-            "errors": [],
+            "errors": [
+                "HTTPError: Response code 503 (Service Unavailable)"
+            ],
             "warnings": []
         },
         {
@@ -7976,17 +7968,11 @@
                     "crv": "P-256"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-SHA384",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -8615,9 +8601,9 @@
                 }
             ],
             "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp384r1, 384 bits",
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384",
+                "kexAlg": "X25519, 253 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -11119,36 +11105,18 @@
             "keys": [
                 {
                     "kty": "EC",
-                    "kid": "vYkxPjrksrvOfK8S02wkQ6LYcY5JLuDpnyERBklL-V8",
+                    "kid": "FLG7R2OzT7hTQ3MzKu4Rm4HNlXsZCivg5hwgxQ2EdXQ",
                     "use": "sig",
                     "alg": "ES256",
                     "crv": "P-256",
-                    "x": "alTrUEv7wMrOf9Sge9GeSAwz8cGz56JsJaZKzOlRQG4",
-                    "y": "N1eSU9XhVdtb7l3rYj6_mXxHDVHj5ZDN_oB-sq6vVH8"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "W67NuzZplOkH4pLpgm7jz-sOI9Sav3zN1eK8oaml5KU",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "gNyT6eKndU-kHe1ATNRxKKV7sr-ZxEb44LwAHtbiK5c",
-                    "y": "oCW4ybxrlSC1Hk0pZWDZuRJ1l5dkDEYtaiZpGL3dkP4"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "Ojnl4SYcPva17V4AV9ztCCTG7bXc02zpS8Qil7yi4ac",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "C67do2nehGhmTV42QGu063SMUY6s1q1DR1DjinwLl-Q",
-                    "y": "f_Ehi8dW_yzl65_E4HvItQCKo6AzH8RjZiMqQY3yS-o"
+                    "x": "VKNNaSfsFCyiqagSgLqUMfh7yqCftnOPOM2dwI2wn7I",
+                    "y": "EgKtRg9AzS3BwazaF6y2cN_5OumFwSbilBi2JTLkSUU"
                 }
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp521r1, 521 bits",
+                "kexAlg": "ECDH, secp384r1, 384 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -11427,36 +11395,18 @@
             "keys": [
                 {
                     "kty": "EC",
-                    "kid": "SzxkIArQIMhaFvD7yASR75tYfcIvc3SxbcY82WqpJYc",
+                    "kid": "opFN570ZovxJD_LXLDJjkNC49Ew45K6chrFBMrwS2uY",
                     "use": "sig",
                     "alg": "ES256",
                     "crv": "P-256",
-                    "x": "WOfXcDqfbL5pHYJ7TZ1G5nUs5RlpFEULjKK58-GIZHU",
-                    "y": "cfP-u94WNE_gBD3dvp2XqKHF7k4JWC-JJsOhf8bxk4M"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "Yins6zdFFla22fnW41GZV6fsPaX46b_MG5rE5X39tMk",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "rOlm47Xzp2RpVnHFtgKfH-eMKDIYRFBis--elXCKePU",
-                    "y": "A9qROJE5D0scr0YVq-19Eax9d8M3eFEVnVexMyNIFzA"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "L8Kii7MSeCRyF0t0SAnV_zqgR6i9g7D7dbbqvgwNtck",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "SsabHrLka4RmDRWbI1oc-wgebDRWJEiBuGaOKmCTux0",
-                    "y": "4Qg2q9lMQb5ZRkK6BNvY0406rcW69r102NyS_6Pi2Nw"
+                    "x": "bzy7Q6u4FtYQfboujI1GlNSISJRjy_QThbCsOYVLUxo",
+                    "y": "fX9falCBGUOfaVGrVCRUMYmy-8e7qxQRsdojDNCa-KQ"
                 }
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp521r1, 521 bits",
+                "kexAlg": "ECDH, secp384r1, 384 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -11474,36 +11424,18 @@
             "keys": [
                 {
                     "kty": "EC",
-                    "kid": "-7KwyVSAe4g37WuMgIfw1HD8z1_LVsX8zqcwagZlQBo",
+                    "kid": "-_9-cZ0eu17-qRGoMJb1fF1l-HqIaOHRQXEY3Ls7cN0",
                     "use": "sig",
                     "alg": "ES256",
                     "crv": "P-256",
-                    "x": "-HQqmqM-hjaSUSi5-MStJCDBs-eeiOT-t91-bPyPQPI",
-                    "y": "GxiOeUQu29da8Nw_GG9NRyu2ZaY5fLAf7PQlpGnpXdM"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "MLHtoHWeAr5PeKA8C-S16QduFcPVHYMnuRAMLag1Fus",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "XCA3RZFKOnDep4BA8MhxrUguZZeTofsm16WuQ-a3sKU",
-                    "y": "9W0_JW9U7s98tOuZrkYiQyDEOoxgpMAEnIItC0_vLME"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "tc3ffdtkNuTa1kqnSkoh_aBKdDiXLfnQAnmLVmRum3g",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "GRxaxAucIeYhDXY2Yd-RVEr7oXYRtrJtbMnRdwtnuzs",
-                    "y": "H4x51lXpgBKZtt2Vkk5738qcakYUyyZyImH55K3-bPA"
+                    "x": "-rmrUt4e010rq-plIFGRBNiuSuDGBgA3CkKK56fhTWo",
+                    "y": "15qEHtT9Ho8Nf4cO0vSyfJxFro6WXrvtN8gngFCvPJQ"
                 }
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp521r1, 521 bits",
+                "kexAlg": "ECDH, secp384r1, 384 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -11521,36 +11453,18 @@
             "keys": [
                 {
                     "kty": "EC",
-                    "kid": "TyJXvion-N1hiPReLqGqP3GEHIHUKqDbpNF6_Yx2x1g",
+                    "kid": "ozmYC99KNgBq6yTWHZC-0MIyR69BcqObwX4AjObfZks",
                     "use": "sig",
                     "alg": "ES256",
                     "crv": "P-256",
-                    "x": "h6eiqSzzTu5x5lL3WcrQcN8Dw-InqaZO24ejEqtaBUo",
-                    "y": "lwnDiJgFRShPY0PMmfGdGWF84XlpJxIFU1C4cYnQhGM"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "S7GOxM5DQsP-o6tbwJ-xQRWqTOsRABfZMD2N3Wc5-Hc",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "iryLwv2-1qIGb_pGEb4wiCYFTpjW6ZeNI6T_YGexWeY",
-                    "y": "Vhzq8kU_XxgfrTNCDcjtiHRjgD7pMSKduVEYbivV28k"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "vMMsQ-8ob3XdjLMvzLIqHWH8yiE6OM13mim6sHbL7OI",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "2_ZB_KzLk0iBqffu8BVMf9Tk6qhmB8edFGsMP8PPbVU",
-                    "y": "NMQ3WnKtviiC1mxw8TiLHE0Eq-h9YNS2XENqMb-jwcg"
+                    "x": "978FaSecSLwAtF8JtkeeXQRRMjxngd33LUDnfNNe7Ec",
+                    "y": "DJUPakYVLxMytpFzJfrlHWpBjRj8SgfMRYHvpx-YNNE"
                 }
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp521r1, 521 bits",
+                "kexAlg": "ECDH, secp384r1, 384 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -11567,36 +11481,18 @@
             "keys": [
                 {
                     "kty": "EC",
-                    "kid": "zTS48nKWsMcEMYW2qi3aEpb91M8MdDL1OjKpDagIOFY",
+                    "kid": "TAa2HiQ8voeMzxnULjblOAvzmTLTMpqj3GLt-omXLyI",
                     "use": "sig",
                     "alg": "ES256",
                     "crv": "P-256",
-                    "x": "Qo8OpR6Caf_oI1C_r8TpGGAO3K4qJGgBQ3wf4-AZ_h8",
-                    "y": "tIvrqqDUwrNXquENGthrhY5Nf0Ux8nNvSXtbmzZLYow"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "3c7B_9lJp1tpByY1jBxnKpef7hNngBtujma1sa1BAdU",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "_3kkDisXHMQ4DnGOXmiUglshkJqKtv-AW7Gzmgnxt80",
-                    "y": "Y2C8UH_t5fRiEqmz296WWhepoVDHAmvQv038p20Adls"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "dYx3mLMcBeG34o7pWchb-baIIgnTQqcR53EVeYgITu4",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "JwFxV0XxGdZZAGMWYZ8zWBKzkw1UwD3CspjlhmzKchE",
-                    "y": "PDPZMLAN9DT0DFRTEQKAQJEylLIGXTcfCfX0yaiRrnE"
+                    "x": "c-kWWDl2ZgBxQ0DEr32zpkGckOPA7ZeM_qJKLCl5y44",
+                    "y": "jT0PvdCufMFLdf1pe-wqZiwmaqK49VHKspwvZ464YOk"
                 }
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp521r1, 521 bits",
+                "kexAlg": "ECDH, secp384r1, 384 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -11614,36 +11510,18 @@
             "keys": [
                 {
                     "kty": "EC",
-                    "kid": "CVfQFkOuS08fAs1UKNr6PhqrWbp1rEuBu_M3pzfHjGA",
+                    "kid": "VlK8ZxfTL5GlfFKLjaP1MNci59vxBS9LwWLIYWb6m8g",
                     "use": "sig",
                     "alg": "ES256",
                     "crv": "P-256",
-                    "x": "eJlW95Wh-w_dET_R_if7ZRyhT0T6C3KpkG8leb-qxPs",
-                    "y": "ETtQqhA7VH2ubizhLvqzmXTeO6pOMD9539upKDNoL0I"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "pW7F8zJPBc8uqtTRPBiKyCFDfAS4ZIeFlocSLdxZEe8",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "hxrSW9ra19xDv2z1tbtM_jKkr_rZmXySjTUOTSPvj98",
-                    "y": "_t7HF6I3RwdxlDhmtm7AiZ5P3I7O52U2MIpvOGfKFfc"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "cr2Qyf3BnOqQCdIBIz3gzMryOTNjmybIDF7N59JJGSY",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "TQJwlQ5xclSK1PGNNPcb3kEmqyKbD36yfWq3Y2nDKQs",
-                    "y": "4IElDYlsKfEZrnEygDU-d86wxqIWKz3WGB59I-qkr0I"
+                    "x": "NgayP_2pfFH8UngjhuCwtGBbTI6L0HMtJu49uds5WIU",
+                    "y": "iOe07_QuQ-kpPJII0gMVpd6Qkk1HnXX1OfRUaiV7epY"
                 }
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp521r1, 521 bits",
+                "kexAlg": "ECDH, secp384r1, 384 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -11661,45 +11539,18 @@
             "keys": [
                 {
                     "kty": "EC",
-                    "kid": "xjDAI01aAqqKVfTby1HgI5mGmaNov_iNAe7YU42-GYI",
+                    "kid": "ZsbXnTYsC3gQ7RNwGy7_B4_ufC_b1-fQM7rAn4E_BZ8",
                     "use": "sig",
                     "alg": "ES256",
                     "crv": "P-256",
-                    "x": "XGD2eTGy-Ty264jBz6__6yVih4HIShgGzWdJBAeLJOU",
-                    "y": "KvM4EauttKWSVjF5unr7MUWz1QSwsEW46A4aGWsFY4I"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "2IfE2paj2TPh_-pC9nVIMaKKqUqb2hzoMFcRpX2l3Y4",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "IoAWT9iGGFOuiuKnt6kxi9VG0b6PGpO4JJ1yUuR9zpc",
-                    "y": "ieHd5lPgaoRkIYb_VJsy2vPTyJ8SR71MTkNhZ09U9UU"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "KpvqpmEOig00AbPJ9PEla4mXfDLR1krwfFFN9j1Eeew",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "r8B-9ooPzWAUwFF4BkSQ27Ezee-hTbGHxWsF_SW1rCM",
-                    "y": "lXkEZC17DC9sTnVMvg1dBrmLNuP8VkGcCT4Vbk3_vH8"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "COtZJhsWjnta-bYXwlRkWlldA95Ai7S6YGZE4MPB-tk",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "X2Erdh2dszBgm0y5RF0C6tcA2fwGdDU_ZsOeJLjjcQk",
-                    "y": "haxiYhRJifQY_qU3Dv_qqk1aBzY4IrcegLqu6rvikMQ"
+                    "x": "vboReILVreU28k0mkz5oICKd7MEV3wzCPdWeDL6gGbQ",
+                    "y": "uUXdQCrgBZu_ZGd0-jt2wH7V6uNW8f6Qqxzwg2zZMCo"
                 }
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp521r1, 521 bits",
+                "kexAlg": "ECDH, secp384r1, 384 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -11870,36 +11721,18 @@
             "keys": [
                 {
                     "kty": "EC",
-                    "kid": "ah4qU-camAEEBAPzgMTUvVc16K4J4_vPevvASUffDo4",
+                    "kid": "fWHJFnr8c8JSYMOoE6Dm1Tgk_emVkBlQpTzcmU1R5yY",
                     "use": "sig",
                     "alg": "ES256",
                     "crv": "P-256",
-                    "x": "fGX2ZdfeRVJl7_ZHQ9m-lc3TBN6N63wphzJzD1ZRtiE",
-                    "y": "cdRRgwZ4NTuyNJ-y67DEBgpK1x2jXu6C03e8XPK96wg"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "91muGrbsWIODhKyYFvOacGujZIJrHEky5D5gI56lRak",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "84yFL987pcw2QLDhbd4FlW5kOkbjvHiJi7jDN5Jbka8",
-                    "y": "vvxRuIZVl1T3qiyiekP3keIVJCBy0uSt4WNW7eZUskc"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "rtVmuCG9DrsEt9qlCsrST2P3n9UV6iGC4PwfijotD38",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "A2bXFoRfe-EMHhQUHPCexl-Bq5YzW8QRVTW5Ndo1cMM",
-                    "y": "t1fx0jQmj2uJjpkf7VgVm84YJXCUDqAPGg8FS1dwiVc"
+                    "x": "W0uKueqiYlsWScE52taRtFaALx3kPRsipcYrax81YYA",
+                    "y": "hvPJYNw4Tk956nUZF2bfDJWsMavqdiKGXBh_UhEE78c"
                 }
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp521r1, 521 bits",
+                "kexAlg": "ECDH, secp384r1, 384 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -12120,36 +11953,18 @@
             "keys": [
                 {
                     "kty": "EC",
-                    "kid": "hspy-bpfqGL2PMFS3PJgvdCiRHqGiMJ5PUg8L2-9hGs",
+                    "kid": "0y1AaZ-QqSuViEC8bBIRFS1erSBs88nfHd9kOzJRbbQ",
                     "use": "sig",
                     "alg": "ES256",
                     "crv": "P-256",
-                    "x": "tp72Ik-E7zP14ZtnvnYqTQvzK5QuBS5szQ1OHQKfz4g",
-                    "y": "DczvG6zHhlFLmFtnUEcJr9dpZuu7DlpXJXN-ydaqC-c"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "_ct4HzuM-5nNMJcSyNMyp_rdMrQ__I66RVR4V4_EIy0",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "vujlxJ7XCd6KERb8yfuYudCLwanYRX83Zi5BlwPfADY",
-                    "y": "dwTe6gBDeJmrihloxYKNXdbB6Zi_Dv8C5ZtV_ZVP7f8"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "fDpmdl8kXxgfs3Ce8xZkT4p3YZGrTK71Gp0yfTCEPPk",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "0QCUzvKioAjXRAD96gzlRdu1kRbDzo3dIRoexUCtsFg",
-                    "y": "0CSKlY4Rv_TXq6pZz1ew6bNUR4rZ8yaFIxap2JivU1Q"
+                    "x": "TlKVZXlYiy-b87I1hj3l3TtogUAM3mH6ysqmd68cCM4",
+                    "y": "MUqcmY6rYYWVsSTKVRg2-vQiwYlveNUqTrTH6dAkLaY"
                 }
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp521r1, 521 bits",
+                "kexAlg": "ECDH, secp384r1, 384 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -12265,7 +12080,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 405798BEC77F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 803B9AF9567F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -12489,10 +12304,10 @@
                 }
             ],
             "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "DHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "DH, 2048 bits",
-                "authAlg": "RSA",
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384",
+                "kexAlg": "X25519, 253 bits",
+                "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
             },
@@ -13157,8 +12972,8 @@
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "cipher": "ECDHE-RSA-AES256-SHA384",
+                "kexAlg": "ECDH, secp521r1, 521 bits",
                 "authAlg": "RSA",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -13533,7 +13348,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 40F727746B7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 80CB3FFEE57F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -13613,7 +13428,7 @@
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-SHA384",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "kexAlg": "ECDH, secp521r1, 521 bits",
                 "authAlg": "RSA",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -15581,36 +15396,18 @@
             "keys": [
                 {
                     "kty": "EC",
-                    "kid": "CJS6fWZn_TAj28mkQj23aFEfp-qDrxDM8VY9O6huGpA",
+                    "kid": "c8wcfdgxcvz7SrShCywcTtOLL_i4nD_fxdxjmEF0jOo",
                     "use": "sig",
                     "alg": "ES256",
                     "crv": "P-256",
-                    "x": "gJdEnz_Pu9gfw4aZ6L3OpfdfWW4_FU_1UYgSIbQWucg",
-                    "y": "B06JqajU5dBZw37mdAr7g53rztKuVlp0juXMR5xmwHA"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "YfjIbmElcMkjwclXAoOVw6tmbsKI90EMXwB2WmJIqHc",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "iG6PfXvJ6DOnfcUTc1VsPTLatIKN68miiwkhxWnyapo",
-                    "y": "bkBMJ1NiTvfFDNVlbz14UF-9JCnRl_GjOeI7tLJzKVE"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "-b19goNbl4_TqU-BngNWMobzTZc6XG-bpSVQppsh7TY",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "Lc4INqQHBirrbOzsO8cMVsIqn7Sj69xqM5QEgIjH7bQ",
-                    "y": "DdzR_s2Yi4dUQlnVuDpazXirK5pM9CXKbluw_nwkHf0"
+                    "x": "l8x-bOch8iMPUMk1k5rsWevpd9uJNGcT5yePG7IqJNE",
+                    "y": "WiTw5tOktYtcKmtqB053KHM1m7GSoubHSN325mqyRE4"
                 }
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp521r1, 521 bits",
+                "kexAlg": "ECDH, secp384r1, 384 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -15628,36 +15425,18 @@
             "keys": [
                 {
                     "kty": "EC",
-                    "kid": "0IkOoOtxTAp0DpLmK2na2rpCnKF7LGhngdT3hIGFWnQ",
+                    "kid": "D1RT-FLJ53Bz68nQwyXwD9IRf3y0JIxQlmGidf4mIDc",
                     "use": "sig",
                     "alg": "ES256",
                     "crv": "P-256",
-                    "x": "kWNSzSHib3SbIY8gH-M3BgTp9m7VaGibbC5HjWQFNbw",
-                    "y": "LxsppZ3ibAh5vwTO-qhom71PJXc55lPXfr4mZ-1OIaI"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "BS3vs7e2FDY2A5x_2sBgccJR7ULKvOkEedEH5NWYkM0",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "YAJqsPLKoG08GjWiKz96c8AYaESL4QazIqV1giRa0vY",
-                    "y": "bLO-W6IbGIsERyh1uwis_9E7oLE8B_aimAx5YXU4ZPc"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "aXVmKxzAGg5Jv1pLzaEDDI90bKboryfrDnwiC6Qw6dw",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "F6ticOSjHJlGQPrHj3RIJTCuM4HJvuEiK4yUXhkXrqE",
-                    "y": "qtlpJkgg-dHR_zLAD3ImWEFQhzHhwlTRIxmUBuDSlvk"
+                    "x": "Kl7ZwnoTMCoFD7LeOlwRwqpz6WnbGYiql_-SKzMSHJo",
+                    "y": "Jffu0FOALk9C6VZU_o0XKMi3QLv_07mi3q7HXco4Q4w"
                 }
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp521r1, 521 bits",
+                "kexAlg": "ECDH, secp384r1, 384 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -15674,36 +15453,18 @@
             "keys": [
                 {
                     "kty": "EC",
-                    "kid": "zSo8tNBGLuI-uEImCzrErr6udFjZZimOFkqO9pfICj8",
+                    "kid": "i3LY2PfkvMDAMneR0FjDjlaNKqNxRZVdOJBILL2S21E",
                     "use": "sig",
                     "alg": "ES256",
                     "crv": "P-256",
-                    "x": "zUbMXM0HHPYjN7vctb0eQUOx2GPvJRhbl1pNR6byJOE",
-                    "y": "cY1gje5wqPM5gznjg1eVZgn-mdBOnHrXobJYzVk-Nes"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "BY-MED9jsICOyQBrvR6EJAD66k4djQ2_-YltJVc5QKk",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "R5hSTm3-7mybxLj_JBjhR0fgl4VlELtAHxKsWINxEms",
-                    "y": "TrmcugtIji8--RIYuNwz_6oVRvnTSqN0vH3otTQheQU"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "4m_Ud0LmhbJ9fXJaqbmni7tCAz_iFpwKYiUuG1FRUO8",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "moz-OUgx6SLGXVswJuAktWiWiVJuvkyrj5SODryIsKk",
-                    "y": "EcsGhtZZI-ZCsTXPqsGHgVaMTBHapNdCrj6XWBoMqHw"
+                    "x": "c_fRfUpkzqNRaC2v6iiC0f5zitqtzUC49hUShpDd9tw",
+                    "y": "siNTak7SsO7Jiia9V-JWOEIqYl4eF0VRLUqoQFxboFo"
                 }
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp521r1, 521 bits",
+                "kexAlg": "ECDH, secp384r1, 384 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -15721,36 +15482,18 @@
             "keys": [
                 {
                     "kty": "EC",
-                    "kid": "d2Gu5_12Gabur3jC7bZ0ooWh41tq3SW6H4x35FnKRhI",
+                    "kid": "E4AO98ckAAWbmCqczAIV9A7ysiJ5G3cw0rUlTNtCZJo",
                     "use": "sig",
                     "alg": "ES256",
                     "crv": "P-256",
-                    "x": "j3hMieSbN-VjMGrkMLX7kG8evXI-qlG_vQmeZ5gzMxI",
-                    "y": "04YCs1Xsa1nyAmxZeRKuxmo4xqFhJfpVk3IH5bs5YyY"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "0Hs0endtJ3U4Saxq2KF6-bC4UJp5mkuibFk4AVviieI",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "GwI3hBX_u_zQV3LxncsyQIBx59Tqx8XBA4GaG5e8S_c",
-                    "y": "MGvii97oobk5Cb0kkbCrIThn-F6BzAPZkSudBW-bSvE"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "4ySM1Xd79w8fFYwFdwD1vViBRl9nNWDhMAsFpmHImSQ",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "OYg1E1gawVKsd2uzjt1vBnMUMqdGZ5aiCIHpvj_mtt4",
-                    "y": "in69oaufS0mY22vYrWPogiGgJqvv02r6YIrAeRhR7sM"
+                    "x": "phUPwmNG4r5kIII4T-3mvhbPkOcJjtGSGBDcGEC6TfU",
+                    "y": "-ad4hKaR6lEdLztJmP9lT018DK4G5UVQ_gv9Ch-g3rE"
                 }
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp521r1, 521 bits",
+                "kexAlg": "ECDH, secp384r1, 384 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -15824,36 +15567,18 @@
             "keys": [
                 {
                     "kty": "EC",
-                    "kid": "cjlJGwaFkzEElIUQP9G8DeG9N4pUcnc7CKD3Rsg6XkE",
+                    "kid": "3_ZH2ats2Nzvgui9zIr-mTyPqUxAoqZfxE3uSBMfhBE",
                     "use": "sig",
                     "alg": "ES256",
                     "crv": "P-256",
-                    "x": "T1g1ruvpwd8-GYo52R0Z9vCLCEM4NaZLMRArJzlp1J8",
-                    "y": "RW20Mu4Hp3tNmVMo_gC6VZ_ZvlUG-yRyUX5UQ0clhPA"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "scrrOxgW26WSVKOf6MZzoQ0U6hF7gmcRtiCeqw_l0ec",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "wrKusR4dQJ5vCaYbGpOLaA2fnyHRs49pBF2U6xbuZKI",
-                    "y": "5vBZKHwLyHCRM4LtqCXAEFC75C5SRHaeRLUbZapkWT4"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "4S4NI0l6wC6YBNPSdp8upWraj9XayAdQYUU-ycC6qcw",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "-72O5hI170yY4u9H4WHisAP1nSJgq3tcoid1SmiO8PI",
-                    "y": "MA53Qmlj7DpMJ7h4yuKkcC7i8WT5OrwkEcNfbi_qH4Y"
+                    "x": "f0ZukURJQaloO1BcYs-bb_tiwG4L92ZhKdNTetB5yEI",
+                    "y": "1zDFO7-bm4gQ0UertkNondSOuQjDGcw2MEcD1cFstdQ"
                 }
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp521r1, 521 bits",
+                "kexAlg": "ECDH, secp384r1, 384 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -15891,7 +15616,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 40F781A4317F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 80CBD29E527F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -16271,7 +15996,7 @@
                 "RequestError: getaddrinfo ENOTFOUND dashboard.au.accredify.io"
             ],
             "warnings": [
-                "OpenSSL error: 40A7EDCA207F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 807B85E7047F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -16349,17 +16074,11 @@
                     "crv": "P-256"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -16552,7 +16271,7 @@
                 "RequestError: getaddrinfo ENOTFOUND epicproxy.et0946.epichosted.com"
             ],
             "warnings": [
-                "OpenSSL error: 4037C330457F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 803BF24A177F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -17635,7 +17354,7 @@
                 "RequestError: getaddrinfo ENOTFOUND api.vaulthealth.com"
             ],
             "warnings": [
-                "OpenSSL error: 4007C3F1FF7E0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 80CBC93DF07F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -17934,7 +17653,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 403733F9B27F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 804BB280687F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -17957,7 +17676,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 4037A8B1707F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 80AB7D805A7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -17980,7 +17699,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: "
+                "OpenSSL error: 801BEC83527F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -18003,7 +17722,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 40C75C4B927F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 803B0342837F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -18026,7 +17745,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 40E715566E7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 809BCD773C7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -18049,7 +17768,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 40E7524ED97F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 80BB0883E87F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -18072,7 +17791,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 40F791BC817F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 801BAF9B5E7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -18095,7 +17814,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 40D79F6CCD7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 80ABD1DD297F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -18104,13 +17823,21 @@
                 "name": "KMART PHARMACY",
                 "website": "https://pharmacy.kmart.com/newrx-immunization"
             },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            "keys": [
+                {
+                    "kty": "EC",
+                    "crv": "P-256",
+                    "x": "vnz-riIGGnG5QXoN9hCRh7HiK0X-YWaduPOK82_qtq0",
+                    "y": "Aw6J9vSzG0w7UO6CaznTRvLndFnZ5RCjl3mK5H0497s",
+                    "kid": "U_C_KSRk6GRqOuT-tTTVid-zHxihv7fRdyuvNQPeBvM",
+                    "use": "sig",
+                    "alg": "ES256"
+                }
             ],
+            "crls": [],
+            "errors": [],
             "warnings": [
-                "OpenSSL error: 40D71FD80A7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 802BEA7E5B7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -18548,17 +18275,11 @@
                     "crv": "P-256"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp384r1, 384 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -18766,18 +18487,11 @@
                     "crv": "P-256"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
             "warnings": [
-                "Issuer key endpoint does not contain a CORS 'access-control-allow-origin' header"
+                "Issuer key endpoint does not contain a CORS 'access-control-allow-origin' header",
+                "OpenSSL error: 806B750CF67F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -19451,7 +19165,7 @@
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "cipher": "ECDHE-RSA-AES256-SHA384",
                 "kexAlg": "ECDH, secp521r1, 521 bits",
                 "authAlg": "RSA",
                 "pubKeySize": "2048",
@@ -19947,7 +19661,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 4067E731117F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 805B6F00727F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -20311,36 +20025,18 @@
             "keys": [
                 {
                     "kty": "EC",
-                    "kid": "Pvsx8C-BTJ81HdK-1RZxkFc8xEIvy0V6xyGYauhdqCI",
+                    "kid": "FGkaP7p4ESRNTtiCyIJwAtj4CuG9nzJZ0cycfuMM8uM",
                     "use": "sig",
                     "alg": "ES256",
                     "crv": "P-256",
-                    "x": "G3I81Knqx-Ks-J1ZdoFwan1TYrzoOrMEcEGMN4bTKAI",
-                    "y": "JgYVQk7dfSRxJEg8iccUlfurUl-J73A2gN61slIRtPA"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "t-DzYd2IEWgreyzw2GCdqwo-RzwUfmIwd3oJIsTFklA",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "fNG49T8NfaEpqYxCrp419-lFz6Zr05v1OYCsfplHA6g",
-                    "y": "YTJ3JRX99i8ldPGV1Q6tCinU8pICt7UPhfN8feBzqyE"
-                },
-                {
-                    "kty": "EC",
-                    "kid": "CGDPOMcHM7ZrKqsD4Y73HznEnERaJzxvG_dLwaenSgs",
-                    "use": "sig",
-                    "alg": "ES256",
-                    "crv": "P-256",
-                    "x": "Ss_WFsKX36tTTRLQUL0L5zmTdA2am1s4-ifB5oeu5I8",
-                    "y": "nkX_Z51n50lvtloQKPq1vFFbrabZZeFI9QtPjLz4OqE"
+                    "x": "wflad_5_Dn5mAZfjoD6tltkygP6-VVccqIY724ghyR8",
+                    "y": "UOBWJFBFDceFn2mOHvoQxzQ54qlvq4B76_ffo67szgI"
                 }
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp521r1, 521 bits",
+                "kexAlg": "ECDH, secp384r1, 384 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -20741,17 +20437,7 @@
                 "name": "CVS Health",
                 "website": "https://care.cvs.com/"
             },
-            "keys": [
-                {
-                    "x": "RPvq62GN6LEA9lcSjqhYtBDqJl7FFMPN52kCQq7xjfE",
-                    "y": "MEzX6hkTT7SV5UdEMihyEwpZS_Mg25hPA7xcKfp9JCI",
-                    "kid": "R6-vROogzwE51ZIHxRl7tp8SSRoAfMcGeOoF_G2VGlo",
-                    "use": "sig",
-                    "kty": "EC",
-                    "alg": "ES256",
-                    "crv": "P-256"
-                }
-            ],
+            "keys": [],
             "tlsDetails": {
                 "version": "TLSv1.3",
                 "cipher": "TLS_AES_256_GCM_SHA384",
@@ -20761,7 +20447,9 @@
                 "compression": "NONE"
             },
             "crls": [],
-            "errors": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
             "warnings": []
         },
         {
@@ -20897,7 +20585,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 4087DFC4417F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 804B5A1B927F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
