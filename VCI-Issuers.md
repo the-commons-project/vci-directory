@@ -1,8 +1,8 @@
 # VCI Issuers
 
-This document lists the Vaccine Credential Initiative (VCI) issuers with their names and issuer identifiers.
+This document lists the Vaccine Credential Initiative (VCI) issuers with their names and issuer urls (ISS).
 
-| Name | Issuer (iss) |
+| Name | ISS |
 | ---- | ------------- |
 | State of California | https://myvaccinerecord.cdph.ca.gov/creds |
 | State of Louisiana | https://healthcardcert.lawallet.com |
