@@ -1,6 +1,6 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "time": "2023-11-09T04:34:44Z",
+    "time": "2023-11-10T04:34:24Z",
     "issuerInfo": [
         {
             "issuer": {
@@ -112,6 +112,24 @@
         },
         {
             "issuer": {
+                "iss": "https://icproxy.mycclink.org/proxy-FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Contra Costa Health Services",
+                "website": "https://mychart.cchealth.org/mychart"
+            },
+            "keys": [
+                {
+                    "x": "NWGbFu850AxNtzHhHul07Rvvd--C6rD77oDJgGjK_Zg",
+                    "y": "zpfZ8lKQFID-r6NW2F-xMonpMK6fCKUbzdN_U4raegU",
+                    "kid": "-Op_l5Cs2yvAEcQp-6WFFIUzjFEuANXf2E71uXRxWg8",
+                    "use": "sig",
+                    "kty": "EC",
+                    "alg": "ES256",
+                    "crv": "P-256"
+                }
+            ]
+        },
+        {
+            "issuer": {
                 "iss": "https://proxy.lvh.com/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "Lehigh Valley Health Network",
                 "website": "https://www.mylvhn.org/MyChart"
@@ -143,24 +161,6 @@
                     "kty": "EC",
                     "alg": "ES256",
                     "crv": "P-256"
-                }
-            ]
-        },
-        {
-            "issuer": {
-                "iss": "https://mychart.uchealth.org",
-                "name": "UCHealth",
-                "website": "https://my.uchealth.com/myuchealth"
-            },
-            "keys": [
-                {
-                    "crv": "P-256",
-                    "kty": "EC",
-                    "x": "xn4u3l6l1U3JMkwh8d8p03Qz3dg5adMToIMlvb3UnZU",
-                    "y": "y-QXzAqkdbbLjVVIrgl-63uUkSWWde58YE7RpCo5sWs",
-                    "alg": "ES256",
-                    "use": "sig",
-                    "kid": "lJy0tb3fWq3xdiws7bCxz1goyxTu22xHc2TrXB8UERQ"
                 }
             ]
         },
@@ -11469,6 +11469,20 @@
                     "crv": "P-256",
                     "x": "MFzLPQDWyrJgioCAc3Agake1GNt7SPulfbOydJG2I7g",
                     "y": "06Y83OXNj1V5mIgBUGBpMrsJvk40noAAu86K1aLV7Uo"
+                },
+                {
+                    "kty": "EC",
+                    "kid": "zAa3HKmmj-gAlTasE5Wc_7PAvY9hR_8La5XVr60E41w",
+                    "use": "sig",
+                    "alg": "ES256",
+                    "x5c": [
+                        "MIIByzCCAXGgAwIBAgIJAPZFN9WW4vofMAoGCCqGSM49BAMDMCIxIDAeBgNVBAMMF3ZjLnZycy5kaWdpdGFsLmdvLmpwIENBMB4XDTIzMTEwNzA2MzUwMFoXDTI0MTIzMTA2MzUwMFowJjEkMCIGA1UEAwwbdmMudnJzLmRpZ2l0YWwuZ28uanAgSXNzdWVyMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEdRi8CdaGq2Yn9CrHJzJgv59grO2thSOBFaMeLMYnWM4Gz7PNrNjgx8pNY78PjF/3eU2LEl6rNvlEuLJv5iYRV6OBizCBiDAJBgNVHRMEAjAAMAsGA1UdDwQEAwIHgDAdBgNVHQ4EFgQUwA4eU4ozIAqLGDyVKtGZjXJBDGMwHwYDVR0jBBgwFoAU0cYt0sPpuIDBt7a9PD3qs9mOu7EwLgYDVR0RBCcwJYYjaHR0cHM6Ly92Yy52cnMuZGlnaXRhbC5nby5qcC9pc3N1ZXIwCgYIKoZIzj0EAwMDSAAwRQIhAMvpfC3vq89W37RsQbKmyDgGpdzgcD9Z2buZjNa0zeyTAiBtMIO0j+rQ4C4B9aIgNwgAa6xt3LJg1XjI/FT/6KTOdA==",
+                        "MIIBkDCCATagAwIBAgIJAOECTZDa4MA7MAoGCCqGSM49BAMEMCcxJTAjBgNVBAMMHHZjLnZycy5kaWdpdGFsLmdvLmpwIFJvb3QgQ0EwHhcNMjExMTI1MTI1NTEzWhcNMjYxMTI0MTI1NTEzWjAiMSAwHgYDVQQDDBd2Yy52cnMuZGlnaXRhbC5nby5qcCBDQTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABEL3S0yNIJ8EuxgiaHEvsjGWd60P0BBKUfVUVSxpVyGsnXwuzkS7OPGG/DT60m5XTvKT125MRuZoS/sajPBcg2KjUDBOMAwGA1UdEwQFMAMBAf8wHQYDVR0OBBYEFNHGLdLD6biAwbe2vTw96rPZjruxMB8GA1UdIwQYMBaAFPKN8VogQyX0IuxEi7jBB5gUnFinMAoGCCqGSM49BAMEA0gAMEUCIQCcq3H/pRMRkUmpWUDsggQXJAjLB/AutlHQigEBsVx0sgIgfVyc0L1cbRaDmdCQ3CGd994rRuwlQI0/cJCIv5LeI3g=",
+                        "MIIBlTCCATugAwIBAgIJANt2MZrWChe2MAoGCCqGSM49BAMEMCcxJTAjBgNVBAMMHHZjLnZycy5kaWdpdGFsLmdvLmpwIFJvb3QgQ0EwHhcNMjExMTI1MTI1NDUzWhcNMzExMTIzMTI1NDUzWjAnMSUwIwYDVQQDDBx2Yy52cnMuZGlnaXRhbC5nby5qcCBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEilfgw+JIG8TOliOLe7jufm2m0+HqL4t5nvBdQj3UMgh8jjl6VoVKKwcj3T1DWFinm6sCTWYUrPSXWcvOq64GbKNQME4wDAYDVR0TBAUwAwEB/zAdBgNVHQ4EFgQU8o3xWiBDJfQi7ESLuMEHmBScWKcwHwYDVR0jBBgwFoAU8o3xWiBDJfQi7ESLuMEHmBScWKcwCgYIKoZIzj0EAwQDSAAwRQIgQWnKyVhaKpu1WcXP49s9inaa5mnWgV/pCW31h/NIJnwCIQDSIHvGUuPwK+ofYqLJGo99hhwhfkIBWhvSo0vr5IGesg=="
+                    ],
+                    "crv": "P-256",
+                    "x": "dRi8CdaGq2Yn9CrHJzJgv59grO2thSOBFaMeLMYnWM4",
+                    "y": "Bs-zzazY4MfKTWO_D4xf93lNixJeqzb5RLiyb-YmEVc"
                 }
             ]
         },
@@ -11921,6 +11935,60 @@
         },
         {
             "issuer": {
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/hartig+drug+co",
+                "name": "Hartig Drug Co",
+                "website": "https://www.hartigdrug.com/covidvaccine"
+            },
+            "keys": [
+                {
+                    "kty": "EC",
+                    "crv": "P-256",
+                    "x": "2DRkq2sHgzzLvLOx8kz_6LbihPoXWkGQbvajRgfeR0U",
+                    "y": "V1wBkYRvzUs83iOplhXjxBOJKl3C6dFPV0xbgCW0MQc",
+                    "kid": "85iFG1HeKPc-TFBQxy_U5eSDa3X_XUhDGRVp9h3eU_w",
+                    "use": "sig",
+                    "alg": "ES256"
+                }
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/kmart+pharmacy",
+                "name": "KMART PHARMACY",
+                "website": "https://pharmacy.kmart.com/newrx-immunization"
+            },
+            "keys": [
+                {
+                    "kty": "EC",
+                    "crv": "P-256",
+                    "x": "vnz-riIGGnG5QXoN9hCRh7HiK0X-YWaduPOK82_qtq0",
+                    "y": "Aw6J9vSzG0w7UO6CaznTRvLndFnZ5RCjl3mK5H0497s",
+                    "kid": "U_C_KSRk6GRqOuT-tTTVid-zHxihv7fRdyuvNQPeBvM",
+                    "use": "sig",
+                    "alg": "ES256"
+                }
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/meijer",
+                "name": "Meijer",
+                "website": "https://clinic.meijer.com/"
+            },
+            "keys": [
+                {
+                    "kty": "EC",
+                    "crv": "P-256",
+                    "x": "4rGpwqa648ZOQ51AM8jvjXAWlhbOKQjhaL6PY8O-4kc",
+                    "y": "2bieuXyJYIUSgA9YFma8ogWSE4TK0lrssEg3NeTiisc",
+                    "kid": "cmm6eWwLYLwRtBU69V-_jsUxfpVtPgrZshDbf5X4Z9k",
+                    "use": "sig",
+                    "alg": "ES256"
+                }
+            ]
+        },
+        {
+            "issuer": {
                 "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/pharmaca",
                 "name": "Pharmaca",
                 "website": "https://www.pharmacarx.com/"
@@ -11932,24 +12000,6 @@
                     "x": "5oc8ywImdTcDeJHk_x2A7XQaXHgpOpHqGO7cFRLl5yU",
                     "y": "hX9Rs7g47Dn04eezx_5RUQQ42bnuCH15LvJPV_VoUy0",
                     "kid": "3Dtn69t66RKUD8y06Dgig0TIoyh1V1T3cW9Bkex2uQk",
-                    "use": "sig",
-                    "alg": "ES256"
-                }
-            ]
-        },
-        {
-            "issuer": {
-                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/skripts",
-                "name": "Skripts",
-                "website": "https://www.skriptspharmacy.com/immunizations"
-            },
-            "keys": [
-                {
-                    "kty": "EC",
-                    "crv": "P-256",
-                    "x": "4Oqpp8MbWLjn1vtNIQ4-t6phpguPubaNfpBW3P5SmaQ",
-                    "y": "FaRtKLd60fjiBQeBC0jaxcuP6kBSHsKmxcS4MSnSHug",
-                    "kid": "Rzl1pLWRH1SI-ybhG9EpVbUaKQNBF0Sv2jR6Vk3XiYM",
                     "use": "sig",
                     "alg": "ES256"
                 }
@@ -13758,24 +13808,6 @@
                     "x": "7oRz_fSNEqKJU8slUyBz02GHBK8QoOfpMdmQ2U6n7uU",
                     "y": "mm3P21jpp8hLra8BaYzA8-MME7GP1fmxwb0tkDGQiwk",
                     "kid": "lmaSyjUOrvO41TN3tUXZRuGv6zlbgnqiWHD53lxgPcs",
-                    "use": "sig",
-                    "kty": "EC",
-                    "alg": "ES256",
-                    "crv": "P-256"
-                }
-            ]
-        },
-        {
-            "issuer": {
-                "iss": "https://epicproxy.et1243.epichosted.com/OAuth2-PRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "West Tennessee Healthcare",
-                "website": "https://www.wth.org/"
-            },
-            "keys": [
-                {
-                    "x": "So3LGY5mgbiIl0pOpJc0QO9t57meyhrefrwI-PN7SNE",
-                    "y": "BLSqWtfxzj1C7gMOMzw6mfq1iFd_tycvOOeSq7yyDJo",
-                    "kid": "iRMwmsV-JR-lPftS1SYNMyO_nZZc6zG8TOqZ9jjGlv0",
                     "use": "sig",
                     "kty": "EC",
                     "alg": "ES256",
