@@ -72,3 +72,34 @@ jobs:
     - name: 'Sync issuers file to S3'
       run: |
         aws s3 sync . 's3://${{ env.S3_BUCKET_PROD }}/${{ env.S3_DIR }}' --exclude='*' --include='${{ env.LOCAL_SOURCE_FILE }} --include='${{ env.LOCAL_SOURCE_INCLUDE_LOG_DIR }}'
+
+  updateReadme:
+    runs-on: ubuntu-latest
+    name: 'Update VCI-Issuers.md if vci-issuers.json has changed'
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Check for changes in vci-issuers.json
+        id: file_check
+        run: |
+          echo "Checking for changes in vci-issuers.json"
+          if git diff --name-only ${{ github.sha }} ${{ github.event.before }} | grep -q "vci-issuers.json"; then
+            echo "::set-output name=changed::true"
+          else
+            echo "::set-output name=changed::false"
+          fi
+      - name: Generate VCI-Issuers.md
+        if: steps.file_check.outputs.changed == 'true'
+        run: python scripts/update_vci_issuer_md.py
+      - name: Commit and Push if changed
+        if: steps.file_check.outputs.changed == 'true'
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add VCI-Issuers.md
+          git diff --staged --quiet || git commit -m "Update VCI-Issuers.md"
+          git push origin HEAD:refs/heads/${{ github.ref }}
+
