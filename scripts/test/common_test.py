@@ -635,7 +635,7 @@ class ValidateEntriesTestCase(unittest.TestCase):
         entries = [
             IssuerEntry('State of Colorado', 'https://smarthealthcard.iisregistry.net/colorado/issuer', None, None),
             IssuerEntry('State of Louisiana', 'https://api.myirmobile.com/la/issuer', None, None),
-            IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://api.myirmobile.com/la/issuer'),
+            IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://api.myirmobile.com/la/issueeeer'),
         ]
 
         actual = validate_entries(entries, entries)
