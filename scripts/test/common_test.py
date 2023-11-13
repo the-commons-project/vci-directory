@@ -1,7 +1,7 @@
 import os
 import unittest
 import json
-from common import (
+from scripts.common import (
     read_issuer_entries_from_tsv_file, IssuerEntry, validate_entries, ValidationResult,
     validate_key, IssueType, validate_keyset, Issue, duplicate_entries, read_issuer_entries_from_json_file,
     analyze_results, compute_diffs, IssuerEntryChange, validate_entry, validate_all_entries
@@ -634,8 +634,8 @@ class ValidateEntriesTestCase(unittest.TestCase):
     def test_invalid_canonical_iss_multihop_reference(self):
         entries = [
             IssuerEntry('State of Colorado', 'https://smarthealthcard.iisregistry.net/colorado/issuer', None, None),
-            IssuerEntry('State of Louisiana', 'https://api.myirmobile.com/la/issuer', None, None),
-            IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://api.myirmobile.com/la/issueeeer'),
+            IssuerEntry('State of Louisiana', 'https://api.myirmobile.com/la/issuer', None, 'https://smarthealthcard.iisregistry.net/colorado/issuer'),
+            IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://api.myirmobile.com/la/issuer'),
         ]
 
         actual = validate_entries(entries, entries)
