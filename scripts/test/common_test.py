@@ -1,7 +1,7 @@
 import os
 import unittest
 import json
-from scripts.common import (
+from common import (
     read_issuer_entries_from_tsv_file, IssuerEntry, validate_entries, ValidationResult,
     validate_key, IssueType, validate_keyset, Issue, duplicate_entries, read_issuer_entries_from_json_file,
     analyze_results, compute_diffs, IssuerEntryChange, validate_entry, validate_all_entries
