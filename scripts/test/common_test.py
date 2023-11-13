@@ -22,7 +22,7 @@ class ReadIssuerEntriesFromTSVFileTestCase(unittest.TestCase):
 
         expected = [
             IssuerEntry('State of Colorado', 'https://smarthealthcard.iisregistry.net/colorado/issuer', None, None),
-            IssuerEntry('State of Louisiana', 'https://healthcardcert.lawallet.com', None, None),
+            IssuerEntry('State of Louisiana', 'https://api.myirmobile.com/la/issuer', None, None),
         ]
 
         self.assertEqual(actual, expected)
@@ -581,7 +581,7 @@ class ValidateEntriesTestCase(unittest.TestCase):
     def test_valid_canonical_iss(self):
         entries = [
             IssuerEntry('State of Colorado', 'https://smarthealthcard.iisregistry.net/colorado/issuer', None, None),
-            IssuerEntry('State of Louisiana', 'https://healthcardcert.lawallet.com', None, None),
+            IssuerEntry('State of Louisiana', 'https://api.myirmobile.com/la/issuer', None, None),
             IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://myvaccinerecord.cdph.ca.gov/creds'),
         ]
 
@@ -594,7 +594,7 @@ class ValidateEntriesTestCase(unittest.TestCase):
     def test_invalid_canonical_iss_self_reference(self):
         entries = [
             IssuerEntry('State of Colorado', 'https://smarthealthcard.iisregistry.net/colorado/issuer', None, None),
-            IssuerEntry('State of Louisiana', 'https://healthcardcert.lawallet.com', None, None),
+            IssuerEntry('State of Louisiana', 'https://api.myirmobile.com/la/issuer', None, None),
             IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://spec.smarthealth.cards/examples/issuer'),
         ]
 
@@ -614,7 +614,7 @@ class ValidateEntriesTestCase(unittest.TestCase):
     def test_invalid_canonical_iss_reference_invalid(self):
         entries = [
             IssuerEntry('State of Colorado', 'https://smarthealthcard.iisregistry.net/colorado/issuer', None, None),
-            IssuerEntry('State of Louisiana', 'https://healthcardcert.lawallet.com', None, None),
+            IssuerEntry('State of Louisiana', 'https://api.myirmobile.com/la/issuer', None, None),
             IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://spec.smarthealth.cards/examples/issuer1'),
         ]
 
@@ -634,8 +634,8 @@ class ValidateEntriesTestCase(unittest.TestCase):
     def test_invalid_canonical_iss_multihop_reference(self):
         entries = [
             IssuerEntry('State of Colorado', 'https://smarthealthcard.iisregistry.net/colorado/issuer', None, None),
-            IssuerEntry('State of Louisiana', 'https://healthcardcert.lawallet.com', None, 'https://myvaccinerecord.cdph.ca.gov/creds'),
-            IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://healthcardcert.lawallet.com'),
+            IssuerEntry('State of Louisiana', 'https://api.myirmobile.com/la/issuer', None, 'https://myvaccinerecord.cdph.ca.gov/creds'),
+            IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://api.myirmobile.com/la/issuer'),
         ]
 
         actual = validate_entries(entries, entries)
@@ -701,9 +701,9 @@ class ValidateEntriesIntegrationTestCase(unittest.TestCase):
         entries_from_json = read_issuer_entries_from_json_file(f'{FIXTURE_DIRECTORY}/sample_directory.json')
 
         expected = [
-            IssuerEntry('State of Colorado', 'https://smarthealthcard.iisregistry.net/colorado/issuer', 'https://smarthealthcard.iisregistry.net/colorado/issuer', None),
-            IssuerEntry('State of Louisiana', 'https://healthcardcert.lawallet.com', None, None),
-            IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://healthcardcert.lawallet.com')
+            IssuerEntry('State of Colorado', 'https://smarthealthcard.iisregistry.net/colorado/issuer', None, None),
+            IssuerEntry('State of Louisiana', 'https://api.myirmobile.com/la/issuer', None, None),
+            IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://api.myirmobile.com/la/issuer')
         ]
 
         self.assertEqual(entries_from_json, expected)
