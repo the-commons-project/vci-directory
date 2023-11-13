@@ -634,7 +634,7 @@ class ValidateEntriesTestCase(unittest.TestCase):
     def test_invalid_canonical_iss_multihop_reference(self):
         entries = [
             IssuerEntry('State of Colorado', 'https://smarthealthcard.iisregistry.net/colorado/issuer', None, None),
-            IssuerEntry('State of Louisiana', 'https://api.myirmobile.com/la/issuer', None, 'https://myvaccinerecord.cdph.ca.gov/creds'),
+            IssuerEntry('State of Louisiana', 'https://api.myirmobile.com/la/issuer', None, 'https://spec.smarthealth.cards/examples/issuer'),
             IssuerEntry('SHC Example Issuer', 'https://spec.smarthealth.cards/examples/issuer', None, 'https://api.myirmobile.com/la/issuer'),
         ]
 
