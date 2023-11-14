@@ -1,6 +1,8 @@
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/) [![Validate on push](https://github.com/the-commons-project/vci-directory/actions/workflows/validate-issuers-on-push.yaml/badge.svg)](https://github.com/the-commons-project/vci-directory/actions/workflows/validate-issuers-on-push.yaml)
+
 # VCI Directory
 
-This repository provides a public directory of institutions issuing [SMART Health Cards](https://smarthealth.cards) for COVID-19 vaccination and laboratory diagnostic testing records. The directory, represented in the [vci-issuers.json file](vci-issuers.json), is a simple listing of issuer name, issuer URL (`iss`), and issuer website that can be used for purposes of verification and display. Additional metadata about issuers is listed in [vci-issuers-metadata.json][vci-issuers-metadata.json]. An overview of the issuer metadata listed is described in [METADATA.md](METADATA.md).
+This repository provides a public directory of institutions issuing [SMART Health Cards](https://smarthealth.cards) for COVID-19 vaccination and laboratory diagnostic testing records. The directory, represented in the [vci-issuers.json file](vci-issuers.json), is a simple listing of issuer name, issuer URL (`iss`), and issuer website that can be used for purposes of verification and display. Additional metadata about issuers is listed in [vci-issuers-metadata.json](vci-issuers-metadata.json). An overview of the issuer metadata listed is described in [METADATA.md](METADATA.md).
 
 [VCI™](https://vci.org) is a voluntary coalition of public and private organizations committed to empowering individuals access to a trustworthy and verifiable copy of their vaccination records in digital or paper form using open, interoperable standards. 
 
@@ -39,7 +41,7 @@ Issuers must follow best practices for key management as defined by the [SMART H
 - Issuers must maintain an openly accessible, up-to-date jwks.json file at least as long as we have record-keeping obligations for represented SHCs.
 
 ### Getting Listed
-Request and complete the registration and attestation form (link to be made public soon).
+Complete the registration and [attestation form](https://www.commontrustnetwork.org/joinhealth).
 
 The Commons Project reviews each submission, verifies information contained in the submission, and performs technical validation. In the event that a submission requires subjective evaluation, the [VCI Steering Committee](https://vci.org/about) may be consulted for resolution.
 
