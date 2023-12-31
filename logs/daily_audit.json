@@ -1,6 +1,6 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2023-12-30T04:34:50Z",
+    "auditTime": "2023-12-31T04:34:12Z",
     "issuerCount": 634,
     "issuersWithErrors": [
         {
@@ -15,7 +15,7 @@
                 "RequestError: unable to verify the first certificate"
             ],
             "warnings": [
-                "OpenSSL error: 405765FB907F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 40D743215D7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -158,6 +158,27 @@
         },
         {
             "issuer": {
+                "iss": "https://epiclbsprxyprodpass.houstonmethodist.org/PRD-FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Houston Methodist",
+                "website": "https://mychart.houstonmethodist.org/mychart-prod/"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, secp384r1, 384 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "4096",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 500 (Internal Server Error)"
+            ],
+            "warnings": []
+        },
+        {
+            "issuer": {
                 "iss": "https://www.gov.nl.ca/covid-19/life-during-covid-19/vaccination-record/prod",
                 "name": "Government of Newfoundland and Labrador",
                 "website": "https://www.gov.nl.ca/covid-19/life-during-covid-19/vaccination-record/citizens/"
@@ -189,7 +210,7 @@
                 "RequestError: getaddrinfo ENOTFOUND prodsoap1.tgh.org"
             ],
             "warnings": [
-                "OpenSSL error: 40579858197F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 4027C8D6F27F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -302,7 +323,7 @@
                 "RequestError: getaddrinfo ENOTFOUND dashboard.au.accredify.io"
             ],
             "warnings": [
-                "OpenSSL error: 40F7860CE17F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 4037843BF87F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -317,7 +338,7 @@
                 "RequestError: getaddrinfo ENOTFOUND epicproxy.et0946.epichosted.com"
             ],
             "warnings": [
-                "OpenSSL error: 40272CA6117F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 40A7744BE77F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -332,7 +353,7 @@
                 "RequestError: getaddrinfo ENOTFOUND api.vaulthealth.com"
             ],
             "warnings": [
-                "OpenSSL error: 40C74230DC7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 408736D3507F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -353,9 +374,9 @@
         },
         {
             "issuer": {
-                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/hartig+drug+co",
-                "name": "Hartig Drug Co",
-                "website": "https://www.hartigdrug.com/covidvaccine"
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/meijer",
+                "name": "Meijer",
+                "website": "https://clinic.meijer.com/"
             },
             "keys": [],
             "crls": [],
@@ -368,9 +389,9 @@
         },
         {
             "issuer": {
-                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/kmart+pharmacy",
-                "name": "KMART PHARMACY",
-                "website": "https://pharmacy.kmart.com/newrx-immunization"
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/pharmaca",
+                "name": "Pharmaca",
+                "website": "https://www.pharmacarx.com/"
             },
             "keys": [],
             "crls": [],
@@ -437,21 +458,6 @@
             ],
             "warnings": [
                 "Issuer key endpoint does not contain a CORS 'access-control-allow-origin' header"
-            ]
-        },
-        {
-            "issuer": {
-                "iss": "https://fhir.tmcaz.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Tucson Medical Center",
-                "website": "https://mychart.tmcaz.com/MyChart"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "RequestError: connect ECONNREFUSED 204.68.32.44:443"
-            ],
-            "warnings": [
-                "OpenSSL error: 40B74189EA7F0000:error:8000006F:system library:BIO_connect:Connection refused:../crypto/bio/bio_sock2.c:125:calling connect()\n40B74189EA7F0000:error:10000067:BIO routines:BIO_connect:connect error:../crypto/bio/bio_sock2.c:127:\nconnect:errno=111"
             ]
         },
         {
@@ -661,32 +667,26 @@
         "HCA National",
         "West Tennessee Healthcare"
     ],
-    "previousAuditTime": "2023-12-29T04:34:23Z",
+    "previousAuditTime": "2023-12-30T04:34:50Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/hartig+drug+co",
+            "iss": "https://epiclbsprxyprodpass.houstonmethodist.org/PRD-FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "85iFG1HeKPc-TFBQxy_U5eSDa3X_XUhDGRVp9h3eU_w"
+                "SArj0J9FU7dr183eb1Sd_n6-WsFayMhxjrc1EIDvps4"
             ]
         },
         {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/kmart+pharmacy",
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/meijer",
             "kids": [
-                "U_C_KSRk6GRqOuT-tTTVid-zHxihv7fRdyuvNQPeBvM"
+                "cmm6eWwLYLwRtBU69V-_jsUxfpVtPgrZshDbf5X4Z9k"
             ]
         },
         {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/skripts",
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/pharmaca",
             "kids": [
-                "Rzl1pLWRH1SI-ybhG9EpVbUaKQNBF0Sv2jR6Vk3XiYM"
-            ]
-        },
-        {
-            "iss": "https://fhir.tmcaz.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-            "kids": [
-                "ppnA6VBtBokd072FZXXFo8yCCo-_CRODMerPILOKiUI"
+                "3Dtn69t66RKUD8y06Dgig0TIoyh1V1T3cW9Bkex2uQk"
             ]
         }
     ]
