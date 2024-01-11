@@ -1,6 +1,6 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2024-01-10T04:35:02Z",
+    "auditTime": "2024-01-11T04:34:50Z",
     "issuerCount": 634,
     "issuersWithErrors": [
         {
@@ -15,7 +15,7 @@
                 "RequestError: unable to verify the first certificate"
             ],
             "warnings": [
-                "OpenSSL error: 40279D88EB7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 40B7A480BF7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -79,6 +79,27 @@
         },
         {
             "issuer": {
+                "iss": "https://epicproxy.et1178.epichosted.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "The University of Texas Health Science Center at Houston",
+                "website": "https://myuthealth.org/MyChart/"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 503 (Service Unavailable)"
+            ],
+            "warnings": []
+        },
+        {
+            "issuer": {
                 "iss": "https://reports.bioreference.com/fhir",
                 "name": "BioReference Laboratories",
                 "website": "https://www.bioreference.com/patient-portal"
@@ -124,14 +145,14 @@
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp384r1, 384 bits",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 409 (Conflict)"
+                "HTTPError: Response code 409 (Public access is not permitted on this storage account.)"
             ],
             "warnings": []
         },
@@ -168,7 +189,7 @@
                 "RequestError: getaddrinfo ENOTFOUND prodsoap1.tgh.org"
             ],
             "warnings": [
-                "OpenSSL error: 40178519507F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 40474B35197F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -209,7 +230,7 @@
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 404 (Not Found)"
+                "HTTPError: Response code 403 (Forbidden)"
             ],
             "warnings": []
         },
@@ -281,7 +302,7 @@
                 "RequestError: getaddrinfo ENOTFOUND dashboard.au.accredify.io"
             ],
             "warnings": [
-                "OpenSSL error: 40176BFDD87F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 40076430617F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -296,7 +317,7 @@
                 "RequestError: getaddrinfo ENOTFOUND epicproxy.et0946.epichosted.com"
             ],
             "warnings": [
-                "OpenSSL error: 40370D1E907F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 40971205EA7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -311,7 +332,7 @@
                 "RequestError: getaddrinfo ENOTFOUND api.vaulthealth.com"
             ],
             "warnings": [
-                "OpenSSL error: 40178619737F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 4097BCBA277F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -320,6 +341,51 @@
                 "canonical_iss": "https://rpsouth.catholichealth.net/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
                 "name": "CommonSpirit Health",
                 "website": "https://www.commonspirit.org/"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/hartig+drug+co",
+                "name": "Hartig Drug Co",
+                "website": "https://www.hartigdrug.com/covidvaccine"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: 40179E058B7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/meijer",
+                "name": "Meijer",
+                "website": "https://clinic.meijer.com/"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: 4007B13D827F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/pharmaca",
+                "name": "Pharmaca",
+                "website": "https://www.pharmacarx.com/"
             },
             "keys": [],
             "crls": [],
@@ -453,7 +519,7 @@
                 "RequestError: Client network socket disconnected before secure TLS connection was established"
             ],
             "warnings": [
-                "OpenSSL error: write:errno=104"
+                "OpenSSL error: 40E7D5C42F7F0000:error:0A000126:SSL routines:ssl3_read_n:unexpected eof while reading:../ssl/record/rec_layer_s3.c:308:"
             ]
         },
         {
@@ -631,14 +697,32 @@
         "HCA National",
         "West Tennessee Healthcare"
     ],
-    "previousAuditTime": "2024-01-09T04:34:35Z",
+    "previousAuditTime": "2024-01-10T04:35:02Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://fhir.mvhealthsystem.org/FHIRproxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://epicproxy.et1178.epichosted.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "jemD-Hkw6KSeoIIYx0HyaI_SBmcJ9KNUkdazTevRBaU"
+                "WNcCUlrzxklA2YfTtvqJETX7KtOApSzFNUaSGCwbriY"
+            ]
+        },
+        {
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/hartig+drug+co",
+            "kids": [
+                "85iFG1HeKPc-TFBQxy_U5eSDa3X_XUhDGRVp9h3eU_w"
+            ]
+        },
+        {
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/meijer",
+            "kids": [
+                "cmm6eWwLYLwRtBU69V-_jsUxfpVtPgrZshDbf5X4Z9k"
+            ]
+        },
+        {
+            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/pharmaca",
+            "kids": [
+                "3Dtn69t66RKUD8y06Dgig0TIoyh1V1T3cW9Bkex2uQk"
             ]
         }
     ]
