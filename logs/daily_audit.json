@@ -1,8 +1,29 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2024-02-16T04:34:22Z",
+    "auditTime": "2024-02-17T04:34:41Z",
     "issuerCount": 634,
     "issuersWithErrors": [
+        {
+            "issuer": {
+                "iss": "https://api.baptist-health.org/Interconnect-FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Baptist Health",
+                "website": "https://mychart.baptist-health.org/mychart/"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-SHA384",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 503 (Service Unavailable)"
+            ],
+            "warnings": []
+        },
         {
             "issuer": {
                 "iss": "https://ovc-api.optum.com/imm/ocm/issuer",
@@ -107,16 +128,16 @@
             },
             "keys": [],
             "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384",
+                "kexAlg": "ECDH, secp384r1, 384 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 409 (Public access is not permitted on this storage account.)"
+                "HTTPError: Response code 409 (Conflict)"
             ],
             "warnings": []
         },
@@ -174,7 +195,7 @@
                 "RequestError: getaddrinfo ENOTFOUND prodsoap1.tgh.org"
             ],
             "warnings": [
-                "OpenSSL error: 40A7E4419F7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 40C7C250107F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -242,6 +263,27 @@
         },
         {
             "issuer": {
+                "iss": "https://www.cedars-sinai.org",
+                "name": "Cedars-Sinai Health System",
+                "website": "https://www.cedars-sinai.org/mycslink.html"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 403 (Forbidden)"
+            ],
+            "warnings": []
+        },
+        {
+            "issuer": {
                 "iss": "https://prd.pkey.dhdp.ontariohealth.ca",
                 "name": "Government of Ontario",
                 "website": "https://covid-19.ontario.ca/proof-covid-19-vaccination"
@@ -294,7 +336,7 @@
                 "RequestError: getaddrinfo ENOTFOUND dashboard.au.accredify.io"
             ],
             "warnings": [
-                "OpenSSL error: 4067C171CF7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 40D7C6C3E97F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -309,8 +351,29 @@
                 "RequestError: getaddrinfo ENOTFOUND epicproxy.et0946.epichosted.com"
             ],
             "warnings": [
-                "OpenSSL error: 40F7B462D57F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 40A777B5657F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
+        },
+        {
+            "issuer": {
+                "iss": "https://prodrx919.martinhealth.org/FHIR-PRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Cleveland Clinic Martin Health",
+                "website": "https://mychart.clevelandclinic.org"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384",
+                "kexAlg": "X25519, 253 bits",
+                "authAlg": "ECDSA",
+                "pubKeySize": "256",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 502 (Bad Gateway)"
+            ],
+            "warnings": []
         },
         {
             "issuer": {
@@ -324,7 +387,7 @@
                 "RequestError: getaddrinfo ENOTFOUND api.vaulthealth.com"
             ],
             "warnings": [
-                "OpenSSL error: 4097B2EAAE7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 40C7544D4C7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -493,10 +556,10 @@
             "keys": [],
             "crls": [],
             "errors": [
-                "RequestError: read ECONNRESET"
+                "RequestError: Client network socket disconnected before secure TLS connection was established"
             ],
             "warnings": [
-                "OpenSSL error: 40B7F8793B7F0000:error:0A000126:SSL routines:ssl3_read_n:unexpected eof while reading:../ssl/record/rec_layer_s3.c:308:"
+                "OpenSSL error: 40E779FB6A7F0000:error:0A000126:SSL routines:ssl3_read_n:unexpected eof while reading:../ssl/record/rec_layer_s3.c:308:"
             ]
         },
         {
@@ -617,8 +680,7 @@
         "0jzWwbsnyP2wrDPYMCe96n0DztcJBVZLNwAq0VghGG4",
         "bRi8F_YcgjcfiBFxyNv6zO1mUSomobp4APHA6uabYKw",
         "IVzjSimVvH8ZyQ3AJEjI8LXm5HfrdrDYuEmG0QcXzOI",
-        "afXT8j9iwJJ7IRP24ZUKPhbkga79MfqPreO2DlK0sLA",
-        "KBBgSdgGdb2_Nqufjj09pcISTziLYhj9meR19MmKLDk"
+        "afXT8j9iwJJ7IRP24ZUKPhbkga79MfqPreO2DlK0sLA"
     ],
     "duplicatedIss": [],
     "duplicatedNames": [
@@ -653,26 +715,26 @@
         "HCA National",
         "West Tennessee Healthcare"
     ],
-    "previousAuditTime": "2024-02-15T04:34:02Z",
+    "previousAuditTime": "2024-02-16T04:34:22Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/meijer",
+            "iss": "https://api.baptist-health.org/Interconnect-FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "cmm6eWwLYLwRtBU69V-_jsUxfpVtPgrZshDbf5X4Z9k"
+                "2Y6IshBllIuZBWuUMPeefWvqSHynjSDrmXHpOKo9JnU"
             ]
         },
         {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/pharmaca",
+            "iss": "https://www.cedars-sinai.org",
             "kids": [
-                "3Dtn69t66RKUD8y06Dgig0TIoyh1V1T3cW9Bkex2uQk"
+                "KBBgSdgGdb2_Nqufjj09pcISTziLYhj9meR19MmKLDk"
             ]
         },
         {
-            "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/skripts",
+            "iss": "https://prodrx919.martinhealth.org/FHIR-PRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "Rzl1pLWRH1SI-ybhG9EpVbUaKQNBF0Sv2jR6Vk3XiYM"
+                "doDvNi6442LAkrO01bJ1LkNHLglZ5RpwGN2ElruZJyE"
             ]
         }
     ]
