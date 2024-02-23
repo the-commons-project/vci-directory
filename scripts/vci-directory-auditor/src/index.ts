@@ -9,6 +9,7 @@ import date from 'date-and-time';
 import Url from 'url-parse';
 import { AuditLog, CRL, DirectoryLog, IssuerKey, IssuerKids, IssuerLogInfo, TlsDetails, TrustedIssuers } from './interfaces';
 import { auditTlsDetails, getDefaultTlsDetails } from './bcp195';
+import * as forge from 'node-forge';
 
 interface KeySet {
     keys : IssuerKey[]
@@ -54,6 +55,37 @@ if (!options.auditlog) {
     options.auditlog = path.join('logs', `audit_log_${date.format(currentTime, 'YYYY-MM-DD-HHmmss', outputUTC)}.json`);
 }
 
+function validateX5cChain(x5c: string[]): boolean {
+    if (!x5c || x5c.length === 0) {
+        console.error('No x5c field provided.');
+        return false;
+    }
+
+    try {
+        const certificates = x5c.map(cert => forge.pki.certificateFromAsn1(forge.asn1.fromDer(forge.util.decode64(cert))));
+
+        // Simplified validation: verify that each certificate is signed by the next one in the chain
+        for (let i = 0; i < certificates.length - 1; i++) {
+            const childCert = certificates[i];
+            const parentCert = certificates[i + 1];
+
+            // Verify child certificate is signed by parent
+            const childCertVerified = parentCert.verify(childCert);
+            if (!childCertVerified) {
+                console.error(`Certificate chain validation failed at index ${i}.`);
+                return false;
+            }
+        }
+
+        // TODO: Add more comprehensive checks, e.g., against a list of trusted CAs, certificate validity periods, and revocation lists.
+        return true;
+    } catch (error) {
+        console.error('Error validating x5c certificate chain:', error);
+        return false;
+    }
+}
+
+
 // check if a key is a valid SHC key
 async function isSHCKey(key: IssuerKey) {
     const jwk = key as jose.JWK;
@@ -66,6 +98,17 @@ async function isSHCKey(key: IssuerKey) {
     if (jwk.alg.toLowerCase() !== "es256" || jwk.use.toLowerCase() !== "sig" || jwk.crv.toLowerCase() !== "p-256") {
         return false; // wrong key type
     }
+
+        // If the key has an 'x5c' field, validate the certificate chain
+    if (key.x5c && key.x5c.length > 0) {
+        // Validate the x5c certificate chain
+        const isX5cValid = validateX5cChain(key.x5c);
+        if (!isX5cValid) {
+            console.error(`x5c certificate chain validation failed for key ID: ${key.kid}`);
+            return false; // x5c certificate chain is invalid
+        }
+    }
+
     // everything is ok
     return true;
 }
