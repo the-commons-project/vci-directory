@@ -9,7 +9,7 @@ import date from 'date-and-time';
 import Url from 'url-parse';
 import { AuditLog, CRL, DirectoryLog, IssuerKey, IssuerKids, IssuerLogInfo, TlsDetails, TrustedIssuers } from './interfaces';
 import { auditTlsDetails, getDefaultTlsDetails } from './bcp195';
-import * as forge from 'node-forge';
+import { Certificate } from '@fidm/x509';
 
 interface KeySet {
     keys : IssuerKey[]
@@ -55,32 +55,40 @@ if (!options.auditlog) {
     options.auditlog = path.join('logs', `audit_log_${date.format(currentTime, 'YYYY-MM-DD-HHmmss', outputUTC)}.json`);
 }
 
-function validateX5cChain(x5c: string[]): boolean {
+function convertDERToPEM(derEncoded: string): string {
+    const pemPrefix = '-----BEGIN CERTIFICATE-----\n';
+    const pemSuffix = '\n-----END CERTIFICATE-----';
+    const derEncodedInBase64 = Buffer.from(derEncoded, 'base64').toString('base64');
+    const match = derEncodedInBase64.match(/.{1,64}/g);
+    const formattedPEM = pemPrefix + (match ? match.join('\n') : '') + pemSuffix;
+    return formattedPEM;
+}
+
+async function validateX5cChain(x5c: string[], issuerIdentifier: string): Promise<boolean> {
     if (!x5c || x5c.length === 0) {
-        console.error('No x5c field provided.');
-        return false;
+        console.log(`[${issuerIdentifier}] x5c field not present or empty.`);
+        return true; // If no x5c provided, validation is not applicable.
     }
 
     try {
-        const certificates = x5c.map(cert => forge.pki.certificateFromAsn1(forge.asn1.fromDer(forge.util.decode64(cert))));
-
-        // Simplified validation: verify that each certificate is signed by the next one in the chain
-        for (let i = 0; i < certificates.length - 1; i++) {
-            const childCert = certificates[i];
-            const parentCert = certificates[i + 1];
-
-            // Verify child certificate is signed by parent
-            const childCertVerified = parentCert.verify(childCert);
-            if (!childCertVerified) {
-                console.error(`Certificate chain validation failed at index ${i}.`);
-                return false;
+        x5c.forEach((certB64, index) => {
+            const pemCert = convertDERToPEM(certB64);
+            console.log(`[${issuerIdentifier}] Certificate ${index + 1} in PEM format:\n${pemCert}`);
+            const cert = Certificate.fromPEM(Buffer.from(pemCert));
+            // Validation logic for Certificate validity period
+            if (cert.validFrom.getTime() > Date.now() || cert.validTo.getTime() < Date.now()) {
+                console.log(`[${issuerIdentifier}] Validating certificate ${index + 1}/${x5c.length}: Certificate is outside its validity period.`);
+                throw new Error(`Certificate ${index + 1} is outside its validity period.`);
+            } else {
+                console.log(`[${issuerIdentifier}] Validating certificate ${index + 1}/${x5c.length}: Certificate is valid.`);
             }
-        }
+            // Need to add more validation logic such as Chain of Trust Validation,
+            // Revocation Checking, Matching Public Key, Issuer URL Matching
+        });
 
-        // TODO: Add more comprehensive checks, e.g., against a list of trusted CAs, certificate validity periods, and revocation lists.
         return true;
     } catch (error) {
-        console.error('Error validating x5c certificate chain:', error);
+        console.error(`[${issuerIdentifier}] Error validating x5c certificate chain:`, error);
         return false;
     }
 }
@@ -99,17 +107,17 @@ async function isSHCKey(key: IssuerKey) {
         return false; // wrong key type
     }
 
-        // If the key has an 'x5c' field, validate the certificate chain
+    // If the key has an 'x5c' field, validate the certificate chain
     if (key.x5c && key.x5c.length > 0) {
-        // Validate the x5c certificate chain
-        const isX5cValid = validateX5cChain(key.x5c);
+
+        const issuerIdentifier = jwk.kid;
+        const isX5cValid = await validateX5cChain(key.x5c, issuerIdentifier);
+
         if (!isX5cValid) {
             console.error(`x5c certificate chain validation failed for key ID: ${key.kid}`);
             return false; // x5c certificate chain is invalid
         }
     }
-
-    // everything is ok
     return true;
 }
 
