@@ -67,7 +67,13 @@ function convertDERToPEM(derEncoded: string): string {
 async function validateX5cChain(x5c: string[], issuerIdentifier: string): Promise<boolean> {
     if (!x5c || x5c.length === 0) {
         console.log(`[${issuerIdentifier}] x5c field not present or empty.`);
-        return true; // If no x5c provided, validation is not applicable.
+        return true;
+    }
+    console.log(`[${issuerIdentifier}] Starting x5c certificate chain validation.`); // Log the start of validation
+    // Check if all elements in x5c are valid base64 strings
+    if (!x5c.every(cert => Buffer.from(cert, 'base64').toString('base64') === cert)) {
+        console.error(`[${issuerIdentifier}] One or more certificates in x5c are not properly base64-encoded.`);
+        return false;
     }
 
     try {
@@ -82,6 +88,21 @@ async function validateX5cChain(x5c: string[], issuerIdentifier: string): Promis
             } else {
                 console.log(`[${issuerIdentifier}] Validating certificate ${index + 1}/${x5c.length}: Certificate is valid.`);
             }
+
+            let parentCert = null; // This will eventually hold the issuer's certificate
+            for (let i = 0; i < x5c.length; i++) {
+                const currentCert = Certificate.fromPEM(Buffer.from(convertDERToPEM(x5c[i]))); // Current certificate being validated
+                // Only perform the check if parentCert is not null and we are not on the first certificate
+                if (i > 0 && parentCert !== null) {
+                    if (!parentCert.isIssuer(currentCert)) { // Check if the previous (parent) cert issued the current one
+                        console.error(`[${issuerIdentifier}] Certificate ${i + 1} is not issued by the preceding certificate.`);
+                        return false;
+                    }
+                }
+                parentCert = currentCert; // Set the current certificate as the next certificate's parent for the next iteration
+            }
+
+
             // Need to add more validation logic such as Chain of Trust Validation,
             // Revocation Checking, Matching Public Key, Issuer URL Matching
         });
@@ -93,30 +114,26 @@ async function validateX5cChain(x5c: string[], issuerIdentifier: string): Promis
     }
 }
 
-
 // check if a key is a valid SHC key
 async function isSHCKey(key: IssuerKey) {
     const jwk = key as jose.JWK;
     if (!jwk.kid || !jwk.crv || !jwk.kty || !jwk.use || !jwk.crv || !jwk.alg || !jwk.use || !jwk.x || !jwk.y) {
         return false; // missing fields
     }
+    const issuerIdentifier = jwk.kid;
+    // Validate x5c if present
+    if (key.x5c && key.x5c.length > 0) {
+        const isValidX5cChain = await validateX5cChain(key.x5c, jwk.kid);
+        if (!isValidX5cChain) {
+            return false;
+        }
+    }
+
     if (jwk.kid !== await jose.calculateJwkThumbprint(jwk, 'sha256')) {
         return false; // invalid kid
     }
     if (jwk.alg.toLowerCase() !== "es256" || jwk.use.toLowerCase() !== "sig" || jwk.crv.toLowerCase() !== "p-256") {
         return false; // wrong key type
-    }
-
-    // If the key has an 'x5c' field, validate the certificate chain
-    if (key.x5c && key.x5c.length > 0) {
-
-        const issuerIdentifier = jwk.kid;
-        const isX5cValid = await validateX5cChain(key.x5c, issuerIdentifier);
-
-        if (!isX5cValid) {
-            console.error(`x5c certificate chain validation failed for key ID: ${key.kid}`);
-            return false; // x5c certificate chain is invalid
-        }
     }
     return true;
 }
