@@ -1,6 +1,6 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2024-03-06T04:34:02Z",
+    "auditTime": "2024-03-07T04:34:11Z",
     "issuerCount": 633,
     "issuersWithErrors": [
         {
@@ -30,21 +30,6 @@
                 "name": "Allegheny Health Network",
                 "website": "https://mychart.ahn.org/MyChart",
                 "canonical_iss": "https://epicprisfd.ahn.org/PRD-FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
-        },
-        {
-            "issuer": {
-                "iss": "https://rx.premierhealthpartners.org/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Premier Health",
-                "website": "https://mychart.premierhealthpartners.org/mychart"
             },
             "keys": [],
             "crls": [],
@@ -124,7 +109,7 @@
             "tlsDetails": {
                 "version": "TLSv1.3",
                 "cipher": "TLS_AES_256_GCM_SHA384",
-                "kexAlg": "ECDH, secp384r1, 384 bits",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -132,27 +117,6 @@
             "crls": [],
             "errors": [
                 "HTTPError: Response code 409 (Public access is not permitted on this storage account.)"
-            ],
-            "warnings": []
-        },
-        {
-            "issuer": {
-                "iss": "https://epiclbsprxyprodpass.houstonmethodist.org/PRD-FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Houston Methodist",
-                "website": "https://mychart.houstonmethodist.org/mychart-prod/"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp384r1, 384 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "4096",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "HTTPError: Response code 500 (Internal Server Error)"
             ],
             "warnings": []
         },
@@ -189,22 +153,29 @@
                 "RequestError: getaddrinfo ENOTFOUND prodsoap1.tgh.org"
             ],
             "warnings": [
-                "OpenSSL error: 406742BFD17F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 407729F75B7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
             "issuer": {
-                "iss": "https://webproxy.piedmont.org/ARR-FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Piedmont Healthcare/Affiliates and Shepherd Center"
+                "iss": "https://fhirprd.reliantmedicalgroup.org/FHIRPRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Reliant Medical Group",
+                "website": "https://mychart.reliantmedicalgroup.org/mychart/"
             },
             "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+                "RequestError: unable to verify the first certificate"
             ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "warnings": []
         },
         {
             "issuer": {
@@ -338,7 +309,7 @@
                 "RequestError: getaddrinfo ENOTFOUND dashboard.au.accredify.io"
             ],
             "warnings": [
-                "OpenSSL error: 40A71790317F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 40A7041B2E7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -353,7 +324,7 @@
                 "RequestError: getaddrinfo ENOTFOUND epicproxy.et0946.epichosted.com"
             ],
             "warnings": [
-                "OpenSSL error: 40B7A4F6487F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 4087A755047F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -368,7 +339,7 @@
                 "RequestError: getaddrinfo ENOTFOUND api.vaulthealth.com"
             ],
             "warnings": [
-                "OpenSSL error: 4057AE72F47F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 40773C5CAF7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -590,27 +561,6 @@
         },
         {
             "issuer": {
-                "iss": "https://mychart.methodisthospitals.org/FHIR-ARR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Methodist Hospitals (IN)",
-                "website": "https://mychart.methodisthospitals.org/mychart"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "RequestError: read ECONNRESET"
-            ],
-            "warnings": []
-        },
-        {
-            "issuer": {
                 "iss": "https://treat.com/shc-issuer",
                 "name": "Treat"
             },
@@ -693,10 +643,10 @@
             "keys": [],
             "crls": [],
             "errors": [
-                "RequestError: read ECONNRESET"
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
             ],
             "warnings": [
-                "OpenSSL error: 4097AB48517F0000:error:0A000126:SSL routines:ssl3_read_n:unexpected eof while reading:../ssl/record/rec_layer_s3.c:308:"
+                "OpenSSL error: "
             ]
         },
         {
@@ -852,26 +802,14 @@
         "HCA National",
         "West Tennessee Healthcare"
     ],
-    "previousAuditTime": "2024-03-05T04:34:18Z",
+    "previousAuditTime": "2024-03-06T04:34:02Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://rx.premierhealthpartners.org/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://fhirprd.reliantmedicalgroup.org/FHIRPRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "wUYJ0KAnztzNRyPbado8p27SoMTi8eFCO_4e58RCjkM"
-            ]
-        },
-        {
-            "iss": "https://webproxy.piedmont.org/ARR-FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-            "kids": [
-                "sUi3qStM8I1RnCJ474IHuVJTS37R0LH1OCFitmjID8c"
-            ]
-        },
-        {
-            "iss": "https://mychart.methodisthospitals.org/FHIR-ARR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-            "kids": [
-                "IHtj6CeVxA-5qztmSUXjoTNr9uAyU1xnYDY_Iw06GPI"
+                "xyIOe0nvr6-xRt_pVRmwNWgNYfvXlQbsj3453sVY5fc"
             ]
         }
     ]
