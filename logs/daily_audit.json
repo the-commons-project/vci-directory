@@ -1,6 +1,6 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2024-03-09T04:34:57Z",
+    "auditTime": "2024-03-10T04:34:32Z",
     "issuerCount": 633,
     "issuersWithErrors": [
         {
@@ -153,8 +153,28 @@
                 "RequestError: getaddrinfo ENOTFOUND prodsoap1.tgh.org"
             ],
             "warnings": [
-                "OpenSSL error: 4007C3031F7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 40A73C09637F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
+        },
+        {
+            "issuer": {
+                "iss": "https://fhir.myeverettclinic.com/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Optum WA"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-SHA384",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 404 (Not Found)"
+            ],
+            "warnings": []
         },
         {
             "issuer": {
@@ -288,7 +308,7 @@
                 "RequestError: getaddrinfo ENOTFOUND dashboard.au.accredify.io"
             ],
             "warnings": [
-                "OpenSSL error: 40174F8E7B7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 40C71A7CA77F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -303,7 +323,7 @@
                 "RequestError: getaddrinfo ENOTFOUND epicproxy.et0946.epichosted.com"
             ],
             "warnings": [
-                "OpenSSL error: 409734F0417F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: "
             ]
         },
         {
@@ -318,7 +338,7 @@
                 "RequestError: getaddrinfo ENOTFOUND api.vaulthealth.com"
             ],
             "warnings": [
-                "OpenSSL error: 40578FD97D7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 4047EE94177F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -540,22 +560,22 @@
         },
         {
             "issuer": {
-                "iss": "https://mychart.methodisthospitals.org/FHIR-ARR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Methodist Hospitals (IN)",
-                "website": "https://mychart.methodisthospitals.org/mychart"
+                "iss": "https://SF1.rmcps.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Riverside Medical Clinic",
+                "website": "https://myhealthyconnection.riversidemedicalclinic.com/mychart"
             },
             "keys": [],
             "tlsDetails": {
                 "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, secp384r1, 384 bits",
                 "authAlg": "RSA",
                 "pubKeySize": "2048",
                 "compression": "NONE"
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 404 (Not Found)"
+                "RequestError: certificate has expired"
             ],
             "warnings": []
         },
@@ -643,10 +663,10 @@
             "keys": [],
             "crls": [],
             "errors": [
-                "RequestError: Client network socket disconnected before secure TLS connection was established"
+                "RequestError: read ECONNRESET"
             ],
             "warnings": [
-                "OpenSSL error: write:errno=104"
+                "OpenSSL error: 40B7790D267F0000:error:0A000126:SSL routines:ssl3_read_n:unexpected eof while reading:../ssl/record/rec_layer_s3.c:308:"
             ]
         },
         {
@@ -802,14 +822,20 @@
         "HCA National",
         "West Tennessee Healthcare"
     ],
-    "previousAuditTime": "2024-03-08T04:34:02Z",
+    "previousAuditTime": "2024-03-09T04:34:57Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://mychart.methodisthospitals.org/FHIR-ARR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://fhir.myeverettclinic.com/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "IHtj6CeVxA-5qztmSUXjoTNr9uAyU1xnYDY_Iw06GPI"
+                "vyUQoeFh-ln_mkfsVzfFDpxeRHEFggmM-uudcb6iq_k"
+            ]
+        },
+        {
+            "iss": "https://SF1.rmcps.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "kids": [
+                "_Pr7qPqkGk9ScHxxOy1EtA1ckzpe7w4wN_lkCIbmUtU"
             ]
         }
     ]
