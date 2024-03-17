@@ -1,6 +1,6 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2024-03-16T04:34:10Z",
+    "auditTime": "2024-03-17T04:34:03Z",
     "issuerCount": 633,
     "issuersWithErrors": [
         {
@@ -109,14 +109,14 @@
             "tlsDetails": {
                 "version": "TLSv1.3",
                 "cipher": "TLS_AES_256_GCM_SHA384",
-                "kexAlg": "ECDH, secp384r1, 384 bits",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 409 (Conflict)"
+                "HTTPError: Response code 409 (Public access is not permitted on this storage account.)"
             ],
             "warnings": []
         },
@@ -174,7 +174,7 @@
                 "RequestError: getaddrinfo ENOTFOUND prodsoap1.tgh.org"
             ],
             "warnings": [
-                "OpenSSL error: 403768FC617D0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 40E7F0A6AD7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -309,7 +309,7 @@
                 "RequestError: getaddrinfo ENOTFOUND dashboard.au.accredify.io"
             ],
             "warnings": [
-                "OpenSSL error: 4067B330D6790000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 4027BE66C1760000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -324,8 +324,50 @@
                 "RequestError: getaddrinfo ENOTFOUND epicproxy.et0946.epichosted.com"
             ],
             "warnings": [
-                "OpenSSL error: 40775150CC730000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 4057034D54730000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
+        },
+        {
+            "issuer": {
+                "iss": "https://fhir.laheyhealth.org/proxy-prd-fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Lahey Health",
+                "website": "https://mylaheychart.org/MyChart"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_128_GCM_SHA256",
+                "kexAlg": "X25519, 253 bits",
+                "authAlg": "RSA-PSS",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 503 (Service Unavailable)"
+            ],
+            "warnings": []
+        },
+        {
+            "issuer": {
+                "iss": "https://soapepic.montefiore.org/FhirProxyPrd/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Montefiore Medical Center",
+                "website": "https://www.montefiore.org/"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "X25519, 253 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": []
         },
         {
             "issuer": {
@@ -339,7 +381,7 @@
                 "RequestError: getaddrinfo ENOTFOUND api.vaulthealth.com"
             ],
             "warnings": [
-                "OpenSSL error: 403737E1557E0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 40F73BD422720000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -646,7 +688,7 @@
                 "RequestError: Client network socket disconnected before secure TLS connection was established"
             ],
             "warnings": [
-                "OpenSSL error: 40172D00E5710000:error:0A000126:SSL routines:ssl3_read_n:unexpected eof while reading:../ssl/record/rec_layer_s3.c:308:"
+                "OpenSSL error: 40F732F1D8700000:error:0A000126:SSL routines:ssl3_read_n:unexpected eof while reading:../ssl/record/rec_layer_s3.c:308:"
             ]
         },
         {
@@ -681,6 +723,27 @@
             "warnings": [
                 "Issuer key set contains non-valid keys for SHC issuance"
             ]
+        },
+        {
+            "issuer": {
+                "iss": "https://api.kroger.com/healthwellness/v1/smartcard",
+                "name": "Kroger Health",
+                "website": "https://www.kroger.com/health/pharmacy/covid-vaccine-testing#COVIDVaccineFAQs"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384",
+                "kexAlg": "X25519, 253 bits",
+                "authAlg": "ECDSA",
+                "pubKeySize": "256",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 502 (Bad Gateway)"
+            ],
+            "warnings": []
         },
         {
             "issuer": {
@@ -802,14 +865,27 @@
         "HCA National",
         "West Tennessee Healthcare"
     ],
-    "previousAuditTime": "2024-03-15T04:34:06Z",
+    "previousAuditTime": "2024-03-16T04:34:10Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://epiclbsprxyprodpass.houstonmethodist.org/PRD-FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://fhir.laheyhealth.org/proxy-prd-fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "SArj0J9FU7dr183eb1Sd_n6-WsFayMhxjrc1EIDvps4"
+                "sD58-y5XzRBuAYTrnM5nS-UATnz-svgmrg9k5_HIrFM"
+            ]
+        },
+        {
+            "iss": "https://soapepic.montefiore.org/FhirProxyPrd/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "kids": [
+                "6-OXNT249Bgro8aYxmbXWcRrNkcVW8jqBbdDd15QE9E"
+            ]
+        },
+        {
+            "iss": "https://api.kroger.com/healthwellness/v1/smartcard",
+            "kids": [
+                "6D-6sCTvV2W7km7l-QOr-y5nj_me_ftIpclsxHBmvDE",
+                "kSkuBfLcOxfDGo8ZGzJh0GO3SP3wT6uT8ya62NMuYGk"
             ]
         }
     ]
