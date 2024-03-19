@@ -1,6 +1,6 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2024-03-18T04:34:11Z",
+    "auditTime": "2024-03-19T04:35:10Z",
     "issuerCount": 633,
     "issuersWithErrors": [
         {
@@ -122,6 +122,27 @@
         },
         {
             "issuer": {
+                "iss": "https://epiclbsprxyprodpass.houstonmethodist.org/PRD-FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Houston Methodist",
+                "website": "https://mychart.houstonmethodist.org/mychart-prod/"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, secp384r1, 384 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "4096",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 500 (Internal Server Error)"
+            ],
+            "warnings": []
+        },
+        {
+            "issuer": {
                 "iss": "https://www.gov.nl.ca/covid-19/life-during-covid-19/vaccination-record/prod",
                 "name": "Government of Newfoundland and Labrador",
                 "website": "https://www.gov.nl.ca/covid-19/life-during-covid-19/vaccination-record/citizens/"
@@ -153,7 +174,7 @@
                 "RequestError: getaddrinfo ENOTFOUND prodsoap1.tgh.org"
             ],
             "warnings": [
-                "OpenSSL error: 4097F20E0A7A0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 406776D778760000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -294,7 +315,7 @@
                 "RequestError: getaddrinfo ENOTFOUND dashboard.au.accredify.io"
             ],
             "warnings": [
-                "OpenSSL error: 40B7D8E0D9700000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 4047C20BA3700000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -309,7 +330,7 @@
                 "RequestError: getaddrinfo ENOTFOUND epicproxy.et0946.epichosted.com"
             ],
             "warnings": [
-                "OpenSSL error: 40678EC484770000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 4057877206770000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -324,7 +345,7 @@
                 "RequestError: getaddrinfo ENOTFOUND api.vaulthealth.com"
             ],
             "warnings": [
-                "OpenSSL error: 40670127287B0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 4047950776700000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -685,10 +706,10 @@
             "keys": [],
             "crls": [],
             "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+                "RequestError: write EPROTO 134182284633984:error:14094458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../deps/openssl/openssl/ssl/record/rec_layer_s3.c:1563:SSL alert number 112\n"
             ],
             "warnings": [
-                "OpenSSL error: "
+                "OpenSSL error: 40E704401E710000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../ssl/record/rec_layer_s3.c:1584:SSL alert number 112"
             ]
         },
         {
@@ -703,7 +724,7 @@
                 "RequestError: Client network socket disconnected before secure TLS connection was established"
             ],
             "warnings": [
-                "OpenSSL error: 40E747A8E8770000:error:0A000126:SSL routines:ssl3_read_n:unexpected eof while reading:../ssl/record/rec_layer_s3.c:308:"
+                "OpenSSL error: 40473CD1A87B0000:error:0A000126:SSL routines:ssl3_read_n:unexpected eof while reading:../ssl/record/rec_layer_s3.c:308:"
             ]
         },
         {
@@ -752,26 +773,6 @@
             "warnings": [
                 "OpenSSL error: "
             ]
-        },
-        {
-            "issuer": {
-                "iss": "https://mountainstarhealthfhirprd.app.medcity.net/fhir-proxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "HCA National"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.3",
-                "cipher": "TLS_AES_256_GCM_SHA384",
-                "kexAlg": "X25519, 253 bits",
-                "authAlg": "RSA-PSS",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": []
         },
         {
             "issuer": {
@@ -893,20 +894,14 @@
         "HCA National",
         "West Tennessee Healthcare"
     ],
-    "previousAuditTime": "2024-03-17T04:34:03Z",
+    "previousAuditTime": "2024-03-18T04:34:11Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://memorialhealthfhirprd.app.medcity.net/fhir-proxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://epiclbsprxyprodpass.houstonmethodist.org/PRD-FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "hhenlBjTHf2GM-UDt5jor8HWbWFBt4gM4W1sB22mHwo"
-            ]
-        },
-        {
-            "iss": "https://mountainstarhealthfhirprd.app.medcity.net/fhir-proxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-            "kids": [
-                "ykrKegqiOHXxxwWxbQZctLATYpcMn1pYT53TJNrxnk0"
+                "SArj0J9FU7dr183eb1Sd_n6-WsFayMhxjrc1EIDvps4"
             ]
         }
     ]
