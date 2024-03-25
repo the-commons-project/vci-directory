@@ -1,6 +1,6 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2024-03-24T04:34:22Z",
+    "auditTime": "2024-03-25T04:34:23Z",
     "issuerCount": 633,
     "issuersWithErrors": [
         {
@@ -23,21 +23,6 @@
                 "RequestError: certificate has expired"
             ],
             "warnings": []
-        },
-        {
-            "issuer": {
-                "iss": "https://epic-rproxyprod.coh.org/Interconnect-FHIR-PRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "City of Hope",
-                "website": "https://www.mycityofhope.org/Mychart"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
         },
         {
             "issuer": {
@@ -189,7 +174,7 @@
                 "RequestError: getaddrinfo ENOTFOUND prodsoap1.tgh.org"
             ],
             "warnings": [
-                "OpenSSL error: 40C724B6C07F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 408722F5A27F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -330,7 +315,7 @@
                 "RequestError: getaddrinfo ENOTFOUND dashboard.au.accredify.io"
             ],
             "warnings": [
-                "OpenSSL error: 40F7C6A8417F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 40873C34F87F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -345,7 +330,7 @@
                 "RequestError: getaddrinfo ENOTFOUND epicproxy.et0946.epichosted.com"
             ],
             "warnings": [
-                "OpenSSL error: 4077607A8D7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 40C7D92C9C7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -360,7 +345,7 @@
                 "RequestError: getaddrinfo ENOTFOUND api.vaulthealth.com"
             ],
             "warnings": [
-                "OpenSSL error: 40671838AA7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 40878541F77F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -745,7 +730,7 @@
                 "RequestError: Client network socket disconnected before secure TLS connection was established"
             ],
             "warnings": [
-                "OpenSSL error: write:errno=104"
+                "OpenSSL error: 40C71F7B907F0000:error:0A000126:SSL routines:ssl3_read_n:unexpected eof while reading:../ssl/record/rec_layer_s3.c:308:"
             ]
         },
         {
@@ -843,19 +828,13 @@
                 "website": "https://mychart.uhnj.org/MyChart-PRD/Authentication/Login?"
             },
             "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "DHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "DH, 2048 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 503 (Service Unavailable)"
+                "RequestError: write EPROTO 140359165101952:error:14094458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../deps/openssl/openssl/ssl/record/rec_layer_s3.c:1563:SSL alert number 112\n"
             ],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: 4067A997037F0000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../ssl/record/rec_layer_s3.c:1584:SSL alert number 112"
+            ]
         }
     ],
     "issuerWithCRLCount": 2,
@@ -922,21 +901,8 @@
         "HCA National",
         "West Tennessee Healthcare"
     ],
-    "previousAuditTime": "2024-03-23T04:34:07Z",
+    "previousAuditTime": "2024-03-24T04:34:22Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
-    "removedKids": [
-        {
-            "iss": "https://epic-rproxyprod.coh.org/Interconnect-FHIR-PRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-            "kids": [
-                "_BD2QNwCaZlx_EHUYL_Q2CmG0Wl7X329LpIifdFKdjs"
-            ]
-        },
-        {
-            "iss": "https://epicarrprod.uhnj.org/FHIR-Proxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-            "kids": [
-                "B3Wf0XsR9zdEy2vMUWO_x2_DkRaYz_LDnUg3k08hQb4"
-            ]
-        }
-    ]
+    "removedKids": []
 }
