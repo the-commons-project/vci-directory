@@ -1,6 +1,6 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "time": "2024-04-25T04:34:05Z",
+    "time": "2024-04-26T04:34:15Z",
     "issuerInfo": [
         {
             "issuer": {
@@ -5687,7 +5687,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 405758719E7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 4067E881427F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -5709,7 +5709,7 @@
             ],
             "tlsDetails": {
                 "version": "TLSv1.3",
-                "cipher": "TLS_AES_256_GCM_SHA384",
+                "cipher": "TLS_CHACHA20_POLY1305_SHA256",
                 "kexAlg": "ECDH, prime256v1, 256 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
@@ -5739,7 +5739,7 @@
             ],
             "tlsDetails": {
                 "version": "TLSv1.3",
-                "cipher": "TLS_AES_256_GCM_SHA384",
+                "cipher": "TLS_CHACHA20_POLY1305_SHA256",
                 "kexAlg": "ECDH, prime256v1, 256 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
@@ -6239,7 +6239,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 4007BB78DF7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 4047D6AAAC7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -7037,7 +7037,7 @@
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp521r1, 521 bits",
+                "kexAlg": "ECDH, secp384r1, 384 bits",
                 "authAlg": "RSA",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -7927,18 +7927,11 @@
                     "crv": "P-256"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-SHA384",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
             "warnings": [
-                "Issuer key endpoint does not contain a CORS 'access-control-allow-origin' header"
+                "Issuer key endpoint does not contain a CORS 'access-control-allow-origin' header",
+                "OpenSSL error: "
             ]
         },
         {
@@ -8050,14 +8043,28 @@
                 "name": "Premier Health",
                 "website": "https://mychart.premierhealthpartners.org/mychart"
             },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            "keys": [
+                {
+                    "x": "xYgHGr1syEDKxpBmLEYKvUwyLm4G8a6VGIYR0VAy5aE",
+                    "y": "RuJumjgCjQpm9eeBuYbnp9HBWhI7Hcza_yUBWTzkyfk",
+                    "kid": "wUYJ0KAnztzNRyPbado8p27SoMTi8eFCO_4e58RCjkM",
+                    "use": "sig",
+                    "kty": "EC",
+                    "alg": "ES256",
+                    "crv": "P-256"
+                }
             ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "DHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "DH, 2048 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [],
+            "warnings": []
         },
         {
             "issuer": {
@@ -9430,17 +9437,11 @@
                     "crv": "P-256"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp384r1, 384 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -9972,17 +9973,11 @@
                     "crv": "P-256"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -10088,7 +10083,7 @@
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 504 (Gateway Time-out)"
+                "HTTPError: Response code 502 (Bad Gateway)"
             ],
             "warnings": []
         },
@@ -10284,8 +10279,8 @@
                 }
             ],
             "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-SHA384",
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384",
                 "kexAlg": "ECDH, secp521r1, 521 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
@@ -11164,8 +11159,8 @@
             ],
             "tlsDetails": {
                 "version": "TLSv1.2",
-                "cipher": "DHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "DH, 2048 bits",
+                "cipher": "ECDHE-RSA-AES256-SHA384",
+                "kexAlg": "ECDH, secp521r1, 521 bits",
                 "authAlg": "RSA",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -11223,7 +11218,7 @@
             "crls": [],
             "errors": [],
             "warnings": [
-                "OpenSSL error: 40C7DE41E27F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
+                "OpenSSL error: 407796583A7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -11447,10 +11442,10 @@
                 }
             ],
             "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "DHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "DH, 2048 bits",
-                "authAlg": "RSA",
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384",
+                "kexAlg": "X25519, 253 bits",
+                "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
             },
@@ -11615,9 +11610,9 @@
                 }
             ],
             "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp384r1, 384 bits",
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384",
+                "kexAlg": "X25519, 253 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -11988,7 +11983,7 @@
                 "RequestError: getaddrinfo ENOTFOUND prodsoap1.tgh.org"
             ],
             "warnings": [
-                "OpenSSL error: 4047F49A8A7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 4057E1BB977F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -12408,7 +12403,7 @@
                 "RequestError: getaddrinfo ENOTFOUND guam.mdcareclik.net"
             ],
             "warnings": [
-                "OpenSSL error: 40C7F36E097F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 40371FCFB17F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -12485,11 +12480,17 @@
                     "crv": "P-256"
                 }
             ],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-SHA384",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [],
-            "warnings": [
-                "OpenSSL error: 40676F726B7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
-            ]
+            "warnings": []
         },
         {
             "issuer": {
@@ -12568,7 +12569,7 @@
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-SHA384",
-                "kexAlg": "ECDH, secp521r1, 521 bits",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
                 "authAlg": "RSA",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -14101,7 +14102,17 @@
                 "name": "Salinas Valley Memorial Healthcare System",
                 "website": "https://www.svmh.com/"
             },
-            "keys": [],
+            "keys": [
+                {
+                    "x": "XSFxfXof849dsbBL8ER1PqQnaLmWtbAYnxBo5r-pkKk",
+                    "y": "9q9LerIl97--cHnkERrbo22akMrZah3P7S7GxVhFttk",
+                    "kid": "iFj_jiA-Mw_Ixy-cPuVOZum56plmiba--2Zxme8-2Fg",
+                    "use": "sig",
+                    "kty": "EC",
+                    "alg": "ES256",
+                    "crv": "P-256"
+                }
+            ],
             "tlsDetails": {
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
@@ -14111,9 +14122,7 @@
                 "compression": "NONE"
             },
             "crls": [],
-            "errors": [
-                "HTTPError: Response code 503 (Service Unavailable)"
-            ],
+            "errors": [],
             "warnings": []
         },
         {
@@ -14604,17 +14613,11 @@
                     "y": "-ad4hKaR6lEdLztJmP9lT018DK4G5UVQ_gv9Ch-g3rE"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.3",
-                "cipher": "TLS_AES_256_GCM_SHA384",
-                "kexAlg": "ECDH, secp521r1, 521 bits",
-                "authAlg": "RSA-PSS",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -15099,7 +15102,7 @@
                 "RequestError: getaddrinfo ENOTFOUND dashboard.au.accredify.io"
             ],
             "warnings": [
-                "OpenSSL error: 40A7D398867F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 40B72F44A97F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -16431,7 +16434,7 @@
                 "RequestError: getaddrinfo ENOTFOUND api.vaulthealth.com"
             ],
             "warnings": [
-                "OpenSSL error: 40773408737F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 40F741F14B7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -17370,14 +17373,28 @@
                 "name": "Grady Health",
                 "website": "https://mychart.gradyhealth.org/mychart"
             },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            "keys": [
+                {
+                    "x": "DhTihuPWaH-_VE6BccIHrEvLUbsiSm9ocq2EJSxaIL4",
+                    "y": "eK8y3SA-5dW258Sv-H30fAN2rIoPbnogcDijVOLrEIo",
+                    "kid": "xoPJCz5NyVXywn4RILWgkMpwVVXs8Dj1bjYap3kyPVw",
+                    "use": "sig",
+                    "kty": "EC",
+                    "alg": "ES256",
+                    "crv": "P-256"
+                }
             ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "X25519, 253 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [],
+            "warnings": []
         },
         {
             "issuer": {
@@ -17574,18 +17591,11 @@
                     "crv": "P-256"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
             "warnings": [
-                "Issuer key endpoint does not contain a CORS 'access-control-allow-origin' header"
+                "Issuer key endpoint does not contain a CORS 'access-control-allow-origin' header",
+                "OpenSSL error: 40E7BB807E7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:879:"
             ]
         },
         {
@@ -18580,7 +18590,7 @@
                 "RequestError: Client network socket disconnected before secure TLS connection was established"
             ],
             "warnings": [
-                "OpenSSL error: write:errno=104"
+                "OpenSSL error: 40078B59967F0000:error:0A000126:SSL routines:ssl3_read_n:unexpected eof while reading:../ssl/record/rec_layer_s3.c:308:"
             ]
         },
         {
@@ -19037,11 +19047,17 @@
                     "crv": "P-256"
                 }
             ],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, secp384r1, 384 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "warnings": []
         },
         {
             "issuer": {
@@ -20141,10 +20157,10 @@
             "keys": [],
             "crls": [],
             "errors": [
-                "RequestError: write EPROTO 140611355780992:error:14094458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../deps/openssl/openssl/ssl/record/rec_layer_s3.c:1563:SSL alert number 112\n"
+                "RequestError: write EPROTO 139757838124928:error:14094458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../deps/openssl/openssl/ssl/record/rec_layer_s3.c:1563:SSL alert number 112\n"
             ],
             "warnings": [
-                "OpenSSL error: 40172F682C7F0000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../ssl/record/rec_layer_s3.c:1584:SSL alert number 112"
+                "OpenSSL error: 40F70CE5157F0000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../ssl/record/rec_layer_s3.c:1584:SSL alert number 112"
             ]
         },
         {

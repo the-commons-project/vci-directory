@@ -1,6 +1,6 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2024-04-25T04:34:05Z",
+    "auditTime": "2024-04-26T04:34:15Z",
     "issuerCount": 633,
     "issuersWithErrors": [
         {
@@ -51,21 +51,6 @@
                 "name": "Allegheny Health Network",
                 "website": "https://mychart.ahn.org/MyChart",
                 "canonical_iss": "https://epicprisfd.ahn.org/PRD-FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
-        },
-        {
-            "issuer": {
-                "iss": "https://rx.premierhealthpartners.org/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Premier Health",
-                "website": "https://mychart.premierhealthpartners.org/mychart"
             },
             "keys": [],
             "crls": [],
@@ -173,7 +158,7 @@
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 504 (Gateway Time-out)"
+                "HTTPError: Response code 502 (Bad Gateway)"
             ],
             "warnings": []
         },
@@ -210,7 +195,7 @@
                 "RequestError: getaddrinfo ENOTFOUND prodsoap1.tgh.org"
             ],
             "warnings": [
-                "OpenSSL error: 4047F49A8A7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 4057E1BB977F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -224,7 +209,7 @@
                 "RequestError: getaddrinfo ENOTFOUND guam.mdcareclik.net"
             ],
             "warnings": [
-                "OpenSSL error: 40C7F36E097F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 40371FCFB17F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -313,27 +298,6 @@
         },
         {
             "issuer": {
-                "iss": "https://epicproxy.et1146.epichosted.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Salinas Valley Memorial Healthcare System",
-                "website": "https://www.svmh.com/"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "HTTPError: Response code 503 (Service Unavailable)"
-            ],
-            "warnings": []
-        },
-        {
-            "issuer": {
                 "iss": "https://apis.changehealthcare.com/anon/dataservices/shc/v1/albertsons",
                 "name": "Albertsons Companies",
                 "website": "https://www.albertsons.com/pharmacy/covid-19.html"
@@ -386,7 +350,7 @@
                 "RequestError: getaddrinfo ENOTFOUND dashboard.au.accredify.io"
             ],
             "warnings": [
-                "OpenSSL error: 40A7D398867F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 40B72F44A97F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -401,7 +365,7 @@
                 "RequestError: getaddrinfo ENOTFOUND api.vaulthealth.com"
             ],
             "warnings": [
-                "OpenSSL error: 40773408737F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 40F741F14B7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -674,21 +638,6 @@
         },
         {
             "issuer": {
-                "iss": "https://surescripts.gmh.edu/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Grady Health",
-                "website": "https://mychart.gradyhealth.org/mychart"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
-        },
-        {
-            "issuer": {
                 "iss": "https://treat.com/shc-issuer",
                 "name": "Treat"
             },
@@ -759,7 +708,7 @@
                 "RequestError: Client network socket disconnected before secure TLS connection was established"
             ],
             "warnings": [
-                "OpenSSL error: write:errno=104"
+                "OpenSSL error: 40078B59967F0000:error:0A000126:SSL routines:ssl3_read_n:unexpected eof while reading:../ssl/record/rec_layer_s3.c:308:"
             ]
         },
         {
@@ -859,10 +808,10 @@
             "keys": [],
             "crls": [],
             "errors": [
-                "RequestError: write EPROTO 140611355780992:error:14094458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../deps/openssl/openssl/ssl/record/rec_layer_s3.c:1563:SSL alert number 112\n"
+                "RequestError: write EPROTO 139757838124928:error:14094458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../deps/openssl/openssl/ssl/record/rec_layer_s3.c:1563:SSL alert number 112\n"
             ],
             "warnings": [
-                "OpenSSL error: 40172F682C7F0000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../ssl/record/rec_layer_s3.c:1584:SSL alert number 112"
+                "OpenSSL error: 40F70CE5157F0000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../ssl/record/rec_layer_s3.c:1584:SSL alert number 112"
             ]
         }
     ],
@@ -931,27 +880,8 @@
         "HCA National",
         "West Tennessee Healthcare"
     ],
-    "previousAuditTime": "2024-04-24T04:34:05Z",
+    "previousAuditTime": "2024-04-25T04:34:05Z",
     "newIssuerCount": 0,
     "deletedIssuerCount": 0,
-    "removedKids": [
-        {
-            "iss": "https://rx.premierhealthpartners.org/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-            "kids": [
-                "wUYJ0KAnztzNRyPbado8p27SoMTi8eFCO_4e58RCjkM"
-            ]
-        },
-        {
-            "iss": "https://epicproxy.et1146.epichosted.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-            "kids": [
-                "iFj_jiA-Mw_Ixy-cPuVOZum56plmiba--2Zxme8-2Fg"
-            ]
-        },
-        {
-            "iss": "https://surescripts.gmh.edu/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-            "kids": [
-                "xoPJCz5NyVXywn4RILWgkMpwVVXs8Dj1bjYap3kyPVw"
-            ]
-        }
-    ]
+    "removedKids": []
 }
