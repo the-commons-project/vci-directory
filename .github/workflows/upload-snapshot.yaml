@@ -5,7 +5,6 @@ on:
        - main
 env:
   S3_BUCKET_DEV: vci-snapshot-dev
-  S3_BUCKET_QA: vci-snapshot-preprod
   S3_BUCKET_PROD: vci-snapshot-prod
   S3_DIR: current-snapshot
   ISSUER_FILE: vci-issuers.json
@@ -25,13 +24,10 @@ jobs:
           - bucket: '${S3_BUCKET_DEV}'
             assume-role: arn:aws:iam::789379687343:role/GithubECSRole
             role-session-name: GithubActionsECSDev
-          - bucket: '${S3_BUCKET_QA}'
-            assume-role: arn:aws:iam::496986085600:role/GithubECSRole
-            role-session-name: GithubActionsECSQA
           - bucket: '${S3_BUCKET_PROD}'
             assume-role: arn:aws:iam::583457431358:role/GithubECSRole
             role-session-name: GithubActionsECSProd
-        bucket: [ '${S3_BUCKET_DEV}', '${S3_BUCKET_QA}', '${S3_BUCKET_PROD}' ]
+        bucket: [ '${S3_BUCKET_DEV}', '${S3_BUCKET_PROD}' ]
     steps:
       - name: "List bucket"
         run: |

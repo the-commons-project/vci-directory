@@ -6,7 +6,6 @@ on:
 
 env:
   S3_BUCKET_DEV: shc-verifier-services-dev
-  S3_BUCKET_TEST: shc-verifier-services-test
   S3_BUCKET_PROD: shc-verifier-services-prod
   S3_DIR: vci-directory
   LOCAL_SOURCE_FILE: vci-issuers.json
@@ -34,25 +33,6 @@ jobs:
     - name: 'Sync issuers file to S3'
       run: |
         aws s3 sync . 's3://${{ env.S3_BUCKET_DEV }}/${{ env.S3_DIR }}' --exclude='*' --include='${{ env.LOCAL_SOURCE_FILE }}' --include='${{ env.LOCAL_SOURCE_INCLUDE_LOG_DIR }}'
-
-  deployTest:
-    if: contains(github.ref, 'test')
-    name: 'Deploy VCI issuers list to TCP test'
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
-    - name: 'Configure Test AWS Role'
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.TERRAFORM_AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.TERRAFORM_AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ env.REGION }}
-        role-to-assume: ${{ env.ROLE_TO_ASSUME }}
-        role-duration-seconds: 1200
-        role-session-name: ${{ env.ROLE_SESSION_NAME }}
-    - name: 'Sync issuers file to S3'
-      run: |
-        aws s3 sync . 's3://${{ env.S3_BUCKET_TEST }}/${{ env.S3_DIR }}' --exclude='*' --include='${{ env.LOCAL_SOURCE_FILE }}' --include='${{ env.LOCAL_SOURCE_INCLUDE_LOG_DIR }}'
 
   deployProd:
     if: contains(github.ref, '-prod')
