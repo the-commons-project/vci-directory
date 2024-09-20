@@ -36,6 +36,10 @@ jobs:
           echo "$PRIVATE_SIG_KEY" > private.pem
           openssl dgst -sha512 -sign private.pem -out logs/vci_snapshot.sig -passin env:PRIVATE_SIG_KEY_PWD logs/vci_snapshot.json
           rm private.pem
+      - name: Print GIT_OWNER
+        run: | 
+          echo $GIT_OWNER_EMAIL
+          echo $GIT_OWNER_NAME
       - name: git check in
         env:
           GIT_OWNER_EMAIL: ${{ secrets.GIT_OWNER_EMAIL }}
@@ -63,10 +67,6 @@ jobs:
           else
             echo 'no changes'
           fi
-      - name: Print GIT_OWNER
-        run: | 
-          echo $GIT_OWNER_EMAIL
-          echo $GIT_OWNER_NAME
       - name: save log files
         uses: actions/upload-artifact@v4
         with:
