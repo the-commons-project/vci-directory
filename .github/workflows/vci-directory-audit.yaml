@@ -63,6 +63,10 @@ jobs:
           else
             echo 'no changes'
           fi
+      - name: Print GIT_OWNER
+        run: | 
+          echo $GIT_OWNER_EMAIL
+          echo $GIT_OWNER_NAME
       - name: save log files
         uses: actions/upload-artifact@v4
         with:
