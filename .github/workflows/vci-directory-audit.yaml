@@ -1,11 +1,13 @@
 name: Nightly audit
+
 on:
   schedule:
-      - cron: '30 4 * * *'
+    - cron: '30 4 * * *'
   workflow_dispatch:
   push:
     tags:
       - audit*
+
 jobs:
   vci-directory-audit:
     runs-on: ubuntu-latest
@@ -14,20 +16,24 @@ jobs:
         with:
           ref: main
           token: ${{ secrets.GITHUB_TOKEN }}
+
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
+
       - name: npm setup
         run: |
           cd scripts/vci-directory-auditor
           npm install
           npm run build --if-present
+
       - name: run audit scripts
         run: |
           cd scripts/vci-directory-auditor
           npm run audit -- -o ../../logs/new_log.json -p ../../logs/daily_log.json -s ../../logs/daily_log_snapshot.json -a ../../logs/daily_audit.json -d ../../vci-issuers.json
           mv ../../logs/new_log.json ../../logs/daily_log.json
           npm run assemble -- -s ../../logs/vci_snapshot.json -c ../../logs/daily_log_snapshot.json
+
       - name: sign snapshot
         env:
           PRIVATE_SIG_KEY_PWD: ${{ secrets.PRIVATE_SIG_KEY_PWD }}
@@ -36,6 +42,31 @@ jobs:
           echo "$PRIVATE_SIG_KEY" > private.pem
           openssl dgst -sha512 -sign private.pem -out logs/vci_snapshot.sig -passin env:PRIVATE_SIG_KEY_PWD logs/vci_snapshot.json
           rm private.pem
+
+  test-scripts-job:
+    needs: vci-directory-audit
+    uses: the-commons-project/vci-directory/.github/workflows/test-scripts-pass.yaml@main
+    with:
+      ref: main
+    secrets: inherit
+
+  validate-issuers-job:
+    needs: test-scripts-job
+    uses: the-commons-project/vci-directory/.github/workflows/validate-issuers-on-push-pass.yaml@main
+    with:
+      ref: main
+    secrets: inherit
+
+  git-push-job:
+    needs: [vci-directory-audit, test-scripts-job, validate-issuers-job]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: git check in
         env:
           GIT_OWNER_EMAIL: ${{ secrets.GIT_OWNER_EMAIL }}
@@ -59,10 +90,11 @@ jobs:
             git commit -a -m "added commit hash to audit index"
             git remote add myorigin https://$GIT_OWNER_NAME:$GIT_PUSH_TOKEN@github.com/$GIT_REPO_PATH/vci-directory.git
             git pull --rebase
-            git push myorigin HEAD:main --force
+            git push myorigin HEAD:main
           else
             echo 'no changes'
           fi
+
       - name: save log files
         uses: actions/upload-artifact@v4
         with:
