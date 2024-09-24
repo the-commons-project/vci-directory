@@ -57,7 +57,7 @@ jobs:
       ref: main
     secrets: inherit
   
-   git-push-job:
+  git-push-job:
     needs: [vci-directory-audit, test-scripts-job, validate-issuers-job]
     runs-on: ubuntu-latest
     steps:
