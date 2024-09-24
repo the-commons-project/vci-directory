@@ -90,7 +90,7 @@ jobs:
             git commit -a -m "added commit hash to audit index"
             git remote add myorigin https://$GIT_OWNER_NAME:$GIT_PUSH_TOKEN@github.com/$GIT_REPO_PATH/vci-directory.git
             git pull --rebase
-            git push myorigin HEAD:audit-failures
+            git push myorigin HEAD:main
           else
             echo 'no changes'
           fi
