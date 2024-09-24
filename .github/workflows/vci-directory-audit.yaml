@@ -1,8 +1,8 @@
-name: Nightly test audit
+name: Nightly audit
 
 on:
   schedule:
-      - cron: '30 4 * * *'
+    - cron: '30 4 * * *'
   workflow_dispatch:
   push:
     tags:
@@ -42,21 +42,21 @@ jobs:
           echo "$PRIVATE_SIG_KEY" > private.pem
           openssl dgst -sha512 -sign private.pem -out logs/vci_snapshot.sig -passin env:PRIVATE_SIG_KEY_PWD logs/vci_snapshot.json
           rm private.pem
-  
+
   test-scripts-job:
     needs: vci-directory-audit
     uses: the-commons-project/vci-directory/.github/workflows/test-scripts-pass.yaml@main
     with:
       ref: main
     secrets: inherit
-  
+
   validate-issuers-job:
     needs: test-scripts-job
     uses: the-commons-project/vci-directory/.github/workflows/validate-issuers-on-push-pass.yaml@main
     with:
       ref: main
     secrets: inherit
-  
+
   git-push-job:
     needs: [vci-directory-audit, test-scripts-job, validate-issuers-job]
     runs-on: ubuntu-latest
@@ -66,6 +66,7 @@ jobs:
         with:
           ref: main
           token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: git check in
         env:
           GIT_OWNER_EMAIL: ${{ secrets.GIT_OWNER_EMAIL }}

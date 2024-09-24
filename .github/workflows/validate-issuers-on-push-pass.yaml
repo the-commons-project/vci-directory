@@ -15,6 +15,10 @@ on:
       - 'scripts/*.py'
       - '.github/workflows/validate-issuers.yaml'
   workflow_call:
+    inputs:
+      ref:
+        required: true
+        type: string
 
 jobs:
   runTests:
