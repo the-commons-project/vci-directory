@@ -1,4 +1,5 @@
 name: Nightly audit
+
 on:
   schedule:
       - cron: '30 4 * * *'
@@ -6,6 +7,7 @@ on:
   push:
     tags:
       - audit*
+
 jobs:
   vci-directory-audit:
     runs-on: ubuntu-latest
@@ -14,20 +16,24 @@ jobs:
         with:
           ref: main
           token: ${{ secrets.GITHUB_TOKEN }}
+
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
+
       - name: npm setup
         run: |
           cd scripts/vci-directory-auditor
           npm install
           npm run build --if-present
+
       - name: run audit scripts
         run: |
           cd scripts/vci-directory-auditor
           npm run audit -- -o ../../logs/new_log.json -p ../../logs/daily_log.json -s ../../logs/daily_log_snapshot.json -a ../../logs/daily_audit.json -d ../../vci-issuers.json
           mv ../../logs/new_log.json ../../logs/daily_log.json
           npm run assemble -- -s ../../logs/vci_snapshot.json -c ../../logs/daily_log_snapshot.json
+
       - name: sign snapshot
         env:
           PRIVATE_SIG_KEY_PWD: ${{ secrets.PRIVATE_SIG_KEY_PWD }}
@@ -36,11 +42,13 @@ jobs:
           echo "$PRIVATE_SIG_KEY" > private.pem
           openssl dgst -sha512 -sign private.pem -out logs/vci_snapshot.sig -passin env:PRIVATE_SIG_KEY_PWD logs/vci_snapshot.json
           rm private.pem
-      - name: Print GIT_OWNER
-        run: | 
-          echo "GIT owner email is: $GIT_OWNER_EMAIL"
-          echo "GIT owner name is: $GIT_OWNER_NAME"
-          echo "Git repo path is: $GIT_REPO_PATH"
+
+      - name: Run Test Scripts Workflow
+        uses: the-commons-project/vci-directory/.github/workflows/test-scripts-pass.yaml@main
+
+      - name: Run Validate Issuers Workflow
+        uses: the-commons-project/vci-directory/.github/workflows/validate-issuers-on-push-pass.yaml@main
+
       - name: git check in
         env:
           GIT_OWNER_EMAIL: ${{ secrets.GIT_OWNER_EMAIL }}
@@ -68,6 +76,7 @@ jobs:
           else
             echo 'no changes'
           fi
+
       - name: save log files
         uses: actions/upload-artifact@v4
         with:
