@@ -38,8 +38,9 @@ jobs:
           rm private.pem
       - name: Print GIT_OWNER
         run: | 
-          echo $GIT_OWNER_EMAIL
-          echo $GIT_OWNER_NAME
+          echo "GIT owner email is: $GIT_OWNER_EMAIL"
+          echo "GIT owner name is: $GIT_OWNER_NAME"
+          echo "Git repo path is: $GIT_REPO_PATH"
       - name: git check in
         env:
           GIT_OWNER_EMAIL: ${{ secrets.GIT_OWNER_EMAIL }}
