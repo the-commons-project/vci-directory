@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: main
+          ref: audit-failures #main
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/setup-node@v2
@@ -45,16 +45,16 @@ jobs:
 
   test-scripts-job:
     needs: vci-directory-audit
-    uses: the-commons-project/vci-directory/.github/workflows/test-scripts-pass.yaml@main
+    uses: the-commons-project/vci-directory/.github/workflows/test-scripts-pass.yaml@audit-failures #main
     with:
-      ref: main
+      ref: audit-failures #main
     secrets: inherit
 
   validate-issuers-job:
     needs: test-scripts-job
-    uses: the-commons-project/vci-directory/.github/workflows/validate-issuers-on-push-pass.yaml@main
+    uses: the-commons-project/vci-directory/.github/workflows/validate-issuers-on-push-pass.yaml@audit-failures #main
     with:
-      ref: main
+      ref: audit-failures #main
     secrets: inherit
 
   git-push-job:
@@ -64,7 +64,7 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v3
         with:
-          ref: main
+          ref: audit-failures #main
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: git check in
@@ -90,7 +90,7 @@ jobs:
             git commit -a -m "added commit hash to audit index"
             git remote add myorigin https://$GIT_OWNER_NAME:$GIT_PUSH_TOKEN@github.com/$GIT_REPO_PATH/vci-directory.git
             git pull --rebase
-            git push myorigin HEAD:main --force
+            git push myorigin HEAD:audit-failures
           else
             echo 'no changes'
           fi
