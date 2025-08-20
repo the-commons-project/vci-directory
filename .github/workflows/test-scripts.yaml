@@ -18,16 +18,16 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           path: 'head'
 
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.base.sha }}
-          path: 'base'
+#      - uses: actions/checkout@v4
+#        with:
+#          ref: ${{ github.event.pull_request.base.sha }}
+#          path: 'base'
 
       - name: Cache Python venv
         uses: actions/cache@v4
         with:
           path: venv
-          key: ${{ runner.os }}-build-v4-${{ hashFiles('head/scripts/requirements.txt') }}
+          key: ${{ runner.os }}-build-${{ hashFiles('head/scripts/requirements.txt') }}
 
       - name: "Run tests"
         if: ${{ hashFiles('head/scripts') != hashFiles('base/scripts') }}
