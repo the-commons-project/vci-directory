@@ -17,7 +17,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: scripts/venv
-          key: ${{ runner.os }}-build-${{ hashFiles('**/requirements.txt') }}
+          key: ${{ runner.os }}-build-v4${{ hashFiles('**/requirements.txt') }}
 
       - name: "Validate Issuers File"
         run: |
