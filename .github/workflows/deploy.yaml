@@ -20,7 +20,7 @@ jobs:
     name: 'Deploy VCI issuers list to TCP dev'
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v4
     - name: 'Configure Dev AWS Role'
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -39,7 +39,7 @@ jobs:
     name: 'Deploy VCI issuers list to TCP production'
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v4
     - name: 'Configure Prod AWS Role'
       uses: aws-actions/configure-aws-credentials@v1
       with:
