@@ -22,7 +22,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: 'Configure Dev AWS Role'
-      uses: aws-actions/configure-aws-credentials@v1
+      uses: aws-actions/configure-aws-credentials@v4
       with:
         aws-access-key-id: ${{ secrets.TERRAFORM_AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.TERRAFORM_AWS_SECRET_ACCESS_KEY }}
@@ -41,7 +41,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: 'Configure Prod AWS Role'
-      uses: aws-actions/configure-aws-credentials@v1
+      uses: aws-actions/configure-aws-credentials@v4
       with:
         aws-access-key-id: ${{ secrets.TERRAFORM_AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.TERRAFORM_AWS_SECRET_ACCESS_KEY }}
