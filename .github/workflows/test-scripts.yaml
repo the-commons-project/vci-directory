@@ -17,11 +17,10 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           path: 'head'
-
-     - uses: actions/checkout@v4
-       with:
-         ref: ${{ github.event.pull_request.base.sha }}
-         path: 'base'
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: 'base'
 
       - name: Cache Python venv
         uses: actions/cache@v4

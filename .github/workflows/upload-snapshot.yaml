@@ -32,8 +32,8 @@ jobs:
       - name: "List bucket"
         run: |
           echo "uploading to ${{matrix.bucket}}"
-
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
       - name: 'Configure AWS Role'
         uses: aws-actions/configure-aws-credentials@v4
         with:
