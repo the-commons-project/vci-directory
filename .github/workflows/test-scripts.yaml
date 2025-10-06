@@ -12,19 +12,19 @@ jobs:
   runTests:
     name: "Test Scripts"
     runs-on: [ubuntu-latest]
-    steps:
-      - uses: "actions/checkout@v2"
+    steps: 
+      - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           path: 'head'
 
-      - uses: "actions/checkout@v2"
-        with:
-          ref: ${{ github.event.pull_request.base.sha }}
-          path: 'base'
+     - uses: actions/checkout@v4
+       with:
+         ref: ${{ github.event.pull_request.base.sha }}
+         path: 'base'
 
       - name: Cache Python venv
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: venv
           key: ${{ runner.os }}-build-${{ hashFiles('head/scripts/requirements.txt') }}

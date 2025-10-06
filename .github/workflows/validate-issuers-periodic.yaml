@@ -9,12 +9,12 @@ jobs:
     name: "Validate Issuers File"
     runs-on: [ubuntu-latest]
     steps:
-      - uses: "actions/checkout@v2"
+      - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Cache Python venv
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: scripts/venv
           key: ${{ runner.os }}-build-${{ hashFiles('**/requirements.txt') }}
