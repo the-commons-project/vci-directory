@@ -2,17 +2,18 @@ name: "Validate on schedule"
 
 on:
   schedule:
-    - cron:  '*/60 */4 * * *'
+    # Minute Hour DayOfMonth Month DayOfWeek - runs every 4 hours
+    # This only applies to whatever has been set as the main branch
+    # https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule
+    - cron:  '0 */4 * * *'
 
 jobs:
   runTests:
     name: "Validate Issuers File"
     runs-on: [ubuntu-latest]
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-
+      - name: Checkout Code
+        uses: actions/checkout@v4
       - name: Cache Python venv
         uses: actions/cache@v4
         with:
