@@ -43,6 +43,12 @@ jobs:
           openssl dgst -sha512 -sign private.pem -out logs/vci_snapshot.sig -passin env:PRIVATE_SIG_KEY_PWD logs/vci_snapshot.json
           rm private.pem
 
+      - name: Upload snapshot artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: audit-log-files
+          path: logs/*
+
   test-scripts-job:
     needs: vci-directory-audit
     uses: the-commons-project/vci-directory/.github/workflows/test-scripts-pass.yaml@main
@@ -66,6 +72,12 @@ jobs:
         with:
           ref: main
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Download snapshot artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: audit-log-files
+          path: logs/
 
       - name: git check in
         env:
@@ -94,9 +106,3 @@ jobs:
           else
             echo 'no changes'
           fi
-
-      - name: save log files
-        uses: actions/upload-artifact@v4
-        with:
-          name: save-log-files
-          path: logs/*
