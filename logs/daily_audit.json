@@ -1,8 +1,23 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "auditTime": "2024-09-20T18:00:15Z",
-    "issuerCount": 635,
+    "auditTime": "2025-10-30T23:13:13Z",
+    "issuerCount": 638,
     "issuersWithErrors": [
+        {
+            "issuer": {
+                "iss": "https://EpicFHIR.aurora.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Advocate Aurora Health",
+                "website": "https://livewell.aah.org/Chart/accesscheck.asp"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
         {
             "issuer": {
                 "iss": "https://pvc.service.yukon.ca/issuer",
@@ -26,15 +41,30 @@
         },
         {
             "issuer": {
-                "iss": "https://www.riteaid.com",
-                "name": "Rite Aid Pharmacy",
-                "website": "https://www.riteaid.com/pharmacy/vaccination-digital-proof"
+                "iss": "https://epicproxy.uvmhealth.org/FHIR-ARR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "The University of Vermont Medical Center",
+                "website": "https://mychart.uvmhealth.org/MyChart/"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "RequestError: connect ECONNREFUSED 12.152.228.119:443"
+            ],
+            "warnings": [
+                "OpenSSL error: 407709A0787F0000:error:8000006F:system library:BIO_connect:Connection refused:../crypto/bio/bio_sock2.c:114:calling connect()\n407709A0787F0000:error:10000067:BIO routines:BIO_connect:connect error:../crypto/bio/bio_sock2.c:116:\nconnect:errno=111"
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://fhir.lakelandregional.org/fhirproxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Spectrum Health Lakeland",
+                "website": "https://www.spectrumhealthlakeland.org/patient-visitor-guide/my-chart"
             },
             "keys": [],
             "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384",
+                "kexAlg": "X25519, 253 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -44,6 +74,21 @@
                 "HTTPError: Response code 404 (Not Found)"
             ],
             "warnings": []
+        },
+        {
+            "issuer": {
+                "iss": "https://www.riteaid.com",
+                "name": "Rite Aid Pharmacy",
+                "website": "https://www.riteaid.com/pharmacy/vaccination-digital-proof"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "RequestError: write EPROTO 406CB2101D7F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../deps/openssl/openssl/ssl/statem/extensions.c:894:\n"
+            ],
+            "warnings": [
+                "OpenSSL error: 40B7FA35D57F0000:error:0A000152:SSL routines:final_renegotiate:unsafe legacy renegotiation disabled:../ssl/statem/extensions.c:893:"
+            ]
         },
         {
             "issuer": {
@@ -57,8 +102,29 @@
                 "RequestError: getaddrinfo ENOTFOUND ovc-api.optum.com"
             ],
             "warnings": [
-                "OpenSSL error: 4097FEE0C27F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 4047863E497F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
+        },
+        {
+            "issuer": {
+                "iss": "https://interconnect.wellspan.org/interconnect-prd-fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "WellSpan Health",
+                "website": "https://my.wellspan.org/MyWellSpan"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "authAlg": "RSA-PSS",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 503 (Service Unavailable)"
+            ],
+            "warnings": []
         },
         {
             "issuer": {
@@ -115,7 +181,7 @@
             },
             "crls": [],
             "errors": [
-                "RequestError: certificate has expired"
+                "HTTPError: Response code 403 (Ip Forbidden)"
             ],
             "warnings": []
         },
@@ -158,16 +224,31 @@
         },
         {
             "issuer": {
+                "iss": "https://soap.uhcs.org/IC-FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "University Health Care System",
+                "website": "https://www.universityhealth.org/patient-visitor-information/for-patients/medical-records-online-charts/mychart"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "RequestError: connect ECONNREFUSED 216.186.180.112:443"
+            ],
+            "warnings": [
+                "OpenSSL error: 40877509727F0000:error:8000006F:system library:BIO_connect:Connection refused:../crypto/bio/bio_sock2.c:114:calling connect()\n40877509727F0000:error:10000067:BIO routines:BIO_connect:connect error:../crypto/bio/bio_sock2.c:116:\n40877509727F0000:error:8000006F:system library:BIO_connect:Connection refused:../crypto/bio/bio_sock2.c:114:calling connect()\n40877509727F0000:error:10000067:BIO routines:BIO_connect:connect error:../crypto/bio/bio_sock2.c:116:\nconnect:errno=111"
+            ]
+        },
+        {
+            "issuer": {
                 "iss": "https://www.express-scripts.com/frontendservice/mobilepatient-proxy/1/shc",
                 "name": "Express Scripts",
                 "website": "https://www.express-scripts.com/login?routingPage=/frontend/consumer/%23/user/profile"
             },
             "keys": [],
             "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
-                "authAlg": "RSA",
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384",
+                "kexAlg": "X25519, 253 bits",
+                "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
             },
@@ -187,14 +268,35 @@
             "tlsDetails": {
                 "version": "TLSv1.3",
                 "cipher": "TLS_AES_256_GCM_SHA384",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "kexAlg": "X25519, 253 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 504 (Gateway Time-out)"
+                "HTTPError: Response code 404 (Not Found)"
+            ],
+            "warnings": []
+        },
+        {
+            "issuer": {
+                "iss": "https://epiclbsprxyprodpass.houstonmethodist.org/PRD-FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Houston Methodist",
+                "website": "https://mychart.houstonmethodist.org/mychart-prod/"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, secp384r1, 384 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "4096",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 500 (Internal Server Error)"
             ],
             "warnings": []
         },
@@ -207,8 +309,8 @@
             "keys": [],
             "tlsDetails": {
                 "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "cipher": "AES128-SHA256",
+                "kexAlg": "RSA",
                 "authAlg": "RSA",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -217,7 +319,24 @@
             "errors": [
                 "HTTPError: Response code 404 (Not Found)"
             ],
-            "warnings": []
+            "warnings": [
+                "TLS error: Static RSA SHOULD NOT be used, MUST prefer ECDHE and DHE"
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://fhir.archildrens.org/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Arkansas Children's",
+                "website": "https://mychart.archildrens.org/mychart/"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "RequestError: getaddrinfo ENOTFOUND fhir.archildrens.org"
+            ],
+            "warnings": [
+                "OpenSSL error: 40F72A0BC97F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+            ]
         },
         {
             "issuer": {
@@ -226,19 +345,13 @@
                 "website": "https://mychart.nortonhealthcare.org/mychart"
             },
             "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [
-                "RequestError: certificate has expired"
+                "RequestError: write EPROTO 406CB2101D7F0000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../deps/openssl/openssl/ssl/record/rec_layer_s3.c:1605:SSL alert number 112\n"
             ],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: 40C7957BCA7F0000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../ssl/record/rec_layer_s3.c:1599:SSL alert number 112"
+            ]
         },
         {
             "issuer": {
@@ -248,8 +361,8 @@
             },
             "keys": [],
             "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384",
                 "kexAlg": "X25519, 253 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
@@ -273,7 +386,22 @@
                 "RequestError: getaddrinfo ENOTFOUND prodsoap1.tgh.org"
             ],
             "warnings": [
-                "OpenSSL error: 4077C2DA477F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 40E750C2447F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://fhir.lluh.org/interconnect-fhir-prd/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Loma Linda University Health, Riverside University Health System, SAC Health System, and Affiliates",
+                "website": "https://mychart.ieccn.org/MyChart"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "RequestError: connect ECONNREFUSED 143.197.230.85:443"
+            ],
+            "warnings": [
+                "OpenSSL error: 4007C3DD887F0000:error:8000006F:system library:BIO_connect:Connection refused:../crypto/bio/bio_sock2.c:114:calling connect()\n4007C3DD887F0000:error:10000067:BIO routines:BIO_connect:connect error:../crypto/bio/bio_sock2.c:116:\nconnect:errno=111"
             ]
         },
         {
@@ -287,7 +415,7 @@
                 "RequestError: getaddrinfo ENOTFOUND guam.mdcareclik.net"
             ],
             "warnings": [
-                "OpenSSL error: 40673BDDE47F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 4047C0BD277F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -299,16 +427,16 @@
             },
             "keys": [],
             "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-SHA384",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
-                "authAlg": "RSA",
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_128_GCM_SHA256",
+                "kexAlg": "X25519, 253 bits",
+                "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 503 (Service Unavailable)"
+                "RequestError: read ECONNRESET"
             ],
             "warnings": []
         },
@@ -341,10 +469,10 @@
             "keys": [],
             "tlsDetails": {
                 "version": "TLSv1.2",
-                "cipher": "ECDHE-ECDSA-CHACHA20-POLY1305",
+                "cipher": "ECDHE-RSA-CHACHA20-POLY1305",
                 "kexAlg": "X25519, 253 bits",
-                "authAlg": "ECDSA",
-                "pubKeySize": "256",
+                "authAlg": "RSA-PSS",
+                "pubKeySize": "2048",
                 "compression": "NONE"
             },
             "crls": [],
@@ -361,59 +489,69 @@
             },
             "keys": [],
             "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384",
+                "kexAlg": "X25519, 253 bits",
+                "authAlg": "ECDSA",
+                "pubKeySize": "256",
                 "compression": "NONE"
             },
             "crls": [],
             "errors": [
-                "RequestError: unable to verify the first certificate"
+                "HTTPError: Response code 404 (Not Found)"
             ],
             "warnings": []
         },
         {
             "issuer": {
-                "iss": "https://prd.pkey.dhdp.ontariohealth.ca",
-                "name": "Government of Ontario",
-                "website": "https://covid-19.ontario.ca/proof-covid-19-vaccination"
+                "iss": "https://esoap.mihs.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Valleywise Health",
+                "website": "https://valleywisehealth.org/"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "RequestError: getaddrinfo ENOTFOUND esoap.mihs.org"
+            ],
+            "warnings": [
+                "OpenSSL error: 40B799FF297F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://health.ri.gov/sh.cards/production",
+                "name": "The State of Rhode Island",
+                "website": "https://covid.ri.gov/covid-19-prevention/401health-app"
             },
             "keys": [],
             "tlsDetails": {
                 "version": "TLSv1.3",
-                "cipher": "TLS_AES_128_GCM_SHA256",
+                "cipher": "TLS_AES_256_GCM_SHA384",
                 "kexAlg": "X25519, 253 bits",
-                "authAlg": "RSA-PSS",
-                "pubKeySize": "2048",
+                "authAlg": "ECDSA",
+                "pubKeySize": "256",
                 "compression": "NONE"
             },
             "crls": [],
             "errors": [
-                "RequestError: unable to verify the first certificate"
+                "HTTPError: Response code 403 (Forbidden)"
             ],
             "warnings": []
         },
         {
             "issuer": {
-                "iss": "https://epicproxy.ardenthealth.com/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Ardent sm Affiliates and Community Connect Practices"
+                "iss": "https://ocsoapprd.nebraskamed.com/FHIR-PRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Nebraska Medicine",
+                "website": "https://www.nebraskamed.com/"
             },
             "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, prime256v1, 256 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "4096",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 401 (Unauthorized)"
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
             ],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -432,9 +570,24 @@
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 401 (Unauthorized)"
+                "HTTPError: Response code 400 (Bad Request)"
             ],
             "warnings": []
+        },
+        {
+            "issuer": {
+                "iss": "https://surescripts.mdmercy.com/fhir-prd/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Mercy Health Services (MD)",
+                "website": "https://mychart.mdmercy.com/mychart"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "RequestError: write EPROTO 406CB2101D7F0000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../deps/openssl/openssl/ssl/record/rec_layer_s3.c:1605:SSL alert number 112\n"
+            ],
+            "warnings": [
+                "OpenSSL error: 4007CA70937F0000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../ssl/record/rec_layer_s3.c:1599:SSL alert number 112"
+            ]
         },
         {
             "issuer": {
@@ -444,19 +597,13 @@
                 "canonical_iss": "https://epicmobile.challiance.org/Interconnect-OAuth2/api/epic/2021/Security/Open/EcKeys/32001/SHC"
             },
             "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-SHA384",
-                "kexAlg": "ECDH, secp521r1, 521 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 404 (Not Found)"
+                "RequestError: getaddrinfo ENOTFOUND epicweb.challiance.org"
             ],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: 403732A8107F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+            ]
         },
         {
             "issuer": {
@@ -469,8 +616,80 @@
                 "RequestError: getaddrinfo ENOTFOUND dashboard.au.accredify.io"
             ],
             "warnings": [
-                "OpenSSL error: 4097FB1BA17F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 4057DC67677F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
+        },
+        {
+            "issuer": {
+                "iss": "https://sclprdproxy.sclhs.net/FHIRPRD-2017/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "SCL Health",
+                "website": "https://www.sclhealth.org/"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://smart.medconciergela.com/api/ISSUER",
+                "name": "Med Concierge LA",
+                "website": "https://medconciergela.com/"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384",
+                "kexAlg": "X25519, 253 bits",
+                "authAlg": "ECDSA",
+                "pubKeySize": "256",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 403 (Forbidden)"
+            ],
+            "warnings": []
+        },
+        {
+            "issuer": {
+                "iss": "https://app.outpost.health/smart",
+                "name": "Outpost Healthcare",
+                "website": "https://www.outpost.health/patients"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "RequestError: getaddrinfo ENOTFOUND app.outpost.health"
+            ],
+            "warnings": [
+                "OpenSSL error: 40678B0AEF7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://vc.vrs.digital.go.jp/issuer",
+                "name": "Government of Japan",
+                "website": "https://www.mhlw.go.jp/stf/covid-19/certificate.html"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_128_GCM_SHA256",
+                "kexAlg": "X25519, 253 bits",
+                "authAlg": "RSA-PSS",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "RequestError: Hostname/IP does not match certificate's altnames: Host: vc.vrs.digital.go.jp. is not in the cert's altnames: DNS:cloudfront.net, DNS:*.cloudfront.net"
+            ],
+            "warnings": []
         },
         {
             "issuer": {
@@ -484,7 +703,7 @@
                 "RequestError: getaddrinfo ENOTFOUND api.vaulthealth.com"
             ],
             "warnings": [
-                "OpenSSL error: 40F729D7F07F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 40B7343FA67F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -504,7 +723,7 @@
             },
             "crls": [],
             "errors": [
-                "RequestError: self signed certificate"
+                "RequestError: self-signed certificate"
             ],
             "warnings": []
         },
@@ -541,7 +760,7 @@
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 401 (Unauthorized)"
+                "HTTPError: Response code 400 (Bad Request)"
             ],
             "warnings": []
         },
@@ -562,7 +781,7 @@
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 401 (Unauthorized)"
+                "HTTPError: Response code 400 (Bad Request)"
             ],
             "warnings": []
         },
@@ -583,7 +802,7 @@
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 401 (Unauthorized)"
+                "HTTPError: Response code 400 (Bad Request)"
             ],
             "warnings": []
         },
@@ -604,7 +823,7 @@
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 401 (Unauthorized)"
+                "HTTPError: Response code 400 (Bad Request)"
             ],
             "warnings": []
         },
@@ -625,7 +844,7 @@
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 401 (Unauthorized)"
+                "HTTPError: Response code 400 (Bad Request)"
             ],
             "warnings": []
         },
@@ -646,7 +865,7 @@
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 401 (Unauthorized)"
+                "HTTPError: Response code 400 (Bad Request)"
             ],
             "warnings": []
         },
@@ -667,7 +886,7 @@
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 401 (Unauthorized)"
+                "HTTPError: Response code 400 (Bad Request)"
             ],
             "warnings": []
         },
@@ -688,7 +907,7 @@
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 401 (Unauthorized)"
+                "HTTPError: Response code 400 (Bad Request)"
             ],
             "warnings": []
         },
@@ -709,7 +928,7 @@
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 401 (Unauthorized)"
+                "HTTPError: Response code 400 (Bad Request)"
             ],
             "warnings": []
         },
@@ -730,7 +949,7 @@
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 401 (Unauthorized)"
+                "HTTPError: Response code 400 (Bad Request)"
             ],
             "warnings": []
         },
@@ -751,7 +970,7 @@
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 401 (Unauthorized)"
+                "HTTPError: Response code 400 (Bad Request)"
             ],
             "warnings": []
         },
@@ -772,7 +991,49 @@
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 401 (Unauthorized)"
+                "HTTPError: Response code 400 (Bad Request)"
+            ],
+            "warnings": []
+        },
+        {
+            "issuer": {
+                "iss": "https://rmgpxy.riverbendmedical.com/fhir_proxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+                "name": "Riverbend Medical Group",
+                "website": "https://mychart.riverbendmedical.com/MyChart"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, secp384r1, 384 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "RequestError: certificate has expired"
+            ],
+            "warnings": []
+        },
+        {
+            "issuer": {
+                "iss": "https://s3.us-east-2.amazonaws.com/shc.vaccine.cookcountyil.gov",
+                "name": "Cook County Community Vaccination Program",
+                "website": "https://vaccine.cookcountyil.gov"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_128_GCM_SHA256",
+                "kexAlg": "X25519, 253 bits",
+                "authAlg": "RSA-PSS",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 404 (Not Found)"
             ],
             "warnings": []
         },
@@ -782,13 +1043,19 @@
                 "name": "Treat"
             },
             "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [
-                "RequestError: getaddrinfo ENOTFOUND treat.com"
+                "HTTPError: Response code 404 (Not Found)"
             ],
-            "warnings": [
-                "OpenSSL error: 4077E571F37F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
-            ]
+            "warnings": []
         },
         {
             "issuer": {
@@ -799,10 +1066,10 @@
             "keys": [],
             "crls": [],
             "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+                "RequestError: getaddrinfo ENOTFOUND labtools.curativeinc.com"
             ],
             "warnings": [
-                "OpenSSL error: "
+                "OpenSSL error: 40A7C2A0187F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -822,7 +1089,7 @@
             },
             "crls": [],
             "errors": [
-                "SyntaxError: Unexpected token < in JSON at position 0"
+                "SyntaxError: Unexpected token < in JSON at position 2"
             ],
             "warnings": [
                 "Issuer key endpoint does not contain a CORS 'access-control-allow-origin' header"
@@ -837,32 +1104,11 @@
             "keys": [],
             "crls": [],
             "errors": [
-                "RequestError: read ECONNRESET"
+                "RequestError: getaddrinfo ENOTFOUND dvc.mohw.gov.tw"
             ],
             "warnings": [
-                "OpenSSL error: 40E770394B7F0000:error:0A000126:SSL routines:ssl3_read_n:unexpected eof while reading:../ssl/record/rec_layer_s3.c:317:"
+                "OpenSSL error: 40E7DCAB3D7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
-        },
-        {
-            "issuer": {
-                "iss": "https://epicproxy.bhsala.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "Brookwood Baptist Health",
-                "website": "https://www.brookwoodbaptisthealth.com/"
-            },
-            "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-SHA384",
-                "kexAlg": "ECDH, secp521r1, 521 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
-            "crls": [],
-            "errors": [
-                "HTTPError: Response code 401 (Unauthorized)"
-            ],
-            "warnings": []
         },
         {
             "issuer": {
@@ -881,24 +1127,9 @@
             },
             "crls": [],
             "errors": [
-                "HTTPError: Response code 400 (Bad Request)"
+                "RequestError: certificate has expired"
             ],
             "warnings": []
-        },
-        {
-            "issuer": {
-                "iss": "https://external.fastmed.com/FHIRproxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
-                "name": "FastMed",
-                "website": "https://www.fastmed.com/"
-            },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
-            ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
         },
         {
             "issuer": {
@@ -932,6 +1163,42 @@
             "warnings": [
                 "Issuer key set contains non-valid keys for SHC issuance"
             ]
+        },
+        {
+            "issuer": {
+                "iss": "https://health.us.cue.dev/api/smart-health-card/production",
+                "name": "Cue Health",
+                "website": "https://cuehealth.com/contact/support/"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "RequestError: getaddrinfo ENOTFOUND health.us.cue.dev"
+            ],
+            "warnings": [
+                "OpenSSL error: 4037E4FFBC7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://api.kroger.com/healthwellness/v1/smartcard",
+                "name": "Kroger Health",
+                "website": "https://www.kroger.com/health/pharmacy/covid-vaccine-testing#COVIDVaccineFAQs"
+            },
+            "keys": [],
+            "tlsDetails": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384",
+                "kexAlg": "X25519, 253 bits",
+                "authAlg": "ECDSA",
+                "pubKeySize": "256",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [
+                "HTTPError: Response code 404 (Not Found)"
+            ],
+            "warnings": []
         },
         {
             "issuer": {
@@ -1017,10 +1284,24 @@
             "keys": [],
             "crls": [],
             "errors": [
-                "RequestError: write EPROTO 140719654446976:error:14094458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../deps/openssl/openssl/ssl/record/rec_layer_s3.c:1563:SSL alert number 112\n"
+                "RequestError: write EPROTO 406CB2101D7F0000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../deps/openssl/openssl/ssl/record/rec_layer_s3.c:1605:SSL alert number 112\n"
             ],
             "warnings": [
-                "OpenSSL error: 40F7ECF9167F0000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../ssl/record/rec_layer_s3.c:1593:SSL alert number 112"
+                "OpenSSL error: 40A761688B7F0000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../ssl/record/rec_layer_s3.c:1599:SSL alert number 112"
+            ]
+        },
+        {
+            "issuer": {
+                "iss": "https://healthpass.doh.hawaii.gov/issuer",
+                "name": "Hawaii Department of Health"
+            },
+            "keys": [],
+            "crls": [],
+            "errors": [
+                "RequestError: getaddrinfo ENOTFOUND healthpass.doh.hawaii.gov"
+            ],
+            "warnings": [
+                "OpenSSL error: 40573B5D937F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         }
     ],
@@ -1088,75 +1369,146 @@
         "HCA National",
         "West Tennessee Healthcare"
     ],
-    "previousAuditTime": "2024-06-06T04:34:43Z",
-    "newIssuerCount": 1,
+    "previousAuditTime": "2024-09-20T18:00:15Z",
+    "newIssuerCount": 3,
     "deletedIssuerCount": 0,
     "removedKids": [
         {
-            "iss": "https://www.riteaid.com",
+            "iss": "https://EpicFHIR.aurora.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "vqHxrsBwtWp2-NS2APN4m8aGjnaec8_juc9C4wFw9hI"
+                "uOMSmJPwphyuvhjU54UnpRZ8_wefjoWSaMHz1eopGVM"
             ]
         },
         {
-            "iss": "https://www.express-scripts.com/frontendservice/mobilepatient-proxy/1/shc",
+            "iss": "https://epicproxy.uvmhealth.org/FHIR-ARR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "eOYMUyNJAF4a6iiPbwcOV2a3b6n_YjuKko-4mROkRYg"
+                "zBwvdXxZunOT7s39rKRmCkG8WntlwlwagOLKjopstSo"
             ]
         },
         {
-            "iss": "https://health-apis.duke.edu/FHIR/patient/DSTU2/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://fhir.lakelandregional.org/fhirproxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "H68eJBumEmB0adGvfhp0MlEK8LNPFMgTfkMjccFVR00"
+                "MP4R9FJRtzIt2Cqlvz2WfPbBXr24gxu_Z01GLB8N1uM"
             ]
         },
         {
-            "iss": "https://epicsoap.nortonhealthcare.org/FHIRPRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://interconnect.wellspan.org/interconnect-prd-fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "tNI3nVmGXwOqB4B2wa8VpxzDi_tBQNINMKYbWKvWJ6s"
+                "2CTIFrq4etN7ahQYM9VVQBH2JaHZvaqt6jvfl3CbMGo"
             ]
         },
         {
-            "iss": "https://pvc.gov.nu.ca/pvc",
+            "iss": "https://soap.uhcs.org/IC-FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "MXH6EAfEDZ0JH46r3j5axkCTo-QdreVtEXE-dbvydUU",
-                "DftUSIlFGWXfFr0cm1tYwpQ1rL1wOS7_YtjyAGzRI68"
+                "m_Iqa--J0odnT7cyJiObD1px1jxmm0x5v00ETHXM1VM"
             ]
         },
         {
-            "iss": "https://epicproxy.ardenthealth.com/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://epiclbsprxyprodpass.houstonmethodist.org/PRD-FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "wuB7cm9AqlvPyAD6o8b5blCTGfeAG3dPn31scDbYM-8"
+                "SArj0J9FU7dr183eb1Sd_n6-WsFayMhxjrc1EIDvps4"
             ]
         },
         {
-            "iss": "https://haiku.bshsi.org/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://fhir.archildrens.org/fhir/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "V22iGG1abG2sKH0oZ8JE5iiOIFABbONSQnDEF5tzCkw"
+                "nQbMGYnIP4z_aCA5fXOy-wH1O8Rv_FJE0yjnfCsc0Fs"
             ]
         },
         {
-            "iss": "https://epicproxy.bhsala.com/FHIRProxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://fhir.lluh.org/interconnect-fhir-prd/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "JYaFsJ6ltkJVsolJUds8mxxMQLfYR6RrfoMR_U-mdPE"
+                "kct_SdbBMVt5x66BpspAK1oljykq8xWX6r8wgTmzi8w",
+                "mXSAa7v7IdgkKcJPtri7_YmQjhIpEPmNXeI_i2M42iM"
             ]
         },
         {
-            "iss": "https://shc.cdr-healthmed.com/issuer",
+            "iss": "https://esoap.mihs.org/FHIR/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "5K75_U4qKM0yxpVb4KIuA1poRrLZuxHvMNkUw7-sexE"
+                "_7jjY4Wk5fRw0yJ5AAJ7UebRHeENXjmAP_gq4_JEOWY"
             ]
         },
         {
-            "iss": "https://external.fastmed.com/FHIRproxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "iss": "https://health.ri.gov/sh.cards/production",
             "kids": [
-                "zWvWe-FEE5LXNs8BHbL3cMpu9vqvMz5yla9M9rFUjyY"
+                "4miDO1rSeIyIF8xRD_oJHpy-6oDzh8plSSmTNeDDBSg"
             ]
         },
         {
-            "iss": "https://smarthealthcard.phsa.ca/v1/issuer",
+            "iss": "https://ocsoapprd.nebraskamed.com/FHIR-PRD/api/epic/2021/Security/Open/EcKeys/32001/SHC",
             "kids": [
-                "K4d6GFBAxvHUSFOU5MGaBbG4RSLlbwAQANUktxWBC0Q"
+                "eRkkeRzQyu2hSe8BlIWd_7dSWJh4BSnvlfXC5wda4hI"
+            ]
+        },
+        {
+            "iss": "https://surescripts.mdmercy.com/fhir-prd/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "kids": [
+                "JGByY_9xEE4Ke05ULW6fLHSubIBwwWhlQwi_J3-P3a8"
+            ]
+        },
+        {
+            "iss": "https://sclprdproxy.sclhs.net/FHIRPRD-2017/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "kids": [
+                "KBah6YdfLp3Y4ckJnLjRRUJIhnHRtzIFkJhAscuWzJY"
+            ]
+        },
+        {
+            "iss": "https://smart.medconciergela.com/api/ISSUER",
+            "kids": [
+                "dKEeeC7VTe912gisnMXHxBCd3iFRuDHj76tWtb3uaBc"
+            ]
+        },
+        {
+            "iss": "https://app.outpost.health/smart",
+            "kids": [
+                "RnTJ2-fHoqbCfTZJDsKokUNxBPZO9-vT5qJbFltDEM4"
+            ]
+        },
+        {
+            "iss": "https://vc.vrs.digital.go.jp/issuer",
+            "kids": [
+                "f1vhQP9oOZkityrguynQqB4aVh8u9xcf3wm4AFF4aVw",
+                "5fGcRveDtGxLX2q_CjXLUOITyAR5KuVNsfe9TkjE86k",
+                "zAa3HKmmj-gAlTasE5Wc_7PAvY9hR_8La5XVr60E41w"
+            ]
+        },
+        {
+            "iss": "https://rmgpxy.riverbendmedical.com/fhir_proxy/api/epic/2021/Security/Open/EcKeys/32001/SHC",
+            "kids": [
+                "dQZ_K6uV_az63aAQ6XppHWi7sS_EQW5aENOwK4l946Q"
+            ]
+        },
+        {
+            "iss": "https://s3.us-east-2.amazonaws.com/shc.vaccine.cookcountyil.gov",
+            "kids": [
+                "AUS1FwINnQiHFkT1S0NIoReaxz6CAoEoOIg7QpwuKhE",
+                "D0VRkhXEq80D7sfWeqDfJ0E4QbKhJPc8v0UlWV1Ef7U",
+                "uY3K-Hn_UKOQJM2S_6jZYa3ZpZWGrwAJGPrMWuQrD8Q",
+                "iy4q5Hxj7Gx5ambJY4mdLrIhgG6R_4vEX5lCmW1Tl-Q",
+                "EgULK0aHMEYrZGejnLP2s3LpDIhzdF9GmO15hrqtP2s",
+                "MeB5Xl54rMTHgfAblHFhJR-WZ95McrrtnbgbnlBE1mA",
+                "FiQcwskJsU4jKq50IORlrplJe6Cj9EyfsWldvzNGHkM",
+                "_EKTZCsgEqwR1R3oVaib1O9_R0KWehcROkU1aA883OE",
+                "YwCqpnQduymRrY9cvCVY9JR2AUS3WvvDOo0iWLRdwO8"
+            ]
+        },
+        {
+            "iss": "https://health.us.cue.dev/api/smart-health-card/production",
+            "kids": [
+                "bF6qcbib9igh0oy3dZ5puupOi4-Lyc5zyrJcAlFPOD0"
+            ]
+        },
+        {
+            "iss": "https://api.kroger.com/healthwellness/v1/smartcard",
+            "kids": [
+                "6D-6sCTvV2W7km7l-QOr-y5nj_me_ftIpclsxHBmvDE",
+                "kSkuBfLcOxfDGo8ZGzJh0GO3SP3wT6uT8ya62NMuYGk"
+            ]
+        },
+        {
+            "iss": "https://healthpass.doh.hawaii.gov/issuer",
+            "kids": [
+                "omK3t4WoU35GO9-hPZOVA0EI-bC59m4qUxvpp3vwcDs"
             ]
         }
     ]

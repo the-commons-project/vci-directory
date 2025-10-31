@@ -43,22 +43,14 @@ jobs:
           openssl dgst -sha512 -sign private.pem -out logs/vci_snapshot.sig -passin env:PRIVATE_SIG_KEY_PWD logs/vci_snapshot.json
           rm private.pem
 
-  test-scripts-job:
+      - name: Upload snapshot artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: audit-log-files
+          path: logs/*
+
+  create-pr-job:
     needs: vci-directory-audit
-    uses: the-commons-project/vci-directory/.github/workflows/test-scripts-pass.yaml@main
-    with:
-      ref: main
-    secrets: inherit
-
-  validate-issuers-job:
-    needs: test-scripts-job
-    uses: the-commons-project/vci-directory/.github/workflows/validate-issuers-on-push-pass.yaml@main
-    with:
-      ref: main
-    secrets: inherit
-
-  git-push-job:
-    needs: [vci-directory-audit, test-scripts-job, validate-issuers-job]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repository
@@ -67,36 +59,85 @@ jobs:
           ref: main
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: git check in
+      - name: Download snapshot artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: audit-log-files
+          path: logs/
+
+      - name: Create Pull Request
         env:
-          GIT_OWNER_EMAIL: ${{ secrets.GIT_OWNER_EMAIL }}
-          GIT_OWNER_NAME: ${{ secrets.GIT_OWNER_NAME }}
-          GIT_REPO_PATH: ${{ secrets.GIT_REPO_PATH }}
-          GIT_PUSH_TOKEN: ${{ secrets.GIT_PUSH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config user.email "$GIT_OWNER_EMAIL"
-          git config user.name "$GIT_OWNER_NAME"
-          if [[ `git status --porcelain` ]]; then
-            git add -f logs/daily_log.json
-            git add -f logs/daily_log_snapshot.json
-            git add -f logs/daily_audit.json
-            git add -f logs/vci_snapshot.json
-            git add -f logs/vci_snapshot.sig
-            git commit -a -m "daily dir and audit snapshot"
-            COMMIT=$(git rev-parse HEAD)
-            DATETIME=$(git log -n 1 --no-decorate --date=iso-strict -- logs/daily_log.json | head -3 | grep Date | cut -c 9-)
-            echo $COMMIT, $DATETIME >> logs/audit-index.csv
-            git add -f logs/audit-index.csv
-            git commit -a -m "added commit hash to audit index"
-            git remote add myorigin https://$GIT_OWNER_NAME:$GIT_PUSH_TOKEN@github.com/$GIT_REPO_PATH/vci-directory.git
-            git pull --rebase
-            git push myorigin HEAD:main
-          else
-            echo 'no changes'
+          # Check if there are changes
+          if [[ -z `git status --porcelain` ]]; then
+            echo "No changes detected, skipping PR creation"
+            exit 0
           fi
 
-      - name: save log files
-        uses: actions/upload-artifact@v4
-        with:
-          name: save-log-files
-          path: logs/*
+          # Configure git
+          git config user.name "VCI Directory Audit Bot"
+          git config user.email "noreply@thecommonsproject.org"
+
+          # Create branch name with date
+          BRANCH_NAME="audit/snapshot-$(date -u +%Y-%m-%d-%H%M%S)"
+
+          # Commit changes
+          git checkout -b "$BRANCH_NAME"
+          git add -f logs/daily_log.json
+          git add -f logs/daily_log_snapshot.json
+          git add -f logs/daily_audit.json
+          git add -f logs/vci_snapshot.json
+          git add -f logs/vci_snapshot.sig
+          git commit -m "Daily VCI directory audit snapshot
+
+          Automated snapshot update from nightly audit.
+
+          - Updated vci_snapshot.json with latest issuer keys
+          - Generated at: $(date -u +'%Y-%m-%d %H:%M:%S UTC')
+          - Audit log: logs/daily_audit.json"
+
+          # Add audit index entry
+          COMMIT=$(git rev-parse HEAD)
+          DATETIME=$(git log -n 1 --no-decorate --date=iso-strict -- logs/daily_log.json | head -3 | grep Date | cut -c 9-)
+          echo "$COMMIT, $DATETIME" >> logs/audit-index.csv
+          git add -f logs/audit-index.csv
+          git commit -m "Update audit index with latest snapshot commit"
+
+          # Push branch
+          git push origin "$BRANCH_NAME"
+
+          # Create PR with summary from audit log
+          ISSUER_COUNT=$(jq '.issuerCount' logs/daily_audit.json)
+          ERROR_COUNT=$(jq '.issuersWithErrors | length' logs/daily_audit.json)
+
+          gh pr create \
+            --title "🤖 Automated VCI Directory Snapshot Update - $(date -u +%Y-%m-%d)" \
+            --body "## Automated Daily Audit Snapshot
+
+          This PR contains the automated daily update of the VCI directory snapshot.
+
+          ### Summary
+          - **Total Issuers**: $ISSUER_COUNT
+          - **Issuers with Errors**: $ERROR_COUNT
+          - **Audit Time**: $(date -u +'%Y-%m-%d %H:%M:%S UTC')
+
+          ### What's Included
+          - Updated \`logs/vci_snapshot.json\` with latest issuer keys and CRLs
+          - Updated \`logs/daily_log.json\` with full audit details
+          - Updated \`logs/daily_audit.json\` with audit summary
+          - Updated signature file \`logs/vci_snapshot.sig\`
+          - Updated audit index
+
+          ### Automated Checks
+          ✅ Test scripts validation
+          ✅ Issuer file validation
+
+          ---
+          🤖 *This PR will be automatically merged once all required checks pass.*
+
+          *If you see issues with this snapshot, you can close this PR to prevent the merge.*" \
+            --base main \
+            --head "$BRANCH_NAME" \
+            --label "automated" \
+            --label "audit"

@@ -1,0 +1,190 @@
+name: Auto-merge Audit PRs
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - main
+
+  # Also run when check suites complete
+  check_suite:
+    types: [completed]
+
+  # Manual trigger if needed
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'PR number to check and merge'
+        required: true
+        type: number
+
+jobs:
+  auto-merge:
+    # Only run for audit PRs
+    if: |
+      (github.event_name == 'pull_request' && startsWith(github.head_ref, 'audit/')) ||
+      (github.event_name == 'check_suite' && startsWith(github.event.check_suite.head_branch, 'audit/')) ||
+      github.event_name == 'workflow_dispatch'
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+      checks: read
+
+    steps:
+      - name: Get PR details
+        id: pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            PR_NUMBER="${{ github.event.inputs.pr_number }}"
+          elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            PR_NUMBER="${{ github.event.pull_request.number }}"
+          else
+            # For check_suite, find the PR for this branch
+            BRANCH="${{ github.event.check_suite.head_branch }}"
+            PR_NUMBER=$(gh pr list --repo ${{ github.repository }} --head "$BRANCH" --json number --jq '.[0].number')
+          fi
+
+          echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+
+          # Get PR state and check if it's still open
+          PR_STATE=$(gh pr view $PR_NUMBER --repo ${{ github.repository }} --json state --jq '.state')
+          echo "pr_state=$PR_STATE" >> $GITHUB_OUTPUT
+
+          if [[ "$PR_STATE" != "OPEN" ]]; then
+            echo "PR #$PR_NUMBER is not open (state: $PR_STATE), skipping"
+            exit 0
+          fi
+
+      - name: Check if all required checks passed
+        id: checks
+        if: steps.pr.outputs.pr_state == 'OPEN'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUMBER="${{ steps.pr.outputs.pr_number }}"
+
+          # Get PR status checks
+          echo "Checking status for PR #$PR_NUMBER"
+
+          # Wait a moment for checks to register
+          sleep 5
+
+          # Check if all status checks have passed
+          # This will return the mergeable state
+          MERGEABLE=$(gh pr view $PR_NUMBER --repo ${{ github.repository }} --json mergeable --jq '.mergeable')
+          MERGEABLE_STATE=$(gh pr view $PR_NUMBER --repo ${{ github.repository }} --json mergeStateStatus --jq '.mergeStateStatus')
+
+          echo "Mergeable: $MERGEABLE"
+          echo "Merge state: $MERGEABLE_STATE"
+
+          if [[ "$MERGEABLE_STATE" == "BLOCKED" ]]; then
+            echo "❌ PR is blocked, checks have not passed yet"
+            echo "checks_passed=false" >> $GITHUB_OUTPUT
+            exit 0
+          elif [[ "$MERGEABLE_STATE" == "CLEAN" ]] || [[ "$MERGEABLE_STATE" == "UNSTABLE" ]]; then
+            echo "✅ All required checks have passed"
+            echo "checks_passed=true" >> $GITHUB_OUTPUT
+          else
+            echo "⏳ Checks are still running (state: $MERGEABLE_STATE)"
+            echo "checks_passed=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+      - name: Verify PR labels
+        id: labels
+        if: steps.checks.outputs.checks_passed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUMBER="${{ steps.pr.outputs.pr_number }}"
+
+          # Get PR labels
+          LABELS=$(gh pr view $PR_NUMBER --repo ${{ github.repository }} --json labels --jq '.labels[].name')
+
+          # Check if it has the automated label
+          if echo "$LABELS" | grep -q "automated"; then
+            echo "✅ PR has 'automated' label"
+            echo "should_merge=true" >> $GITHUB_OUTPUT
+          else
+            echo "❌ PR does not have 'automated' label, skipping auto-merge"
+            echo "should_merge=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Add safety check comment
+        if: steps.labels.outputs.should_merge == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUMBER="${{ steps.pr.outputs.pr_number }}"
+
+          gh pr comment $PR_NUMBER --repo ${{ github.repository }} --body "## 🤖 Auto-merge Safety Check
+
+          All required checks have passed:
+          ✅ Test Scripts
+          ✅ Validate Issuers File
+
+          This PR will be automatically merged in 30 seconds.
+
+          **To prevent auto-merge:** Close this PR or remove the \`automated\` label within 30 seconds."
+
+      - name: Wait for safety window
+        if: steps.labels.outputs.should_merge == 'true'
+        run: |
+          echo "⏳ Waiting 30 seconds for manual intervention window..."
+          sleep 30
+
+      - name: Check if PR is still open
+        if: steps.labels.outputs.should_merge == 'true'
+        id: final_check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUMBER="${{ steps.pr.outputs.pr_number }}"
+
+          # Re-check if PR is still open
+          PR_STATE=$(gh pr view $PR_NUMBER --repo ${{ github.repository }} --json state --jq '.state')
+
+          if [[ "$PR_STATE" != "OPEN" ]]; then
+            echo "❌ PR was closed during safety window, aborting merge"
+            echo "still_open=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          echo "still_open=true" >> $GITHUB_OUTPUT
+
+      - name: Merge PR
+        if: steps.final_check.outputs.still_open == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUMBER="${{ steps.pr.outputs.pr_number }}"
+
+          echo "🚀 Merging PR #$PR_NUMBER"
+
+          gh pr merge $PR_NUMBER \
+            --repo ${{ github.repository }} \
+            --squash \
+            --subject "Automated VCI directory snapshot update" \
+            --body "Automated merge of daily audit snapshot after all checks passed.
+
+          Original PR: #$PR_NUMBER"
+
+          echo "✅ Successfully merged PR #$PR_NUMBER"
+
+      - name: Notify on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUMBER="${{ steps.pr.outputs.pr_number }}"
+
+          gh pr comment $PR_NUMBER --repo ${{ github.repository }} --body "## ⚠️ Auto-merge Failed
+
+          The automated merge process encountered an error. Please review and merge manually if appropriate.
+
+          [View workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
