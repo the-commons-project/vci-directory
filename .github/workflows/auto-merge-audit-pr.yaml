@@ -157,6 +157,12 @@ jobs:
 
           echo "🚀 Merging PR #$PR_NUMBER"
 
+          # Note: --admin flag requires GITHUB_TOKEN to have admin permissions
+          # If this fails, you need to either:
+          # 1. Use a Personal Access Token with admin rights (stored as a secret)
+          # 2. Configure branch protection to not require checks for automated PRs
+          # 3. Or manually merge audit PRs
+
           gh pr merge $PR_NUMBER \
             --repo ${{ github.repository }} \
             --squash \
@@ -164,7 +170,12 @@ jobs:
             --subject "Automated VCI directory snapshot update" \
             --body "Automated merge of daily audit snapshot.
 
-          Original PR: #$PR_NUMBER"
+          Original PR: #$PR_NUMBER" || {
+            echo "⚠️ Failed to merge with --admin flag"
+            echo "This likely means GITHUB_TOKEN lacks admin permissions"
+            echo "PR #$PR_NUMBER is ready for manual merge"
+            exit 1
+          }
 
           echo "✅ Successfully merged PR #$PR_NUMBER"
 
