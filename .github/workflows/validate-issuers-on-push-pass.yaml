@@ -3,8 +3,10 @@ name: "Validate on push (Pass)"
 on:
   pull_request_target:
     types: [opened, synchronize]
-    paths:
-      - 'logs/**'
+    paths-ignore:
+      - 'vci-issuers*.json'
+      - 'scripts/*.py'
+      - '.github/workflows/validate-issuers.yaml'
   push:
     branches:
       - main
