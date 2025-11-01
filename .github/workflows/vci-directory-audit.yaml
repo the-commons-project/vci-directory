@@ -57,7 +57,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: main
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.tcpdevopsrobot }}
 
       - name: Download snapshot artifacts
         uses: actions/download-artifact@v4
@@ -67,7 +67,7 @@ jobs:
 
       - name: Commit and Push to Main
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.tcpdevopsrobot }}
         run: |
           # Check if there are changes
           if [[ -z `git status --porcelain` ]]; then
