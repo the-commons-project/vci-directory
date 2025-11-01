@@ -86,7 +86,7 @@ jobs:
             echo "❌ PR is blocked, checks have not passed yet"
             echo "checks_passed=false" >> $GITHUB_OUTPUT
             exit 0
-          elif [[ "$MERGEABLE_STATE" == "CLEAN" ]] || [[ "$MERGEABLE_STATE" == "UNSTABLE" ]]; then
+          elif [[ "$MERGEABLE_STATE" == "CLEAN" ]] || [[ "$MERGEABLE_STATE" == "UNSTABLE" ]] || [[ "$MERGEABLE_STATE" == "BEHIND" ]]; then
             echo "✅ All required checks have passed"
             echo "checks_passed=true" >> $GITHUB_OUTPUT
           else
