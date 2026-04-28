@@ -1,6 +1,6 @@
 {
     "directory": "https://raw.githubusercontent.com/the-commons-project/vci-directory/main/vci-issuers.json",
-    "time": "2026-04-27T05:36:30Z",
+    "time": "2026-04-28T05:40:06Z",
     "issuerInfo": [
         {
             "issuer": {
@@ -5543,7 +5543,7 @@
                 "RequestError: getaddrinfo ENOTFOUND haiku.scrippshealth.org"
             ],
             "warnings": [
-                "OpenSSL error: 40871516B37F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 40F77911D07F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -7298,11 +7298,17 @@
                     "crv": "P-256"
                 }
             ],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "warnings": []
         },
         {
             "issuer": {
@@ -7484,14 +7490,28 @@
                 "name": "Baptist Health",
                 "website": "https://mychart.baptist-health.org/mychart/"
             },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            "keys": [
+                {
+                    "x": "hA1cB_UjKPGaLnIm9mlJ0wLrK6g5QCd_eae2UKFRvpw",
+                    "y": "o1SsIsu0ZWeSsGkyxR6it-8MdJRny_deosxdrm1a3FI",
+                    "kid": "2Y6IshBllIuZBWuUMPeefWvqSHynjSDrmXHpOKo9JnU",
+                    "use": "sig",
+                    "kty": "EC",
+                    "alg": "ES256",
+                    "crv": "P-256"
+                }
             ],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-SHA384",
+                "kexAlg": "ECDH, prime256v1, 256 bits",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [],
+            "warnings": []
         },
         {
             "issuer": {
@@ -7643,7 +7663,7 @@
                 "RequestError: getaddrinfo ENOTFOUND ovc-api.optum.com"
             ],
             "warnings": [
-                "OpenSSL error: 40D71867917F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 4027F628817F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -8489,9 +8509,9 @@
                 }
             ],
             "tlsDetails": {
-                "version": "TLSv1.3",
-                "cipher": "TLS_AES_256_GCM_SHA384",
-                "kexAlg": "X25519, 253 bits",
+                "version": "TLSv1.2",
+                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+                "kexAlg": "ECDH, secp384r1, 384 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -8829,7 +8849,7 @@
                 "version": "TLSv1.2",
                 "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
                 "kexAlg": "ECDH, secp384r1, 384 bits",
-                "authAlg": "RSA",
+                "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
             },
@@ -8850,7 +8870,7 @@
                 "RequestError: getaddrinfo ENOTFOUND mepic.hackensackumc.net"
             ],
             "warnings": [
-                "OpenSSL error: 40371946FD7E0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 4087F530437F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -8981,7 +9001,7 @@
                 "RequestError: getaddrinfo ENOTFOUND fhir.chppoc.org"
             ],
             "warnings": [
-                "OpenSSL error: 40A79BF8317F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 40D7A8C3627F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -9375,7 +9395,7 @@
                 "RequestError: connect ECONNREFUSED 72.158.86.112:443"
             ],
             "warnings": [
-                "OpenSSL error: 4027FCFB377F0000:error:8000006F:system library:BIO_connect:Connection refused:../crypto/bio/bio_sock2.c:114:calling connect()\n4027FCFB377F0000:error:10000067:BIO routines:BIO_connect:connect error:../crypto/bio/bio_sock2.c:116:\n4027FCFB377F0000:error:8000006F:system library:BIO_connect:Connection refused:../crypto/bio/bio_sock2.c:114:calling connect()\n4027FCFB377F0000:error:10000067:BIO routines:BIO_connect:connect error:../crypto/bio/bio_sock2.c:116:\nconnect:errno=111"
+                "OpenSSL error: 40778665807F0000:error:8000006F:system library:BIO_connect:Connection refused:../crypto/bio/bio_sock2.c:114:calling connect()\n40778665807F0000:error:10000067:BIO routines:BIO_connect:connect error:../crypto/bio/bio_sock2.c:116:\n40778665807F0000:error:8000006F:system library:BIO_connect:Connection refused:../crypto/bio/bio_sock2.c:114:calling connect()\n40778665807F0000:error:10000067:BIO routines:BIO_connect:connect error:../crypto/bio/bio_sock2.c:116:\nconnect:errno=111"
             ]
         },
         {
@@ -9958,19 +9978,13 @@
                 "website": "https://www.quebec.ca/vaccinationpassport"
             },
             "keys": [],
-            "tlsDetails": {
-                "version": "TLSv1.3",
-                "cipher": "TLS_AES_256_GCM_SHA384",
-                "kexAlg": "X25519, 253 bits",
-                "authAlg": "RSA-PSS",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [
-                "RequestError: self-signed certificate"
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
             ],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -10338,28 +10352,14 @@
                 "name": "Boston Medical Center",
                 "website": "https://mychart.bmc.org/mychart"
             },
-            "keys": [
-                {
-                    "x": "SfYCSP7j4Je1zw-u_rQ4UMn0YjD8VoEj60xmOcKrz7g",
-                    "y": "e8SEwKnT5PNB19yc16p_XieSquVb40nwA1zrLzoh6O8",
-                    "kid": "C0Zydh0F8ZTQoQRVRZ7NNZi50G7MBAvmVTu4BBxDzf4",
-                    "use": "sig",
-                    "kty": "EC",
-                    "alg": "ES256",
-                    "crv": "P-256"
-                }
-            ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp384r1, 384 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
+            "keys": [],
             "crls": [],
-            "errors": [],
-            "warnings": []
+            "errors": [
+                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            ],
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -11457,7 +11457,7 @@
                 "RequestError: getaddrinfo ENOTFOUND fhir.archildrens.org"
             ],
             "warnings": [
-                "OpenSSL error: 403775CCEF7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 4097BCF1A97F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -11617,9 +11617,9 @@
                 }
             ],
             "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp384r1, 384 bits",
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384",
+                "kexAlg": "X25519, 253 bits",
                 "authAlg": "RSA-PSS",
                 "pubKeySize": "2048",
                 "compression": "NONE"
@@ -11724,10 +11724,10 @@
             "keys": [],
             "crls": [],
             "errors": [
-                "RequestError: write EPROTO 406C548D7B7F0000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../deps/openssl/openssl/ssl/record/rec_layer_s3.c:1605:SSL alert number 112\n"
+                "RequestError: write EPROTO 40FC2BD8C77F0000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../deps/openssl/openssl/ssl/record/rec_layer_s3.c:1605:SSL alert number 112\n"
             ],
             "warnings": [
-                "OpenSSL error: 40D728C9AC7F0000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../ssl/record/rec_layer_s3.c:1599:SSL alert number 112"
+                "OpenSSL error: 40078427C87F0000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../ssl/record/rec_layer_s3.c:1599:SSL alert number 112"
             ]
         },
         {
@@ -11994,7 +11994,7 @@
                 "RequestError: getaddrinfo ENOTFOUND prodsoap1.tgh.org"
             ],
             "warnings": [
-                "OpenSSL error: 40977DBE857F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 405774BC697F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -12396,7 +12396,7 @@
                 "RequestError: getaddrinfo ENOTFOUND guam.mdcareclik.net"
             ],
             "warnings": [
-                "OpenSSL error: 4067FED8197F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 40F7B9DD6F7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -12491,13 +12491,29 @@
                 "name": "Dartmouth-Hitchcock Health",
                 "website": "https://www.mydh.org/portal/"
             },
-            "keys": [],
-            "crls": [],
-            "errors": [
-                "TimeoutError: Timeout awaiting 'request' for 5000ms"
+            "keys": [
+                {
+                    "x": "EuKd1Oiiw1j0XY_zZ3vqs2hkqqpuM8C9IOUYXnYy5pU",
+                    "y": "2mDGjDzJGVWNBkFn9IAXSgjv8EXj4TYlvtYFKo5wC8E",
+                    "kid": "z6FF4HeX1EdoV8suJV4RtcYq98-RGaqHyPIq2GBUqss",
+                    "use": "sig",
+                    "kty": "EC",
+                    "alg": "ES256",
+                    "crv": "P-256"
+                }
             ],
+            "tlsDetails": {
+                "version": "TLSv1.2",
+                "cipher": "AES256-SHA",
+                "kexAlg": "RSA",
+                "authAlg": "RSA",
+                "pubKeySize": "2048",
+                "compression": "NONE"
+            },
+            "crls": [],
+            "errors": [],
             "warnings": [
-                "OpenSSL error: "
+                "TLS error: Static RSA SHOULD NOT be used, MUST prefer ECDHE and DHE"
             ]
         },
         {
@@ -12682,11 +12698,17 @@
                     "crv": "P-256"
                 }
             ],
+            "tlsDetails": {
+                "version": "TLSv1.3",
+                "cipher": "TLS_AES_256_GCM_SHA384",
+                "kexAlg": "DH, 4096 bits",
+                "authAlg": "ECDSA",
+                "pubKeySize": "256",
+                "compression": "NONE"
+            },
             "crls": [],
             "errors": [],
-            "warnings": [
-                "OpenSSL error: "
-            ]
+            "warnings": []
         },
         {
             "issuer": {
@@ -13811,7 +13833,7 @@
                 "RequestError: getaddrinfo ENOTFOUND esoap.mihs.org"
             ],
             "warnings": [
-                "OpenSSL error: 40F7EA65F77F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 40D7F3943A7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -14872,10 +14894,10 @@
             "keys": [],
             "crls": [],
             "errors": [
-                "RequestError: write EPROTO 406C548D7B7F0000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../deps/openssl/openssl/ssl/record/rec_layer_s3.c:1605:SSL alert number 112\n"
+                "RequestError: write EPROTO 40FC2BD8C77F0000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../deps/openssl/openssl/ssl/record/rec_layer_s3.c:1605:SSL alert number 112\n"
             ],
             "warnings": [
-                "OpenSSL error: 40B7BFDED17F0000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../ssl/record/rec_layer_s3.c:1599:SSL alert number 112"
+                "OpenSSL error: 4097FF64C47F0000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../ssl/record/rec_layer_s3.c:1599:SSL alert number 112"
             ]
         },
         {
@@ -14967,7 +14989,7 @@
                 "RequestError: getaddrinfo ENOTFOUND epicweb.challiance.org"
             ],
             "warnings": [
-                "OpenSSL error: 40272E92E47F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 4097FF8C287F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -15220,7 +15242,7 @@
                 "RequestError: getaddrinfo ENOTFOUND dashboard.au.accredify.io"
             ],
             "warnings": [
-                "OpenSSL error: 4087E27D8F7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 408788A59D7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -15240,17 +15262,11 @@
                     "crv": "P-256"
                 }
             ],
-            "tlsDetails": {
-                "version": "TLSv1.2",
-                "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
-                "kexAlg": "ECDH, secp384r1, 384 bits",
-                "authAlg": "RSA",
-                "pubKeySize": "2048",
-                "compression": "NONE"
-            },
             "crls": [],
             "errors": [],
-            "warnings": []
+            "warnings": [
+                "OpenSSL error: "
+            ]
         },
         {
             "issuer": {
@@ -15902,7 +15918,7 @@
                 "RequestError: getaddrinfo ENOTFOUND app.outpost.health"
             ],
             "warnings": [
-                "OpenSSL error: 40575175B67F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 406754CFF47F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -16178,7 +16194,7 @@
                 "RequestError: getaddrinfo ENOTFOUND vc.vrs.digital.go.jp"
             ],
             "warnings": [
-                "OpenSSL error: 40078558E47F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 40F7B27A1C7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -16453,7 +16469,7 @@
                 "RequestError: getaddrinfo ENOTFOUND api.vaulthealth.com"
             ],
             "warnings": [
-                "OpenSSL error: 4067D39A257F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 4047466D5A7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -16496,7 +16512,7 @@
                 "RequestError: connect ECONNREFUSED 168.250.53.35:443"
             ],
             "warnings": [
-                "OpenSSL error: 40F7EA45B27F0000:error:8000006F:system library:BIO_connect:Connection refused:../crypto/bio/bio_sock2.c:114:calling connect()\n40F7EA45B27F0000:error:10000067:BIO routines:BIO_connect:connect error:../crypto/bio/bio_sock2.c:116:\nconnect:errno=111"
+                "OpenSSL error: 407751264B7F0000:error:8000006F:system library:BIO_connect:Connection refused:../crypto/bio/bio_sock2.c:114:calling connect()\n407751264B7F0000:error:10000067:BIO routines:BIO_connect:connect error:../crypto/bio/bio_sock2.c:116:\nconnect:errno=111"
             ]
         },
         {
@@ -18227,7 +18243,7 @@
                 "RequestError: getaddrinfo ENOTFOUND labtools.curativeinc.com"
             ],
             "warnings": [
-                "OpenSSL error: 404787F01F7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 4017D4ED977F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -18516,7 +18532,7 @@
                 "RequestError: getaddrinfo ENOTFOUND dvc.mohw.gov.tw"
             ],
             "warnings": [
-                "OpenSSL error: 40A781B3377F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
+                "OpenSSL error: 40D74D42BA7F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:No address associated with hostname\nconnect:errno=2"
             ]
         },
         {
@@ -18641,17 +18657,7 @@
                 "name": "Care New England",
                 "website": "https://www.carenewengland.org/"
             },
-            "keys": [
-                {
-                    "x": "QMUAJ1kkztzD485UzUS-mqGzDFw5QQG3pkfV28M9ifk",
-                    "y": "7MeywoHGW552h-r7bqo6iQx6DRl-16bm1kT-x8axIcE",
-                    "kid": "UPhXyYBV4mAMlCsVtscAJP2KfP7T3kBn7R70dS9P3Lg",
-                    "use": "sig",
-                    "kty": "EC",
-                    "alg": "ES256",
-                    "crv": "P-256"
-                }
-            ],
+            "keys": [],
             "tlsDetails": {
                 "version": "TLSv1.3",
                 "cipher": "TLS_AES_256_GCM_SHA384",
@@ -18661,8 +18667,12 @@
                 "compression": "NONE"
             },
             "crls": [],
-            "errors": [],
-            "warnings": []
+            "errors": [
+                "SyntaxError: Unexpected token S in JSON at position 0"
+            ],
+            "warnings": [
+                "Issuer key endpoint does not contain a CORS 'access-control-allow-origin' header"
+            ]
         },
         {
             "issuer": {
@@ -19140,7 +19150,7 @@
                 "RequestError: getaddrinfo ENOTFOUND health.us.cue.dev"
             ],
             "warnings": [
-                "OpenSSL error: 40D7E5F4A57F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 4017E994F37F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
@@ -20033,10 +20043,10 @@
             "keys": [],
             "crls": [],
             "errors": [
-                "RequestError: write EPROTO 406C548D7B7F0000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../deps/openssl/openssl/ssl/record/rec_layer_s3.c:1605:SSL alert number 112\n"
+                "RequestError: write EPROTO 40FC2BD8C77F0000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../deps/openssl/openssl/ssl/record/rec_layer_s3.c:1605:SSL alert number 112\n"
             ],
             "warnings": [
-                "OpenSSL error: 40C783260D7F0000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../ssl/record/rec_layer_s3.c:1599:SSL alert number 112"
+                "OpenSSL error: 404761DDB17F0000:error:0A000458:SSL routines:ssl3_read_bytes:tlsv1 unrecognized name:../ssl/record/rec_layer_s3.c:1599:SSL alert number 112"
             ]
         },
         {
@@ -20175,7 +20185,7 @@
                 "RequestError: getaddrinfo ENOTFOUND healthpass.doh.hawaii.gov"
             ],
             "warnings": [
-                "OpenSSL error: 40273356517F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
+                "OpenSSL error: 406723F3297F0000:error:10080002:BIO routines:BIO_lookup_ex:system lib:../crypto/bio/bio_addr.c:738:Name or service not known\nconnect:errno=2"
             ]
         },
         {
