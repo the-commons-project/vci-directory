@@ -23,11 +23,17 @@ jobs:
           ref: ${{ github.event.pull_request.base.sha }}
           path: 'base'
 
+      - name: Set up Python
+        id: setup-python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
       - name: Cache Python venv
         uses: actions/cache@v4
         with:
           path: venv
-          key: ${{ runner.os }}-build-${{ hashFiles('head/scripts/requirements.txt') }}
+          key: ${{ runner.os }}-py${{ steps.setup-python.outputs.python-version }}-build-${{ hashFiles('head/scripts/requirements.txt') }}
 
       - name: "Validate Issuers File"
         run: |
